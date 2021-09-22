@@ -1,0 +1,44 @@
+#!/bin/zsh
+#vi:syntax=sh
+#    ██████╗ ██████╗  ██████╗ ███████╗██╗██╗     ███████╗
+#    ██╔══██╗██╔══██╗██╔═══██╗██╔════╝██║██║     ██╔════╝
+#    ██████╔╝██████╔╝██║   ██║█████╗  ██║██║     █████╗  
+#    ██╔═══╝ ██╔══██╗██║   ██║██╔══╝  ██║██║     ██╔══╝  
+# ██╗██║     ██║  ██║╚██████╔╝██║     ██║███████╗███████╗
+# ╚═╝╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝╚══════╝
+
+## XDG base directory
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+
+export PATH="$PATH:$HOME/.local/bin"
+# export PATH=~/.local/npm/bin:$PATH
+
+## Default program
+export TERM="xterm-256color"
+export EDITOR="nvim"
+export VISUAL="nvim"
+export MANPAGER='nvim +Man!'
+export MANWIDTH=999
+export TERMINAL=alacritty
+export BROWSER="brave"
+
+## Dotfile management
+export DOTFILES=$HOME/.dotfile.git
+
+## Home directory clean up
+export HISTFILE=${XDG_STATE_HOME:-$HOME/.local/state}/bash/history
+export LESSHISTFILE="-"
+export INPUTRC=${XDG_CONFIG_HOME:-$HOME/.config}/shell/inputrc
+export ZDOTDIR=${XDG_CONFIG_HOME:-$HOME/.config}/zsh
+export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$XDG_CONFIG_HOME/nvim/init.vim" | so $MYVIMRC'
+export NPM_CONFIG_USERCONFIG=${XDG_CONFIG_HOME:-$HOME/.config}/npm/npmrc
+# export NPM_CONFIG_PREFIX=~/.local/npm
+export STARSHIP_CONFIG=${XDG_CONFIG_HOME:-$HOME/.config}/starship/config.toml
+
+# if running bash
+if [ -n "$BASH_VERSION" ]; then
+    [[ -f ${XDG_CONFIG_HOME:-$HOME/.config}/bash/bashrc ]] && source ${XDG_CONFIG_HOME:-$HOME/.config}/bash/bashrc
+fi

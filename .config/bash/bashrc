@@ -1,0 +1,42 @@
+#!/bin/bash
+# ██████╗  █████╗ ███████╗██╗  ██╗██████╗  ██████╗
+# ██╔══██╗██╔══██╗██╔════╝██║  ██║██╔══██╗██╔════╝
+# ██████╔╝███████║███████╗███████║██████╔╝██║     
+# ██╔══██╗██╔══██║╚════██║██╔══██║██╔══██╗██║     
+# ██████╔╝██║  ██║███████║██║  ██║██║  ██║╚██████╗
+# ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝
+                                                
+# PS1='[\u@\h \W]\$ '
+PS1='\e[0;31m[\e[0m\u\e[0;31m@\e[0m\h \e[0;34m\W\e[0m\e[0;31m]\e[0m\e[0;32m\$\e[0m '
+
+# Load aliases
+[[ -f ${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases ]] && source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+## SET VI MODE ###(use inputrc instead
+#set -o vi
+
+# Set keybindings for vi mode
+#bind -m vi-command 'Control-l: clear-screen'
+#bind -m vi-insert 'Control-l: clear-screen'
+
+# Ignore case when tab completion
+#bind "set completion-ignore-case on"
+##################
+
+HISTCONTROL=ignoreboth	# Ignore duplicate in history 
+
+stty stop undef		# Disable ctrl-s to freeze terminal.
+
+## SHOPT
+shopt -s autocd		# Auto cd to directory
+shopt -s cdspell	# Auto correct dirctory name
+shopt -s cmdhist	# Save multi-line commands in history as single
+shopt -s dotglob	# Includ dot file in globbling
+shopt -s histappend	# Append history not overwrite when exit
+shopt -s checkwinsize	# Checks term size when bash regains control
+
+# Starship prompt
+#eval "$(starship init bash)"

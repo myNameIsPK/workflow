@@ -1,0 +1,35 @@
+#vi:syntax=sh
+
+# TODO edit hard code re source config file
+# Shortcut: Reload config file
+alias rebash="source $HOME/.config/bash/bashrc"
+alias rezsh="source $HOME/.config/zsh/.zshrc"
+
+# Colorize output
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+# Confirm file operation
+alias cp="cp -i"
+alias mv='mv -i'
+alias rm='rm -i'
+
+# Utilities
+alias vi="nvim"
+alias lv="lvim"
+alias dot="git --git-dir=$DOTFILES --work-tree=$HOME"
+alias colortest='msgcat --color=test'
+alias texttest='~/.local/bin/text-style-test'
+
+# ls Flags
+alias l='ls -CF'
+alias ll='ls -lAFrt'
+alias la='ls -lAF --group-directories-first'
+alias lh='ls -lAFhS'
+
+# Check disk space
+alias df='df -h'
+alias free='free -m'
+alias duh='du -h --max-depth=1'
