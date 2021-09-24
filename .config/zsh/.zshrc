@@ -12,6 +12,11 @@ PS1="%B%{$fg[red]%}[%{$fg[white]%}%n%{$fg[red]%}@%{$fg[white]%}%M %{$fg[blue]%}%
 # Load aliases
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases"
 
+# Move history in xdg-cache
+HISTSIZE=10000000
+SAVEHIST=10000000
+# HISTFILE=$HOME/.local/state/bash/history
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -40,6 +45,15 @@ bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
+
+# Emacs keys in vi mode
+bindkey -v '^A' beginning-of-line
+bindkey -v '^E' end-of-line
+bindkey -v '^R' history-incremental-search-backward
+
+# ctrl+<- | ctrl+->
+bindkey "^[[1;5D" backward-word
+bindkey "^[[1;5C" forward-word
 
 # Change cursor shape for different vi modes.
 function zle-keymap-select () {
