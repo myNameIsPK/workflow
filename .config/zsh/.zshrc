@@ -10,6 +10,7 @@ autoload -U colors && colors
 PS1="%B%{$fg[red]%}[%{$fg[white]%}%n%{$fg[red]%}@%{$fg[white]%}%M %{$fg[blue]%}%~%{$fg[red]%}]%{$fg[green]%}$%b%{$reset_color%} %b"
 
 # Load aliases
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/profile" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/profile"
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases"
 
 # Move history in xdg-cache
@@ -46,10 +47,20 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 
-# Emacs keys in vi mode
-bindkey -v '^A' beginning-of-line
-bindkey -v '^E' end-of-line
-bindkey -v '^R' history-incremental-search-backward
+# Emacs keys in vi-insert mode
+bindkey -M viins '^A' beginning-of-line
+bindkey -M viins '^E' end-of-line
+bindkey -M viins '^R' history-incremental-search-backward
+bindkey -M viins '^S' history-incremental-search-forward
+bindkey -M viins '^F' forward-char
+bindkey -M viins '^B' backward-char
+bindkey -M viins '^D' delete-char-or-list
+#bindkey -M viins '^K' kill-line
+bindkey -M viins '^N' down-line-or-history
+bindkey -M viins '^P' up-line-or-history
+
+# Bash like Emacs mode
+bindkey -M emacs '^X^E' edit-command-line
 
 # ctrl+<- | ctrl+->
 bindkey "^[[1;5D" backward-word

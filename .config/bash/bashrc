@@ -19,7 +19,7 @@ HISTFILE=$HOME/.local/state/bash/history
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-## SET VI MODE ###(use inputrc instead
+## SET VI MODE ###(use inputrc instead)
 #set -o vi
 
 # Set keybindings for vi mode
