@@ -102,10 +102,17 @@ function M.setup()
     use { "norcalli/nvim-colorizer.lua" }
     use {
       "famiu/feline.nvim",
+      require = {
+        "kyazdani42/nvim-web-devicons"
+      },
       config = function ()
-        require("feline").setup()
+        -- require("config.feline")
+        require("feline").setup({
+          preset = "noicon"
+        })
       end,
     }
+    use "kyazdani42/nvim-web-devicons"
 
     -- Note Taking
     use {
