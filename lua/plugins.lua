@@ -106,10 +106,10 @@ function M.setup()
         "kyazdani42/nvim-web-devicons"
       },
       config = function ()
-        -- require("config.feline")
-        require("feline").setup({
-          preset = "noicon"
-        })
+        require("config.feline").setup()
+        -- require("feline").setup({
+        --   preset = "noicon"
+        -- })
       end,
     }
     use "kyazdani42/nvim-web-devicons"
