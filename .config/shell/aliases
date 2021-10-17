@@ -6,14 +6,14 @@
 alias rebash="source $HOME/.config/bash/bashrc"
 alias rezsh="source $HOME/.config/zsh/.zshrc"
 
-alias cf='cd ~/.config'
-alias dt='cd ~/.local/share'
-alias db='cd ~/.local/bin'
-alias cfn='$EDITOR ~/.config/nvim/'
-alias cfz='$EDITOR ~/.config/zsh/.zshrc'
-alias cfa='$EDITOR ~/.config/shell/aliases'
-alias cfp='$EDITOR ~/.config/shell/profile'
-alias cft='$EDITOR ~/.config/tmux/tmux.conf'
+alias cf="cd ~/.config"
+alias dt="cd ~/.local/share"
+alias db="cd ~/.local/bin"
+alias cfn="$EDITOR ~/.config/nvim/"
+alias cfz="$EDITOR ~/.config/zsh/.zshrc"
+alias cfa="$EDITOR ~/.config/shell/aliases"
+alias cfp="$EDITOR ~/.config/shell/profile"
+alias cft="$EDITOR ~/.config/tmux/tmux.conf"
 
 # Tmux
 alias ta="tmux a"
@@ -21,7 +21,16 @@ alias tls="tmux ls"
 alias tks="tmux kill-sess"
 
 # Git shortcut
-alias gs='git status'
+alias g="git"
+alias gst="git status"
+alias gss="git status -s"
+alias ga="git add"
+alias gaa="git add --all"
+alias gu="git rm --cached --force" 
+alias gb="git branch"
+alias gba="git branch --all"
+alias gbd="git branch --delete"
+alias ggraph="git log --graph --oneline --decorate"
 
 # LazyGit
 alias zg="lazygit"
@@ -29,29 +38,29 @@ alias lazydot="lazygit --git-dir=/home/pk/.dotfile.git --work-tree=/home/pk"
 alias zd="lazydot"
 
 # Colorize output
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
+alias ls="ls --color=auto"
+alias grep="grep --color=auto"
+alias egrep="egrep --color=auto"
+alias fgrep="fgrep --color=auto"
 
 # Confirm file operation
 alias cp="cp -i"
-alias mv='mv -i'
-alias rm='rm -i'
+alias mv="mv -i"
+alias rm="rm -i"
 
 # Utilities
 alias vi="nvim"
 alias lv="lvim"
 alias dot="git --git-dir=$DOTFILES --work-tree=$HOME"
-alias colortest='msgcat --color=test'
+alias colortest="msgcat --color=test"
 
 # ls Flags
-alias l='ls -CF'
-alias ll='ls -lAFrt'
-alias la='ls -lAF --group-directories-first'
-alias lh='ls -lAFhS'
+alias l="ls -CF"
+alias ll="ls -lAFrt"
+alias la="ls -lAF --group-directories-first"
+alias lh="ls -lAFhS"
 
 # Check disk space
-alias df='df -h'
-alias free='free -m'
-alias duh='du -h --max-depth=1'
+alias df="df -h"
+alias free="free -m"
+alias duh="du -h --max-depth=1"
