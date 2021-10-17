@@ -31,6 +31,7 @@ stty stop undef		# Disable ctrl-s to freeze terminal.
 setopt autocd		# Automatically cd into typed directory.
 setopt interactive_comments
 setopt histignoredups	# Ignore duplicate in history
+unsetopt beep	# disable bell-noise
 
 ## Basic auto/tab complete:
 autoload -U compinit
@@ -90,7 +91,24 @@ bindkey '^V' edit-command-line
 ## Shortcut
 # ctrl-o for 'la'
 #bindkey -s '^O' 'la\n'
-alias cfz='$EDITOR ~/.config/zsh/.zshrc'
 
-## Starship prompt should be last
-# eval "$(starship init zsh)"
+## Plugin
+# Function to source files if they exist
+function zsh_add_file() {
+    [ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"
+}
+
+function zsh_add_plugin() {
+    PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
+    if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then 
+        # For plugins
+        zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" || \
+        zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.zsh"
+    else
+        git clone "https://github.com/$1.git" "$ZDOTDIR/plugins/$PLUGIN_NAME"
+    fi
+}
+
+zsh_add_plugin "zsh-users/zsh-autosuggestions"
+zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
+zsh_add_plugin "hlissner/zsh-autopair"

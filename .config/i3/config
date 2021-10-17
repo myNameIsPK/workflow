@@ -54,10 +54,10 @@ bindsym $super+$up focus up
 bindsym $super+$right focus right
 
 # change focus by arrow key
-bindsym $super+Left focus left
-bindsym $super+Down focus down
-bindsym $super+Up focus up
-bindsym $super+Right focus right
+#bindsym $super+Left focus left
+#bindsym $super+Down focus down
+#bindsym $super+Up focus up
+#bindsym $super+Right focus right
 
 # move focused window
 bindsym $super+Shift+$left move left
@@ -174,6 +174,16 @@ mode "resize" {
 }
 
 bindsym $super+r mode "resize"
+
+bindsym $super+$alt+$left       resize shrink width 10 px or 10 ppt
+bindsym $super+$alt+$down       resize grow height 10 px or 10 ppt
+bindsym $super+$alt+$up         resize shrink height 10 px or 10 ppt
+bindsym $super+$alt+$right      resize grow width 10 px or 10 ppt
+
+bindsym $super+Left        resize shrink width 10 px or 10 ppt
+bindsym $super+Down        resize grow height 10 px or 10 ppt
+bindsym $super+Up          resize shrink height 10 px or 10 ppt
+bindsym $super+Right       resize grow width 10 px or 10 ppt
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
