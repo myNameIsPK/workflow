@@ -2,7 +2,7 @@ local M = {}
 
 function M.setup()
 
-  require("telescope").load_extension "projects"
+  require("telescope").load_extension("projects")
 
   local status_ok, actions = pcall(require, "telescope.actions")
   if not status_ok then

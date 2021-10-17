@@ -17,7 +17,7 @@ local function packer_init()
     cmd("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
     cmd "packadd packer.nvim"
   end
-  cmd "autocmd bufwritepost plugins.lua packercompile"
+  cmd "autocmd bufwritepost plugins.lua PackerCompile"
 end
 
 local function sys_init()

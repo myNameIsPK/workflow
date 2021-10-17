@@ -151,7 +151,7 @@ local comps = {
       provider = "file_info",
       hl = {
         fg = colors.white,
-        style = "bold"
+        -- style = "bold"
       }
     },
     encoding = {
@@ -159,14 +159,14 @@ local comps = {
       left_sep = " ",
       hl = {
         fg = colors.white,
-        style = "bold"
+        -- style = "bold"
       }
     },
     type = {
       provider = "file_type",
       hl = {
         fg = colors.white,
-        style = 'bold'
+        -- style = 'bold'
       }
     },
     position = {
@@ -174,7 +174,7 @@ local comps = {
       left_sep = ' ',
       hl = {
         fg = colors.white,
-        style = 'bold'
+        -- style = 'bold'
       }
     },
     os = {
@@ -182,7 +182,7 @@ local comps = {
       left_sep = " ",
       hl = {
         fg = colors.white,
-        style = "bold"
+        -- style = "bold"
       }
     }
   },
@@ -191,7 +191,7 @@ local comps = {
     left_sep = " ",
     hl = {
       fg = colors.white,
-      style = "bold"
+      -- style = "bold"
     }
   },
   scroll_bar = {
@@ -199,7 +199,7 @@ local comps = {
     left_sep = " ",
     hl = {
       fg = colors.yellow,
-      style = "bold"
+      -- style = "bold"
     }
   },
   diagnos = {

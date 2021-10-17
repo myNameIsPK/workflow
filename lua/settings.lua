@@ -9,8 +9,10 @@ function M.setup()
 
   local indent = 2
 
-  cmd "set background=dark"
+  -- cmd "colorscheme slate"
+
   cmd "colorscheme gruvbox-material"
+  cmd "set background=dark"
   g.gruvbox_material_background = "soft"
   g.gruvbox_material_disable_italic_comment = 1
   g.gruvbox_material_visual = "reverse"

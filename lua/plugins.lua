@@ -21,6 +21,7 @@ function M.setup()
 
     -- LSP
     use { "neovim/nvim-lspconfig" }
+    -- TODO: change this to nvim-lsp-install
     use { "kabouzeid/nvim-lspinstall" }
     use { "tamago324/nlsp-settings.nvim" } -- use to config LSP using Json
     use { "antoinemadec/FixCursorHold.nvim" } -- TODO: delete in the future
@@ -36,7 +37,6 @@ function M.setup()
     }
 
     -- Telescope fuzzy finder
-    use { "nvim-lua/popup.nvim" }
     use { "nvim-lua/plenary.nvim" }
     use {
       "nvim-telescope/telescope.nvim",
