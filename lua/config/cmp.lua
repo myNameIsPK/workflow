@@ -53,6 +53,7 @@ function M.setup()
           vsnip = "[Vsnip]",
           luasnip = "[Luasnip]",
           buffer = "[Buffer]",
+          spell = "[Spell]",
           neorg = "[Neorg]",
         })[entry.source.name]
         -- TODO: What is this?
@@ -83,7 +84,7 @@ function M.setup()
       { name = "emoji" },
       { name = "treesitter" },
       { name = "crates" },
-      -- { name = "spell" },
+      { name = "spell" },
       { name = "neorg"},
     },
     mapping = {

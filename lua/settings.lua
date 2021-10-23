@@ -22,7 +22,7 @@ function M.setup()
   -- steal from lunarvim
   opt.shortmess:append "c" -- shorten ins-completion-menu message
   opt.backup = false -- creates a backup file
-  opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
+  -- opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
   -- opt.cmdheight = 2 -- more space in the neovim command line for displaying messages
   opt.colorcolumn = "99999" -- fixes indentline for now
   opt.completeopt = "menuone,noselect"

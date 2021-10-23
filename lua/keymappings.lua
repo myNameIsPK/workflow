@@ -85,6 +85,9 @@ local keymappings = {
     ["<leader>fh"] = "<Cmd>Telescope help_tags<Cr>",
     ["<leader>fb"] = "<Cmd>Telescope buffers<Cr>",
 
+    -- Packer
+    ["<leader>ps"] = "<Cmd>PackerStatus<Cr>",
+
   },
   visual_mode = {
     ["<"] = "<gv",
