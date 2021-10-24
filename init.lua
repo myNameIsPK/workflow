@@ -33,6 +33,8 @@ require("settings").setup()
 
 require("keymappings").setup()
 
+require("autocmds")
+
 require("config.lsp").setup()
 
 require("plugins").setup()
