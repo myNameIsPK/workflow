@@ -45,3 +45,4 @@ export PATH=$PATH:${CARGO_HOME}/bin
 if [ -n "$BASH_VERSION" ]; then
     [[ -f ${XDG_CONFIG_HOME:-$HOME/.config}/bash/bashrc ]] && source ${XDG_CONFIG_HOME:-$HOME/.config}/bash/bashrc
 fi
+# . "/home/pk/.local/share/cargo/env"
