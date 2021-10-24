@@ -21,7 +21,7 @@ function M.setup()
       ["core.norg.dirman"] = { -- Manage your directories with Neorg
         config = {
           workspaces = {
-              my_workspace = "~/neorg",
+              my_workspace = "~/notes/neorg",
           }
         }
       }
