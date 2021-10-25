@@ -1,6 +1,9 @@
 #!/bin/sh
 #vi:syntax=sh
 
+# alias a=alias
+alias a="cd /etc"
+
 # TODO edit hard code re source config file
 # Shortcut: Reload config file
 alias rebash="source $HOME/.config/bash/bashrc"
@@ -19,6 +22,7 @@ alias cft="$EDITOR ~/.config/tmux/tmux.conf"
 alias ta="tmux a"
 alias tls="tmux ls"
 alias tks="tmux kill-sess"
+alias tkp="tmux kill-pane"
 
 # Git shortcut
 alias g="git"
@@ -46,6 +50,12 @@ alias gz="lazygit"
 alias lazydot="lazygit --git-dir=/home/pk/.dotfile.git --work-tree=/home/pk"
 alias dz="lazydot"
 
+# FZF integration
+fzf_open_file () {
+  $EDITOR $(fzf)
+}
+alias vio="fzf_open_file"
+
 # Colorize output
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
@@ -72,4 +82,11 @@ alias lh="ls -lAFhS"
 # Check disk space
 alias df="df -h"
 alias free="free -m"
-alias duh="du -h --max-depth=1"
+alias duh="du -h --max-depth=1 | sort -h -r"
+
+# Hack
+alias cd-="cd -"
+alias ....="cd ../.."
+alias ......="cd ../../.."
+alias ........="cd ../../../.."
+# alias :q=exit

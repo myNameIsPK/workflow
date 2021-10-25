@@ -89,8 +89,7 @@ bindkey '^V' edit-command-line
 
 # TODO :edit hard code shortcut
 ## Shortcut
-# ctrl-o for 'la'
-#bindkey -s '^O' 'la\n'
+bindkey -s '^O' '$EDITOR $(fzf)^M'
 
 ## Plugin
 # Function to source files if they exist

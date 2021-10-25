@@ -24,7 +24,7 @@ Control-b: backward-char
 # Control-k: kill-line
 Control-n: next-history
 Control-p: previous-history
-#"": "la\n"
+"": "$EDITOR $(fzf)\n"
 $endif
 
 # Ignore case when tab completion

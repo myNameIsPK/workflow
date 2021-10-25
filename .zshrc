@@ -1,1 +1,0 @@
-/home/pk/.config/zsh/.zshrc
