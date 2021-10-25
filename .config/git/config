@@ -1,0 +1,14 @@
+# XDG version of ~/.gitconfig
+[user]
+	email = 43566401+myNameIsPK@users.noreply.github.com
+	name = myNameIsPk
+[alias]
+  ss = status -s
+[difftool]
+  prompt = true
+[diff]
+  tool = nvimdiff
+[difftool "nvimdiff"]
+  cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+[init]
+	defaultBranch = main

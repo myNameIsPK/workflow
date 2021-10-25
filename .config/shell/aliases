@@ -1,8 +1,7 @@
 #!/bin/sh
 #vi:syntax=sh
 
-# alias a=alias
-alias a="cd /etc"
+alias a=alias
 
 # TODO edit hard code re source config file
 # Shortcut: Reload config file
