@@ -166,7 +166,7 @@ local comps = {
       provider = "file_type",
       hl = {
         fg = colors.white,
-        -- style = 'bold'
+        style = 'bold'
       }
     },
     position = {
