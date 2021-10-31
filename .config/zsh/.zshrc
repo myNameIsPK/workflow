@@ -89,7 +89,12 @@ bindkey '^V' edit-command-line
 
 # TODO :edit hard code shortcut
 ## Shortcut
-bindkey -s '^O' '$EDITOR $(fzf)^M'
+fzf_openfile() {
+  $EDITOR $(find * -type f | fzf)
+}
+zle -N fzf_openfile
+bindkey '^O' fzf_openfile
+# bindkey -s '^O' '$EDITOR $(fzf)^M'
 
 ## Plugin
 # Function to source files if they exist

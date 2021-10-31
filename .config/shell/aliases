@@ -22,6 +22,7 @@ alias ta="tmux a"
 alias tls="tmux ls"
 alias tks="tmux kill-sess"
 alias tkp="tmux kill-pane"
+alias td="tmux detach-client"
 
 # Git shortcut
 alias g="git"
@@ -88,4 +89,4 @@ alias cd-="cd -"
 alias ....="cd ../.."
 alias ......="cd ../../.."
 alias ........="cd ../../../.."
-# alias :q=exit
+alias :q=exit
