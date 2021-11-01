@@ -7,8 +7,6 @@ function M.setup()
     return
   end
 
-  require("telescope").load_extension("projects")
-
   require("telescope").setup {
     -- TODO: Not Used ?
     -- extensions = {
@@ -90,6 +88,8 @@ function M.setup()
         n = {
           ["<C-n>"] = actions.move_selection_next,
           ["<C-p>"] = actions.move_selection_previous,
+          ["<C-j>"] = actions.move_selection_next,
+          ["<C-k>"] = actions.move_selection_previous,
           ["<C-c>"] = actions.close,
           ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
           -- ["<c-t>"] = trouble.open_with_trouble,
@@ -98,6 +98,35 @@ function M.setup()
       },
     },
   }
+
+  local map = require("utils.mappings").map
+
+  map("n", "<leader>fa", "<Cmd>Telescope builtin<Cr>")
+  map("n", "<leader>ff", "<Cmd>Telescope find_files<Cr>")
+  map("n", "<leader>fg", "<Cmd>Telescope live_grep<Cr>")
+  map("n", "<leader>fh", "<Cmd>Telescope help_tags<Cr>")
+  map("n", "<leader>fb", "<Cmd>Telescope buffers<Cr>")
+  map("n", "<leader>fr", "<Cmd>Telescope oldfiles<Cr>")
+
+  -- Load Extensions
+  require("telescope").load_extension("projects")
+  map("n", "<leader>fp", "<Cmd>Telescope projects<Cr>")
+
+
+  local wk = require("which-key")
+
+  wk.register({
+    ["<leader>f"] = {
+      name = "+Telescope",
+      a = "All Builtin",
+      f = "Files",
+      g = "Grep Files",
+      b = "Buffers",
+      h = "Help Tags",
+      p = "Projects",
+      r = "Recent Files",
+    },
+  })
 end
 
 -- -- TODO: Delete this ?

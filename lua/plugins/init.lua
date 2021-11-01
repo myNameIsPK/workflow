@@ -13,6 +13,8 @@ require("packer").startup(function(use)
   use {
     'nvim-telescope/telescope.nvim',
     cmd = "Telescope",
+    keys = { "<leader>f" },
+    module_pattern = 'telescope.*',
     requires = {
       'nvim-lua/plenary.nvim',
     },
@@ -68,13 +70,29 @@ require("packer").startup(function(use)
     end,
   }
   -- use {
-    --   "windwp/nvim-autopairs",
-    --   config = function()
-    --     require("nvim-autopairs").setup {}
-    --   end,
-    -- }
+  --   "windwp/nvim-autopairs",
+  --   config = function()
+  --     require("nvim-autopairs").setup {}
+  --   end,
+  -- }
   use { "norcalli/nvim-colorizer.lua",
     cmd = "ColorizerToggle",
   }
 
 end)
+
+local map = require("utils.mappings").map
+
+map("n", "<leader>pc", "<Cmd>PackerCompile<Cr>")
+map("n", "<leader>ps", "<Cmd>PackerStatus<Cr>")
+
+local ok, wk = pcall(require, "which-key")
+if ok then
+  wk.register({
+    ["<leader>p"] = {
+      name = "+Packer",
+      c = "Compile",
+      s = "Status",
+    }
+  })
+end
