@@ -1,5 +1,3 @@
-local M = {}
-
 local opts = { noremap = true, silent = false }
 
 local generic_opts = {
@@ -49,7 +47,7 @@ local keymappings = {
       -- "<Plug>(easymotion-overwin-f)",
       -- { noremap = false, silent = false },
     -- },
-    -- ["<C-l>"] = "<Cmd>noh<CR>",
+    ["<leader>l"] = "<Cmd>noh<CR>",
     -- ["<C-w><C-o>"] = "<Cmd>MaximizerToggle!<CR>",
     ["<C-h>"] = "<C-w>h",
     ["<C-j>"] = "<C-w>j",
@@ -57,7 +55,7 @@ local keymappings = {
     ["<C-l>"] = "<C-w>l",
 
     ["<C-Up>"] = ":resize -2<CR>",
-    ["<C-Down"] = ":resize +2<CR>",
+    ["<C-Down>"] = ":resize +2<CR>",
     ["<C-Left>"] = ":vertical resize -2<CR>",
     ["<C-Right>"] = ":vertical resize +2<CR>",
 
@@ -66,8 +64,8 @@ local keymappings = {
 
     ["Y"] = "y$",
 
-    ["<S-h>"] = "<Cmd>bp<Cr>",
-    ["<S-l>"] = "<Cmd>bn<Cr>",
+    -- ["<S-h>"] = "<Cmd>bp<Cr>",
+    -- ["<S-l>"] = "<Cmd>bn<Cr>",
 
     ["n"] = "nzzzv",
     ["N"] = "Nzzzv",
@@ -77,13 +75,11 @@ local keymappings = {
     ["<expr> k"] = "(v:count > 1 ? \"m'\" . v:count : '') . 'k'",
 
     -- Telescope TODO: Move leader to which key
-    ["<leader>fv"] = "<Cmd>lua require('config.telescope').find_vim_files()<Cr>",
-    ["<leader>gv"] = "<Cmd>lua require('config.telescope').grep_vim_files()<Cr>",
     ["<leader>ff"] = "<Cmd>Telescope find_files<Cr>",
     ["<leader>fg"] = "<Cmd>Telescope live_grep<Cr>",
-    ["<leader>fp"] = "<Cmd>Telescope projects<Cr>",
     ["<leader>fh"] = "<Cmd>Telescope help_tags<Cr>",
     ["<leader>fb"] = "<Cmd>Telescope buffers<Cr>",
+    ["<leader>fp"] = "<Cmd>Telescope projects<Cr>",
 
     -- Packer
     ["<leader>ps"] = "<Cmd>PackerStatus<Cr>",
@@ -108,6 +104,7 @@ local keymappings = {
     ["<C-l>"] = "<C-\\><C-n><C-w>l",
   },
   command_mode = {
+    ["<C-a>"] = "<Home>",
     ["<C-j>"] = {
       'pumvisible() ? "\\<C-n>" : "\\<C-j>"',
       { expr = true, noremap = true },
@@ -119,22 +116,23 @@ local keymappings = {
   },
 }
 
-local lsp_keymappings = {
+-- local lsp_keymappings = {
 
-  normal_mode = {
-    ["K"] = "<Cmd>lua vim.lsp.buf.hover()<CR>",
-    ["gD"] = "<Cmd>lua vim.lsp.buf.declaration()<CR>",
-    ["gd"] = "<Cmd>lua vim.lsp.buf.definition()<CR>",
-    ["gi"] = "<Cmd>lua vim.lsp.buf.implementation()<CR>",
-    -- ["<C-k>"] = "<Cmd>lua vim.lsp.buf.signature_help()<CR>",
-    ["[d"] = "<Cmd>lua vim.lsp.diagnostic.goto_prev()<CR>",
-    ["]d"] = "<Cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
-    -- ["[e"] = "<Cmd>Lspsaga diagnostic_jump_next<CR>",
-    -- ["]e"] = "<Cmd>Lspsaga diagnostic_jump_prev<CR>",
-  },
-}
+--   normal_mode = {
+--     ["K"] = "<Cmd>lua vim.lsp.buf.hover()<CR>",
+--     ["gD"] = "<Cmd>lua vim.lsp.buf.declaration()<CR>",
+--     ["gd"] = "<Cmd>lua vim.lsp.buf.definition()<CR>",
+--     ["gi"] = "<Cmd>lua vim.lsp.buf.implementation()<CR>",
+--     ["<space>ca"] = "<cmd>lua vim.lsp.buf.code_action()<CR>",
+--     -- ["<C-k>"] = "<Cmd>lua vim.lsp.buf.signature_help()<CR>",
+--     ["[d"] = "<Cmd>lua vim.lsp.diagnostic.goto_prev()<CR>",
+--     ["]d"] = "<Cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
+--     -- ["[e"] = "<Cmd>Lspsaga diagnostic_jump_next<CR>",
+--     -- ["]e"] = "<Cmd>Lspsaga diagnostic_jump_prev<CR>",
+--   },
+-- }
 
-function M.set_keymaps(mode, key, val)
+function set_keymaps(mode, key, val)
   local opt = generic_opts[mode] and generic_opts[mode] or opts
   if type(val) == "table" then
     opt = val[2]
@@ -143,23 +141,13 @@ function M.set_keymaps(mode, key, val)
   vim.api.nvim_set_keymap(mode, key, val, opt)
 end
 
-function M.map(mode, keymaps)
+function map(mode, keymaps)
   mode = mode_adapters[mode] and mode_adapters[mode] or mode
   for k, v in pairs(keymaps) do
-    M.set_keymaps(mode, k, v)
+    set_keymaps(mode, k, v)
   end
 end
 
-function M.setup()
-  for mode, mapping in pairs(keymappings) do
-    M.map(mode, mapping)
-  end
+for mode, mapping in pairs(keymappings) do
+  map(mode, mapping)
 end
-
-function M.setup_lsp_mappings()
-  for mode, mapping in pairs(lsp_keymappings) do
-    M.map(mode, mapping)
-  end
-end
-
-return M
