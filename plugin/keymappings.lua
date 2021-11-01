@@ -14,7 +14,7 @@ map("i", "<C-j>", 'pumvisible() ? "\\<C-n>" : "\\<C-j>"', { expr = true, noremap
 map("i", "<C-k>", 'pumvisible() ? "\\<C-p>" : "\\<C-k>"', { expr = true, noremap = true })
 
 -- map("n", "s", "<Plug>(easymotion-overwin-f)", { noremap = false, silent = false })
-map("n", "<leader>l", "<Cmd>noh<CR>")
+map("n", "<leader>l", "<Cmd>noh<CR><C-l>")
 -- map("n", "<C-w><C-o>", "<Cmd>MaximizerToggle!<CR>")
 map("n", "<C-h>", "<C-w>h")
 map("n", "<C-j>", "<C-w>j")
@@ -57,7 +57,7 @@ map("v", "<M-k>", ":m '<-2<CR>gv=gv")
 map("v", "<M-j>", ":m '>+1<CR>gv=gv")
 
 -- map("t", "<C-w><C-o>", "<C-\\><C-n> :MaximizerToggle!<CR>")
--- map("t", "jj", "<C-\\><C-n>")
+map("t", "jk", "<C-\\><C-n>")
 
 map("t", "<C-h>", "<C-\\><C-n><C-w>h")
 map("t", "<C-j>", "<C-\\><C-n><C-w>j")

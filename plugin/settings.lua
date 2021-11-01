@@ -5,6 +5,17 @@ local cmd = vim.cmd
 
 local indent = 2
 
+-- opt.list = true
+-- opt.listchars = {
+--   tab = '→ ',
+--   trail = '·',
+--   lead = '·',
+--   extends = '»',
+--   precedes = '«',
+--   nbsp = '×',
+--   eol = '↲',
+-- }
+
 cmd "set background=dark"
 
 -- -- Colors:Gruvbox
