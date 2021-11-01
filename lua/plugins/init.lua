@@ -11,12 +11,12 @@ require("packer").startup(function(use)
 
   -- Telescope Fuzzy Finder
   use {
-    'nvim-telescope/telescope.nvim',
+    "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
     keys = { "<leader>f" },
-    module_pattern = 'telescope.*',
+    module_pattern = "telescope.*",
     requires = {
-      'nvim-lua/plenary.nvim',
+      "nvim-lua/plenary.nvim",
     },
     config = function()
       require("plugins.telescope").setup() 
@@ -28,6 +28,18 @@ require("packer").startup(function(use)
       require("project_nvim").setup() 
     end
   }
+
+  -- Treesitter
+  use {
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
+    -- event = 'BufReadPre',
+    event = "BufRead",
+    config = function()
+      require("plugins.treesitter").setup()
+    end
+  }
+
 
   -- Colors Scheme
   use { "sainnhe/gruvbox-material" }
