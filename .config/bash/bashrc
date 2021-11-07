@@ -7,6 +7,9 @@
 # ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝
                                                 
 # PS1='[\u@\h \W]\$ '
+# FIXME: mode indicator not work
+# MODE=$(set -o | grep emacs.*on >/dev/null 2>&1 && echo [Em] || echo [V])
+# PS1='\e[0;31m[\e[0m\u\e[0;31m@\e[0m\h \e[0;34m\W\e[0m\e[0;31m]\e[0m ${MODE} \e[0;32m\$\e[0m '
 PS1='\e[0;31m[\e[0m\u\e[0;31m@\e[0m\h \e[0;34m\W\e[0m\e[0;31m]\e[0m\e[0;32m\$\e[0m '
 
 # Load aliases

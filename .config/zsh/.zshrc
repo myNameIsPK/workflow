@@ -49,6 +49,10 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 
 # Emacs keys in vi-insert mode
+# FIXME: swap to emacs not work
+# select-emacs() { set -o emacs }
+# zle -N select-emacs
+# bindkey -M viins '[e' select-emacs
 bindkey -M viins '^A' beginning-of-line
 bindkey -M viins '^E' end-of-line
 bindkey -M viins '^R' history-incremental-search-backward
@@ -62,6 +66,7 @@ bindkey -M viins '^P' up-line-or-history
 
 # Bash like Emacs mode
 bindkey -M emacs '^X^E' edit-command-line
+
 
 # ctrl+<- | ctrl+->
 bindkey "^[[1;5D" backward-word
@@ -85,7 +90,7 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 # Edit line in vim with ctrl-v:
 autoload edit-command-line; zle -N edit-command-line
-bindkey '^V' edit-command-line
+bindkey '^X^E' edit-command-line
 
 # TODO :edit hard code shortcut
 ## Shortcut
