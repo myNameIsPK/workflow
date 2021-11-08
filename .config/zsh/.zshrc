@@ -95,7 +95,7 @@ bindkey '^X^E' edit-command-line
 # TODO :edit hard code shortcut
 ## Shortcut
 fzf_openfile() {
-  $EDITOR $(find * -type f | fzf)
+  $EDITOR "$(find * -type f | fzf)"
 }
 zle -N fzf_openfile
 bindkey '^O' fzf_openfile
