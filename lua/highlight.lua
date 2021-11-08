@@ -9,7 +9,7 @@ if plugin_installed("gruvbox-material") then
   vim.cmd "colorscheme gruvbox-material"
 else
   -- Colors:Gruvbox
-  -- vim.g.gruvbox_contrast_dark = "soft"
+  vim.g.gruvbox_contrast_dark = "soft"
   vim.g.gruvbox_italic = 1
   vim.cmd "colorscheme gruvbox"
 end
