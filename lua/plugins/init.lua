@@ -64,6 +64,14 @@ require("packer").startup(function(use)
     end
   }
 
+  use({
+    'windwp/nvim-autopairs',
+    config = function()
+      require('plugins.cmp').autopairs()
+    end,
+    after = 'nvim-cmp',
+  })
+
   -- Treesitter
   use {
     "nvim-treesitter/nvim-treesitter",

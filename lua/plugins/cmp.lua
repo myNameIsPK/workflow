@@ -115,4 +115,17 @@ function M.setup()
 
 end
 
+function M.autopairs()
+  require('nvim-autopairs').setup({
+    disable_filetype = { 'TelescopePrompt', 'vim' },
+  })
+
+  local ok, cmp_autopairs = pcall(require, "nvim-autopairs.completion.cmp")
+  if not ok then
+    return
+  end
+  local cmp = require('cmp')
+  cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({ map_char = { tex = '' } }))
+end
+
 return M
