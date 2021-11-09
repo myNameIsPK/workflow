@@ -19,23 +19,38 @@ require("packer").startup(function(use)
       "nvim-lua/plenary.nvim",
     },
     config = function()
-      require("plugins.telescope").setup() 
+      require("plugins.telescope").setup()
     end
   }
   use {
     "ahmedkhalf/project.nvim",
     config = function()
-      require("project_nvim").setup() 
+      require("project_nvim").setup()
     end
   }
 
+  -- LSP
+  use { 'neovim/nvim-lspconfig',
+    -- NOTE: Use lsp-installer to setup instead
+    -- config = function()
+    --   require("plugins.lsp").setup()
+    -- end,
+    requires = {
+      {
+        'williamboman/nvim-lsp-installer',
+        config = function()
+          require("plugins.lsp.installer").setup()
+        end,
+      },
+    }
+  }
   -- Completion
   use {
     'hrsh7th/nvim-cmp',
     module = 'cmp',
     event = 'InsertEnter',
     requires = {
-      -- { 'hrsh7th/cmp-nvim-lsp' },
+      { 'hrsh7th/cmp-nvim-lsp' },
       -- { 'hrsh7th/cmp-nvim-lsp-document-symbol', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' },
       -- { 'f3fora/cmp-spell', after = 'nvim-cmp' },
@@ -62,7 +77,7 @@ require("packer").startup(function(use)
 
 
   -- Colors Scheme
-  use { "sainnhe/gruvbox-material" }
+  -- use { "sainnhe/gruvbox-material" }
 
   -- Git
   use {
