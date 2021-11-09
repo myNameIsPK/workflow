@@ -20,16 +20,20 @@ function M.setup()
     return luasnip
   end
 
+  -- FIXME: tabout not installed
   local function tab(fallback)
     local luasnip = get_luasnip()
     if cmp.visible() then
       cmp.select_next_item()
     elseif luasnip and luasnip.expand_or_jumpable() then
       feed '<Plug>luasnip-expand-or-jump'
-    elseif api.nvim_get_mode().mode == 'c' then
-      fallback()
+    -- elseif api.nvim_get_mode().mode == 'c' then
+    --   fallback()
+    -- else
+    --   feed '<Plug>(Tabout)'
+    -- end
     else
-      feed '<Plug>(Tabout)'
+      fallback()
     end
   end
 
@@ -39,10 +43,13 @@ function M.setup()
       cmp.select_prev_item()
     elseif luasnip and luasnip.jumpable(-1) then
       feed '<Plug>luasnip-jump-prev'
-    elseif api.nvim_get_mode().mode == 'c' then
-      fallback()
+    -- elseif api.nvim_get_mode().mode == 'c' then
+    --   fallback()
+    -- else
+    --   feed '<Plug>(TaboutBack)'
+    -- end
     else
-      feed '<Plug>(TaboutBack)'
+      fallback()
     end
   end
 
@@ -86,20 +93,18 @@ function M.setup()
       })
   })
 
-  -- local search_sources = {
-  --   -- FIXME:
-  --   sources = cmp.config.sources({
-  --     { name = 'nvim_lsp_document_symbol' },
-  --   }, {
-  --     { name = 'buffer' },
-  --   }),
-  -- }
+  -- Use buffer source for `/` and `?`.
+  local search_sources = {
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp_document_symbol' },
+    }, {
+      { name = 'buffer' },
+    }),
+  }
+  cmp.setup.cmdline('/', search_sources)
+  cmp.setup.cmdline('?', search_sources)
 
-  -- Use buffer source for `/`.
-  -- cmp.setup.cmdline('/', search_sources)
-  -- cmp.setup.cmdline('?', search_sources)
   -- Use cmdline & path source for ':'.
-
   cmp.setup.cmdline(':', {
     sources = cmp.config.sources({
       { name = 'path' },
