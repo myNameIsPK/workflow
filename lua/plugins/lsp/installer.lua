@@ -94,13 +94,13 @@ function M.setup()
   function get_server_config(server)
     local conf = config.lsp.servers[server.name]
     local conf_type = type(conf)
-    local config = conf_type == 'table' and conf or conf_type == 'function' and conf() or {}
+    local opts = conf_type == 'table' and conf or conf_type == 'function' and conf() or {}
 
-    config.on_attach = require("plugins.lsp").on_attach
+    opts.on_attach = require("plugins.lsp").on_attach
 
-    config.flags = { debounce_text_changes = 150 }
+    opts.flags = { debounce_text_changes = 150 }
 
-    config.root_dir = function(fname)
+    opts.root_dir = function(fname)
       local util = require('lspconfig').util
       return util.root_pattern('.git')(fname)
         or util.root_pattern('tsconfig.base.json')(fname)
@@ -111,10 +111,10 @@ function M.setup()
 
     local nvim_lsp_ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
     if nvim_lsp_ok then
-      config.capabilities = cmp_nvim_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
+      opts.capabilities = cmp_nvim_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
     end
 
-    return config
+    return opts
   end
 
   lsp_installer.on_server_ready(function(server)
