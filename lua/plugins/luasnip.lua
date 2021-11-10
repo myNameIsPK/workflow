@@ -33,7 +33,7 @@ function M.setup()
     },
   }
 
-  -- TODO: fix hard code
+  -- TODO: fix hard code and why relative path not work
   require('luasnip/loaders/from_vscode').lazy_load { paths =  {
     '~/.config/nvim/snippets/vscode',
     '~/.local/share/nvim/site/pack/packer/start/friendly-snippets',
