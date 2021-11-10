@@ -19,6 +19,7 @@ function M.setup()
 
   ls.snippets = {
     all = {},
+    -- TODO: change test snip to your personal snip
     lua = {
       s({ trig = "[[-", wordTrig = false, hidden = true }, {
         t "--[[",
@@ -32,9 +33,13 @@ function M.setup()
     },
   }
 
-  require('luasnip/loaders/from_vscode').load { paths =  './snippets/vscode' }
-  require('luasnip/loaders/from_vscode').load { paths =  '/home/pk/.local/share/nvim/site/pack/packer/start/friendly-snippets/snippets' }
+  -- TODO: fix hard code
+  require('luasnip/loaders/from_vscode').lazy_load { paths =  {
+    '~/.config/nvim/snippets/vscode',
+    '~/.local/share/nvim/site/pack/packer/start/friendly-snippets',
+  }}
 
+  -- TODO: convert to lua
   vim.cmd [[
     imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' 
     inoremap <silent> <S-Tab> <cmd>lua require'luasnip'.jump(-1)<Cr>
