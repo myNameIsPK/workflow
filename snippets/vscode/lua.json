@@ -10,5 +10,9 @@
   "M": {
     "prefix": "M",
     "body": ["local M = {}\n", "function M.${1}()\n\n${2}", "end", "\nreturn M"]
+  },
+  "apifun": {
+    "prefix": "api.",
+    "body": ["api.nvim_${1:buf}_${2:get}_${3:name}"]
   }
 }

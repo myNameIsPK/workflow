@@ -1,77 +1,33 @@
 local M = {}
 
 function M.setup()
-  local api = vim.api
   local cmp = require("cmp")
-
-  local function t(str)
-    return api.nvim_replace_termcodes(str, true, true, true)
+  -- local luasnip = require("luasnip")
+  local luasnip_ok, luasnip = pcall(require, "luasnip")
+  if not luasnip_ok then
+    return
   end
 
-  local function feed(key, mode)
-    api.nvim_feedkeys(t(key), mode or '', true)
-  end
+  require("plugins.luasnip").setup()
 
-  local function get_luasnip()
-    local ok, luasnip = pcall(require, "luasnip")
-    if not ok then
-      return nil
-    end
-    return luasnip
-  end
-
-  -- FIXME: tabout not installed
-  local function tab(fallback)
-    local luasnip = get_luasnip()
-    if cmp.visible() then
-      cmp.select_next_item()
-    elseif luasnip and luasnip.expand_or_jumpable() then
-      feed '<Plug>luasnip-expand-or-jump'
-    -- elseif api.nvim_get_mode().mode == 'c' then
-    --   fallback()
-    -- else
-    --   feed '<Plug>(Tabout)'
-    -- end
-    else
-      fallback()
-    end
-  end
-
-  local function shift_tab(fallback)
-    local luasnip = get_luasnip()
-    if cmp.visible() then
-      cmp.select_prev_item()
-    elseif luasnip and luasnip.jumpable(-1) then
-      feed '<Plug>luasnip-jump-prev'
-    -- elseif api.nvim_get_mode().mode == 'c' then
-    --   fallback()
-    -- else
-    --   feed '<Plug>(TaboutBack)'
-    -- end
-    else
-      fallback()
-    end
-  end
-
-  cmp.setup({
-    -- snippet = {
-    --   -- REQUIRED - you must specify a snippet engine
-    --   expand = function(args)
-    --     require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-    --     -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-    --     -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-    --     -- require'snippy'.expand_snippet(args.body) -- For `snippy` users.
-    --   end,
-    -- },
+  cmp.setup {
+    snippet = {
+      -- REQUIRED - you must specify a snippet engine
+      expand = function(args)
+        luasnip.lsp_expand(args.body)
+      end,
+    },
     mapping = {
-      ['<Tab>'] = cmp.mapping(tab, { 'i', 'c' }),
-      ['<S-Tab>'] = cmp.mapping(shift_tab, { 'i', 'c' }),
       ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
       ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
       ['<C-e>'] = cmp.mapping({
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
       }),
+      ['<C-y>'] = cmp.mapping.confirm {
+        behavior = cmp.ConfirmBehavior.Insert,
+        select = true,
+      },
       ['<CR>'] = cmp.mapping.confirm {
         behavior = cmp.ConfirmBehavior.Replace,
         select = true,
@@ -81,17 +37,42 @@ function M.setup()
       border = 'rounded',
     },
     sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' },
-        { name = 'cmp_tabnine' },
-        { name = 'spell' },
-        { name = 'path' },
-        { name = 'neorg' },
-        { name = 'orgmode' },
-      }, {
-        { name = 'buffer' },
-      })
-  })
+      { name = 'nvim_lsp' },
+      { name = 'luasnip' },
+      -- { name = 'cmp_tabnine' },
+      -- { name = 'spell' },
+      { name = 'path' },
+      -- { name = 'neorg' },
+      -- { name = 'orgmode' },
+    }, {
+        { name = 'buffer', keyword_lenght = 5 },
+    }),
+    formatting = {
+      deprecated = true,
+      format = function(entry, vim_item)
+        vim_item.kind = 'test'
+        vim_item.menu = ({
+          nvim_lsp = "[LSP]",
+          emoji = "[Emoji]",
+          path = "[Path]",
+          calc = "[Calc]",
+          cmp_tabnine = "[Tabnine]",
+          vsnip = "[Vsnip]",
+          luasnip = "[Luasnip]",
+          buffer = "[Buffer]",
+          spell = "[Spell]",
+          neorg = "[Neorg]",
+        })[entry.source.name]
+        -- TODO: What is this?
+        -- vim_item.dup = ({
+        --   buffer = 1,
+        --   path = 1,
+        --   nvim_lsp = 0,
+        -- })[entry.source.name] or 0
+        return vim_item
+      end,
+    },
+  }
 
   -- Use buffer source for `/` and `?`.
   local search_sources = {

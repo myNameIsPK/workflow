@@ -44,19 +44,23 @@ require("packer").startup(function(use)
       },
     }
   }
+
   -- Completion
   use {
     'hrsh7th/nvim-cmp',
     module = 'cmp',
     event = 'InsertEnter',
     requires = {
+      { 'L3MON4D3/LuaSnip' },
+      { 'rafamadriz/friendly-snippets' },
+      { 'saadparwaiz1/cmp_luasnip' },
+      -- { 'hrsh7th/cmp-nvim-lua' },
       { 'hrsh7th/cmp-nvim-lsp' },
       -- { 'hrsh7th/cmp-nvim-lsp-document-symbol', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' },
       -- { 'f3fora/cmp-spell', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
-      -- { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
       -- { 'tzachar/cmp-tabnine', run = './install.sh', after = 'nvim-cmp' },
     },
     config = function()
