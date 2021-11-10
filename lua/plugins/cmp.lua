@@ -37,6 +37,7 @@ function M.setup()
       border = 'rounded',
     },
     sources = cmp.config.sources({
+      { name = 'nvim_lua' },
       { name = 'nvim_lsp' },
       { name = 'luasnip' },
       -- { name = 'cmp_tabnine' },
@@ -53,6 +54,7 @@ function M.setup()
         vim_item.kind = 'test'
         vim_item.menu = ({
           nvim_lsp = "[LSP]",
+          nvim_lua = "[API]",
           emoji = "[Emoji]",
           path = "[Path]",
           calc = "[Calc]",
