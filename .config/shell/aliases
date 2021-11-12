@@ -48,14 +48,10 @@ alias ggraph="git log --graph --oneline --decorate"
 
 # LazyGit
 alias gz="lazygit"
-alias lazydot="lazygit --git-dir=/home/pk/.dotfile.git --work-tree=/home/pk"
-alias dz="lazydot"
+alias dz="lazygit --git-dir=/home/pk/.dotfile.git --work-tree=/home/pk"
 
 # FZF integration
-fzf_open_file () {
-  $EDITOR $(fzf)
-}
-alias vio="fzf_open_file"
+alias vio="fzf-openfiles"
 
 # Colorize output
 alias ls="ls --color=auto"

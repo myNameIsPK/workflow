@@ -23,7 +23,7 @@ SAVEHIST=10000000
 
 ## SET VI MODE ###
 bindkey -v
-export KEYTIMEOUT=1
+export KEYTIMEOUT=0
 
 stty stop undef		# Disable ctrl-s to freeze terminal.
 
@@ -65,6 +65,8 @@ bindkey -M viins '^N' down-line-or-history
 bindkey -M viins '^P' up-line-or-history
 
 # Bash like Emacs mode
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^X^E' edit-command-line
 bindkey -M emacs '^X^E' edit-command-line
 
 
@@ -88,18 +90,9 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
-# Edit line in vim with ctrl-v:
-autoload edit-command-line; zle -N edit-command-line
-bindkey '^X^E' edit-command-line
-
 # TODO :edit hard code shortcut
 ## Shortcut
-fzf_openfile() {
-  $EDITOR "$(find * -type f | fzf)"
-}
-zle -N fzf_openfile
-bindkey '^O' fzf_openfile
-# bindkey -s '^O' '$EDITOR $(fzf)^M'
+bindkey -s '^O' "^Ufzf-openfiles^M"
 
 ## Plugin
 # Function to source files if they exist
