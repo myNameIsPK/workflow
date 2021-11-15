@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+fzf_openfile() {
+  $EDITOR "$(find * -type f | fzf)"
+}
+
+fzf_openfile
