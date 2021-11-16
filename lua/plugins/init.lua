@@ -131,13 +131,21 @@ require("packer").startup(function(use)
 
   use {
     "folke/todo-comments.nvim",
-    requires = "nvim-lua/plenary.nvim",
+    requires = "nvim-telescope/telescope.nvim",
     config = function()
       require("plugins.todocomments").setup()
     end
   }
+
   use { "norcalli/nvim-colorizer.lua",
     cmd = "ColorizerToggle",
+  }
+
+  use {
+    "akinsho/toggleterm.nvim",
+    config = function()
+      require("toggleterm").setup()
+    end
   }
 
 end)
