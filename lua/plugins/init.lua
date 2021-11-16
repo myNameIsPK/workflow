@@ -128,12 +128,14 @@ require("packer").startup(function(use)
       require("nvim_comment").setup()
     end,
   }
-  -- use {
-  --   "windwp/nvim-autopairs",
-  --   config = function()
-  --     require("nvim-autopairs").setup {}
-  --   end,
-  -- }
+
+  use {
+    "folke/todo-comments.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("plugins.todocomments").setup()
+    end
+  }
   use { "norcalli/nvim-colorizer.lua",
     cmd = "ColorizerToggle",
   }
