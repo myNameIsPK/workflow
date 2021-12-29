@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# nvidia gpu only
+xrandr --setprovideroutputsource modesetting NVIDIA-0
+xrandr --auto
+
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
@@ -50,6 +54,12 @@ fi
 
 # Zoom for DELL_G3 laptop
 xrandr --output eDP1 --scale .85
+
+# Startup program
+nm-applet &
 nitrogen --restore &
 picom &
+$HOME/.config/polybar/launch.sh &
+
+# Start window manager
 exec i3

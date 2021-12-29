@@ -19,7 +19,7 @@ font pango:monospace 8
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # networkmanager is the most popular way to manage wireless networks on linux, and nm-applet is a desktop environment-independent system tray gui for it.
-exec --no-startup-id nm-applet
+# exec --no-startup-id nm-applet
 
 # use pactl to adjust volume in pulseaudio.
 set $refresh_i3status killall -sigusr1 i3status
@@ -36,7 +36,7 @@ set $left h
 set $right l 
 
 # set drag floating windows
-floating_modifier $super
+floating_modifier $alt
 
 # start a terminal
 bindsym $super+Return exec i3-sensible-terminal
@@ -190,9 +190,6 @@ bindsym $super+Right       resize grow width 10 px or 10 ppt
 # bar {
 #         status_command i3status
 # }
-
-# polybar
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # no window title bar
 for_window [class=".*"] border pixel 0
