@@ -4,5 +4,4 @@ home=$(echo $key_values | sed 's/ /\n/g' | awk -F= '/user.qmk_home/ {print $2}')
 keyboard=$(echo $key_values | sed 's/ /\n/g' | awk -F= '/user.keyboard/ {print $2}')
 keymap=$(echo $key_values | sed 's/ /\n/g' | awk -F= '/user.keymap/ {print $2}')
 qmk_path="$home/keyboards/$keyboard/keymaps/$keymap"
-echo qmk_path
-# $EDITOR $qmk_path
+$EDITOR $qmk_path
