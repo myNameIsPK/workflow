@@ -16,6 +16,8 @@ alias cfz="$EDITOR ~/.config/zsh/.zshrc"
 alias cfa="$EDITOR ~/.config/shell/aliases"
 alias cfp="$EDITOR ~/.config/shell/profile"
 alias cft="$EDITOR ~/.config/tmux/tmux.conf"
+alias cfx="$EDITOR ~/.xinitrc"
+alias cfq=edit-qmk
 
 # Tmux
 alias ta="tmux a"
@@ -31,6 +33,7 @@ alias gss="git status --short"
 alias ga="git add"
 alias gaa="git add --all --verbose"
 alias gc="git commit"
+alias gca="git commit --amend"
 alias gu="git rm --cached --force" 
 alias gst="git stash" 
 alias gb="git branch"
@@ -49,6 +52,10 @@ alias ggraph="git log --graph --oneline --decorate"
 # LazyGit
 alias gz="lazygit"
 alias dz="lazygit --git-dir=/home/pk/.dotfile.git --work-tree=/home/pk"
+
+# Packages
+# FIXME: cannot display correctly
+alias pmsize="LC_ALL=C pacman -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h"
 
 # FZF integration
 alias vio="fzf-openfiles"
