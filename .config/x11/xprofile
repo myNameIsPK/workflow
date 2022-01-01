@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# Zoom for DELL_G3 laptop
+xrandr --output eDP1 --scale .85
+
+# Autostart program
+nm-applet &
+nitrogen --restore &
+picom &
+sxhkd &
+$HOME/.config/polybar/launch.sh &
+
+# Start window manager
+exec bspwm
