@@ -1,0 +1,19 @@
+#
+# wm independent hotkeys
+#
+
+# terminal emulator
+super + Return
+	$TERMINAL
+
+# program launcher
+# super + @space
+	# dmenu_run
+
+super + space ; {space, b, e}
+  {dmenu_run, $BROWSER, $TERMINAL -e $EDITOR}
+  $EDITOR}
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
