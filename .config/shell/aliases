@@ -16,7 +16,8 @@ alias cfz="$EDITOR ~/.config/zsh/.zshrc"
 alias cfa="$EDITOR ~/.config/shell/aliases"
 alias cfp="$EDITOR ~/.config/shell/profile"
 alias cft="$EDITOR ~/.config/tmux/tmux.conf"
-alias cfx="$EDITOR ~/.xinitrc"
+alias cfk="$EDITOR ~/.config/sxhkd/sxhkdrc"
+alias cfx="$EDITOR $XDG_CONFIG_HOME/x11"
 alias cfq=edit-qmk
 
 # Tmux
@@ -47,6 +48,7 @@ alias grbi="git rebase -i"
 alias gm="git merge"
 alias gp="git pull"
 alias gP="git push"
+alias gsr="git remote set-url origin"
 alias ggraph="git log --graph --oneline --decorate"
 
 # LazyGit
