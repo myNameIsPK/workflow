@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# Zoom for DELL_G3 laptop
-xrandr --output eDP1 --scale .85
+# Reduce scale of display
+# xrandr --output eDP1 --scale .85
 
 # Autostart program
 nm-applet &
