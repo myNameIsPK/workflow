@@ -1,9 +1,8 @@
 #!/bin/sh
-#vi:syntax=sh
 
 alias a=alias
 
-# TODO edit hard code re source config file
+# TODO: edit hard code re source config file
 # Shortcut: Reload config file
 alias rebash="source $HOME/.config/bash/bashrc"
 alias rezsh="source $HOME/.config/zsh/.zshrc"
