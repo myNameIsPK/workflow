@@ -27,3 +27,12 @@ vim.cmd "au FileType man nnoremap <buffer><silent> q :quit<CR>"
 --     augroup END
 --   ]]
 -- )
+
+vim.cmd(
+  [[
+    augroup Xresources
+      au!
+      au BufWritePost xresources :!xrdb -merge ~/.config/x11/xresources
+    augroup END
+  ]]
+)
