@@ -28,11 +28,14 @@ export BROWSER="brave"
 export DOTFILES=$HOME/.dotfile.git
 
 ## Home directory clean up
-export HISTFILE=${XDG_STATE_HOME:-$HOME/.local/state}/bash/history
+export XINITRC=${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc
+export HISTFILE=${XDG_STATE_HOME:-$HOME/.local/state}/history
 export LESSHISTFILE="-"
 export INPUTRC=${XDG_CONFIG_HOME:-$HOME/.config}/shell/inputrc
 export ZDOTDIR=${XDG_CONFIG_HOME:-$HOME/.config}/zsh
+export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
 export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$XDG_CONFIG_HOME/nvim/init.lua" | so $MYVIMRC'
+export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
 export STARSHIP_CONFIG=${XDG_CONFIG_HOME:-$HOME/.config}/starship/config.toml
 # Node#npm
 export NPM_CONFIG_USERCONFIG=${XDG_CONFIG_HOME:-$HOME/.config}/npm/npmrc
@@ -46,3 +49,7 @@ if [ -n "$BASH_VERSION" ]; then
     [[ -f ${XDG_CONFIG_HOME:-$HOME/.config}/bash/bashrc ]] && source ${XDG_CONFIG_HOME:-$HOME/.config}/bash/bashrc
 fi
 # . "/home/pk/.local/share/cargo/env"
+
+if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+  # exec startx "$XINITRC"
+fi
