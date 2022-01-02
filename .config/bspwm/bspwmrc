@@ -18,6 +18,7 @@ bspc config pointer_action1	      move
 bspc config pointer_action2 	    resize_corner
 
 bspc rule -a Brave-browser desktop='^2'
+bspc rule -a Thunderbird desktop='^3'
 # bspc rule -a Gimp desktop='^8' state=floating follow=on
 # bspc rule -a mplayer2 state=floating
 # bspc rule -a Kupfer.py focus=on
