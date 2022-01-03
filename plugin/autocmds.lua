@@ -36,3 +36,12 @@ vim.cmd(
     augroup END
   ]]
 )
+
+vim.cmd(
+  [[
+    augroup Sxhkdrc
+      au!
+      au BufWritePost sxhkdrc :!pkill -USR1 -x sxhkd
+    augroup END
+  ]]
+)
