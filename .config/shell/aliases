@@ -2,24 +2,11 @@
 
 alias a=alias
 
-# TODO: edit hard code re source config file
 # Shortcut: Reload config file
+[ -e ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ] && source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc
 alias rebash="source $HOME/.config/bash/bashrc"
 alias rezsh="source $HOME/.config/zsh/.zshrc"
-
-alias cf="cd ~/.config"
-alias lcs="cd ~/.local/share"
-alias lcb="cd ~/.local/bin"
-alias cfn="$EDITOR ~/.config/nvim/"
-alias cfz="$EDITOR ~/.config/zsh/.zshrc"
-alias cfa="$EDITOR ~/.config/shell/aliases"
-alias cfp="$EDITOR ~/.config/shell/profile"
-alias cft="$EDITOR ~/.config/tmux/tmux.conf"
-alias cfk="$EDITOR ~/.config/sxhkd/sxhkdrc"
-alias cfx="$EDITOR $XDG_CONFIG_HOME/x11"
 alias cfq=edit-qmk
-
-[ -e ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ] && source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc
 
 # Tmux
 alias ta="tmux a"
