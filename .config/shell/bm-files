@@ -1,0 +1,4 @@
+# bookmarks of files
+cfa ${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases
+cfp ${XDG_CONFIG_HOME:-$HOME/.config}/shell/profile
+cfz $ZDOTDIR/.zshrc

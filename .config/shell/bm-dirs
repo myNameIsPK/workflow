@@ -1,0 +1,4 @@
+# bookmark of directories
+
+cf  ${XDG_CONFIG_HOME:-$HOME/.config}
+cfn ${XDG_CONFIG_HOME:-$HOME/.config}/nvim
