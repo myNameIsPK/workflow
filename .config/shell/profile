@@ -13,6 +13,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 
+# FIXME: don't work in bash
 export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
 
 ## Default program
