@@ -4,83 +4,95 @@ alias a=alias
 
 # Shortcut: Reload config file
 [ -e ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ] && source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc
-alias rebash="source $HOME/.config/bash/bashrc"
-alias rezsh="source $HOME/.config/zsh/.zshrc"
-alias cfq=edit-qmk
+alias \
+	rebash="source $HOME/.config/bash/bashrc" \
+	rezsh="source $HOME/.config/zsh/.zshrc" \
+	cfq=edit-qmk \
 
 # Tmux
-alias ta="tmux a"
-alias tls="tmux ls"
-alias tks="tmux kill-sess"
-alias tkp="tmux kill-pane"
-alias td="tmux detach-client"
+alias \
+	ta="tmux a" \
+	tls="tmux ls" \
+	tks="tmux kill-sess" \
+	tkp="tmux kill-pane" \
+	td="tmux detach-client" \
 
 # Git shortcut
-alias g="git"
-alias gs="git status"
-alias gss="git status --short"
-alias ga="git add"
-alias gaa="git add --all --verbose"
-alias gc="git commit"
-alias gca="git commit --amend"
-alias gu="git rm --cached --force" 
-alias gst="git stash" 
-alias gb="git branch"
-alias gba="git branch --all"
-alias gbd="git branch --delete"
-alias gbD="git branch -D"
-alias gco="git checkout"
-alias gwt="git worktree"
-alias grb="git rebase"
-alias grbi="git rebase -i"
-alias gm="git merge"
-alias gp="git pull"
-alias gP="git push"
-alias gsr="git remote set-url origin"
-alias ggraph="git log --graph --oneline --decorate"
+alias \
+	g="git" \
+	gs="git status" \
+	gss="git status --short" \
+	ga="git add" \
+	gaa="git add --all --verbose" \
+	gc="git commit" \
+	gca="git commit --amend" \
+	gu="git rm --cached --force"  \
+	gst="git stash"  \
+	gb="git branch" \
+	gba="git branch --all" \
+	gbd="git branch --delete" \
+	gbD="git branch -D" \
+	gco="git checkout" \
+	gwt="git worktree" \
+	grb="git rebase" \
+	grbi="git rebase -i" \
+	gm="git merge" \
+	gp="git pull" \
+	gP="git push" \
+	gsr="git remote set-url origin" \
+	ggraph="git log --graph --oneline --decorate" \
 
 # LazyGit
-alias gz="lazygit"
-alias dz="lazygit --git-dir=/home/pk/.dotfile.git --work-tree=/home/pk"
+alias \
+	gz="lazygit" \
+	dz="lazygit --git-dir=/home/pk/.dotfile.git --work-tree=/home/pk" \
 
 # Packages
 # FIXME: cannot display correctly
-alias pmsize="LC_ALL=C pacman -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h"
+alias \
+	pmsize="LC_ALL=C pacman -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h" \
 
 # FZF integration
-alias vio="fzf-openfiles"
+alias \
+	vio="fzf-openfiles" \
 
 # Colorize output
-alias ls="ls --color=auto"
-alias grep="grep --color=auto"
-alias egrep="egrep --color=auto"
-alias fgrep="fgrep --color=auto"
+alias \
+	ls="ls --color=auto" \
+	grep="grep --color=auto" \
+	egrep="egrep --color=auto" \
+	fgrep="fgrep --color=auto" \
 
 # Confirm file operation
-alias cp="cp -i"
-alias mv="mv -i"
-alias rm="rm -i"
+alias \
+	cp="cp -i" \
+	mv="mv -i" \
+	rm="rm -i" \
 
 # Utilities
-alias vi="nvim"
-alias lv="lvim"
-alias dot="git --git-dir=$DOTFILES --work-tree=$HOME"
-alias colortest="msgcat --color=test"
+alias \
+	vi="nvim" \
+	lv="lvim" \
+	dot="git --git-dir=$DOTFILES --work-tree=$HOME" \
+	colortest="msgcat --color=test" \
 
 # ls Flags
-alias l="ls -CF"
-alias ll="ls -lAFrt"
-alias la="ls -lAF --group-directories-first"
-alias lh="ls -lAFhS"
+alias \
+	l="ls -CF" \
+	ll="ls -lAFrt" \
+	la="ls -lAF --group-directories-first" \
+	lh="ls -lAFhS" \
 
 # Check disk space
-alias df="df -h"
-alias free="free -m"
-alias duh="du -h --max-depth=1 | sort -h -r"
+alias \
+	df="df -h" \
+	free="free -m" \
+	duh="du -h --max-depth=1 | sort -h -r" \
 
 # Hack
-alias cd-="cd -"
-alias ....="cd ../.."
-alias ......="cd ../../.."
-alias ........="cd ../../../.."
-alias :q=exit
+alias \
+	cd-="cd -" \
+	....="cd ../.." \
+	......="cd ../../.." \
+	........="cd ../../../.." \
+	:q=exit \
