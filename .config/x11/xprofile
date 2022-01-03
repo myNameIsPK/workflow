@@ -3,6 +3,9 @@
 # Reduce scale of display
 # xrandr --output eDP1 --scale .85
 
+# Set key repeat delay 280 ms, 40 per sec
+xset r rate 280 40
+
 # Autostart program
 nm-applet &
 nitrogen --restore &
