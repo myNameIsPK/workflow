@@ -40,7 +40,7 @@ alias \
 	gp="git pull" \
 	gP="git push" \
 	gsr="git remote set-url origin" \
-	ggraph="git log --graph --oneline --decorate" \
+	ggraph="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative" \
 
 # LazyGit
 alias \
