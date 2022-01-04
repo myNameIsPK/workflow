@@ -12,7 +12,11 @@ super + Return
 
 super + space ; {space, b, e}
   {dmenu_run, $BROWSER, $TERMINAL -e $EDITOR}
-  $EDITOR}
+
+# Volume settings
+super + v
+  pid=$(xdotool search --class Volume); \
+  [ -z $pid ] && $TERMINAL --class Volume -e pulsemixer || xdotool windowkill $pid
 
 # make sxhkd reload its configuration files:
 super + Escape
