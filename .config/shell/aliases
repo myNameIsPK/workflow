@@ -2,6 +2,8 @@
 
 alias a=alias
 
+[ -f "$XINITRC" ] && alias startx="startx $XINITRC"
+
 # Shortcut: Reload config file
 [ -e ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ] && source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc
 alias \
