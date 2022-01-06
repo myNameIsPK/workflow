@@ -1,5 +1,5 @@
 local opt = vim.opt
-local g = vim.g
+-- local g = vim.g
 local wo = vim.wo
 local cmd = vim.cmd
 
@@ -32,7 +32,8 @@ cmd "set background=dark"
 -- steal from lunarvim
 opt.shortmess:append "c" -- shorten ins-completion-menu message
 opt.backup = false -- creates a backup file
--- opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
+-- FIXME: very slow in wsl
+opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
 -- opt.cmdheight = 2 -- more space in the neovim command line for displaying messages
 opt.colorcolumn = "99999" -- fixes indentline for now
 opt.completeopt = "menuone,noselect"
@@ -64,7 +65,7 @@ opt.writebackup = false -- if a file is being edited by another program (or was 
 opt.expandtab = true -- convert tabs to spaces
 opt.shiftwidth = indent -- the number of spaces inserted for each indentation
 opt.tabstop = indent -- insert 2 spaces for a tab
-wo.cursorline = true -- highlight the current line
+opt.cursorline = true -- highlight the current line
 opt.number = true -- set numbered lines
 -- opt.relativenumber = false -- set relative numbered lines
 opt.numberwidth = 2 -- set number column width to 2 {default 4}

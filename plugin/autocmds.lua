@@ -1,3 +1,4 @@
+-- TODO: fix hardcoded
 vim.cmd(
   [[
     augroup TextYankHighlight
