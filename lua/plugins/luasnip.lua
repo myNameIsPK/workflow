@@ -19,7 +19,7 @@ function M.setup()
 
   ls.snippets = {
     all = {},
-    -- TODO: change test snip to your personal snip
+    -- FIXME: Must type and press tab only, no completion
     lua = {
       s({ trig = "[[-", wordTrig = false, hidden = true }, {
         t "--[[",
@@ -33,13 +33,17 @@ function M.setup()
     },
   }
 
-  -- TODO: fix hard code and why relative path not work
+  -- FIXME: fix hard code and why relative path not work
+  -- this work only friendly-snippets
+  -- require('luasnip/loaders/from_vscode').lazy_load()
+  -- work both but hardcoded
   require('luasnip/loaders/from_vscode').lazy_load { paths =  {
     '~/.config/nvim/snippets/vscode',
     '~/.local/share/nvim/site/pack/packer/start/friendly-snippets',
   }}
 
   -- TODO: convert to lua
+  -- FIXME: <C-E> not work
   vim.cmd [[
     imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' 
     inoremap <silent> <S-Tab> <cmd>lua require'luasnip'.jump(-1)<Cr>

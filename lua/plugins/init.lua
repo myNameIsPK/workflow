@@ -56,7 +56,7 @@ require("packer").startup(function(use)
       { 'saadparwaiz1/cmp_luasnip' },
       { 'hrsh7th/cmp-nvim-lua' },
       { 'hrsh7th/cmp-nvim-lsp' },
-      -- { 'hrsh7th/cmp-nvim-lsp-document-symbol', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-nvim-lsp-document-symbol', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' },
       -- { 'f3fora/cmp-spell', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
@@ -70,10 +70,10 @@ require("packer").startup(function(use)
 
   use({
     'windwp/nvim-autopairs',
-    config = function()
-      require('plugins.cmp').autopairs()
-    end,
     after = 'nvim-cmp',
+    config = function()
+      require('plugins.autopairs').setup()
+    end,
   })
 
   -- Treesitter

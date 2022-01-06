@@ -2,6 +2,7 @@ local M = {}
 
 function M.setup() 
 
+  -- TODO: come here to check setting
   require("which-key").setup {
     plugins = {
       marks = true, -- shows a list of your marks on ' and `

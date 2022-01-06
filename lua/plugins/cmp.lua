@@ -1,8 +1,12 @@
 local M = {}
 
 function M.setup()
-  local cmp = require("cmp")
-  -- local luasnip = require("luasnip")
+
+  local cmp_ok, cmp = pcall(require, "cmp")
+  if not cmp_ok then
+    return
+  end
+
   local luasnip_ok, luasnip = pcall(require, "luasnip")
   if not luasnip_ok then
     return
@@ -12,7 +16,7 @@ function M.setup()
 
   cmp.setup {
     snippet = {
-      -- REQUIRED - you must specify a snippet engine
+      -- NOTE: you must specify a snippet engine
       expand = function(args)
         luasnip.lsp_expand(args.body)
       end,
@@ -36,6 +40,7 @@ function M.setup()
     documentation = {
       border = 'rounded',
     },
+    -- TODO: add more useful source
     sources = cmp.config.sources({
       { name = 'nvim_lua' },
       { name = 'nvim_lsp' },
@@ -64,6 +69,7 @@ function M.setup()
           buffer = "[Buffer]",
           spell = "[Spell]",
           neorg = "[Neorg]",
+          nvim_lsp_document_symbol = "[Symbol]",
         })[entry.source.name]
         -- TODO: What is this?
         -- vim_item.dup = ({
@@ -74,13 +80,17 @@ function M.setup()
         return vim_item
       end,
     },
+    -- TODO: test experimental feature
+    -- experimental = {
+    --   ghost_text = false,
+    --   native_menu = false,
+    -- },
   }
 
   -- Use buffer source for `/` and `?`.
   local search_sources = {
     sources = cmp.config.sources({
       { name = 'nvim_lsp_document_symbol' },
-    }, {
       { name = 'buffer' },
     }),
   }
@@ -88,27 +98,14 @@ function M.setup()
   cmp.setup.cmdline('?', search_sources)
 
   -- Use cmdline & path source for ':'.
-  cmp.setup.cmdline(':', {
+  local cmd_sources = {
     sources = cmp.config.sources({
       { name = 'path' },
-    }, {
       { name = 'cmdline' },
     }),
-  })
+  }
+  cmp.setup.cmdline(':', cmd_sources)
 
-end
-
-function M.autopairs()
-  require('nvim-autopairs').setup({
-    disable_filetype = { 'TelescopePrompt', 'vim' },
-  })
-
-  local ok, cmp_autopairs = pcall(require, "nvim-autopairs.completion.cmp")
-  if not ok then
-    return
-  end
-  local cmp = require('cmp')
-  cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({ map_char = { tex = '' } }))
 end
 
 return M
