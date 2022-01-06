@@ -8,7 +8,8 @@ xset r rate 300 50 &
 
 # Switch between keyboard layouts
 # list all key combinations `grep "grp:.*toggle" /usr/share/X11/xkb/rules/base.lst`
-setxkbmap us,th -option grp:win_space_toggle &
+# setxkbmap us,us -variant ,colemak_dh -option grp:shifts_toggle &
+setxkbmap us,th -option grp:shifts_toggle &
 
 # Autostart program
 nm-applet &
