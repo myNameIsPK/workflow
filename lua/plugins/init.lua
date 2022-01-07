@@ -44,6 +44,12 @@ require("packer").startup(function(use)
       },
     }
   }
+  use {
+    "jose-elias-alvarez/null-ls.nvim",
+    config = function ()
+      require("plugins.lsp.null-ls").setup()
+    end
+  }
 
   -- Completion
   use {
