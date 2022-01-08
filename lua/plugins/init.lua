@@ -125,13 +125,13 @@ require("packer").startup(function(use)
 
   -- QOL
   use {
-    "terrortylor/nvim-comment",
+    'numToStr/Comment.nvim',
     event = {
       "BufRead",
       "BufNewFile",
     },
     config = function()
-      require("nvim_comment").setup()
+      require('Comment').setup()
     end,
   }
 
