@@ -42,7 +42,7 @@ export NPM_CONFIG_USERCONFIG=${XDG_CONFIG_HOME:-$HOME/.config}/npm/npmrc
 # Rust#cargo
 export CARGO_HOME=${XDG_DATA_HOME:-$HOME/.local/share}/cargo
 export RUSTUP_HOME=${XDG_DATA_HOME:-$HOME/.local/share}/rustup
-export PATH=$PATH:${CARGO_HOME}/bin
+. "$XDG_DATA_HOME/cargo/env"
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then

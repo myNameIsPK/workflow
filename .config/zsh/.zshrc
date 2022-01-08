@@ -7,7 +7,9 @@
 # ╚═╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝
 
 autoload -U colors && colors
-PS1="%B%{$fg[red]%}[%{$fg[white]%}%n%{$fg[red]%}@%{$fg[white]%}%M %{$fg[blue]%}%~%{$fg[red]%}]%{$fg[green]%}$%b%{$reset_color%} %b"
+PS1="%B%{$fg[red]%}[%{$fg[white]%}%n%{$fg[red]%}@%{$fg[white]%}%M %{$fg[blue]%}%c%{$fg[red]%}]%{$fg[green]%}$%b%{$reset_color%}"
+[ -f "$ZDOTDIR/zsh-git-prompt" ] && source "$ZDOTDIR/zsh-git-prompt"
+PS1+="%b "
 
 # Load aliases
 shortcuts-gen > /dev/null 2>&1
@@ -70,11 +72,6 @@ autoload edit-command-line; zle -N edit-command-line
 bindkey '^X^E' edit-command-line
 bindkey -M emacs '^X^E' edit-command-line
 
-
-# ctrl+<- | ctrl+->
-bindkey "^[[1;5D" backward-word
-bindkey "^[[1;5C" forward-word
-
 # Change cursor shape for different vi modes.
 function zle-keymap-select () {
     case $KEYMAP in
@@ -90,6 +87,10 @@ zle-line-init() {
 zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+
+# ctrl+<- | ctrl+->
+bindkey "^[[1;5D" backward-word
+bindkey "^[[1;5C" forward-word
 
 # TODO :edit hard code shortcut
 ## Shortcut
