@@ -28,7 +28,7 @@ alias \
 	gaa="git add --all --verbose" \
 	gc="git commit" \
 	gca="git commit --amend" \
-	gu="git rm --cached --force"  \
+	gu="git rm --cached"  \
 	gst="git stash"  \
 	gb="git branch" \
 	gba="git branch --all" \
