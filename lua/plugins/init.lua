@@ -20,67 +20,68 @@ require("packer").startup(function(use)
     },
     config = function()
       require("plugins.telescope").setup()
-    end
+    end,
   }
   use {
     "ahmedkhalf/project.nvim",
     config = function()
       require("project_nvim").setup()
-    end
+    end,
   }
 
   -- LSP
-  use { 'neovim/nvim-lspconfig',
+  use {
+    "neovim/nvim-lspconfig",
     -- NOTE: Use nvim-lsp-installer to setup better
     -- config = function()
     --   require("plugins.lsp").setup()
     -- end,
     requires = {
       {
-        'williamboman/nvim-lsp-installer',
+        "williamboman/nvim-lsp-installer",
         config = function()
           require("plugins.lsp.installer").setup()
         end,
       },
-    }
+    },
   }
   use {
     "jose-elias-alvarez/null-ls.nvim",
-    config = function ()
+    config = function()
       require("plugins.lsp.null-ls").setup()
-    end
+    end,
   }
 
   -- Completion
   use {
-    'hrsh7th/nvim-cmp',
-    module = 'cmp',
-    event = 'InsertEnter',
+    "hrsh7th/nvim-cmp",
+    module = "cmp",
+    event = "InsertEnter",
     requires = {
-      { 'L3MON4D3/LuaSnip' },
-      { 'rafamadriz/friendly-snippets' },
-      { 'saadparwaiz1/cmp_luasnip' },
-      { 'hrsh7th/cmp-nvim-lua' },
-      { 'hrsh7th/cmp-nvim-lsp' },
-      { 'hrsh7th/cmp-nvim-lsp-document-symbol', after = 'nvim-cmp' },
-      { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' },
+      { "L3MON4D3/LuaSnip" },
+      { "rafamadriz/friendly-snippets" },
+      { "saadparwaiz1/cmp_luasnip" },
+      { "hrsh7th/cmp-nvim-lua" },
+      { "hrsh7th/cmp-nvim-lsp" },
+      { "hrsh7th/cmp-nvim-lsp-document-symbol", after = "nvim-cmp" },
+      { "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
       -- { 'f3fora/cmp-spell', after = 'nvim-cmp' },
-      { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
-      { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
+      { "hrsh7th/cmp-path", after = "nvim-cmp" },
+      { "hrsh7th/cmp-buffer", after = "nvim-cmp" },
       -- { 'tzachar/cmp-tabnine', run = './install.sh', after = 'nvim-cmp' },
     },
     config = function()
       require("plugins.cmp").setup()
-    end
+    end,
   }
 
-  use({
-    'windwp/nvim-autopairs',
-    after = 'nvim-cmp',
+  use {
+    "windwp/nvim-autopairs",
+    after = "nvim-cmp",
     config = function()
-      require('plugins.autopairs').setup()
+      require("plugins.autopairs").setup()
     end,
-  })
+  }
 
   -- Treesitter
   use {
@@ -90,9 +91,8 @@ require("packer").startup(function(use)
     event = "BufRead",
     config = function()
       require("plugins.treesitter").setup()
-    end
+    end,
   }
-
 
   -- Colors Scheme
   -- use { "sainnhe/gruvbox-material" }
@@ -120,7 +120,7 @@ require("packer").startup(function(use)
     "folke/which-key.nvim",
     config = function()
       require("plugins.whichkey").setup()
-    end
+    end,
   }
 
   -- QOL
@@ -128,7 +128,7 @@ require("packer").startup(function(use)
     "terrortylor/nvim-comment",
     event = {
       "BufRead",
-      "BufNewFile"
+      "BufNewFile",
     },
     config = function()
       require("nvim_comment").setup()
@@ -140,20 +140,17 @@ require("packer").startup(function(use)
     requires = "nvim-telescope/telescope.nvim",
     config = function()
       require("plugins.todocomments").setup()
-    end
+    end,
   }
 
-  use { "norcalli/nvim-colorizer.lua",
-    cmd = "ColorizerToggle",
-  }
+  use { "norcalli/nvim-colorizer.lua", cmd = "ColorizerToggle" }
 
   use {
     "akinsho/toggleterm.nvim",
     config = function()
       require("toggleterm").setup()
-    end
+    end,
   }
-
 end)
 
 local map = require("utils.mappings").map
@@ -163,11 +160,11 @@ map("n", "<leader>ps", "<Cmd>PackerStatus<Cr>")
 
 local ok, wk = pcall(require, "which-key")
 if ok then
-  wk.register({
+  wk.register {
     ["<leader>p"] = {
       name = "+Packer",
       c = "Compile",
       s = "Status",
-    }
-  })
+    },
+  }
 end
