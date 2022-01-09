@@ -20,6 +20,7 @@ picom &
 sxhkd &
 dunst &
 $HOME/.config/polybar/launch.sh &
+espanso daemon &
 
 # Start window manager
 exec bspwm
