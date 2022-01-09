@@ -13,15 +13,17 @@ super + Return
 super + space ; {space, b, e}
   {dmenu_run, $BROWSER, $TERMINAL -e $EDITOR}
 
+# toggle scratchpad
+super + d
+  win-toggle-hidden scratchpad
+
 # Volume settings
 super + v
-  pid=$(xdotool search --class Volume); \
-  [ -z $pid ] && $TERMINAL --class Volume -e pulsemixer || xdotool windowkill $pid
+  win-toggle-term Volume pulsemixer
 
 # Monitoring
 ctrl + shift + Escape
-  pid=$(xdotool search --class Monitoring); \
-  [ -z $pid ] && $TERMINAL --class Monitoring -e btop || xdotool windowkill $pid
+  win-toggle-term Monitoring btop
 
 # make sxhkd reload its configuration files:
 super + Escape

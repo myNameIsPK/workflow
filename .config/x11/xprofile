@@ -18,6 +18,7 @@ nm-applet &
 nitrogen --restore &
 picom &
 sxhkd &
+dunst &
 $HOME/.config/polybar/launch.sh &
 
 # Start window manager
