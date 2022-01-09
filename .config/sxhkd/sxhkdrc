@@ -18,6 +18,11 @@ super + v
   pid=$(xdotool search --class Volume); \
   [ -z $pid ] && $TERMINAL --class Volume -e pulsemixer || xdotool windowkill $pid
 
+# Monitoring
+ctrl + shift + Escape
+  pid=$(xdotool search --class Monitoring); \
+  [ -z $pid ] && $TERMINAL --class Monitoring -e btop || xdotool windowkill $pid
+
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd

@@ -3,9 +3,11 @@
 # Reduce scale of display
 # xrandr --output eDP1 --scale .85
 
+# FIXME: sometime not work. must reload WM
 # Set key repeat delay 280 ms, 40 per sec
 xset r rate 300 50 &
 
+# FIXME: sometime not work. must reload WM
 # Switch between keyboard layouts
 # list all key combinations `grep "grp:.*toggle" /usr/share/X11/xkb/rules/base.lst`
 # setxkbmap us,us -variant ,colemak_dh -option grp:win_space_toggle &
