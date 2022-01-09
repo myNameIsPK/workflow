@@ -1,0 +1,14 @@
+#!/bin/sh
+
+if [ -z $1 ]; then
+	echo "Usage: $0 <classname>"
+	exit 1
+fi
+
+pid=$(xdotool search --class $1)
+if [ -z $pid ]; then
+  notify-send "$1 : not found"
+else
+  xdotool windowstate --toggle HIDDEN $pid
+  xdotool windowactivate $pid
+fi
