@@ -29,8 +29,6 @@ map("n", "<C-Right>", ":vertical resize +2<CR>")
 map("n", "<M-j>", ":m .+1<CR>==")
 map("n", "<M-k>", ":m .-2<CR>==")
 
-map("n", "Y", "y$")
-
 map("n", "<S-h>", "<Cmd>bp<Cr>")
 map("n", "<S-l>", "<Cmd>bn<Cr>")
 
