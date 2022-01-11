@@ -1,3 +1,4 @@
+-- TODO: get rid or edit this wrapper and use vim.keymap instead
 local M = {}
 
 M.map = function(mode, keys, cmd, opt)
