@@ -54,7 +54,7 @@ map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "<M-k>", ":m '<-2<CR>gv=gv")
 map("v", "<M-j>", ":m '>+1<CR>gv=gv")
 
-map("v", "p", '"_dp') -- not yank before paste in visual select
+map("v", "p", '"_dP') -- not yank before paste in visual select
 
 -- map("t", "<C-w><C-o>", "<C-\\><C-n> :MaximizerToggle!<CR>")
 map("t", "jk", "<C-\\><C-n>")
