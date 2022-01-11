@@ -2,13 +2,28 @@
 [user]
 	email = 43566401+myNameIsPK@users.noreply.github.com
 	name = myNameIsPk
-[alias]
-  ss = status -s
-[difftool]
-  prompt = true
-[diff]
-  tool = nvimdiff
-[difftool "nvimdiff"]
-  cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+
 [init]
 	defaultBranch = main
+
+[alias]
+  ss = status -s
+
+[difftool]
+  ; prompt = true
+
+[diff]
+  tool = nvimdiff
+
+[difftool "nvimdiff"]
+  cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+
+[merge]
+	tool = nvimmerge
+
+[mergetool]
+	keepBackup = false
+  ; prompt = true
+
+[mergetool "nvimmerge"]
+	cmd = "nvim -d \"$LOCAL\" \"$MERGED\" \"$REMOTE\" -c \"wincmd w\""

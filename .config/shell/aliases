@@ -30,6 +30,7 @@ alias \
 	gca="git commit --amend" \
 	gu="git rm --cached"  \
   gd="git restore"  \
+  grs="git reset"  \
 	gst="git stash"  \
 	gb="git branch" \
 	gba="git branch --all" \
