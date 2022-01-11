@@ -69,9 +69,15 @@ function M.setup()
         i = {
           ["<C-n>"] = actions.move_selection_next,
           ["<C-p>"] = actions.move_selection_previous,
-          ["<C-c>"] = actions.close,
+
           ["<C-j>"] = actions.cycle_history_next,
           ["<C-k>"] = actions.cycle_history_prev,
+
+          ["<C-c>"] = actions.close,
+
+          ["<Down>"] = actions.cycle_history_next,
+          ["<Up>"] = actions.cycle_history_prev,
+
           ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
           ["<CR>"] = actions.select_default + actions.center,
           -- To disable a keymap, put [map] = false
@@ -88,9 +94,12 @@ function M.setup()
         n = {
           ["<C-n>"] = actions.move_selection_next,
           ["<C-p>"] = actions.move_selection_previous,
+
           ["<C-j>"] = actions.move_selection_next,
           ["<C-k>"] = actions.move_selection_previous,
+
           ["<C-c>"] = actions.close,
+
           ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
           -- ["<c-t>"] = trouble.open_with_trouble,
           -- ["<C-i>"] = my_cool_custom_action,

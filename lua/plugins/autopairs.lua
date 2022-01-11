@@ -7,8 +7,26 @@ function M.setup()
     return
   end
 
+  -- from LunarVim/Neovim_from_scratch
   autopairs.setup({
-    disable_filetype = { "TelescopePrompt", "vim" },
+    check_ts = true,
+    ts_config = {
+      lua = { "string", "source" },
+      javascript = { "string", "template_string" },
+      java = false,
+    },
+    disable_filetype = { "telescopeprompt", "spectre_panel" },
+    fast_wrap = {
+      map = "<m-e>",
+      chars = { "{", "[", "(", '"', "'" },
+      pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], "%s+", ""),
+      offset = 0, -- offset from pattern match
+      end_key = "$",
+      keys = "qwertyuiopzxcvbnmasdfghjkl",
+      check_comma = true,
+      highlight = "pmenusel",
+      highlight_grey = "linenr",
+    },
   })
 
   local cmp_autopairs = require "nvim-autopairs.completion.cmp"
