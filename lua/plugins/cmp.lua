@@ -56,12 +56,14 @@ function M.setup()
     formatting = {
       deprecated = true,
       format = function(entry, vim_item)
+        -- TODO: cmp kind
         vim_item.kind = 'test'
         vim_item.menu = ({
           nvim_lsp = "[LSP]",
           nvim_lua = "[API]",
           emoji = "[Emoji]",
           path = "[Path]",
+          cmdline = "[Cmd]",
           calc = "[Calc]",
           cmp_tabnine = "[Tabnine]",
           vsnip = "[Vsnip]",
