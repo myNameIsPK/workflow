@@ -29,6 +29,35 @@ super + v
 ctrl + shift + Escape
   win-toggle-term Monitoring btop
 
+# Increase volume
+XF86AudioRaiseVolume
+  pactl set-sink-volume @DEFAULT_SINK@ +1000
+   
+# Decrease volume
+XF86AudioLowerVolume
+  pactl set-sink-volume @DEFAULT_SINK@ -1000
+   
+# Mute volume
+XF86AudioMute
+  pactl set-sink-mute @DEFAULT_SINK@ toggle
+   
+# Mute microphone
+XF86AudioMicMute
+  pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# Increase brightness
+XF86MonBrightnessUp
+  xbacklight + 10
+
+# Decrease brightness
+XF86MonBrightnessDown
+  xbacklight - 10
+
+# TODO:add audio key
+# XF86AudioNext
+# XF86AudioPrev
+# XF86AudioPlay
+   
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
