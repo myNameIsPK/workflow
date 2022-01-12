@@ -16,10 +16,6 @@ PS1='\e[0;31m[\e[0m\u\e[0;31m@\e[0m\h \e[0;34m\W\e[0m\e[0;31m]\e[0m\e[0;32m\$\e[
 shortcuts-gen > /dev/null 2>&1
 [[ -f ${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases ]] && source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases
 
-HISTSIZE=10000000
-SAVEHIST=10000000
-HISTFILE=$HOME/.local/state/bash/history
-
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
