@@ -16,7 +16,7 @@ super + space ; {space, b, e}
 # toggle scratchpad
 super + d
   [ -z $(xdotool search --class scratchpad) ] && \
-  $TERMINAL --class scratchpad || \
+  tmux-scratch || \
   win-toggle-hidden scratchpad
 
 # Volume settings
