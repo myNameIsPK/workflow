@@ -1,6 +1,8 @@
 #
 # bspwm hotkeys
 #
+# The keysym names are given by the output of xev -event keyboard.
+# The valid modifier names are: super, hyper, meta, alt, control, ctrl, shift, mode_switch, lock, mod1, mod2, mod3, mod4, mod5 and any.
 
 # quit/restart bspwm
 super + alt + {q,r}
@@ -85,11 +87,11 @@ super + ctrl + {1-9}
 	bspc node -o 0.{1-9}
 
 # cancel the preselection for the focused node
-super + ctrl + space
+super + ctrl + Escape
 	bspc node -p cancel
 
 # cancel the preselection for the focused desktop
-super + ctrl + shift + space
+super + ctrl + shift + Escape
 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
 #

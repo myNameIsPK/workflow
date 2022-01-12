@@ -1,6 +1,8 @@
 #
 # wm independent hotkeys
 #
+# The valid modifier names are: super, hyper, meta, alt, control, ctrl, shift, mode_switch, lock, mod1, mod2, mod3, mod4, mod5 and any.
+# The keysym names are given by the output of xev -event keyboard.
 
 # terminal emulator
 super + Return
