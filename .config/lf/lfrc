@@ -1,0 +1,4 @@
+# this is from `https://github.com/cirala/lfimg`
+# you should install dependencies from project's readme
+set previewer ~/.config/lf/preview
+set cleaner ~/.config/lf/cleaner

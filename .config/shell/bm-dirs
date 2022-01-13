@@ -6,6 +6,7 @@ cfn ${XDG_CONFIG_HOME:-$HOME/.config}/nvim
 cfx ${XDG_CONFIG_HOME:-$HOME/.config}/x11
 cf  ${XDG_CONFIG_HOME:-$HOME/.config}
 lcs ${XDG_DATA_HOME:-$HOME/.local/share}
+src $HOME/.local/src
 lcb $HOME/.local/bin
 D   ${XDG_DOWNLOAD_DIR:-$HOME/Downloads}
 d   ${XDG_DOCUMENTS_DIR:-$HOME/Documents}
