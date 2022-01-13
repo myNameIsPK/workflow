@@ -3,3 +3,4 @@
 - [ ] LSP keymaps
 - [ ] todo comment color
 - [ ] Comment.nvim
+- [ ] Diagnosis
