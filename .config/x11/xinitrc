@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# TODO: Is this really work?
 # nvidia gpu only
 xrandr --setprovideroutputsource modesetting NVIDIA-0
 xrandr --auto
