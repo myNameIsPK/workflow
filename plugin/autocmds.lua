@@ -18,19 +18,19 @@ vim.cmd(
 
     augroup sxhkdrc
       autocmd!
-      autocmd BufWritePost sxhkdrc :!pkill -USR1 -x sxhkd; notify-send sxhkd reload\!\!
+      autocmd BufWritePost sxhkdrc :!pkill -USR1 -x sxhkd; notify-send sxhkd reloaded\!\!
     augroup END
 
+    augroup _polybar
+      autocmd!
+      autocmd BufWritePost $XDG_CONFIG_HOME/polybar/config :!polybar -rq mybar && notify-send polybar reloaded\!\!
+    augroup END
   ]]
 )
 
 -- FIXME: file not source
 -- vim.cmd(
 --   [[
---     augroup _polybar
---      autocmd!
---      autocmd BufWritePost $XDG_CONFIG_HOME/polybar/config :!source $XDG_CONFIG_HOME/polybar/launch ; notify-send polybar reloaded\!\!
---     augroup END
 --     augroup aliases
 --       autocmd!
 --       autocmd BufWritePost $XDG_CONFIG_HOME/shell/aliases !source $XDG_CONFIG_HOME/shell/aliases
