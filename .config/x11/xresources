@@ -41,6 +41,8 @@ Xft.dpi: 120
 *.color15: #ebdbb2
 *.color256: #1d2021
 *.color257: #ebdbb2
+*.background: #1d2021 
+*.foreground: #ebdbb2 
 
 /* !! gruvbox light: */
 /* *.color0: #fbf1c7 */
