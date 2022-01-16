@@ -19,6 +19,7 @@ nitrogen --restore &
 picom &
 sxhkd &
 dunst &
+# mpd &
 $HOME/.config/polybar/launch.sh &
 espanso daemon &
 
