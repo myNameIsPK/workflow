@@ -1,9 +1,16 @@
 #!/bin/sh
 
-if [ -z $1 ] || [ -z $2 ]; then
-	echo "Usage: $0 <window classname> <command>"
+class=$1
+cmd=$2
+w=${3:-50}
+h=${4:-75}
+
+if [ -z $class ] || [ -z $cmd ]; then
+	printf "Usage: $0 <window classname> <command>"
 	exit 1
 fi
 
-pid=$(xdotool search --class $1)
-[ -z $pid ] && $TERMINAL --class $1 -e $2 || xdotool windowkill $pid
+pid=$(xdotool search --class $class)
+[ -z $pid ] \
+  && $TERMINAL --class $class -e $cmd \
+  || xdotool windowkill $pid

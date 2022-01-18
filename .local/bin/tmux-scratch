@@ -1,6 +1,4 @@
 #!/bin/sh
-tmuxcmd="tmux"
 [ -z $(tmux list-sessions | grep "scratch") ] && \
-  tmuxcmd="tmux new -s scratch" || \
-  tmuxcmd="tmux attach -t scratch"
-$TERMINAL --class scratchpad -e $tmuxcmd
+  tmux new -s scratch || \
+  tmux attach -t scratch
