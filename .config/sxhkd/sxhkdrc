@@ -21,6 +21,10 @@ super + s
   win-toggle-term scratchpad tmux-scratch || \
   win-toggle-hidden scratchpad
 
+# Screenshot
+super + shift + s
+  screenshot
+
 # Volume settings
 super + v
   win-toggle-term Volume pulsemixer

@@ -94,7 +94,7 @@ bindkey "^[[1;5C" forward-word
 
 # TODO :edit hard code shortcut
 ## Shortcut
-bindkey -s '^O' "^Ufzf-openfiles^M"
+bindkey -s '^X^F' "^U_fzf-findfiles^M"
 
 ## Plugin
 # Function to source files if they exist
