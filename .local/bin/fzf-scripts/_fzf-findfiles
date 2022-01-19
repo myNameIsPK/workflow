@@ -1,6 +1,8 @@
-#!/usr/bin/env sh
-fzf_openfile() {
-  $EDITOR "$(find * -type f | fzf)"
-}
+#!/bin/sh
 
-fzf_openfile
+dir="*"
+[ $1 ] && dir=$1
+file="$(find $dir -type f | fzf)"
+
+echo $file
+[ $file ] && $EDITOR $file

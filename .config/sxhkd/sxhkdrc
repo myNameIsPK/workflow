@@ -29,6 +29,9 @@ super + shift + s
 super + v
   win-toggle-term Volume pulsemixer
 
+super + r
+  win-toggle-term fzf_all "$TERMINAL -e fzf-all"
+
 # Monitoring
 ctrl + shift + Escape
   win-toggle-term Monitoring btop

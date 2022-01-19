@@ -1,0 +1,8 @@
+#!/bin/sh
+
+url="cheat.sh/"
+
+[ -z $1 ] && read -p "$url" query || query=$1
+
+tr_query=$(echo "$query" | tr "[:blank:]" "+")
+curl $url$tr_query | bat

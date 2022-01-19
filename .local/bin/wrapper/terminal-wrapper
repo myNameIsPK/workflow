@@ -1,0 +1,23 @@
+#!/bin/sh
+
+terminal=$TERMINAL
+args=""
+
+# TODO: make more options wrapper like of title, geometry, etc.
+
+class() {
+  case "$terminal" in
+    kitty) args="--class $1"
+    ;;
+    st|*) args="-c $1" 
+    ;;
+  esac
+}
+
+case "$1" in
+  -c|--class) class $2
+  ;;
+  *) args="$@"
+esac
+
+$terminal $args
