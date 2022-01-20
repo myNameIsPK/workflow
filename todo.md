@@ -5,6 +5,5 @@
 - [ ] LSP keymaps
 - [ ] todo comment color
 - [ ] Comment.nvim
-- [ ] Diagnostics
 - [ ] vim.keymap
 - [ ] sxhkd syntax not highlight in telescope buffer

@@ -56,8 +56,9 @@ function M.setup()
     formatting = {
       deprecated = true,
       format = function(entry, vim_item)
-        -- TODO: cmp kind
-        vim_item.kind = 'test'
+        -- kinds from my _G.kind_icons
+        -- vim_item.kind = string.format('%s %s', my.kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+        vim_item.kind = string.format("%s", my.kind_icons[vim_item.kind])
         vim_item.menu = ({
           nvim_lsp = "[LSP]",
           nvim_lua = "[API]",
