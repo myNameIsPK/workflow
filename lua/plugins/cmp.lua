@@ -14,9 +14,14 @@ function M.setup()
 
   require("plugins.luasnip").setup()
 
+  local check_backspace = function()
+    local col = vim.fn.col "." - 1
+    return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
+  end
+
   cmp.setup {
     snippet = {
-      -- NOTE: you must specify a snippet engine
+      -- you must specify a snippet engine
       expand = function(args)
         luasnip.lsp_expand(args.body)
       end,
@@ -28,17 +33,41 @@ function M.setup()
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
       }),
-      ['<C-y>'] = cmp.mapping.confirm {
-        behavior = cmp.ConfirmBehavior.Insert,
-        select = true,
-      },
-      ['<CR>'] = cmp.mapping.confirm {
-        behavior = cmp.ConfirmBehavior.Replace,
-        select = true,
-      },
+      -- ["<C-y>"] = cmp.config.disable,
+      -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+      ['<CR>'] = cmp.mapping.confirm({ select = true }),
+      ["<Tab>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+        elseif luasnip.expandable() then
+          luasnip.expand()
+        elseif luasnip.expand_or_jumpable() then
+          luasnip.expand_or_jump()
+        elseif check_backspace() then
+          fallback()
+        else
+          fallback()
+        end
+      end, {
+        "i",
+        "s",
+      }),
+      ["<S-Tab>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_prev_item()
+        elseif luasnip.jumpable(-1) then
+          luasnip.jump(-1)
+        else
+          fallback()
+        end
+      end, {
+        "i",
+        "s",
+      }),
     },
-    documentation = {
-      border = 'rounded',
+    confirm_opts = {
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = false,
     },
     -- TODO: add more useful source
     sources = cmp.config.sources({
@@ -54,6 +83,7 @@ function M.setup()
         { name = 'buffer', keyword_lenght = 5 },
     }),
     formatting = {
+    -- fields = { "kind", "abbr", "menu" }, --vscode-like menu
       deprecated = true,
       format = function(entry, vim_item)
         -- kinds from my _G.kind_icons
@@ -83,11 +113,10 @@ function M.setup()
         return vim_item
       end,
     },
-    -- TODO: test experimental feature
-    -- experimental = {
-    --   ghost_text = false,
-    --   native_menu = false,
-    -- },
+    experimental = {
+      ghost_text = false,
+      native_menu = false,
+    },
   }
 
   -- Use buffer source for `/` and `?`.
