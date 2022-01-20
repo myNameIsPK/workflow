@@ -1,0 +1,9 @@
+#!/bin/sh
+# fuzzy_win launches the script from param in a centered window
+
+# this menu must set to be float at center and follow user between workspaces with window managers of choices.
+# if window visible hide it and vice versa or open it if it don't exists
+classname="Term-menu"
+xdotool search --onlyvisible --class "$classname" windowunmap \
+  || xdotool search --class "$classname" windowmap \
+  || st -c "$classname" -g 40x8+297+1 -e $1

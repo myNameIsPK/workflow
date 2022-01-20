@@ -29,7 +29,8 @@ bspc rule -a obs desktop='^4'
 
 bspc rule -a Volume sticky=on state=floating focus=on
 bspc rule -a Monitoring sticky=on state=floating focus=on
-bspc rule -a scratchpad sticky=on state=floating focus=on
+bspc rule -a scratchpad sticky=on state=floating center=on focus=on
+bspc rule -a Term-menu sticky=on state=floating center=on
 # bspc rule -a Gimp desktop='^8' state=floating follow=on
 # bspc rule -a mplayer2 state=floating
 # bspc rule -a Kupfer.py focus=on

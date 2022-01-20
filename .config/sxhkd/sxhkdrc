@@ -10,10 +10,17 @@ super + Return
 
 # program launcher
 # super + @space
-	# dmenu_run
+# 	dmenu_run
 
-super + space ; {space, b, e}
-  {dmenu_run, $BROWSER, $TERMINAL -e $EDITOR}
+# fzf_dmenu replacement
+super + space ; space 
+  term-menu fzf-all
+super + space ; d
+  dmenu_run
+super + space ; b
+  brave
+super + space ; D
+  discord
 
 # toggle scratchpad
 super + s
@@ -23,7 +30,7 @@ super + s
 
 # Screenshot
 super + shift + s
-  screenshot
+  term-menu _fzf-screenshot
 
 # Volume settings
 super + v
