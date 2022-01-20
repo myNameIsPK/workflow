@@ -34,7 +34,6 @@ require("packer").startup(function(use)
     "neovim/nvim-lspconfig",
     requires = {
       {
-        "hrsh7th/nvim-cmp",
         "williamboman/nvim-lsp-installer",
         config = function()
           require("plugins.lsp").setup()
@@ -102,8 +101,7 @@ require("packer").startup(function(use)
       "BufNewFile",
     },
     config = function()
-      -- require("plugins.gitsigns").setup()
-      require("gitsigns").setup()
+      require("plugins.gitsigns").setup()
     end,
   }
 
