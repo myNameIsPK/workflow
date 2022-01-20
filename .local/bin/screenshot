@@ -2,7 +2,7 @@
 
 # TODO: make flags logic safety to use than this
 print_help() {
-  printf "screenshot [options] (output)\n"
+  printf "screenshot [options] OUTPUT\n"
   printf "\t-s    -- select area or window\n"
   printf "\t-c    -- current window\n"
   printf "\t-f    -- fullscreen\n"

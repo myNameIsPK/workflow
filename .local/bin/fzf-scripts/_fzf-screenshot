@@ -4,5 +4,11 @@ flag=$(screenshot -h | sed s/^\\s//g | grep ^- | fzf --nth=1 | awk '{print $1}')
 
 [ -z "$flag" ] && exit 0
 
+if [ "$flag" = "-fd" ]; then
+  printf "How long will it delay : "
+  read -r delay
+  flag="$flag $delay"
+fi
+
 filename="screenshot-$(date '+%y%m%d-%H%M-%S').png"
-screenshot "$flag" "$filename"
+screenshot $flag $filename

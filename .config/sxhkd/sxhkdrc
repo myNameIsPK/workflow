@@ -13,14 +13,12 @@ super + Return
 # 	dmenu_run
 
 # fzf_dmenu replacement
-super + space ; space 
+super + space ; f
   term-menu fzf-all
 super + space ; d
   dmenu_run
-super + space ; b
-  brave
-super + space ; D
-  discord
+super + space ; {b,D}
+  {brave,discord}
 
 # toggle scratchpad
 super + s
