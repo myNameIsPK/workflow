@@ -13,13 +13,15 @@ map("i", "?", "?<c-g>u")
 map("i", "<C-j>", 'pumvisible() ? "\\<C-n>" : "\\<C-j>"', { expr = true, noremap = true })
 map("i", "<C-k>", 'pumvisible() ? "\\<C-p>" : "\\<C-k>"', { expr = true, noremap = true })
 
+-- map("n", "<leader>l", "<Cmd>noh<CR><C-l>")
+
 -- map("n", "s", "<Plug>(easymotion-overwin-f)", { noremap = false, silent = false })
-map("n", "<leader>l", "<Cmd>noh<CR><C-l>")
 -- map("n", "<C-w><C-o>", "<Cmd>MaximizerToggle!<CR>")
-map("n", "<C-h>", "<C-w>h")
-map("n", "<C-j>", "<C-w>j")
-map("n", "<C-k>", "<C-w>k")
-map("n", "<C-l>", "<C-w>l")
+
+-- map("n", "<C-h>", "<C-w>h")
+-- map("n", "<C-j>", "<C-w>j")
+-- map("n", "<C-k>", "<C-w>k")
+-- map("n", "<C-l>", "<C-w>l")
 
 map("n", "<C-Up>", ":resize -2<CR>")
 map("n", "<C-Down>", ":resize +2<CR>")
@@ -64,16 +66,17 @@ map("x", "<M-j>", ":m '>+1<CR>gv=gv")
 -- map("t", "<C-w><C-o>", "<C-\\><C-n> :MaximizerToggle!<CR>")
 map("t", "jk", "<C-\\><C-n>")
 
-map("t", "<C-h>", "<C-\\><C-n><C-w>h")
-map("t", "<C-j>", "<C-\\><C-n><C-w>j")
-map("t", "<C-k>", "<C-\\><C-n><C-w>k")
-map("t", "<C-l>", "<C-\\><C-n><C-w>l")
+-- map("t", "<C-h>", "<C-\\><C-n><C-w>h")
+-- map("t", "<C-j>", "<C-\\><C-n><C-w>j")
+-- map("t", "<C-k>", "<C-\\><C-n><C-w>k")
+-- map("t", "<C-l>", "<C-\\><C-n><C-w>l")
 
 map("c", "<C-a>", "<Home>")
 map("c", "<C-j>", 'pumvisible() ? "\\<C-n>" : "\\<C-j>"', { expr = true, noremap = true })
 map("c", "<C-k>", 'pumvisible() ? "\\<C-p>" : "\\<C-k>"', { expr = true, noremap = true })
 
 
+-- TODO: Is lsp keymap should be here?
 -- map("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>")
 -- map("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>")
 -- map("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>")
