@@ -102,8 +102,7 @@ require("packer").startup(function(use)
       "BufNewFile",
     },
     config = function()
-      -- require("plugins.gitsigns").setup()
-      require("gitsigns").setup()
+      require("plugins.gitsigns").setup()
     end,
   }
 
