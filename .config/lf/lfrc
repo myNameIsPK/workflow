@@ -1,4 +1,5 @@
-# this is from `https://github.com/cirala/lfimg`
-# you should install dependencies from project's readme
-set previewer ~/.config/lf/preview
-set cleaner ~/.config/lf/cleaner
+# `lf -doc` for document
+set hiddenfiles ".git*"
+set icons
+set scrolloff 8
+set anchorfind off        # find cmd 'f' can cycle match character in folder

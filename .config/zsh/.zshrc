@@ -31,14 +31,18 @@ export KEYTIMEOUT=0
 stty stop undef		# Disable ctrl-s to freeze terminal.
 
 ## SETOPT
+unsetopt beep	# disable bell-noise
 setopt autocd		# Automatically cd into typed directory.
 setopt interactive_comments
 setopt histignoredups	# Ignore duplicate in history
-unsetopt beep	# disable bell-noise
+setopt incappendhistory # append entered command to history, don't wait for shell exit
+setopt histignorespace # ignore command start with whitespace
+setopt correctall
 
 ## Basic auto/tab complete:
 autoload -U compinit
 zstyle ':completion:*' menu select
+
 # Ignore case when auto complete
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z}'
 zmodload zsh/complist
@@ -63,7 +67,7 @@ bindkey -M viins '^S' history-incremental-search-forward
 bindkey -M viins '^F' forward-char
 bindkey -M viins '^B' backward-char
 bindkey -M viins '^D' delete-char-or-list
-#bindkey -M viins '^K' kill-line
+bindkey -M viins '^K' kill-line
 bindkey -M viins '^N' down-line-or-history
 bindkey -M viins '^P' up-line-or-history
 
