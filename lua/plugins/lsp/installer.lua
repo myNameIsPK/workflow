@@ -23,8 +23,8 @@ function M.setup()
   lsp_installer.on_server_ready(function(server)
     -- local opts = get_server_config(server)
     local opts = {
-      on_attach = require("plugins.lsp").on_attach,
-      capabilities = require("plugins.lsp").capabilities,
+      on_attach = require("plugins.lsp.lsp_handlers").on_attach,
+      capabilities = require("plugins.lsp.lsp_handlers").capabilities,
       flags = { debounce_text_changes = 150 }, -- this make lsp not reload immediately everytime while you typing the words
       root_dir = function(fname)
         local util = require('lspconfig').util
