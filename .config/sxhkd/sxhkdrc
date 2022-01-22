@@ -29,6 +29,8 @@ super + s
 # Screenshot
 super + shift + s
   term-menu _fzf-screenshot
+super + shift + o
+  screenshot -sc # select area and copy to clipboard
 
 # Volume settings
 super + v
