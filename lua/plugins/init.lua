@@ -141,6 +141,9 @@ require("packer").startup(function(use)
       require("toggleterm").setup()
     end,
   }
+
+  use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](1) end }
+
 end)
 
 local map = require("utils.mappings").map
