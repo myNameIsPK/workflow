@@ -33,14 +33,9 @@ function M.setup()
     },
   }
 
-  -- FIXME: fix hard code and why relative path not work
   -- this work only friendly-snippets
-  -- require('luasnip/loaders/from_vscode').lazy_load()
-  -- work both but hardcoded
-  require('luasnip/loaders/from_vscode').lazy_load { paths =  {
-    '~/.config/nvim/snippets/vscode',
-    '~/.local/share/nvim/site/pack/packer/start/friendly-snippets',
-  }}
+  require('luasnip/loaders/from_vscode').lazy_load()
+  require('luasnip/loaders/from_vscode').lazy_load { paths =  { '~/.config/nvim/snippets/vscode', }}
 
   -- TODO: convert to lua
   -- FIXME: <C-E> not work
