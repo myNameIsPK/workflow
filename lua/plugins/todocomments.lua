@@ -2,6 +2,9 @@ local M = {}
 
 function M.setup()
 
+  local map = require("utils.mappings").map
+  map("n", "<leader>td", ":TodoTelescope<CR>") -- Todocomments
+
   require("todo-comments").setup {
     signs = false, -- show icons in the signs column
     sign_priority = 8, -- sign priority

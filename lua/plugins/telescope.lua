@@ -7,7 +7,8 @@ function M.setup()
     return
   end
 
-  require("telescope").setup {
+  local telescope = require("telescope")
+  telescope.setup {
     -- TODO: Not Used ?
     -- extensions = {
     --   fzy_native = {
@@ -16,15 +17,15 @@ function M.setup()
     --   },
     -- },
     defaults = {
-      -- vimgrep_arguments = {
-      --   'rg',
-      --   '--color=never',
-      --   '--no-heading',
-      --   '--with-filename',
-      --   '--line-number',
-      --   '--column',
-      --   '--smart-case'
-      -- },
+      vimgrep_arguments = {
+        'rg',
+        '--color=never',
+        '--no-heading',
+        '--with-filename',
+        '--line-number',
+        '--column',
+        '--smart-case'
+      },
       -- prompt_position = "bottom",
       -- prompt_prefix = " ",
       -- selection_caret = " ",
@@ -118,9 +119,8 @@ function M.setup()
   map("n", "<leader>fr", "<Cmd>Telescope oldfiles<Cr>")
 
   -- Load Extensions
-  require("telescope").load_extension("projects")
+  telescope.load_extension("projects")
   map("n", "<leader>fp", "<Cmd>Telescope projects<Cr>")
-
 
   local wk = require("which-key")
 

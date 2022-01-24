@@ -6,7 +6,7 @@ function M.setup()
     return
   end
 
-  -- require("plugins.lsp.lsp_handlers").setup() -- NOTE: use lsp_installer to setup instead
+  -- require("plugins.lsp.lsp_handlers").setup() -- note that you should use lsp_installer to setup instead
   require("plugins.lsp.installer").setup()
   require("plugins.lsp.null-ls").setup()
   require("plugins.lsp.diagnostic").setup()

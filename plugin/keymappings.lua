@@ -13,11 +13,6 @@ map("i", "?", "?<c-g>u")
 map("i", "<C-j>", 'pumvisible() ? "\\<C-n>" : "\\<C-j>"', { expr = true, noremap = true })
 map("i", "<C-k>", 'pumvisible() ? "\\<C-p>" : "\\<C-k>"', { expr = true, noremap = true })
 
--- map("n", "<leader>l", "<Cmd>noh<CR><C-l>")
-
--- map("n", "s", "<Plug>(easymotion-overwin-f)", { noremap = false, silent = false })
--- map("n", "<C-w><C-o>", "<Cmd>MaximizerToggle!<CR>")
-
 -- map("n", "<C-h>", "<C-w>h")
 -- map("n", "<C-j>", "<C-w>j")
 -- map("n", "<C-k>", "<C-w>k")
@@ -67,17 +62,3 @@ map("t", "jk", "<C-\\><C-n>")
 map("c", "<C-a>", "<Home>")
 map("c", "<C-j>", 'pumvisible() ? "\\<C-n>" : "\\<C-j>"', { expr = true, noremap = true })
 map("c", "<C-k>", 'pumvisible() ? "\\<C-p>" : "\\<C-k>"', { expr = true, noremap = true })
-
-
--- TODO: Is lsp keymap should be here?
--- map("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>")
--- map("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>")
--- map("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>")
--- map("n", "gi", "<Cmd>lua vim.lsp.buf.implementation()<CR>")
--- map("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>")
--- map("n", "<C-k>", "<Cmd>lua vim.lsp.buf.signature_help()<CR>")
--- map("n", "[d", "<Cmd>lua vim.lsp.diagnostic.goto_prev()<CR>")
--- map("n", "]d", "<Cmd>lua vim.lsp.diagnostic.goto_next()<CR>")
--- map("n", "[e", "<Cmd>Lspsaga diagnostic_jump_next<CR>")
--- map("n", "]e", "<Cmd>Lspsaga diagnostic_jump_prev<CR>")
-
