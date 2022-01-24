@@ -31,8 +31,8 @@ map("n", "<C-Right>", ":vertical resize +2<CR>")
 map("n", "<M-j>", ":m .+1<CR>==")
 map("n", "<M-k>", ":m .-2<CR>==")
 
-map("n", "<S-h>", "<Cmd>bp<Cr>")
-map("n", "<S-l>", "<Cmd>bn<Cr>")
+map("n", "[b", "<Cmd>bp<Cr>")
+map("n", "]b", "<Cmd>bn<Cr>")
 
 map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")
@@ -40,13 +40,6 @@ map("n", "J", "mzJ`z")
 
 map("n", "<expr> j", "(v:count > 1 ? \"m'\" . v:count : '') . 'j'")
 map("n", "<expr> k", "(v:count > 1 ? \"m'\" . v:count : '') . 'k'")
-
--- Telescope TODO: Move leader to which key
--- map("n", "<leader>ff", "<Cmd>Telescope find_files<Cr>")
--- map("n", "<leader>fg", "<Cmd>Telescope live_grep<Cr>")
--- map("n", "<leader>fh", "<Cmd>Telescope help_tags<Cr>")
--- map("n", "<leader>fb", "<Cmd>Telescope buffers<Cr>")
--- map("n", "<leader>fp", "<Cmd>Telescope projects<Cr>")
 
 map("v", "<", "<gv")
 map("v", ">", ">gv")

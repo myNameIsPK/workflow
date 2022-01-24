@@ -27,6 +27,16 @@ function M.setup()
 
   vim.diagnostic.config(config)
 
+  -- See `:help vim.diagnostic.*` for documentation on any of the below functions
+  local opts = { noremap=true, silent=true }
+  vim.api.nvim_set_keymap('n', '<leader>de', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+  vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+  vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+  vim.api.nvim_set_keymap('n', '<leader>dq', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+
+  -- telescope TODO: make this safer
+  vim.api.nvim_set_keymap('n', '<leader>fdb', '<cmd>Telescope diagnostics bufnr=0<cr>', opts)
+  vim.api.nvim_set_keymap('n', '<leader>fdw', '<cmd>Telescope diagnostics<cr>', opts)
 end
 
 return M
