@@ -135,6 +135,9 @@ function M.setup()
       p = "Projects",
       r = "Recent Files",
     },
+    ["<leader>d"] = "Diagnostics",  -- in diagnostic.lua
+    ["<leader>l"] = "LSP",          -- in lsp_handlers.lua
+    ["<leader>h"] = "Hunk(gitsigns)", -- in gitsigns.lua
   })
 end
 

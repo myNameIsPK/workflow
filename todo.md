@@ -1,7 +1,7 @@
 # Thing plan todo
-- [ ] fix whichkey in 0.7.0
-- [ ] todocomment error when <C-o> and <C-c>
-- [ ] LSP keymaps
 - [ ] Comment.nvim
 - [ ] vim.keymap
+# Fix
 - [ ] sxhkd syntax not highlight in telescope buffer
+- [ ] todocomment error when <C-o> and <C-c>
+- [ ] fix whichkey in 0.7.0
