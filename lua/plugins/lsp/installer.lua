@@ -6,7 +6,7 @@ function M.setup()
     return
   end
 
-  -- TODO: Is this make me slow?
+  -- auto install server
   -- local servers = { "sumneko_lua", "jsonls" }
   -- Auto install servers if there is it config
   -- local lsp_installer_servers = require 'nvim-lsp-installer.servers'
