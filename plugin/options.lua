@@ -5,29 +5,18 @@ local cmd = vim.cmd
 
 local indent = 2
 
--- opt.list = true
--- opt.listchars = {
---   tab = '→ ',
---   trail = '·',
---   lead = '·',
---   extends = '»',
---   precedes = '«',
---   nbsp = '×',
---   eol = '↲',
--- }
+opt.list = true
+opt.listchars = {
+  tab = '→ ',
+  trail = '·',
+  lead = '·',
+  extends = '»',
+  precedes = '«',
+  nbsp = '×',
+  eol = '↲',
+}
 
 cmd "set background=dark"
-
--- -- Colors:Gruvbox
--- -- g.gruvbox_contrast_dark = "soft"
--- g.gruvbox_italic = 1
--- cmd "colorscheme gruvbox"
--- 
--- -- Colors:Gruvbox-material
--- g.gruvbox_material_visual = "reverse"
--- g.gruvbox_material_background = "soft"
--- g.gruvbox_material_disable_italic_comment = 0
--- cmd "colorscheme gruvbox-material"
 
 -- steal from lunarvim
 opt.shortmess:append "c" -- shorten ins-completion-menu message
