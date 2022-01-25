@@ -25,28 +25,37 @@ function M.setup()
       'typescript',
       'query', -- for playground query editor buffer
     }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+
     sync_install = true, -- install languages synchronously (only applied to `ensure_installed`)
     ignore_install = { "" }, -- List of parsers to ignore installing
+
     highlight = {
-      enable = true,              -- false will disable the whole extension
+      enable = true, -- false will disable the whole extension
       disable = { "" },  -- list of language that will be disabled
-      -- additional_vim_regex_highlighting = true, -- default vim hightlight: should disable
+      -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+      -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+      -- Using this option may slow down your editor, and you may see some duplicate highlights.
+      -- Instead of true it can also be a list of languages
+      additional_vim_regex_highlighting = false,
     },
+
     incremental_selection = {
       -- TODO: Change Keymap
       enable = true,
       -- disable = { "c", "rust" },  -- list of language that will be disabled
       keymaps = {
-        init_nelection = "gnn", -- FIX: edit gnn to init selection(it broke vim default gn)
-        node_iccremental = "grn",
-        node_decremental = "grm",
-        scope_incremental = "grc",
+        init_selection = "gln", -- FIX: edit gnn to init selection(it broke vim default gn)
+        node_incremental = "gln",
+        node_decremental = "glp",
+        scope_incremental = "gsc",
       },
     },
+
     indent = {
       enable = true,
       disable = { "" },  -- list of language that will be disabled
     },
+
     playground = { -- "nvim-treesitter/playground"
       enable = true,
       disable = {},
@@ -65,21 +74,26 @@ function M.setup()
         show_help = '?',
       },
     },
-    query_linter = {
+
+    query_linter = { -- linter in query editor buffer in playground
       enable = true,
       use_virtual_text = true,
       lint_events = {"BufWrite", "CursorHold"},
     },
+
     -- autopairs = {
     --   enable = true,
     -- },
+    --
     -- context_commentstring = {
     --   enable = true,
     --   enable_autocmd = false,
     -- },
+    --
     -- autotag = {
     --   enable = true,
     -- },
+    --
     -- refactor = {
     --   highlight_definitions = { enable = true },
     --   highlight_current_scope = { enable = false },

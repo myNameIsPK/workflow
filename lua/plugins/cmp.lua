@@ -91,7 +91,7 @@ function M.setup()
         vim_item.kind = string.format("%s", my.kind_icons[vim_item.kind])
         vim_item.menu = ({
           nvim_lsp = "[LSP]",
-          nvim_lua = "[API]",
+          nvim_lua = "[Nvim_API]",
           emoji = "[Emoji]",
           path = "[Path]",
           cmdline = "[Cmd]",
