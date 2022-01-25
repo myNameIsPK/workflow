@@ -11,9 +11,9 @@ function M.setup()
   autopairs.setup({
     check_ts = true,
     ts_config = {
-      lua = { "string", "source" },
+      lua = { "string", "source" }, -- it will not add a pair on that treesitter node
       javascript = { "string", "template_string" },
-      java = false,
+      java = false, -- don't check treesitter on java
     },
     disable_filetype = { "telescopeprompt", "spectre_panel" },
     fast_wrap = {
@@ -27,6 +27,25 @@ function M.setup()
       highlight = "pmenusel",
       highlight_grey = "linenr",
     },
+  })
+
+  local Rule = require('nvim-autopairs.rule')
+  local cond = require('nvim-autopairs.conds')
+  local ts_conds = require('nvim-autopairs.ts-conds')
+
+  -- NOTE: clean EXAMPLE
+  autopairs.add_rule(Rule("$$","$$","tex"))
+  autopairs.add_rule(
+    Rule("$$","$$")
+      :with_pair(cond.not_filetypes({"lua"}))
+  )
+
+  -- press % => %% only while inside a comment or string (only block comment work)
+  autopairs.add_rules({
+    Rule("%", "%", "lua")
+      :with_pair(ts_conds.is_ts_node({'string','comment'})),
+    Rule("$", "$", "lua")
+      :with_pair(ts_conds.is_not_ts_node({'function'}))
   })
 
   local cmp_autopairs = require "nvim-autopairs.completion.cmp"
