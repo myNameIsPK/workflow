@@ -2,12 +2,22 @@ local utils = require "utils.plugins"
 
 utils.bootstrap_packer()
 
-require("packer").startup(function(use)
+require("packer").startup({
+  config = {
+    -- Move to lua dir so impatient.nvim can cache it
+    compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua'
+  },
+  function(use)
   -- Packer can manage itself as an optional plugin
   use { "wbthomason/packer.nvim" }
 
   -- Performance
-  use { "dstein64/vim-startuptime" }
+  -- use { "dstein64/vim-startuptime" } -- use impatient LuaCacheProfile instead
+  use { 'lewis6991/impatient.nvim',
+    config = function ()
+      require'impatient'.enable_profile() -- enable LuaCacheProfile
+    end,
+  }
 
   -- Telescope Fuzzy Finder
   use {
@@ -150,7 +160,7 @@ require("packer").startup(function(use)
   use { "norcalli/nvim-colorizer.lua", cmd = "ColorizerToggle" }
 
 
-end)
+end})
 
 local map = require("utils.mappings").map
 
