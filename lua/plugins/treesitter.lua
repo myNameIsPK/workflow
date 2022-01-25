@@ -81,10 +81,6 @@ function M.setup()
       lint_events = {"BufWrite", "CursorHold"},
     },
 
-    -- autopairs = {
-    --   enable = true,
-    -- },
-    --
     -- context_commentstring = {
     --   enable = true,
     --   enable_autocmd = false,
@@ -98,6 +94,67 @@ function M.setup()
     --   highlight_definitions = { enable = true },
     --   highlight_current_scope = { enable = false },
     -- },
+
+    textobjects = {
+      select = {
+        enable = true,
+
+        -- Automatically jump forward to textobj, similar to targets.vim
+        lookahead = true,
+
+        keymaps = {
+          -- You can use the capture groups defined in textobjects.scm
+          ["af"] = "@function.outer",
+          ["if"] = "@function.inner",
+          ["ac"] = "@class.outer",
+          ["ic"] = "@class.inner",
+          -- Your custom capture.
+          -- ["aF"] = "@custom-capture"
+        },
+      },
+
+      -- TODO: change keymap
+      swap = {
+        enable = true,
+        swap_next = {
+          ["<leader>a"] = "@parameter.inner",
+        },
+        swap_previous = {
+          ["<leader>A"] = "@parameter.inner",
+        },
+      },
+
+      move = {
+        enable = true,
+        set_jumps = true, -- whether to set jumps in the jumplist
+        goto_next_start = {
+          ["]m"] = "@function.outer",
+          ["]]"] = "@class.outer",
+        },
+        goto_next_end = {
+          ["]M"] = "@function.outer",
+          ["]["] = "@class.outer",
+        },
+        goto_previous_start = {
+          ["[m"] = "@function.outer",
+          ["[["] = "@class.outer",
+        },
+        goto_previous_end = {
+          ["[M"] = "@function.outer",
+          ["[]"] = "@class.outer",
+        },
+      },
+
+      -- peek_definition_code: show textobject surrounding definition as determined using Neovim's built-in LSP in a floating window
+      lsp_interop = {
+        enable = true,
+        border = 'none',
+        peek_definition_code = {
+          ["<leader>df"] = "@function.outer",
+          ["<leader>dF"] = "@class.outer",
+        },
+      },
+    },
   }
 end
 

@@ -92,6 +92,7 @@ require("packer").startup({
     event = "BufRead",
     requires = {
       { "nvim-treesitter/playground", after = "nvim-treesitter" },
+      { 'nvim-treesitter/nvim-treesitter-textobjects', after = "nvim-treesitter"}
     },
     config = function()
       require("plugins.treesitter").setup()
