@@ -1,6 +1,6 @@
 # Thing plan todo
-- [ ] Comment.nvim
 - [ ] vim.keymap
+- [ ] use luasnip
 # Fix
 - [ ] sxhkd syntax not highlight in telescope buffer
 - [ ] todocomment error when <C-o> and <C-c>

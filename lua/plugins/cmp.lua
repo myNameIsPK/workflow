@@ -70,17 +70,17 @@ function M.setup()
       select = false,
     },
     -- TODO: add more useful source
-    sources = cmp.config.sources({
+    sources = cmp.config.sources({ -- Group 1
       { name = 'nvim_lua' },
       { name = 'nvim_lsp' },
       { name = 'luasnip' },
       -- { name = 'cmp_tabnine' },
-      -- { name = 'spell' },
       { name = 'path' },
       -- { name = 'neorg' },
       -- { name = 'orgmode' },
-    }, {
-        { name = 'buffer', keyword_lenght = 5 },
+    }, { -- Group 2
+      { name = 'spell' },
+      { name = 'buffer', keyword_lenght = 5 },
     }),
     formatting = {
     -- fields = { "kind", "abbr", "menu" }, --vscode-like menu

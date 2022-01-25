@@ -56,7 +56,7 @@ require("packer").startup(function(use)
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-nvim-lsp-document-symbol", after = "nvim-cmp" },
       { "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
-      -- { 'f3fora/cmp-spell', after = 'nvim-cmp' },
+      { 'f3fora/cmp-spell', after = 'nvim-cmp' },
       { "hrsh7th/cmp-path", after = "nvim-cmp" },
       { "hrsh7th/cmp-buffer", after = "nvim-cmp" },
       -- { 'tzachar/cmp-tabnine', run = './install.sh', after = 'nvim-cmp' },
@@ -126,6 +126,17 @@ require("packer").startup(function(use)
   }
 
   use {
+    "akinsho/toggleterm.nvim",
+    config = function()
+      require("toggleterm").setup()
+    end,
+  }
+
+  -- 3rd Party
+  use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](1) end }
+
+  -- Beutiful UI
+  use {
     "folke/todo-comments.nvim",
     requires = "nvim-telescope/telescope.nvim",
     config = function()
@@ -135,14 +146,6 @@ require("packer").startup(function(use)
 
   use { "norcalli/nvim-colorizer.lua", cmd = "ColorizerToggle" }
 
-  use {
-    "akinsho/toggleterm.nvim",
-    config = function()
-      require("toggleterm").setup()
-    end,
-  }
-
-  use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](1) end }
 
 end)
 
