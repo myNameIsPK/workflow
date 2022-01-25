@@ -145,6 +145,13 @@ require("packer").startup({
     end,
   }
 
+  use {
+    "goolord/alpha-nvim",
+    config = function ()
+      require("plugins.alpha").setup()
+    end
+  }
+
   -- 3rd Party
   use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](1) end }
 
