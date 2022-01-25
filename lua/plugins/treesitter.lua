@@ -81,11 +81,11 @@ function M.setup()
       lint_events = {"BufWrite", "CursorHold"},
     },
 
-    -- context_commentstring = {
-    --   enable = true,
-    --   enable_autocmd = false,
-    -- },
-    --
+    context_commentstring = {
+      enable = true,
+      enable_autocmd = false,
+    },
+
     -- autotag = {
     --   enable = true,
     -- },

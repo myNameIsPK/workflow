@@ -92,7 +92,8 @@ require("packer").startup({
     event = "BufRead",
     requires = {
       { "nvim-treesitter/playground", after = "nvim-treesitter" },
-      { 'nvim-treesitter/nvim-treesitter-textobjects', after = "nvim-treesitter"}
+      { "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter"},
+      { "JoosepAlviste/nvim-ts-context-commentstring", after = "nvim-treesitter"},
     },
     config = function()
       require("plugins.treesitter").setup()
@@ -135,7 +136,7 @@ require("packer").startup({
       "BufNewFile",
     },
     config = function()
-      require('Comment').setup()
+      require('plugins.comment').setup()
     end,
   }
 
