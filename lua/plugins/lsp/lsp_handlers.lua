@@ -32,6 +32,7 @@ local function lsp_keymaps(bufnr)
 end
 
 -- TODO: understand this
+-- FIX: this keep send error when stop lsp servers
 local function lsp_highlight_document(client)
   -- Set autocommands conditional on server_capabilities
   if client.resolved_capabilities.document_highlight then

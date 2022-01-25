@@ -151,8 +151,13 @@ end)
 
 local map = require("utils.mappings").map
 
+-- Plugins status
 map("n", "<leader>pc", "<Cmd>PackerCompile<Cr>")
 map("n", "<leader>ps", "<Cmd>PackerStatus<Cr>")
+
+-- Toggle plugins and settings
+map("n", "<leader>tc", "<Cmd>ColorizerToggle<Cr>")
+map("n", "<leader>tt", "<Cmd>ToggleTerm<Cr>")
 
 local ok, wk = pcall(require, "which-key")
 if ok then
@@ -161,6 +166,11 @@ if ok then
       name = "+Packer",
       c = "Compile",
       s = "Status",
+    },
+    ["<leader>t"] = {
+      name = "+Toggle",
+      c = "Color",
+      t = "Terminal",
     },
   }
 end
