@@ -80,6 +80,9 @@ require("packer").startup(function(use)
     run = ":TSUpdate",
     -- event = 'BufReadPre',
     event = "BufRead",
+    requires = {
+      { "nvim-treesitter/playground", after = "nvim-treesitter" },
+    },
     config = function()
       require("plugins.treesitter").setup()
     end,
