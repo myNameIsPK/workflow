@@ -122,23 +122,25 @@ function M.setup()
   telescope.load_extension("projects")
   map("n", "<leader>fp", "<Cmd>Telescope projects<Cr>")
 
-  local wk = require("which-key")
+  local wk_ok, wk = pcall(require, "which-key")
+  if wk_ok then
+    wk.register({
+      ["<leader>f"] = {
+        name = "+Telescope",
+        a = "All Builtin",
+        f = "Files",
+        g = "Grep Files",
+        b = "Buffers",
+        h = "Help Tags",
+        p = "Projects",
+        r = "Recent Files",
+      },
+      ["<leader>d"] = "Diagnostics",  -- in diagnostic.lua
+      ["<leader>l"] = "LSP",          -- in lsp_handlers.lua
+      ["<leader>h"] = "Hunk(gitsigns)", -- in gitsigns.lua
+    })
+  end
 
-  wk.register({
-    ["<leader>f"] = {
-      name = "+Telescope",
-      a = "All Builtin",
-      f = "Files",
-      g = "Grep Files",
-      b = "Buffers",
-      h = "Help Tags",
-      p = "Projects",
-      r = "Recent Files",
-    },
-    ["<leader>d"] = "Diagnostics",  -- in diagnostic.lua
-    ["<leader>l"] = "LSP",          -- in lsp_handlers.lua
-    ["<leader>h"] = "Hunk(gitsigns)", -- in gitsigns.lua
-  })
 end
 
 -- -- TODO: Delete this ?

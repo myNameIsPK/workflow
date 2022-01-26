@@ -140,6 +140,8 @@ require("packer").startup({
     end,
   }
 
+  use { "machakann/vim-sandwich" }
+
   use {
     "akinsho/toggleterm.nvim",
     config = function()
