@@ -3,5 +3,9 @@
 emoji_list() {
  cat ~/.local/share/tests/emoji.txt
 }
-emoji_list | fzf | awk '{print $1}' | \
-  xclip -selection clipboard -i -r
+
+selected="$(emoji_list | fzf | awk '{print $1}')"
+[ -z "$selected" ] && exit
+printf "%s" "$selected" | xclip -selection clipboard -i
+notify-send "Emoji $selected" "has saved to clipboard"
+exit 0

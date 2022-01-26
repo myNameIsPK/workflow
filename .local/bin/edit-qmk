@@ -1,4 +1,5 @@
 #!/bin/sh
+# OPTIMIZE: to much recall
 key_values=$(qmk config -ro)
 home=$(echo $key_values | sed 's/ /\n/g' | awk -F= '/user.qmk_home/ {print $2}')
 keyboard=$(echo $key_values | sed 's/ /\n/g' | awk -F= '/user.keyboard/ {print $2}')
