@@ -71,37 +71,54 @@ bindkey -M viins '^K' kill-line
 bindkey -M viins '^N' down-line-or-history
 bindkey -M viins '^P' up-line-or-history
 
+# Home/End
+bindkey -M viins '^[[1~' beginning-of-line
+bindkey -M viins '^[[4~' end-of-line
+
+# Delete
+bindkey -M viins '^[[3~' delete-char-or-list
+ 
+# ctrl+<- | ctrl+->
+bindkey "^[[1;5D" backward-word
+bindkey "^[[1;5C" forward-word
+
 # Bash like Emacs mode
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^X^E' edit-command-line
 bindkey -M emacs '^X^E' edit-command-line
 
-# Change cursor shape for different vi modes.
-function zle-keymap-select () {
-    case $KEYMAP in
-        vicmd) echo -ne '\e[1 q';;      # block
-        viins|main) echo -ne '\e[5 q';; # beam
-    esac
-}
-zle -N zle-keymap-select
-zle-line-init() {
-    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-    echo -ne "\e[5 q"
-}
-zle -N zle-line-init
-echo -ne '\e[5 q' # Use beam shape cursor on startup.
-preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
-
-# ctrl+<- | ctrl+->
-bindkey "^[[1;5D" backward-word
-bindkey "^[[1;5C" forward-word
-
 # TODO :edit hard code shortcut
-## Shortcut
+# Shortcut
 bindkey -s '^X^F' "^Ufzf-all^M"
 
-## Plugin
-# Function to source files if they exist
+# Change cursor shape for different vi modes.
+cursor_mode() {
+  cursor_block='\e[2 q'
+  cursor_beam='\e[6 q'
+
+  function zle-keymap-select {
+    if [[ ${KEYMAP} == vicmd ]] ||
+        [[ $1 = 'block' ]]; then
+        echo -ne $cursor_block
+    elif [[ ${KEYMAP} == main ]] ||
+        [[ ${KEYMAP} == viins ]] ||
+        [[ ${KEYMAP} = '' ]] ||
+        [[ $1 = 'beam' ]]; then
+        echo -ne $cursor_beam
+    fi
+  }
+
+  zle-line-init() {
+    echo -ne $cursor_beam
+  }
+
+  zle -N zle-keymap-select
+  zle -N zle-line-init
+}
+
+cursor_mode
+
+# Plugin
 function zsh_add_file() {
     [ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"
 }
