@@ -6,6 +6,6 @@ emoji_list() {
 
 selected="$(emoji_list | fzf | awk '{print $1}')"
 [ -z "$selected" ] && exit
-printf "%s" "$selected" | xclip -selection clipboard -i
+printf "%s" "$selected" | setsid xclip -selection clipboard -i
 notify-send "Emoji $selected" "has saved to clipboard"
 exit 0
