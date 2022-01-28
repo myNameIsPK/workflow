@@ -13,7 +13,7 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 
 # FIXME: don't work in bash
-export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
+export PATH="${$(find ~/.local/bin -type d -printf %p:)%%:}:$PATH"
 
 ## Default program
 export TERM="xterm-256color"
@@ -50,7 +50,6 @@ export RUSTUP_HOME=${XDG_DATA_HOME:-$HOME/.local/share}/rustup
 if [ -n "$BASH_VERSION" ]; then
     [[ -f ${XDG_CONFIG_HOME:-$HOME/.config}/bash/bashrc ]] && source ${XDG_CONFIG_HOME:-$HOME/.config}/bash/bashrc
 fi
-# . "/home/pk/.local/share/cargo/env"
 
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
   # exec startx "$XINITRC"
