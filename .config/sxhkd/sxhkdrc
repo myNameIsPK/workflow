@@ -11,33 +11,36 @@ super + Return
 # program launcher
 # super + @space
 # 	dmenu_run
+super + space ; super + space
+  dmenu_run
 
 # fzf_dmenu replacement
-super + space ; f
+super + shift + space
   term-menu fzf-all
-super + space ; d
-  dmenu_run
-super + space ; {b,D}
+
+# launch specific program
+super + space ; {b,d}
   {brave,discord}
 
 # toggle scratchpad
 super + s
-  [ -z $(xdotool search --class scratchpad) ] && \
-  win-toggle-term scratchpad tmux-scratch || \
-  win-toggle-hidden scratchpad
+  win-toggle-hidden scratchpad || win-toggle-term scratchpad tmux-scratch
 
-# Screenshot
+# Screenshot menu
 super + shift + s
   term-menu _fzf-screenshot
-super + shift + o
-  screenshot -sc # select area and copy to clipboard
+
+# screecshot region to clipboard 
+ctrl + Print
+  screenshot -sc && notify-send "screenshot region to clipboard"
+
+# screecshot current window to clipboard 
+ctrl + alt + Print
+  screenshot -cc && notify-send "screenshot this window to clipboard"
 
 # Volume settings
 super + v
   win-toggle-term Volume pulsemixer
-
-super + r
-  win-toggle-term fzf_all "$TERMINAL -e fzf-all"
 
 # Monitoring
 ctrl + shift + Escape
@@ -73,5 +76,5 @@ XF86MonBrightnessDown
 # XF86AudioPlay
    
 # make sxhkd reload its configuration files:
-super + shift + Escape
+super + shift + ctrl + alt + Escape
 	pkill -USR1 -x sxhkd && notify-send sxhkd reloaded!!

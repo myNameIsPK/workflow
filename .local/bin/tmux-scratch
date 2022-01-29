@@ -1,4 +1,4 @@
 #!/bin/sh
-[ -z $(tmux list-sessions | grep "scratch") ] && \
+[ -z "$(tmux list-sessions | grep "scratch")" ] && \
   tmux new -s scratch || \
   tmux attach -t scratch
