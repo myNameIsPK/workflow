@@ -121,6 +121,17 @@ require("packer").startup {
       end,
     }
 
+    use {
+      "TimUntersberger/neogit",
+      requires = {
+        "nvim-lua/plenary.nvim",
+        "sindrets/diffview.nvim",
+      },
+      config = function()
+        require("neogit").setup()
+      end,
+    }
+
     -- WhichKey
     use {
       "folke/which-key.nvim",
