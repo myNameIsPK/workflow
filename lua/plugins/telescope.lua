@@ -10,12 +10,18 @@ function M.setup()
   local telescope = require("telescope")
   telescope.setup {
     -- TODO: Not Used ?
-    -- extensions = {
-    --   fzy_native = {
-    --     override_generic_sorter = false,
-    --     override_file_sorter = true,
-    --   },
-    -- },
+    extensions = {
+      -- fzy_native = {
+      --   override_generic_sorter = false,
+      --   override_file_sorter = true,
+      -- },
+      fzf = {
+        fuzzy = true,                    -- false will only do exact matching
+        override_generic_sorter = true,  -- override the generic sorter
+        override_file_sorter = true,     -- override the file sorter
+        case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+      },
+    },
     defaults = {
       vimgrep_arguments = {
         'rg',
@@ -119,6 +125,7 @@ function M.setup()
   map("n", "<leader>fr", "<Cmd>Telescope oldfiles<Cr>")
 
   -- Load Extensions
+  telescope.load_extension("fzf")
   telescope.load_extension("projects")
   map("n", "<leader>fp", "<Cmd>Telescope projects<Cr>")
 

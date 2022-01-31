@@ -33,6 +33,7 @@ require("packer").startup {
         require("plugins.telescope").setup()
       end,
     }
+    use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
     use {
       "ahmedkhalf/project.nvim",
       config = function()

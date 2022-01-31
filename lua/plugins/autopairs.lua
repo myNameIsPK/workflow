@@ -15,7 +15,7 @@ function M.setup()
       javascript = { "string", "template_string" },
       java = false, -- don't check treesitter on java
     },
-    disable_filetype = { "telescopeprompt", "spectre_panel" },
+    disable_filetype = { "TelescopePrompt", "spectre_panel" },
     fast_wrap = {
       map = "<m-e>",
       chars = { "{", "[", "(", '"', "'" },
