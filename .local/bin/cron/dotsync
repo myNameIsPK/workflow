@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+dot() {
+  git --git-dir="$DOTFILES" --work-tree="$HOME" "$@"
+}
+
+[ "$(dot status --porcelain | wc -l)" -eq 0 ] && exit 0
+
+dot pull
+dot commit -am "SYNC: $(date "+%Y-%m-%d %H-%M-%S")"
+dot push -q
+notify-send "dotfile sync"
