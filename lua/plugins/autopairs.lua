@@ -30,23 +30,23 @@ function M.setup()
   })
 
   local Rule = require('nvim-autopairs.rule')
-  local cond = require('nvim-autopairs.conds')
-  local ts_conds = require('nvim-autopairs.ts-conds')
+  -- local cond = require('nvim-autopairs.conds')
+  -- local ts_conds = require('nvim-autopairs.ts-conds')
 
-  -- NOTE: clean EXAMPLE
+  -- -- NOTE: clean EXAMPLE
   autopairs.add_rule(Rule("$$","$$","tex"))
-  autopairs.add_rule(
-    Rule("$$","$$")
-      :with_pair(cond.not_filetypes({"lua"}))
-  )
+  -- autopairs.add_rule(
+  --   Rule("$$","$$")
+  --     :with_pair(cond.not_filetypes({"lua"}))
+  -- )
 
   -- press % => %% only while inside a comment or string (only block comment work)
-  autopairs.add_rules({
-    Rule("%", "%", "lua")
-      :with_pair(ts_conds.is_ts_node({'string','comment'})),
-    Rule("$", "$", "lua")
-      :with_pair(ts_conds.is_not_ts_node({'function'}))
-  })
+  -- autopairs.add_rules({
+  --   Rule("%", "%", "lua")
+  --     :with_pair(ts_conds.is_ts_node({'string','comment'})),
+  --   Rule("$", "$", "lua")
+  --     :with_pair(ts_conds.is_not_ts_node({'function'}))
+  -- })
 
   local cmp_autopairs = require "nvim-autopairs.completion.cmp"
   local cmp_ok, cmp = pcall(require, "cmp")

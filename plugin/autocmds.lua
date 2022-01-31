@@ -6,6 +6,12 @@ vim.cmd(
       autocmd FileType qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR>
     augroup END
 
+    " augroup _smart_relativenumber
+    "   autocmd!
+    "   autocmd InsertEnter * :set norelativenumber 
+    "   autocmd InsertLeave * :set relativenumber 
+    " augroup END
+
     augroup spellAdd
       autocmd!
       autocmd BufWritePost *.utf-8.add :mkspell! ~/.config/nvim/spell/en.utf-8.add
