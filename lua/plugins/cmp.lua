@@ -76,8 +76,8 @@ function M.setup()
       { name = 'luasnip' },
       -- { name = 'cmp_tabnine' },
       { name = 'path' },
-      -- { name = 'neorg' },
-      -- { name = 'orgmode' },
+      { name = 'neorg' },
+      { name = 'orgmode' },
     }, { -- Group 2
       { name = 'spell' },
       { name = 'buffer', keyword_lenght = 5 },

@@ -135,9 +135,18 @@ require("packer").startup {
     }
 
     -- Notes taking
-    use { "renerocksai/telekasten.nvim",
+    use {
+      "renerocksai/telekasten.nvim",
       config = function()
         require("plugins.telekasten").setup()
+      end,
+    }
+
+    use {
+      "nvim-orgmode/orgmode",
+      ft = { "org" },
+      config = function()
+        require("plugins.orgmode").setup()
       end,
     }
 
