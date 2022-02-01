@@ -124,12 +124,13 @@ require("packer").startup {
 
     use {
       "TimUntersberger/neogit",
+      cmd = "Neogit",
       requires = {
         "nvim-lua/plenary.nvim",
         "sindrets/diffview.nvim",
       },
       config = function()
-        require("neogit").setup()
+        require("plugins.neogit").setup()
       end,
     }
 
@@ -199,6 +200,8 @@ map("n", "<leader>ps", "<Cmd>PackerStatus<Cr>")
 -- Toggle plugins and settings
 map("n", "<leader>tc", "<Cmd>ColorizerToggle<Cr>")
 map("n", "<leader>tt", "<Cmd>ToggleTerm<Cr>")
+
+map("n", "<leader>g", "<Cmd>Neogit<Cr>")
 
 local ok, wk = pcall(require, "which-key")
 if ok then
