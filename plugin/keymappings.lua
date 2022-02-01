@@ -62,3 +62,6 @@ map("t", "jk", "<C-\\><C-n>")
 map("c", "<C-a>", "<Home>")
 map("c", "<C-j>", 'pumvisible() ? "\\<C-n>" : "\\<C-j>"', { expr = true, noremap = true })
 map("c", "<C-k>", 'pumvisible() ? "\\<C-p>" : "\\<C-k>"', { expr = true, noremap = true })
+
+-- disable because sandwich.vim, `s` could be replaced by `cl`
+map({ "n", "x" }, "s", "<Nop>")

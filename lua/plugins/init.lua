@@ -178,13 +178,13 @@ require("packer").startup {
     }
 
     -- Beutiful UI
-    use {
-      "folke/todo-comments.nvim",
-      requires = "nvim-telescope/telescope.nvim",
-      config = function()
-        require("plugins.todocomments").setup()
-      end,
-    }
+    -- use {
+    --   "folke/todo-comments.nvim",
+    --   requires = "nvim-telescope/telescope.nvim",
+    --   config = function()
+    --     require("plugins.todocomments").setup()
+    --   end,
+    -- }
 
     use { "norcalli/nvim-colorizer.lua", cmd = "ColorizerToggle" }
   end,
