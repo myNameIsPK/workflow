@@ -23,8 +23,10 @@ function M.setup()
     -- customize displayed signs
     signs = {
       -- { CLOSED, OPENED }
-      section = { ">", "v" },
-      item = { ">", "v" },
+      -- section = { ">", "v" },
+      -- item = { ">", "v" },
+      section = { "", "" },
+      item = { "", "" },
       hunk = { "", "" },
     },
     integrations = {
