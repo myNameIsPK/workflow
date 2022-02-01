@@ -25,9 +25,10 @@ function M.setup()
       -- { CLOSED, OPENED }
       -- section = { ">", "v" },
       -- item = { ">", "v" },
+      -- hunk = { "", "" },
       section = { "", "" },
       item = { "", "" },
-      hunk = { "", "" },
+      hunk = { "+", "-" },
     },
     integrations = {
       -- Requires you to have `sindrets/diffview.nvim` installed.

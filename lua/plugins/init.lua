@@ -134,7 +134,15 @@ require("packer").startup {
       end,
     }
 
-    -- WhichKey
+    -- Notes taking
+    use { "renerocksai/telekasten.nvim",
+      config = function()
+        require("plugins.telekasten").setup()
+      end,
+    }
+
+    -- QOL
+
     use {
       "folke/which-key.nvim",
       config = function()
@@ -142,7 +150,6 @@ require("packer").startup {
       end,
     }
 
-    -- QOL
     use {
       "numToStr/Comment.nvim",
       event = {
@@ -153,8 +160,6 @@ require("packer").startup {
         require("plugins.comment").setup()
       end,
     }
-
-    use { "machakann/vim-sandwich" }
 
     use {
       "akinsho/toggleterm.nvim",
@@ -169,6 +174,8 @@ require("packer").startup {
         require("plugins.alpha").setup()
       end,
     }
+
+    use { "machakann/vim-sandwich" }
 
     -- 3rd Party
     use {
