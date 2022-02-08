@@ -13,3 +13,5 @@ d   ${XDG_DOCUMENTS_DIR:-$HOME/Documents}
 pp  ${XDG_PICTURES_DIR:-$HOME/Pictures}
 m   ${XDG_MUSIC_DIR:-$HOME/Music}
 vv  ${XDG_VIDEOS_DIR:-$HOME/Videos}
+P   $HOME/Projects
+nn  $HOME/notes
