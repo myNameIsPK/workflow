@@ -150,6 +150,16 @@ require("packer").startup {
         require("plugins.orgmode").setup()
       end,
     }
+    use {
+      "nvim-neorg/neorg",
+      -- tag = "latest",
+      -- ft = { "norg" },
+      -- after = "nvim-treesitter",
+      config = function()
+        require("plugins.neorg").setup()
+      end,
+      require = "nvim_lua/plenary.nvim",
+    }
 
     -- QOL
 
