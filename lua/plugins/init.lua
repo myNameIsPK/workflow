@@ -137,6 +137,7 @@ require("packer").startup {
     -- Notes taking
     use {
       "renerocksai/telekasten.nvim",
+      keys = { "<leader>z" },
       config = function()
         require("plugins.telekasten").setup()
       end,
@@ -222,6 +223,9 @@ map("n", "<leader>g", "<Cmd>Neogit<Cr>")
 local ok, wk = pcall(require, "which-key")
 if ok then
   wk.register {
+    ["<leader>d"] = {
+      name = "+Diagnostic",
+    },
     ["<leader>p"] = {
       name = "+Packer",
       c = "Compile",

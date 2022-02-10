@@ -1,7 +1,6 @@
 local M = {}
 
 function M.setup()
-
   local cmp_ok, cmp = pcall(require, "cmp")
   if not cmp_ok then
     return
@@ -27,15 +26,16 @@ function M.setup()
       end,
     },
     mapping = {
-      ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-      ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-      ['<C-e>'] = cmp.mapping({
+      ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+      ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+      ["<C-e>"] = cmp.mapping {
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
-      }),
+      },
       -- ["<C-y>"] = cmp.config.disable,
       -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-      ['<CR>'] = cmp.mapping.confirm({ select = true }),
+      ["<CR>"] = cmp.mapping.confirm { select = true },
+      ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
       ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
@@ -71,19 +71,19 @@ function M.setup()
     },
     -- TODO: add more useful source
     sources = cmp.config.sources({ -- Group 1
-      { name = 'nvim_lua' },
-      { name = 'nvim_lsp' },
-      { name = 'luasnip' },
+      { name = "nvim_lua" },
+      { name = "nvim_lsp" },
+      { name = "luasnip" },
       -- { name = 'cmp_tabnine' },
-      { name = 'path' },
-      { name = 'neorg' },
-      { name = 'orgmode' },
+      { name = "path" },
+      { name = "neorg" },
+      { name = "orgmode" },
     }, { -- Group 2
-      { name = 'spell' },
-      { name = 'buffer', keyword_lenght = 5 },
+      { name = "spell" },
+      { name = "buffer", keyword_lenght = 5 },
     }),
     formatting = {
-    -- fields = { "kind", "abbr", "menu" }, --vscode-like menu
+      -- fields = { "kind", "abbr", "menu" }, --vscode-like menu
       deprecated = true,
       format = function(entry, vim_item)
         -- kinds from my _G.kind_icons
@@ -102,6 +102,7 @@ function M.setup()
           buffer = "[Buffer]",
           spell = "[Spell]",
           neorg = "[Neorg]",
+          orgmode = "[Orgmode]",
           nvim_lsp_document_symbol = "[Symbol]",
         })[entry.source.name]
         -- TODO: What is this?
@@ -121,23 +122,22 @@ function M.setup()
 
   -- Use buffer source for `/` and `?`.
   local search_sources = {
-    sources = cmp.config.sources({
-      { name = 'nvim_lsp_document_symbol' },
-      { name = 'buffer' },
-    }),
+    sources = cmp.config.sources {
+      { name = "nvim_lsp_document_symbol" },
+      { name = "buffer" },
+    },
   }
-  cmp.setup.cmdline('/', search_sources)
-  cmp.setup.cmdline('?', search_sources)
+  cmp.setup.cmdline("/", search_sources)
+  cmp.setup.cmdline("?", search_sources)
 
   -- Use cmdline & path source for ':'.
   local cmd_sources = {
-    sources = cmp.config.sources({
-      { name = 'path' },
-      { name = 'cmdline' },
-    }),
+    sources = cmp.config.sources {
+      { name = "path" },
+      { name = "cmdline" },
+    },
   }
-  cmp.setup.cmdline(':', cmd_sources)
-
+  cmp.setup.cmdline(":", cmd_sources)
 end
 
 return M
