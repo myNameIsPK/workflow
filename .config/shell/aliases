@@ -40,7 +40,10 @@ alias \
 	gwt="git worktree" \
 	grb="git rebase" \
 	grbi="git rebase -i" \
+	grba="git rebase --abort" \
+	grbc="git rebase --continue" \
 	gm="git merge" \
+	gmt="git mergetool" \
 	gp="git pull" \
 	gP="git push" \
 	gPf="git push --force-with-lease" \
