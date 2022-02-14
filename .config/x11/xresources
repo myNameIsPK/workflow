@@ -6,7 +6,7 @@
 !! 144 (50% higher)
 !! 168 (75% higher)
 !! 196 (100% higher/* ) */
-Xft.dpi: 120
+Xft.dpi: 144
 
 !! Transparency (0-1):
 *.alpha: 0.8
