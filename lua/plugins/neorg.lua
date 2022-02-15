@@ -81,6 +81,7 @@ function M.setup()
       ["core.keybinds"] = {
         config = {
           keybind_presets = { -- this presets is from default config
+            default_config = false,
             neorg = function(keybinds)
               local leader = keybinds.leader
 

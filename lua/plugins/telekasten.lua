@@ -21,7 +21,7 @@ function M.setup()
 
     -- auto-set telekasten filetype: if false, the telekasten filetype will not be used
     --                               and thus the telekasten syntax will not be loaded either
-    auto_set_filetype = true,
+    auto_set_filetype = false,
 
     -- dir names for special notes (absolute path or subdir name)
     dailies = home .. "/" .. "daily",
@@ -122,42 +122,39 @@ function M.setup()
     rename_update_links = true,
   }
 
+  local map = require("utils.mappings").map
+  map("n", "<leader>zd", ":lua require('telekasten').find_daily_notes()<CR>")
+  map("n", "<leader>zg", ":lua require('telekasten').search_notes()<CR>")
+  map("n", "<leader>zz", ":lua require('telekasten').follow_link()<CR>")
+  map("n", "<leader>zT", ":lua require('telekasten').goto_today()<CR>")
+  map("n", "<leader>zW", ":lua require('telekasten').goto_thisweek()<CR>")
+  map("n", "<leader>zw", ":lua require('telekasten').find_weekly_notes()<CR>")
+  map("n", "<leader>zn", ":lua require('telekasten').new_note()<CR>")
+  map("n", "<leader>zN", ":lua require('telekasten').new_templated_note()<CR>")
+  map("n", "<leader>zy", ":lua require('telekasten').yank_notelink()<CR>")
+  map("n", "<leader>zc", ":lua require('telekasten').show_calendar()<CR>")
+  map("n", "<leader>zC", ":CalendarT<CR>")
+  map("n", "<leader>zi", ":lua require('telekasten').paste_img_and_link()<CR>")
+  map("n", "<leader>zt", ":lua require('telekasten').toggle_todo()<CR>")
+  map("n", "<leader>zb", ":lua require('telekasten').show_backlinks()<CR>")
+  map("n", "<leader>zF", ":lua require('telekasten').find_friends()<CR>")
+  map("n", "<leader>zI", ":lua require('telekasten').insert_img_link({ i=true })<CR>")
+  map("n", "<leader>zp", ":lua require('telekasten').preview_img()<CR>")
+  map("n", "<leader>zm", ":lua require('telekasten').browse_media()<CR>")
+  map("n", "<leader>za", ":lua require('telekasten').show_tags()<CR>")
+  map("n", "<leader>#", ":lua require('telekasten').show_tags()<CR>")
+  map("n", "<leader>zr", ":lua require('telekasten').rename_note()<CR>")
 
-  vim.cmd [[
-    nnoremap <leader>zf :lua require('telekasten').find_notes()<CR>
-    nnoremap <leader>zd :lua require('telekasten').find_daily_notes()<CR>
-    nnoremap <leader>zg :lua require('telekasten').search_notes()<CR>
-    nnoremap <leader>zz :lua require('telekasten').follow_link()<CR>
-    nnoremap <leader>zT :lua require('telekasten').goto_today()<CR>
-    nnoremap <leader>zW :lua require('telekasten').goto_thisweek()<CR>
-    nnoremap <leader>zw :lua require('telekasten').find_weekly_notes()<CR>
-    nnoremap <leader>zn :lua require('telekasten').new_note()<CR>
-    nnoremap <leader>zN :lua require('telekasten').new_templated_note()<CR>
-    nnoremap <leader>zy :lua require('telekasten').yank_notelink()<CR>
-    nnoremap <leader>zc :lua require('telekasten').show_calendar()<CR>
-    nnoremap <leader>zC :CalendarT<CR>
-    nnoremap <leader>zi :lua require('telekasten').paste_img_and_link()<CR>
-    nnoremap <leader>zt :lua require('telekasten').toggle_todo()<CR>
-    nnoremap <leader>zb :lua require('telekasten').show_backlinks()<CR>
-    nnoremap <leader>zF :lua require('telekasten').find_friends()<CR>
-    nnoremap <leader>zI :lua require('telekasten').insert_img_link({ i=true })<CR>
-    nnoremap <leader>zp :lua require('telekasten').preview_img()<CR>
-    nnoremap <leader>zm :lua require('telekasten').browse_media()<CR>
-    nnoremap <leader>za :lua require('telekasten').show_tags()<CR>
-    nnoremap <leader># :lua require('telekasten').show_tags()<CR>
-    nnoremap <leader>zr :lua require('telekasten').rename_note()<CR>
+  -- on hesitation, bring up the panel
+  map("n", "<leader>z", ":lua require('telekasten').panel()<CR>")
 
-    " on hesitation, bring up the panel
-    nnoremap <leader>z :lua require('telekasten').panel()<CR>
-
-    " we could define [[ in **insert mode** to call insert link
-    " inoremap [[ <cmd>:lua require('telekasten').insert_link()<CR>
-    " alternatively: leader [
-    inoremap <leader>[ <cmd>:lua require('telekasten').insert_link({ i=true })<CR>
-    inoremap <leader>zt <cmd>:lua require('telekasten').toggle_todo({ i=true })<CR>
-    inoremap <leader># <cmd>lua require('telekasten').show_tags({i = true})<cr>
-  ]]
-
+  -- we could define [[ in **insert mode** to call insert link
+  -- inoremap [[ <cmd>:lua require('telekasten').insert_link()<CR>
+  -- alternatively: leader [
+  -- FIX: hard too use
+  -- map("i", "[", "<cmd>lua require('telekasten').insert_link({ i=true })<CR>")
+  -- map("i", "zt", "<cmd>lua require('telekasten').toggle_todo({ i=true })<CR>")
+  -- map("i", "#", "<cmd>lua require('telekasten').show_tags({i = true})<cr>")
 
 end
 
