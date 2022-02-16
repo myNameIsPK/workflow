@@ -53,7 +53,7 @@ alias \
 # LazyGit
 alias \
 	gz="lazygit" \
-	dz="lazygit --git-dir=/home/pk/.dotfile.git --work-tree=/home/pk" \
+	dz="lazygit --git-dir=$DOTFILES --work-tree=$HOME" \
 
 # Packages
 # FIXME: cannot display correctly
