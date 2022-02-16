@@ -71,8 +71,8 @@ function M.setup()
     },
     -- TODO: add more useful source
     sources = cmp.config.sources({ -- Group 1
-      { name = "nvim_lua" },
       { name = "nvim_lsp" },
+      -- { name = "nvim_lua" }, -- lua-dev is better
       { name = "luasnip" },
       -- { name = 'cmp_tabnine' },
       { name = "path" },
