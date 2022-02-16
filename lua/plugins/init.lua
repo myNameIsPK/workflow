@@ -34,6 +34,7 @@ require("packer").startup {
       end,
     }
     use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
+    use { "nvim-telescope/telescope-ui-select.nvim" }
     use {
       "ahmedkhalf/project.nvim",
       config = function()

@@ -117,6 +117,7 @@ function M.setup()
 
   local map = require("utils.mappings").map
 
+  -- Builtin
   map("n", "<leader>fa", "<Cmd>Telescope builtin<Cr>")
   map("n", "<leader>ff", "<Cmd>Telescope find_files<Cr>")
   map("n", "<leader>fg", "<Cmd>Telescope live_grep<Cr>")
@@ -127,6 +128,7 @@ function M.setup()
   -- Load Extensions
   telescope.load_extension("fzf")
   telescope.load_extension("projects")
+  telescope.load_extension("ui-select")
   map("n", "<leader>fp", "<Cmd>Telescope projects<Cr>")
 
   local wk_ok, wk = pcall(require, "which-key")
@@ -150,21 +152,21 @@ function M.setup()
 
 end
 
--- -- TODO: Delete this ?
--- function M.find_vim_files(opts)
---   opts = opts or {}
---   local themes = require "telescope.themes"
---   local theme_opts = themes.get_ivy {
---     sorting_strategy = "ascending",
---     layout_strategy = "bottom_pane",
---     prompt = ">> ",
---     prompt_title = "~ Vim files ~",
---     cwd = "$HOME/.config/nvim",
---     find_command = { "git", "ls-files" },
---   }
---   opts = vim.tbl_deep_extend("force", theme_opts, opts)
---   require("telescope.builtin").find_files(opts)
--- end
+-- Custom
+function M.find_vim_files(opts)
+  opts = opts or {}
+  local themes = require "telescope.themes"
+  local theme_opts = themes.get_ivy {
+    sorting_strategy = "ascending",
+    layout_strategy = "bottom_pane",
+    prompt = ">> ",
+    prompt_title = "~ Vim files ~",
+    cwd = "$HOME/.config/nvim",
+    find_command = { "git", "ls-files" },
+  }
+  opts = vim.tbl_deep_extend("force", theme_opts, opts)
+  require("telescope.builtin").find_files(opts)
+end
 
 -- function M.grep_vim_files(opts)
 --   opts = opts or {}
@@ -179,5 +181,22 @@ end
 --   opts = vim.tbl_deep_extend("force", theme_opts, opts)
 --   require("telescope.builtin").live_grep(opts)
 -- end
+
+function M.find_dotfiles(opts)
+  local home_dir = vim.env.HOME
+  local dotfile_dir = vim.env.DOTFILES
+  opts = opts or {}
+  local themes = require "telescope.themes"
+  local theme_opts = themes.get_ivy {
+    sorting_strategy = "ascending",
+    layout_strategy = "bottom_pane",
+    prompt = ">> ",
+    prompt_title = "~ dot files ~",
+    cwd = "$HOME",
+    find_command = { "git", "--git-dir=" .. home_dir, "--work-tree=" .. dotfile_dir, "ls-files" },
+  }
+  opts = vim.tbl_deep_extend("force", theme_opts, opts)
+  require("telescope.builtin").find_files(opts)
+end
 
 return M
