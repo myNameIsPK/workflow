@@ -104,6 +104,13 @@ require("packer").startup {
       end,
     }
 
+    use {
+      "lewis6991/spellsitter.nvim",
+      config = function()
+        require("spellsitter").setup()
+      end,
+    }
+
     -- Colors Scheme
     -- use { "sainnhe/gruvbox-material" }
 

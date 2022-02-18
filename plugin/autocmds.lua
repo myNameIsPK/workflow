@@ -27,6 +27,11 @@ vim.cmd(
       autocmd BufWritePost sxhkdrc :!pkill -USR1 -x sxhkd; notify-send sxhkd reloaded\!\!
     augroup END
 
+    augroup pdf_latex
+      autocmd!
+      autocmd BufWritePost *.tex :!latexmk -pdf -interaction=nonstopmode %
+    augroup END
+
     augroup _polybar
       autocmd!
       autocmd BufWritePost $XDG_CONFIG_HOME/polybar/config :!polybar -rq mybar && notify-send polybar reloaded\!\!
