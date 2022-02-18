@@ -1,13 +1,12 @@
 local M = {}
 
 function M.setup()
-
   local status_ok, actions = pcall(require, "telescope.actions")
   if not status_ok then
     return
   end
 
-  local telescope = require("telescope")
+  local telescope = require "telescope"
   telescope.setup {
     -- TODO: Not Used ?
     extensions = {
@@ -16,21 +15,22 @@ function M.setup()
       --   override_file_sorter = true,
       -- },
       fzf = {
-        fuzzy = true,                    -- false will only do exact matching
-        override_generic_sorter = true,  -- override the generic sorter
-        override_file_sorter = true,     -- override the file sorter
-        case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+        fuzzy = true, -- false will only do exact matching
+        override_generic_sorter = true, -- override the generic sorter
+        override_file_sorter = true, -- override the file sorter
+        case_mode = "smart_case", -- or "ignore_case" or "respect_case"
       },
+      ["ui-select"] = require("telescope.themes").get_cursor(),
     },
-    defaults = {
+    defaults = require("telescope.themes").get_ivy {
       vimgrep_arguments = {
-        'rg',
-        '--color=never',
-        '--no-heading',
-        '--with-filename',
-        '--line-number',
-        '--column',
-        '--smart-case'
+        "rg",
+        "--color=never",
+        "--no-heading",
+        "--with-filename",
+        "--line-number",
+        "--column",
+        "--smart-case",
       },
       -- prompt_position = "bottom",
       -- prompt_prefix = " ",
@@ -38,8 +38,8 @@ function M.setup()
       -- entry_prefix = "  ",
       -- initial_mode = "insert",
       -- selection_strategy = "reset",
-      -- sorting_strategy = "descending",
-      -- layout_strategy = "horizontal",
+      -- sorting_strategy = "ascending",
+      -- layout_strategy = "bottom_pane",
       -- layout_defaults = {
       --   horizontal = {
       --     mirror = false,
@@ -63,6 +63,12 @@ function M.setup()
       -- prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
       -- results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
       -- preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" }
+      -- ivy theme
+      -- borderchars = {
+      --   prompt = { "─", " ", " ", " ", "─", "─", " ", " " },
+      --   results = { " " },
+      --   preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+      -- },
       -- color_devicons = true,
       -- use_less = true,
       -- set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
@@ -126,14 +132,14 @@ function M.setup()
   map("n", "<leader>fr", "<Cmd>Telescope oldfiles<Cr>")
 
   -- Load Extensions
-  telescope.load_extension("fzf")
-  telescope.load_extension("projects")
-  telescope.load_extension("ui-select")
+  telescope.load_extension "fzf"
+  telescope.load_extension "projects"
+  telescope.load_extension "ui-select"
   map("n", "<leader>fp", "<Cmd>Telescope projects<Cr>")
 
   local wk_ok, wk = pcall(require, "which-key")
   if wk_ok then
-    wk.register({
+    wk.register {
       ["<leader>f"] = {
         name = "+Telescope",
         a = "All Builtin",
@@ -144,12 +150,11 @@ function M.setup()
         p = "Projects",
         r = "Recent Files",
       },
-      ["<leader>d"] = "Diagnostics",  -- in diagnostic.lua
-      ["<leader>l"] = "LSP",          -- in lsp_handlers.lua
+      ["<leader>d"] = "Diagnostics", -- in diagnostic.lua
+      ["<leader>l"] = "LSP", -- in lsp_handlers.lua
       ["<leader>h"] = "Hunk(gitsigns)", -- in gitsigns.lua
-    })
+    }
   end
-
 end
 
 -- Custom
@@ -157,9 +162,6 @@ function M.find_vim_files(opts)
   opts = opts or {}
   local themes = require "telescope.themes"
   local theme_opts = themes.get_ivy {
-    sorting_strategy = "ascending",
-    layout_strategy = "bottom_pane",
-    prompt = ">> ",
     prompt_title = "~ Vim files ~",
     cwd = "$HOME/.config/nvim",
     find_command = { "git", "ls-files" },
@@ -188,9 +190,6 @@ function M.find_dotfiles(opts)
   opts = opts or {}
   local themes = require "telescope.themes"
   local theme_opts = themes.get_ivy {
-    sorting_strategy = "ascending",
-    layout_strategy = "bottom_pane",
-    prompt = ">> ",
     prompt_title = "~ dot files ~",
     cwd = "$HOME",
     find_command = { "git", "--git-dir=" .. home_dir, "--work-tree=" .. dotfile_dir, "ls-files" },

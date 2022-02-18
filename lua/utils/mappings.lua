@@ -1,6 +1,7 @@
--- TODO: get rid or edit this wrapper and use vim.keymap instead
 local M = {}
 
+-- TODO: use vim.keymap.set
+-- M.map = vim.keymap.set
 M.map = function(mode, keys, cmd, opt)
    local options = { noremap = true, silent = false }
    if opt then

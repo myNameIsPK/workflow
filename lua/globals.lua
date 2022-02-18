@@ -38,3 +38,10 @@ my.kind_icons = {
   Operator = "",
   TypeParameter = "",
 }
+
+my.save_and_exec = function ()
+  if vim.bo.filetype == "lua" then
+    vim.cmd("write")
+    vim.cmd("luafile %")
+  end
+end

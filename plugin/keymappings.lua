@@ -1,4 +1,5 @@
 local map = require("utils.mappings").map
+local add_command = vim.api.nvim_add_user_command
 
 map("i", { "jk", "kj", "jj", "kk" }, "<Esc>")
 
@@ -65,3 +66,7 @@ map("c", "<C-k>", 'pumvisible() ? "\\<C-p>" : "\\<C-k>"', { expr = true, noremap
 
 -- disable because sandwich.vim, `s` could be replaced by `cl`
 map({ "n", "x" }, "s", "<Nop>")
+
+-- Telescope
+add_command("FindConfigFiles", require('plugins.telescope').find_vim_files, {})
+vim.keymap.set("n", "<leader>fc", "<Cmd>FindConfigFiles<Cr>")
