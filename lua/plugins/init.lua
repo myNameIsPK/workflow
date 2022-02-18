@@ -198,6 +198,7 @@ require("packer").startup {
     }
 
     use { "machakann/vim-sandwich" }
+    use { "rhysd/vim-grammarous" }
 
     -- 3rd Party
     use {
