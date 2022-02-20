@@ -14,8 +14,8 @@ set notification-fg             "#ebdbb2"
 
 set index-bg                    "#32302f"
 set index-fg                    "#ebdbb2"
-set index-active-bg             "#458588"
-set index-active-fg             "#458588"
+set index-active-bg             "#32302f"
+set index-active-fg             "#fabd2f"
 
 set inputbar-bg                 "#32302f"
 set inputbar-fg                 "#ebdbb2"
@@ -29,8 +29,8 @@ set highlight-active-color      "#fe8019"
 set default-bg                  "#32302f"
 set default-fg                  "#ebdbb2"
 
-set recolor-darkcolor "#ebdbb2"
-set recolor-lightcolor "#32302f"
+set recolor-darkcolor           "#ebdbb2"
+set recolor-lightcolor          "#32302f"
 set recolor-reverse-video true
 set recolor-keephue true
 set recolor
