@@ -58,7 +58,7 @@ alias \
 # Packages
 # FIXME: cannot display correctly
 alias \
-	pmsize="LC_ALL=C pacman -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h" \
+	pmsize="pacman -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h" \
 
 # FZF integration
 alias \
