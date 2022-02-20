@@ -1,0 +1,5 @@
+set recolor-reverse-video true
+set recolor-keephue true
+set recolor-darkcolor "#ebdbb2"
+set recolor-lightcolor "#32302f"
+map <A-d> recolor
