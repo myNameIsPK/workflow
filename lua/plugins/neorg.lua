@@ -58,8 +58,7 @@ function M.setup()
       ["core.norg.concealer"] = {
         config = {
           icon_preset = "diamond",
-          markup_preset = "dimmed",
-          -- dim_code_blocks = false,
+          -- markup_preset = "dimmed",
         },
       },
       -- ["core.norg.esupports"] = {
@@ -82,6 +81,7 @@ function M.setup()
         config = {
           keybind_presets = { -- this presets is from default config
             default_config = false,
+            neorg_leader = "<LocalLeader>",
             neorg = function(keybinds)
               local leader = keybinds.leader
 
@@ -208,6 +208,8 @@ function M.setup()
           },
         },
       },
+      ["core.norg.manoeuvre"] = {},
+      ["core.norg.qol.toc"] = {},
     },
   }
 end

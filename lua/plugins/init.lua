@@ -92,8 +92,6 @@ require("packer").startup {
     use {
       "nvim-treesitter/nvim-treesitter",
       run = ":TSUpdate",
-      -- event = 'BufReadPre',
-      event = "BufRead",
       requires = {
         { "nvim-treesitter/playground", after = "nvim-treesitter" },
         { "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" },
@@ -112,7 +110,7 @@ require("packer").startup {
     }
 
     -- Colors Scheme
-    -- use { "sainnhe/gruvbox-material" }
+    use { "sainnhe/gruvbox-material" }
 
     -- Git
     use {
@@ -146,6 +144,7 @@ require("packer").startup {
     -- Notes taking
     use {
       "renerocksai/telekasten.nvim",
+      disable = true,
       keys = { "<leader>z" },
       config = function()
         require("plugins.telekasten").setup()
