@@ -173,7 +173,11 @@ require("packer").startup {
       config = function()
         require("plugins.neorg").setup()
       end,
-      require = "nvim_lua/plenary.nvim",
+      requires = {
+        "nvim_lua/plenary.nvim",
+        "nvim-telescope/telescope.nvim",
+        "nvim-neorg/neorg-telescope",
+      },
     }
 
     -- QOL

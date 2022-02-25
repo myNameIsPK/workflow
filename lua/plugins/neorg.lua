@@ -41,13 +41,13 @@ function M.setup()
       ["core.norg.dirman"] = {
         config = {
           workspaces = {
-            notes = "~/notes/neorg",
+            gtd = "~/notes/gtd",
           },
         },
       },
       ["core.gtd.base"] = {
         config = {
-          workspace = "notes",
+          workspace = "gtd",
         },
       },
       ["core.norg.completion"] = {
@@ -77,6 +77,7 @@ function M.setup()
       --     },
       --   },
       -- },
+      ["core.integrations.telescope"] = {},
       ["core.keybinds"] = {
         config = {
           keybind_presets = { -- this presets is from default config
