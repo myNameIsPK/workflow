@@ -110,7 +110,7 @@ require("packer").startup {
     }
 
     -- Colors Scheme
-    use { "sainnhe/gruvbox-material" }
+    -- use { "sainnhe/gruvbox-material" }
 
     -- Git
     use {
@@ -142,12 +142,19 @@ require("packer").startup {
     }
 
     -- Notes taking
+    -- use {
+    --   "renerocksai/telekasten.nvim",
+    --   disable = true,
+    --   keys = { "<leader>z" },
+    --   config = function()
+    --     require("plugins.telekasten").setup()
+    --   end,
+    -- }
+
     use {
-      "renerocksai/telekasten.nvim",
-      disable = true,
-      keys = { "<leader>z" },
+      "mickael-menu/zk-nvim",
       config = function()
-        require("plugins.telekasten").setup()
+        require("plugins.zk").setup()
       end,
     }
 

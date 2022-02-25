@@ -135,6 +135,7 @@ function M.setup()
   telescope.load_extension "fzf"
   telescope.load_extension "projects"
   telescope.load_extension "ui-select"
+  telescope.load_extension("zk")
   map("n", "<leader>fp", "<Cmd>Telescope projects<Cr>")
 
   local wk_ok, wk = pcall(require, "which-key")
