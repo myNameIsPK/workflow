@@ -71,5 +71,6 @@ map("c", "<C-k>", 'pumvisible() ? "\\<C-p>" : "\\<C-k>"', { expr = true, noremap
 map({ "n", "x" }, "s", "<Nop>")
 
 -- Telescope
-add_command("FindConfigFiles", require('plugins.telescope').find_vim_files, {})
-vim.keymap.set("n", "<leader>fc", "<Cmd>FindConfigFiles<Cr>")
+vim.keymap.set("n", "<leader>fc", require("plugins.telescope").find_vim_files)
+vim.keymap.set("n", "<leader>fC", require("plugins.telescope").find_vim_data)
+vim.keymap.set("n", "<leader>fD", require("plugins.telescope").find_dotfiles)

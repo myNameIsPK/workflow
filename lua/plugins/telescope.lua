@@ -171,29 +171,27 @@ function M.find_vim_files(opts)
   require("telescope.builtin").find_files(opts)
 end
 
--- function M.grep_vim_files(opts)
---   opts = opts or {}
---   local themes = require "telescope.themes"
---   local theme_opts = themes.get_ivy {
---     sorting_strategy = "ascending",
---     layout_strategy = "bottom_pane",
---     prompt = ">> ",
---     prompt_title = "~ search Vim ~",
---     cwd = "$HOME/.config/nvim",
---   }
---   opts = vim.tbl_deep_extend("force", theme_opts, opts)
---   require("telescope.builtin").live_grep(opts)
--- end
+function M.find_vim_data(opts)
+  opts = opts or {}
+  local themes = require "telescope.themes"
+  local theme_opts = themes.get_ivy {
+    prompt_title = "~ Vim datas ~",
+    cwd = "$XDG_DATA_HOME/nvim",
+    find_command = { "find", "-type", "f" },
+  }
+  opts = vim.tbl_deep_extend("force", theme_opts, opts)
+  require("telescope.builtin").find_files(opts)
+end
 
 function M.find_dotfiles(opts)
-  local home_dir = vim.env.HOME
   local dotfile_dir = vim.env.DOTFILES
+  local home_dir = vim.env.HOME
   opts = opts or {}
   local themes = require "telescope.themes"
   local theme_opts = themes.get_ivy {
     prompt_title = "~ dot files ~",
     cwd = "$HOME",
-    find_command = { "git", "--git-dir=" .. home_dir, "--work-tree=" .. dotfile_dir, "ls-files" },
+    find_command = { "git", "--git-dir=" .. dotfile_dir, "--work-tree=" .. home_dir, "ls-files" },
   }
   opts = vim.tbl_deep_extend("force", theme_opts, opts)
   require("telescope.builtin").find_files(opts)
