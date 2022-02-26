@@ -171,6 +171,18 @@ function M.find_vim_files(opts)
   require("telescope.builtin").find_files(opts)
 end
 
+function M.find_vim_data(opts)
+  opts = opts or {}
+  local themes = require "telescope.themes"
+  local theme_opts = themes.get_ivy {
+    prompt_title = "~ Vim datas ~",
+    cwd = "$XDG_DATA_HOME/nvim",
+    find_command = { "find", "-type", "f" },
+  }
+  opts = vim.tbl_deep_extend("force", theme_opts, opts)
+  require("telescope.builtin").find_files(opts)
+end
+
 -- function M.grep_vim_files(opts)
 --   opts = opts or {}
 --   local themes = require "telescope.themes"
