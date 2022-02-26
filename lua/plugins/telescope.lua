@@ -121,41 +121,11 @@ function M.setup()
     },
   }
 
-  local map = require("utils.mappings").map
-
-  -- Builtin
-  map("n", "<leader>fa", "<Cmd>Telescope builtin<Cr>")
-  map("n", "<leader>ff", "<Cmd>Telescope find_files<Cr>")
-  map("n", "<leader>fg", "<Cmd>Telescope live_grep<Cr>")
-  map("n", "<leader>fh", "<Cmd>Telescope help_tags<Cr>")
-  map("n", "<leader>fb", "<Cmd>Telescope buffers<Cr>")
-  map("n", "<leader>fr", "<Cmd>Telescope oldfiles<Cr>")
-
   -- Load Extensions
   telescope.load_extension "fzf"
   telescope.load_extension "projects"
   telescope.load_extension "ui-select"
-  telescope.load_extension("zk")
-  map("n", "<leader>fp", "<Cmd>Telescope projects<Cr>")
-
-  local wk_ok, wk = pcall(require, "which-key")
-  if wk_ok then
-    wk.register {
-      ["<leader>f"] = {
-        name = "+Telescope",
-        a = "All Builtin",
-        f = "Files",
-        g = "Grep Files",
-        b = "Buffers",
-        h = "Help Tags",
-        p = "Projects",
-        r = "Recent Files",
-      },
-      ["<leader>d"] = "Diagnostics", -- in diagnostic.lua
-      ["<leader>l"] = "LSP", -- in lsp_handlers.lua
-      ["<leader>h"] = "Hunk(gitsigns)", -- in gitsigns.lua
-    }
-  end
+  telescope.load_extension "zk"
 end
 
 -- Custom

@@ -1,5 +1,5 @@
 local map = require("utils.mappings").map
-local add_command = vim.api.nvim_add_user_command
+local plugin_installed = require("utils.plugins").plugin_installed
 
 map("i", { "jk", "kj", "jj", "kk" }, "<Esc>")
 
@@ -71,6 +71,37 @@ map("c", "<C-k>", 'pumvisible() ? "\\<C-p>" : "\\<C-k>"', { expr = true, noremap
 map({ "n", "x" }, "s", "<Nop>")
 
 -- Telescope
-vim.keymap.set("n", "<leader>fc", require("plugins.telescope").find_vim_files)
-vim.keymap.set("n", "<leader>fC", require("plugins.telescope").find_vim_data)
-vim.keymap.set("n", "<leader>fD", require("plugins.telescope").find_dotfiles)
+if plugin_installed "telescope.nvim" then
+  -- Builtin
+  map("n", "<leader>fa", "<Cmd>Telescope builtin<Cr>")
+  map("n", "<leader>ff", "<Cmd>Telescope find_files<Cr>")
+  map("n", "<leader>fg", "<Cmd>Telescope live_grep<Cr>")
+  map("n", "<leader>fh", "<Cmd>Telescope help_tags<Cr>")
+  map("n", "<leader>fb", "<Cmd>Telescope buffers<Cr>")
+  map("n", "<leader>fr", "<Cmd>Telescope oldfiles<Cr>")
+
+  -- Loaded Extensions
+  map("n", "<leader>fp", "<Cmd>Telescope projects<Cr>")
+  vim.keymap.set("n", "<leader>fc", require("plugins.telescope").find_vim_files, { desc = "hello world" })
+  vim.keymap.set("n", "<leader>fC", require("plugins.telescope").find_vim_data)
+  vim.keymap.set("n", "<leader>fD", require("plugins.telescope").find_dotfiles)
+
+  local wk_ok, wk = pcall(require, "which-key")
+  if wk_ok then
+    wk.register {
+      ["<leader>f"] = {
+        name = "+Telescope",
+        a = "All Builtin",
+        f = "Files",
+        g = "Grep Files",
+        b = "Buffers",
+        h = "Help Tags",
+        p = "Projects",
+        r = "Recent Files",
+      },
+      ["<leader>d"] = "Diagnostics", -- in diagnostic.lua
+      ["<leader>l"] = "LSP", -- in lsp_handlers.lua
+      ["<leader>h"] = "Hunk(gitsigns)", -- in gitsigns.lua
+    }
+  end
+end
