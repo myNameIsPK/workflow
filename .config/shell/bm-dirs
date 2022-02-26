@@ -1,7 +1,6 @@
 # bookmark of directories
 
 cf  ${XDG_CONFIG_HOME:-$HOME/.config}
-lcs ${XDG_CONFIG_HOME:-$HOME/.config}
 cfn ${XDG_CONFIG_HOME:-$HOME/.config}/nvim
 cfx ${XDG_CONFIG_HOME:-$HOME/.config}/x11
 cf  ${XDG_CONFIG_HOME:-$HOME/.config}
@@ -10,8 +9,11 @@ src $HOME/.local/src
 lcb $HOME/.local/bin
 D   ${XDG_DOWNLOAD_DIR:-$HOME/Downloads}
 d   ${XDG_DOCUMENTS_DIR:-$HOME/Documents}
-pp  ${XDG_PICTURES_DIR:-$HOME/Pictures}
+i   ${XDG_PICTURES_DIR:-$HOME/Pictures}
 m   ${XDG_MUSIC_DIR:-$HOME/Music}
-vv  ${XDG_VIDEOS_DIR:-$HOME/Videos}
-P   $HOME/Projects
-nn  $HOME/notes
+v   ${XDG_VIDEOS_DIR:-$HOME/Videos}
+sc  ${XDG_PICTURES_DIR:-$HOME/Pictures}/screenshots
+p   $HOME/Projects
+n   $HOME/notes
+z   $HOME/notes/zettels
+G   $HOME/notes/gtd
