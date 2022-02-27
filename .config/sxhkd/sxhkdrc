@@ -19,8 +19,8 @@ super + shift + space
   term-menu fzf-all
 
 # launch specific program
-super + space ; {b,d}
-  {brave,discord}
+super + space ; {b,q,d}
+  {brave,qutebrowser,discord}
 
 # toggle scratchpad
 super + s
