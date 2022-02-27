@@ -82,7 +82,9 @@ if plugin_installed "telescope.nvim" then
 
   -- Loaded Extensions
   map("n", "<leader>fp", "<Cmd>Telescope projects<Cr>")
-  vim.keymap.set("n", "<leader>fc", require("plugins.telescope").find_vim_files, { desc = "hello world" })
+
+  -- Custom
+  vim.keymap.set("n", "<leader>fc", require("plugins.telescope").find_vim_files)
   vim.keymap.set("n", "<leader>fC", require("plugins.telescope").find_vim_data)
   vim.keymap.set("n", "<leader>fD", require("plugins.telescope").find_dotfiles)
 
