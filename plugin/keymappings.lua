@@ -107,3 +107,12 @@ if plugin_installed "telescope.nvim" then
     }
   end
 end
+
+if plugin_installed("zk-nvim") then
+  map("n", "<leader>zf", "<Cmd>ZkNotes<Cr>")
+  map("n", "<leader>zd", "<Cmd>ZkNew { dir = 'journal/daily' }<Cr>")
+end
+
+if plugin_installed("neorg") then
+  map("n", "<leader>ng", "<Cmd>NeorgStart<Cr>")
+end

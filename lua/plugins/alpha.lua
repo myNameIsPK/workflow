@@ -38,7 +38,8 @@ function M.setup()
     dashboard.button("r", "  Recently used files", ":Telescope oldfiles <CR>"),
     dashboard.button("g", "  Grep text", ":Telescope live_grep <CR>"),
     dashboard.button("c", "  Configuration", ":lua require('plugins.telescope').find_vim_files()<CR>"),
-    dashboard.button("o", "  Org Notes", ":e ~/notes/notes.org <CR>"),
+    dashboard.button("a", "響 Org agenda", ":e ~/notes/notes.org <CR>"),
+    dashboard.button("G", "  GTD neorg", "<Cmd>NeorgStart<CR>"),
     dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
   }
 
