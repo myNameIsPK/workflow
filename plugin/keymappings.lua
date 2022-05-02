@@ -43,17 +43,17 @@ map("n", "<expr> k", "(v:count > 1 ? \"m'\" . v:count : '') . 'k'")
 map("v", "<", "<gv")
 map("v", ">", ">gv")
 
-map("v", "K", ":m '<-2<CR>gv=gv")
+map("v", "K", ":m '<-2<CR>gv=gv") -- FIXME: concurent with lsp hover
 map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "<M-k>", ":m '<-2<CR>gv=gv")
 map("v", "<M-j>", ":m '>+1<CR>gv=gv")
 
-map("v", "p", '"_dP') -- not yank before paste in visual select
-
-map("x", "K", ":m '<-2<CR>gv=gv")
+map("x", "K", ":m '<-2<CR>gv=gv") -- FIXME: concurent with lsp hover
 map("x", "J", ":m '>+1<CR>gv=gv")
 map("x", "<M-k>", ":m '<-2<CR>gv=gv")
 map("x", "<M-j>", ":m '>+1<CR>gv=gv")
+
+map("v", "p", '"_dP') -- not yank before paste in visual select
 
 -- map("t", "<C-w><C-o>", "<C-\\><C-n> :MaximizerToggle!<CR>")
 map("t", "jk", "<C-\\><C-n>")
@@ -84,9 +84,9 @@ if plugin_installed "telescope.nvim" then
   map("n", "<leader>fp", "<Cmd>Telescope projects<Cr>")
 
   -- Custom
-  vim.keymap.set("n", "<leader>fc", require("plugins.telescope").find_vim_files)
-  vim.keymap.set("n", "<leader>fC", require("plugins.telescope").find_vim_data)
-  vim.keymap.set("n", "<leader>fD", require("plugins.telescope").find_dotfiles)
+  map("n", "<leader>fc", require("plugins.telescope").find_vim_files, { desc = "neovim config files" })
+  map("n", "<leader>fC", require("plugins.telescope").find_vim_data)
+  map("n", "<leader>fD", require("plugins.telescope").find_dotfiles)
 
   local wk_ok, wk = pcall(require, "which-key")
   if wk_ok then
