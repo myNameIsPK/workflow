@@ -35,7 +35,7 @@ end
 -- FIX: this keep send error when stop lsp servers
 local function lsp_highlight_document(client)
   -- Set autocommands conditional on server_capabilities
-  if client.resolved_capabilities.document_highlight then
+  if client.server_capabilities.document_highlight then
     vim.cmd [[
       augroup lsp_document_highlight
         autocmd! * <buffer>
