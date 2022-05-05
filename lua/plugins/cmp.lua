@@ -35,8 +35,9 @@ function M.setup()
         c = cmp.mapping.close(),
       },
       -- ["<C-y>"] = cmp.config.disable,
+      ["<C-y>"] = cmp.mapping.confirm { select = true },
       -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-      ["<CR>"] = cmp.mapping.confirm { select = true },
+      ["<CR>"] = cmp.mapping.confirm { select = false },
       ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
       -- if you woant to use <Tab>
       -- ["<Tab>"] = cmp.mapping(function(fallback)

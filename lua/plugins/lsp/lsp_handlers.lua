@@ -58,8 +58,8 @@ if not nvim_lsp_ok then
 end
 M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 
+-- NOTE: Don't use this, Use lsp-installer instead.
 function M.setup()
-  -- -- Don't use this, Use lsp-installer instead.
   -- local nvim_lsp = require('lspconfig')
   -- -- Use an on_attach function to only map the following keys
   -- -- after the language server attaches to the current buffer
