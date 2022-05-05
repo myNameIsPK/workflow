@@ -116,7 +116,7 @@ function M.setup()
           ["isc"] = "@scopename.inner",
           ["iB"] = "@block.inner",
           ["aB"] = "@block.outer",
-          ["p"] = "@parameter.inner",
+          -- ["p"] = "@parameter.inner", -- FIXME: conflict when v_p
         },
       },
 

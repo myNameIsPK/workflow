@@ -51,30 +51,20 @@ function M.on_attach(client, bufnr)
   lsp_highlight_document(client)
 end
 
+function M.root_dir(fname)
+  local root_pattern = require('lspconfig.util').root_pattern
+  return root_pattern('.git')(fname)
+    or root_pattern('tsconfig.base.json')(fname)
+    or root_pattern('package.json')(fname)
+    or root_pattern('.eslintrc.js')(fname)
+    or root_pattern('tsconfig.json')(fname)
+end
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 local nvim_lsp_ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
 if not nvim_lsp_ok then
   return
 end
 M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
-
--- NOTE: Don't use this, Use lsp-installer instead.
-function M.setup()
-  -- local nvim_lsp = require('lspconfig')
-  -- -- Use an on_attach function to only map the following keys
-  -- -- after the language server attaches to the current buffer
-  -- local on_attach = M.on_attach
-  -- -- Use a loop to conveniently call 'setup' on multiple servers and
-  -- -- map buffer local keybindings when the language server attaches
-  -- local servers = { 'pyright', 'rust_analyzer', 'tsserver' }
-  -- for _, lsp in ipairs(servers) do
-  --   nvim_lsp[lsp].setup {
-  --     on_attach = on_attach,
-  --     flags = {
-  --       debounce_text_changes = 150,
-  --     }
-  --   }
-  -- end
-end
 
 return M

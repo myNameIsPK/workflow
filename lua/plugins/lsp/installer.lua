@@ -6,36 +6,48 @@ function M.setup()
     return
   end
 
-  -- auto install server
-  -- local servers = { "sumneko_lua", "jsonls" }
-  -- Auto install servers if there is it config
-  -- local lsp_installer_servers = require 'nvim-lsp-installer.servers'
-  -- for name, _ in pairs(servers) do
-  --   ---@type boolean, table|string
-  --   local ok, server = lsp_installer_servers.get_server(name)
-  --   if ok then
-  --     if not server:is_installed() then
-  --       server:install()
-  --     end
-  --   end
-  -- end
+  lsp_installer.setup {
+    -- ensure_installed = { "sumneko_lua", "jsonls" },
+    ensure_installed = {},
+    -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed.
+    -- Can either be:
+    --   - false: Servers are not automatically installed.
+    --   - true: All servers set up via lspconfig are automatically installed.
+    --   - { exclude: string[] }: All servers set up via lspconfig, except the ones provided in the list, are automatically installed.
+    --       Example: automatic_installation = { exclude = { "rust_analyzer", "solargraph" } }
+    automatic_installation = false,
+    max_concurrent_installers = 4,
+    log_level = vim.log.levels.INFO,
+    ui = {
+      icons = {
+        server_installed = "◍",
+        server_pending = "◍",
+        server_uninstalled = "◍",
+      },
+      keymaps = {
+        toggle_server_expand = "<CR>",
+        install_server = "i",
+        update_server = "u",
+        check_server_version = "c",
+        update_all_servers = "U",
+        check_outdated_servers = "C",
+        uninstall_server = "X",
+      },
+    },
+  }
 
-  lsp_installer.on_server_ready(function(server)
+
+  local handlers = require("plugins.lsp.handlers")
+  for _, server in ipairs(lsp_installer.get_installed_servers()) do
     -- local opts = get_server_config(server)
     local opts = {
-      on_attach = require("plugins.lsp.lsp_handlers").on_attach,
-      capabilities = require("plugins.lsp.lsp_handlers").capabilities,
+      on_attach = handlers.on_attach,
+      capabilities = handlers.capabilities,
       flags = { debounce_text_changes = 150 }, -- this make lsp not reload immediately everytime while you typing the words
-      root_dir = function(fname)
-        local util = require('lspconfig').util
-        return util.root_pattern('.git')(fname)
-          or util.root_pattern('tsconfig.base.json')(fname)
-          or util.root_pattern('package.json')(fname)
-          or util.root_pattern('.eslintrc.js')(fname)
-          or util.root_pattern('tsconfig.json')(fname)
-      end,
+      root_dir = handlers.root_dir,
     }
 
+    -- Add personal server configs
     local config_exist, config = pcall(require, "plugins.lsp.configs." .. server.name)
     if config_exist then
       local conf_type = type(config)
@@ -47,7 +59,7 @@ function M.setup()
       end
       opts = vim.tbl_deep_extend("force", server_opts, opts)
 
-      -- Add nvim api document
+      -- Add nvim api document plugin
       if server.name == "sumneko_lua" then
         local luadev_ok, luadev = pcall(require, "lua-dev")
         if not luadev_ok then
@@ -58,8 +70,12 @@ function M.setup()
     end
 
     -- This is the same as lspconfig's setup function.
-    server:setup(opts)
-  end)
+    local lspconfig_ok, lspconfig = pcall(require, "lspconfig")
+    if not lspconfig_ok then
+      return
+    end
+    lspconfig[server.name].setup(opts)
+  end
 end
 
 return M
