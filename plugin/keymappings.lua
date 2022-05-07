@@ -84,9 +84,9 @@ if plugin_installed "telescope.nvim" then
   map("n", "<leader>fp", "<Cmd>Telescope projects<Cr>")
 
   -- Custom
-  map("n", "<leader>fc", require("plugins.telescope").find_vim_files, { desc = "neovim config files" })
-  map("n", "<leader>fC", require("plugins.telescope").find_vim_data)
-  map("n", "<leader>fD", require("plugins.telescope").find_dotfiles)
+  map("n", "<leader>fc", require("plugins.telescope").find_vim_files, { desc = "Config files(Neovim)" })
+  map("n", "<leader>fC", require("plugins.telescope").find_vim_data, { desc = "Data files(Neovim)" })
+  map("n", "<leader>fD", require("plugins.telescope").find_dotfiles, { desc = "Dotfiles" })
 
   local wk_ok, wk = pcall(require, "which-key")
   if wk_ok then

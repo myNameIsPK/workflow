@@ -110,7 +110,7 @@ require("packer").startup {
     }
 
     -- Colors Scheme
-    -- use { "sainnhe/gruvbox-material" }
+    use { "sainnhe/gruvbox-material" }
 
     -- Git
     use {
