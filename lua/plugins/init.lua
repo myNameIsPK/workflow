@@ -60,8 +60,8 @@ require("packer").startup {
     -- Completion
     use {
       "hrsh7th/nvim-cmp",
-      module = "cmp",
-      event = "InsertEnter",
+      -- module = "cmp",
+      -- event = "InsertEnter",
       requires = {
         { "L3MON4D3/LuaSnip" },
         { "rafamadriz/friendly-snippets" },
