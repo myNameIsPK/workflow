@@ -124,6 +124,15 @@ function M.setup()
     },
   }
 
+  -- -- TODO: Set configuration for specific filetype.
+  -- cmp.setup.filetype('gitcommit', {
+  --   sources = cmp.config.sources({
+  --     { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+  --   }, {
+  --     { name = 'buffer' },
+  --   })
+  -- })
+
   -- Use buffer source for `/` and `?`.
   local search_sources = {
     sources = cmp.config.sources {

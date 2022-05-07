@@ -91,7 +91,7 @@ require("packer").startup {
     -- Treesitter
     use {
       "nvim-treesitter/nvim-treesitter",
-      run = ":TSUpdate",
+      -- run = ":TSUpdate",
       requires = {
         { "nvim-treesitter/playground", after = "nvim-treesitter" },
         { "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" },

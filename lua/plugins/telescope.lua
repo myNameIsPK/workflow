@@ -7,7 +7,7 @@ function M.setup()
   end
 
   local default_opts = require "telescope.themes".get_ivy {
-    vimgrep_arguments = {
+    vimgrep_arguments = { -- default
       "rg",
       "--color=never",
       "--no-heading",
@@ -143,7 +143,7 @@ end
 M.find_vim_files = gen_picker(
   require("telescope.builtin").find_files,
   {
-    prompt_title = "~ Vim files ~",
+    prompt_title = "Vim files",
     cwd = "$HOME/.config/nvim",
     find_command = { "git", "ls-files" },
   }
@@ -152,7 +152,7 @@ M.find_vim_files = gen_picker(
 M.find_vim_data = gen_picker(
   require("telescope.builtin").find_files,
   {
-    prompt_title = "~ Vim datas ~",
+    prompt_title = "Vim datas",
     cwd = "$XDG_DATA_HOME/nvim",
     find_command = { "find", "-type", "f" },
   }
@@ -163,7 +163,7 @@ local home_dir = vim.env.HOME
 M.find_dotfiles = gen_picker(
   require("telescope.builtin").find_files,
   {
-    prompt_title = "~ dot files ~",
+    prompt_title = "Dot files",
     cwd = "$HOME",
     find_command = { "git", "--git-dir=" .. dotfile_dir, "--work-tree=" .. home_dir, "ls-files" },
   }
