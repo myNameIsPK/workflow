@@ -131,40 +131,42 @@ function M.setup()
   telescope.load_extension "zk"
 end
 
+local function gen_picker(picker, default_opts)
+  return function(opts)
+    opts = opts or {}
+    opts = vim.tbl_deep_extend("force", default_opts, opts)
+    picker(opts)
+  end
+end
+
 -- Custom
-function M.find_vim_files(opts)
-  opts = opts or {}
-  local default_opts = {
+M.find_vim_files = gen_picker(
+  require("telescope.builtin").find_files,
+  {
     prompt_title = "~ Vim files ~",
     cwd = "$HOME/.config/nvim",
     find_command = { "git", "ls-files" },
   }
-  opts = vim.tbl_deep_extend("force", default_opts, opts)
-  require("telescope.builtin").find_files(opts)
-end
+)
 
-function M.find_vim_data(opts)
-  opts = opts or {}
-  local default_opts = {
+M.find_vim_data = gen_picker(
+  require("telescope.builtin").find_files,
+  {
     prompt_title = "~ Vim datas ~",
     cwd = "$XDG_DATA_HOME/nvim",
     find_command = { "find", "-type", "f" },
   }
-  opts = vim.tbl_deep_extend("force", default_opts, opts)
-  require("telescope.builtin").find_files(opts)
-end
+)
 
-function M.find_dotfiles(opts)
-  opts = opts or {}
-  local dotfile_dir = vim.env.DOTFILES
-  local home_dir = vim.env.HOME
-  local default_opts = {
+local dotfile_dir = vim.env.DOTFILES
+local home_dir = vim.env.HOME
+M.find_dotfiles = gen_picker(
+  require("telescope.builtin").find_files,
+  {
     prompt_title = "~ dot files ~",
     cwd = "$HOME",
     find_command = { "git", "--git-dir=" .. dotfile_dir, "--work-tree=" .. home_dir, "ls-files" },
   }
-  opts = vim.tbl_deep_extend("force", default_opts, opts)
-  require("telescope.builtin").find_files(opts)
-end
+)
 
 return M
