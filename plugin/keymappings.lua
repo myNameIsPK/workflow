@@ -73,34 +73,26 @@ map({ "n", "x" }, "s", "<Nop>")
 -- Telescope
 if plugin_installed "telescope.nvim" then
   -- Builtin
-  map("n", "<leader>fa", "<Cmd>Telescope builtin<Cr>")
-  map("n", "<leader>ff", "<Cmd>Telescope find_files<Cr>")
-  map("n", "<leader>fg", "<Cmd>Telescope live_grep<Cr>")
-  map("n", "<leader>fh", "<Cmd>Telescope help_tags<Cr>")
-  map("n", "<leader>fb", "<Cmd>Telescope buffers<Cr>")
-  map("n", "<leader>fr", "<Cmd>Telescope oldfiles<Cr>")
+  map("n", "<leader>fa", "<Cmd>Telescope builtin<Cr>", { desc = "All Builtin" })
+  map("n", "<leader>ff", "<Cmd>Telescope find_files<Cr>", { desc = "Files" })
+  map("n", "<leader>fg", "<Cmd>Telescope live_grep<Cr>", { desc = "Grep Files" })
+  map("n", "<leader>fh", "<Cmd>Telescope help_tags<Cr>", { desc = "Buffers" })
+  map("n", "<leader>fb", "<Cmd>Telescope buffers<Cr>", { desc = "Help Tags" })
+  map("n", "<leader>fr", "<Cmd>Telescope oldfiles<Cr>", { desc = "Recent Files" })
 
   -- Loaded Extensions
-  map("n", "<leader>fp", "<Cmd>Telescope projects<Cr>")
+  map("n", "<leader>fp", "<Cmd>Telescope projects<Cr>", { desc = "Projects" })
 
   -- Custom
   map("n", "<leader>fc", require("plugins.telescope").find_vim_files, { desc = "Config files(Neovim)" })
   map("n", "<leader>fC", require("plugins.telescope").find_vim_data, { desc = "Data files(Neovim)" })
   map("n", "<leader>fD", require("plugins.telescope").find_dotfiles, { desc = "Dotfiles" })
+  map("n", "<leader>td", require("plugins.telescope").todo_comments, { desc = "TODO comments" })
 
   local wk_ok, wk = pcall(require, "which-key")
   if wk_ok then
     wk.register {
-      ["<leader>f"] = {
-        name = "+Telescope",
-        a = "All Builtin",
-        f = "Files",
-        g = "Grep Files",
-        b = "Buffers",
-        h = "Help Tags",
-        p = "Projects",
-        r = "Recent Files",
-      },
+      ["<leader>f"] = "+Telescope",
       ["<leader>d"] = "Diagnostics", -- in diagnostic.lua
       ["<leader>l"] = "LSP", -- in lsp_handlers.lua
       ["<leader>h"] = "Hunk(gitsigns)", -- in gitsigns.lua

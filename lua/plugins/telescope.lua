@@ -140,8 +140,9 @@ local function gen_picker(picker, default_opts)
 end
 
 -- Custom
+local builtin = require("telescope.builtin")
 M.find_vim_files = gen_picker(
-  require("telescope.builtin").find_files,
+  builtin.find_files,
   {
     prompt_title = "Vim files",
     cwd = "$HOME/.config/nvim",
@@ -150,7 +151,7 @@ M.find_vim_files = gen_picker(
 )
 
 M.find_vim_data = gen_picker(
-  require("telescope.builtin").find_files,
+  builtin.find_files,
   {
     prompt_title = "Vim datas",
     cwd = "$XDG_DATA_HOME/nvim",
@@ -161,12 +162,47 @@ M.find_vim_data = gen_picker(
 local dotfile_dir = vim.env.DOTFILES
 local home_dir = vim.env.HOME
 M.find_dotfiles = gen_picker(
-  require("telescope.builtin").find_files,
+  builtin.find_files,
   {
     prompt_title = "Dot files",
     cwd = "$HOME",
     find_command = { "git", "--git-dir=" .. dotfile_dir, "--work-tree=" .. home_dir, "ls-files" },
   }
+)
+
+
+-- TODO: make todo icon, color and only map on comments
+local todo_keywords = {
+  FIX = {
+    icon = " ", -- icon used for the sign, and in search results
+    color = "error", -- can be a hex color, or a named color (see below)
+    alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
+    -- signs = false, -- configure signs for some keywords individually
+  },
+  TODO = { icon = " ", color = "info" },
+  HACK = { icon = " ", color = "warning" },
+  WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
+  PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+  NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
+}
+
+local todo_patterns = ""
+for keyword, values in pairs(todo_keywords) do
+  todo_patterns = todo_patterns .. "|" .. keyword
+  for _, alt_keyword in ipairs(values.alt or {}) do
+    todo_patterns = todo_patterns .. "|" .. alt_keyword
+  end
+end
+-- delete leading "|"
+todo_patterns = todo_patterns:sub(2,todo_patterns:len())
+
+M.todo_comments = gen_picker(
+  builtin.grep_string,
+  {
+    prompt_title = "Todo comments",
+    use_regex_boolean = true,
+    search = todo_patterns,
+ }
 )
 
 return M
