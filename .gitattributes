@@ -1,0 +1,3 @@
+.gitattributes !filter !diff
+todo.md filter=git-crypt diff=git-crypt
+.config/espanso/** filter=git-crypt diff=git-crypt
