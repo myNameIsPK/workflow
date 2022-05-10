@@ -45,3 +45,7 @@ my.save_and_exec = function ()
     vim.cmd("luafile %")
   end
 end
+
+_G.I = function(object)
+  print(vim.inspect(object))
+end

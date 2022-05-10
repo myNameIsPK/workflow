@@ -19,7 +19,7 @@ function M.setup()
         kind = "split",
     },
     -- Change the default way of opening neogit
-    kind = "replace",
+    kind = "tab",
     -- customize displayed signs
     signs = {
       -- { CLOSED, OPENED }

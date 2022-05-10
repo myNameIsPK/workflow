@@ -113,8 +113,15 @@ if plugin_installed("nvim-treesitter") then
 end
 
 if plugin_installed("neorg") then
-  map("n", "<leader>tC", "<Cmd>ColorizerToggle<Cr>")
+  map("n", "<leader>tc", "<Cmd>ColorizerToggle<Cr>")
 end
+
+if plugin_installed("toggleterm") then
+  map("n", "<leader>tt", "<Cmd>ToggleTerm<Cr>")
+end
+
+map("n", "<leader>g", "<Cmd>Neogit<Cr>")
+map("n", "<leader>sp", "<Cmd>PackerStatus<Cr>")
 
 local wk_ok, wk = pcall(require, "which-key")
 if wk_ok then

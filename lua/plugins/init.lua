@@ -231,6 +231,8 @@ require("packer").startup {
     }
 
     -- Beutiful UI
+    use { "norcalli/nvim-colorizer.lua", cmd = "ColorizerToggle" }
+
     -- use {
     --   "folke/todo-comments.nvim",
     --   requires = "nvim-telescope/telescope.nvim",
@@ -238,38 +240,5 @@ require("packer").startup {
     --     require("plugins.todocomments").setup()
     --   end,
     -- }
-
-    use { "norcalli/nvim-colorizer.lua", cmd = "ColorizerToggle" }
   end,
 }
-
-local map = require("utils.mappings").map
-
--- Plugins status
-map("n", "<leader>pc", "<Cmd>PackerCompile<Cr>")
-map("n", "<leader>ps", "<Cmd>PackerStatus<Cr>")
-
--- Toggle plugins and settings
-map("n", "<leader>tc", "<Cmd>ColorizerToggle<Cr>")
-map("n", "<leader>tt", "<Cmd>ToggleTerm<Cr>")
-
-map("n", "<leader>g", "<Cmd>Neogit<Cr>")
-
-local ok, wk = pcall(require, "which-key")
-if ok then
-  wk.register {
-    ["<leader>d"] = {
-      name = "+Diagnostic",
-    },
-    ["<leader>p"] = {
-      name = "+Packer",
-      c = "Compile",
-      s = "Status",
-    },
-    ["<leader>t"] = {
-      name = "+Toggle",
-      c = "Color",
-      t = "Terminal",
-    },
-  }
-end
