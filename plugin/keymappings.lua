@@ -3,8 +3,8 @@ local plugin_installed = require("utils.plugins").plugin_installed
 
 map("i", { "jk", "kj", "jj", "kk" }, "<Esc>")
 
-map("i", "<m-j>", "<esc>:m .+1<cr>==gi")
-map("i", "<m-k>", "<esc>:m .-2<cr>==gi")
+map("i", "<M-j>", "<Esc>:m .+1<CR>==gi")
+map("i", "<M-k>", "<Esc>:m .-2<CR>==gi")
 
 map("i", ",", ",<c-g>u")
 map("i", ".", ".<c-g>u")

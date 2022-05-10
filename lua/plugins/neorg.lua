@@ -6,35 +6,6 @@ function M.setup()
     return
   end
 
-  local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
-
-  -- These two are optional and provide syntax highlighting
-  -- for Neorg tables and the @document.meta tag
-  parser_configs.norg_meta = {
-    install_info = {
-      url = "https://github.com/nvim-neorg/tree-sitter-norg-meta",
-      files = { "src/parser.c" },
-      branch = "main",
-    },
-  }
-
-  parser_configs.norg_table = {
-    install_info = {
-      url = "https://github.com/nvim-neorg/tree-sitter-norg-table",
-      files = { "src/parser.c" },
-      branch = "main",
-    },
-  }
-
-  -- require("nvim-treesitter.configs").setup {
-  -- -- FIX: treesitter load again when open filetype
-  --   ensure_installed = { "norg", "norg_meta", "norg_table", "markdown" },
-  --   highlight = { -- Be sure to enable highlights if you haven't!
-  --     enable = true,
-  --   },
-  -- }
-
-  -- TODO: add https://github.com/nvim-neorg/neorg#core-modules
   neorg.setup {
     load = {
       ["core.defaults"] = {},
@@ -61,23 +32,10 @@ function M.setup()
           -- markup_preset = "dimmed",
         },
       },
-      -- ["core.norg.esupports"] = {
-      --   config = {
-      --     indent = false,
-      --     indent_config = {
-      --       current = {
-      --         enabled = false,
-      --       },
-      --       previous = {
-      --         enabled = false,
-      --       },
-      --       realtime = {
-      --         enabled = false,
-      --       },
-      --     },
-      --   },
-      -- },
       ["core.integrations.telescope"] = {},
+      ["core.norg.manoeuvre"] = {},
+      ["core.norg.qol.toc"] = {},
+      -- ["core.presenter"] = {}, -- use with zenmode
       ["core.keybinds"] = {
         config = {
           keybind_presets = { -- this presets is from default config
@@ -121,11 +79,11 @@ function M.setup()
                 },
 
                 o = {
-                  { "ah", "core.norg.manoeuvre.textobject.around-heading" },
-                  { "ih", "core.norg.manoeuvre.textobject.inner-heading" },
-                  { "at", "core.norg.manoeuvre.textobject.around-tag" },
-                  { "it", "core.norg.manoeuvre.textobject.inner-tag" },
-                  { "al", "core.norg.manoeuvre.textobject.around-whole-list" },
+                  -- { "ah", "core.norg.manoeuvre.textobject.around-heading" },
+                  -- { "ih", "core.norg.manoeuvre.textobject.inner-heading" },
+                  -- { "at", "core.norg.manoeuvre.textobject.around-tag" },
+                  -- { "it", "core.norg.manoeuvre.textobject.inner-tag" },
+                  -- { "al", "core.norg.manoeuvre.textobject.around-whole-list" },
                 },
                 i = {
                   { "<C-l>", "core.integrations.telescope.insert_link" },
@@ -209,8 +167,6 @@ function M.setup()
           },
         },
       },
-      ["core.norg.manoeuvre"] = {},
-      ["core.norg.qol.toc"] = {},
     },
   }
 end
