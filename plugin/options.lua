@@ -1,10 +1,7 @@
 local opt = vim.opt
--- local g = vim.g
-local wo = vim.wo
-local cmd = vim.cmd
-
 local indent = 2
 
+opt.background = "dark"
 opt.list = true
 opt.listchars = {
   tab = '→ ',
@@ -15,15 +12,11 @@ opt.listchars = {
   nbsp = '×',
   eol = '↲',
 }
-
-cmd "set background=dark"
-
--- steal from lunarvim
 opt.shortmess:append "c" -- shorten ins-completion-menu message
 opt.backup = false -- creates a backup file
 -- FIXME: very slow in wsl
 opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
--- opt.cmdheight = 2 -- more space in the neovim command line for displaying messages
+opt.cmdheight = 1 -- more space in the neovim command line for displaying messages
 opt.colorcolumn = "99999" -- fixes indentline for now
 opt.completeopt = "menuone,noselect"
 opt.conceallevel = 0 -- so that `` is visible in markdown files
@@ -56,7 +49,7 @@ opt.shiftwidth = indent -- the number of spaces inserted for each indentation
 opt.tabstop = indent -- insert 2 spaces for a tab
 opt.cursorline = true -- highlight the current line
 opt.number = true -- set numbered lines
--- opt.relativenumber = false -- set relative numbered lines
+opt.relativenumber = true -- set relative numbered lines
 opt.numberwidth = 2 -- set number column width to 2 {default 4}
 opt.signcolumn = "yes" -- always show the sign column, otherwise it would shift the text each time
 opt.wrap = false -- display lines as one long line
@@ -69,4 +62,3 @@ opt.guicursor = {
   [[a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor]],
   [[sm:block-blinkwait175-blinkoff150-blinkon175]],
 }
--- TODO: transparent window

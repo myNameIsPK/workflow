@@ -1,6 +1,11 @@
 local map = require("utils.mappings").map
 local plugin_installed = require("utils.plugins").plugin_installed
 
+--- Plaground make it work
+map("n", "<leader>rf", "<cmd>lua my.save_and_exec()<CR>")
+map("n", "<leader>ra", "<cmd>lua require('utils.reload_config').reload_all()<CR>")
+---
+
 map("i", { "jk", "kj", "jj", "kk" }, "<Esc>")
 
 map("i", "<M-j>", "<Esc>:m .+1<CR>==gi")
@@ -11,8 +16,8 @@ map("i", ".", ".<c-g>u")
 map("i", "!", "!<c-g>u")
 map("i", "?", "?<c-g>u")
 
-map("i", "<C-j>", 'pumvisible() ? "\\<C-n>" : "\\<C-j>"', { expr = true, noremap = true })
-map("i", "<C-k>", 'pumvisible() ? "\\<C-p>" : "\\<C-k>"', { expr = true, noremap = true })
+-- map("i", "<C-j>", 'pumvisible() ? "\\<C-n>" : "\\<C-j>"', { expr = true, noremap = true })
+-- map("i", "<C-k>", 'pumvisible() ? "\\<C-p>" : "\\<C-k>"', { expr = true, noremap = true })
 
 map("n", "j", "gj")
 map("n", "k", "gk")
@@ -48,7 +53,6 @@ map({ "v", "x" } , "<M-j>", ":m '>+1<CR>gv=gv")
 
 map("v", "p", '"_dP') -- not yank before paste in visual select
 
--- map("t", "<C-w><C-o>", "<C-\\><C-n> :MaximizerToggle!<CR>")
 map("t", "jk", "<C-\\><C-n>")
 
 -- map("t", "<C-h>", "<C-\\><C-n><C-w>h")
@@ -57,8 +61,8 @@ map("t", "jk", "<C-\\><C-n>")
 -- map("t", "<C-l>", "<C-\\><C-n><C-w>l")
 
 map("c", "<C-a>", "<Home>")
-map("c", "<C-j>", 'pumvisible() ? "\\<C-n>" : "\\<C-j>"', { expr = true, noremap = true })
-map("c", "<C-k>", 'pumvisible() ? "\\<C-p>" : "\\<C-k>"', { expr = true, noremap = true })
+-- map("c", "<C-j>", 'pumvisible() ? "\\<C-n>" : "\\<C-j>"', { expr = true, noremap = true })
+-- map("c", "<C-k>", 'pumvisible() ? "\\<C-p>" : "\\<C-k>"', { expr = true, noremap = true })
 
 -- disable because sandwich.vim, `s` could be replaced by `cl`
 map({ "n", "x" }, "s", "<Nop>")

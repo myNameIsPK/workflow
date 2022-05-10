@@ -1,33 +1,52 @@
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
+
+-- -- This regular auto group
+-- vim.cmd([[
+--   augroup _general_settings
+--     autocmd!
+--     autocmd TextYankPost * silent! lua vim.highlight.on_yank()
+--   augroup END
+-- ]])
+local group = augroup("_general_settings", { clear = true })
+autocmd({ "TextYankPost" }, {
+  group = group,
+  -- pattern = "*",
+  callback = function() vim.highlight.on_yank() end,
+  -- command = "silent! lua vim.highlight.on_yank()", -- or use command instead of callback
+  desc = "Highlight yanked text"
+})
+
 vim.cmd(
   [[
-    augroup _general_settings
-      autocmd!
-      autocmd TextYankPost * silent! lua vim.highlight.on_yank()
-      autocmd FileType qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR>
-    augroup END
 
     " augroup _smart_relativenumber
     "   autocmd!
-    "   autocmd InsertEnter * :set norelativenumber 
-    "   autocmd InsertLeave * :set relativenumber 
+    "   autocmd InsertEnter * :set norelativenumber
+    "   autocmd InsertLeave * :set relativenumber
     " augroup END
 
-    augroup spellAdd
+    augroup _quit_with_q
+      autocmd!
+      autocmd FileType qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR>
+    augroup END
+
+    augroup _spell_add
       autocmd!
       autocmd BufWritePost *.utf-8.add :mkspell! ~/.config/nvim/spell/en.utf-8.add
     augroup END
 
-    augroup xresources
+    augroup _xresources
       autocmd!
       autocmd BufWritePost xresources :!xrdb -merge ~/.config/x11/xresources
     augroup END
 
-    augroup sxhkdrc
+    augroup _sxhkdrc
       autocmd!
       autocmd BufWritePost sxhkdrc :!pkill -USR1 -x sxhkd; notify-send sxhkd reloaded\!\!
     augroup END
 
-    augroup pdf_latex
+    augroup _pdf_latex
       autocmd!
       autocmd BufWritePost *.tex :!latexmk -pdf -interaction=nonstopmode %
     augroup END
@@ -36,15 +55,6 @@ vim.cmd(
       autocmd!
       autocmd BufWritePost $XDG_CONFIG_HOME/polybar/config :!polybar -rq mybar && notify-send polybar reloaded\!\!
     augroup END
+
   ]]
 )
-
--- FIXME: file not source
--- vim.cmd(
---   [[
---     augroup aliases
---       autocmd!
---       autocmd BufWritePost $XDG_CONFIG_HOME/shell/aliases !source $XDG_CONFIG_HOME/shell/aliases
---     augroup END
---   ]]
--- )
