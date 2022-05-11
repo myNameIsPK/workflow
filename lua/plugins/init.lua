@@ -57,6 +57,8 @@ require("packer").startup {
     }
     use { "jose-elias-alvarez/null-ls.nvim" }
 
+    use { "b0o/SchemaStore.nvim" }
+
     -- Completion
     use {
       "hrsh7th/nvim-cmp",
