@@ -124,7 +124,7 @@ if plugin_installed("toggleterm") then
   map("n", "<leader>tt", "<Cmd>ToggleTerm<Cr>")
 end
 
-map("n", "<leader>g", "<Cmd>Neogit<Cr>")
+map("n", "<leader>gg", "<Cmd>Neogit<Cr>")
 map("n", "<leader>sp", "<Cmd>PackerStatus<Cr>")
 
 local wk_ok, wk = pcall(require, "which-key")
