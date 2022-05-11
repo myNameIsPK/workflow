@@ -73,6 +73,9 @@ map('n', '[d', function() vim.diagnostic.goto_prev() end, { desc = "Diagnostic P
 map('n', '<leader>dq', function() vim.diagnostic.setloclist() end, { desc = "Diagnostic Quixfix" })
 map('n', ']d', function() vim.diagnostic.goto_next() end, { desc = "Diagnostic Next" })
 
+map("n", "<leader>gg", "<Cmd>Neogit<Cr>")
+map("n", "<leader>sp", "<Cmd>PackerStatus<Cr>")
+
 -- Telescope
 if plugin_installed "telescope.nvim" then
   -- Builtin
@@ -96,6 +99,8 @@ if plugin_installed "telescope.nvim" then
   map("n", "<leader>td", require("plugins.telescope").todo_comments, { desc = "TODO comments" })
 
 end
+
+map("n", "<leader>tn", "<Cmd>lua require('nabla').popup()<Cr>", { desc = "Equation Preview" })
 
 if plugin_installed("zk-nvim") then
   map("n", "<leader>zf", "<Cmd>ZkNotes<Cr>")
@@ -123,9 +128,6 @@ end
 if plugin_installed("toggleterm") then
   map("n", "<leader>tt", "<Cmd>ToggleTerm<Cr>")
 end
-
-map("n", "<leader>gg", "<Cmd>Neogit<Cr>")
-map("n", "<leader>sp", "<Cmd>PackerStatus<Cr>")
 
 local wk_ok, wk = pcall(require, "which-key")
 if wk_ok then

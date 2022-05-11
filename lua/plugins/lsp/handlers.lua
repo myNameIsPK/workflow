@@ -23,6 +23,7 @@ local function lsp_keymaps(bufnr)
   map('n', '<localleader>ca', function() lsp.code_action() end, { desc = "Code action" })
   map('v', '<localleader>ca', function() lsp.range_code_action() end, { desc = "Code action" })
   map('n', '<localleader>F', function() lsp.formatting() end, { desc = "formatting" })
+  -- FIXME: range format not work
   map('v', '<localleader>F', function() lsp.range_formatting() end, { desc = "formatting" })
 
   -- telescope
