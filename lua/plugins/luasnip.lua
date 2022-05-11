@@ -13,14 +13,11 @@ function M.setup()
 
   ls.config.set_config({
     history = true,
-    -- Update more often, :h events for more info.
     updateevents = "TextChanged,TextChangedI",
   })
 
-  ls.snippets = {
-    all = {},
-    -- FIXME: Must type and press tab only, no completion
-    lua = {
+  -- FIXME: Must type and press tab only, no completion
+  ls.add_snippets("lua", {
       s({ trig = "[[-", wordTrig = false, hidden = true }, {
         t "--[[",
         t { "", "\t" },
@@ -30,25 +27,33 @@ function M.setup()
       s({ trig = "ig", wordTrig = true, hidden = true }, {
         t "-- stylua: ignore",
       }),
-    },
-  }
+    }
+  )
 
   -- this work only friendly-snippets
-  require('luasnip/loaders/from_vscode').lazy_load()
-  require('luasnip/loaders/from_vscode').lazy_load { paths =  { '~/.config/nvim/snippets/vscode', }}
+  require('luasnip.loaders.from_vscode').lazy_load()
+  require('luasnip.loaders.from_vscode').lazy_load { paths =  { '~/.config/nvim/snippets/vscode', }}
 
-  -- TODO: convert to lua
-  -- FIXME: <C-E> not work
-  vim.cmd [[
-    imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' 
-    inoremap <silent> <S-Tab> <cmd>lua require'luasnip'.jump(-1)<Cr>
+  local map = require("utils.mappings").map
 
-    snoremap <silent> <Tab> <cmd>lua require('luasnip').jump(1)<Cr>
-    snoremap <silent> <S-Tab> <cmd>lua require('luasnip').jump(-1)<Cr>
+  map({ "i", "s" }, "<C-k>", function()
+    if ls.expand_or_jumpable() then
+      ls.expand_or_jump()
+    end
+  end)
 
-    imap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
-    smap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
-  ]]
+  map({ "i", "s" }, "<C-j>", function()
+    if ls.jumpable(-1) then
+      ls.jump(-1)
+    end
+  end)
+
+  map("i", "<C-l>", function()
+    if ls.choice_active() then
+      ls.change_choice(1)
+    end
+  end)
+
 end
 
 return M

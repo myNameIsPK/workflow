@@ -44,7 +44,7 @@ function M.setup()
       enable = true,
       -- disable = { "c", "rust" },  -- list of language that will be disabled
       keymaps = {
-        init_selection = "gln", -- FIX: edit gnn to init selection(it broke vim default gn)
+        init_selection = "gln",
         node_incremental = "gln",
         node_decremental = "glp",
         scope_incremental = "gsc",
@@ -115,7 +115,7 @@ function M.setup()
           ["isc"] = "@scopename.inner",
           ["iB"] = "@block.inner",
           ["aB"] = "@block.outer",
-          -- ["p"] = "@parameter.inner", -- FIXME: conflict when v_p
+          ["ia"] = "@parameter.inner",
         },
       },
 
