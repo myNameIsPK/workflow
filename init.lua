@@ -9,7 +9,7 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
-require("highlight")
-require("globals")
-require("plugins")
-require('packer_compiled')
+require "highlight"
+require "globals"
+require "plugins"
+require "packer_compiled"

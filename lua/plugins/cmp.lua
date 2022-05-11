@@ -80,6 +80,7 @@ function M.setup()
       { name = "luasnip" },
       -- { name = 'cmp_tabnine' },
       { name = "path" },
+      { name = "nvim_lsp_signature_help" },
       { name = "neorg" },
       { name = "orgmode" },
     }, { -- Group 2
