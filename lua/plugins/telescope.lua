@@ -154,7 +154,7 @@ M.find_vim_data = gen_picker(
   builtin.find_files,
   {
     prompt_title = "Vim datas",
-    cwd = "$XDG_DATA_HOME/nvim",
+    cwd = "$XDG_DATA_HOME/nvim/site",
     find_command = { "find", "-type", "f" },
   }
 )

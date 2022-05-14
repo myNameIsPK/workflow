@@ -12,6 +12,8 @@ opt.listchars = {
   nbsp = '×',
   eol = '↲',
 }
+opt.keymap = "thai" -- use keymap in `keymap/{keymap}.vim`
+opt.iminsert = 0 -- not use keymap by default
 opt.shortmess:append "c" -- shorten ins-completion-menu message
 opt.backup = false -- creates a backup file
 -- FIXME: very slow in wsl

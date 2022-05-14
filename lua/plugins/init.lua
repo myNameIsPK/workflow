@@ -11,7 +11,9 @@ require("packer").startup {
     -- Packer can manage itself as an optional plugin
     use { "wbthomason/packer.nvim" }
 
+    -- ####################
     -- Performance
+    -- ####################
     -- use { "dstein64/vim-startuptime" } -- use impatient LuaCacheProfile instead
     use {
       "lewis6991/impatient.nvim",
@@ -20,7 +22,9 @@ require("packer").startup {
       end,
     }
 
+    -- ####################
     -- Telescope Fuzzy Finder
+    -- ####################
     use {
       "nvim-telescope/telescope.nvim",
       cmd = "Telescope",
@@ -42,7 +46,9 @@ require("packer").startup {
       end,
     }
 
+    -- ####################
     -- LSP
+    -- ####################
     use {
       "neovim/nvim-lspconfig",
       requires = {
@@ -59,7 +65,9 @@ require("packer").startup {
 
     use { "b0o/SchemaStore.nvim" }
 
+    -- ####################
     -- Completion
+    -- ####################
     use {
       "hrsh7th/nvim-cmp",
       -- module = "cmp",
@@ -91,7 +99,9 @@ require("packer").startup {
       end,
     }
 
+    -- ####################
     -- Treesitter
+    -- ####################
     use {
       "nvim-treesitter/nvim-treesitter",
       -- run = ":TSUpdate",
@@ -112,10 +122,19 @@ require("packer").startup {
       end,
     }
 
+    -- ####################
+    -- DAP
+    -- ####################
+    -- use { "mfussenegger/nvim-dap" }
+
+    -- ####################
     -- Colors Scheme
+    -- ####################
     use { "sainnhe/gruvbox-material" }
 
+    -- ####################
     -- Git
+    -- ####################
     use {
       "lewis6991/gitsigns.nvim",
       requires = {
@@ -144,7 +163,9 @@ require("packer").startup {
       end,
     }
 
+    -- ####################
     -- Notes taking
+    -- ####################
     -- use {
     --   "renerocksai/telekasten.nvim",
     --   disable = true,
@@ -183,7 +204,9 @@ require("packer").startup {
       },
     }
 
+    -- ####################
     -- QOL
+    -- ####################
 
     use {
       "folke/which-key.nvim",
@@ -219,7 +242,24 @@ require("packer").startup {
 
     use { "machakann/vim-sandwich" }
 
+    -- ####################
+    -- Beutiful UI
+    -- ####################
+    use { "norcalli/nvim-colorizer.lua", cmd = "ColorizerToggle" }
+
+    use { "jbyuki/nabla.nvim" }
+
+    -- use {
+    --   "folke/todo-comments.nvim",
+    --   requires = "nvim-telescope/telescope.nvim",
+    --   config = function()
+    --     require("plugins.todocomments").setup()
+    --   end,
+    -- }
+
+    -- ####################
     -- 3rd Party
+    -- ####################
     use {
       "glacambre/firenvim",
       run = function()
@@ -232,19 +272,6 @@ require("packer").startup {
       run = function() vim.fn['mkdp#util#install']() end,
       ft = {'markdown'}
     }
-
-    -- Beutiful UI
-    use { "norcalli/nvim-colorizer.lua", cmd = "ColorizerToggle" }
-
-    use { "jbyuki/nabla.nvim" }
-
-    -- use {
-    --   "folke/todo-comments.nvim",
-    --   requires = "nvim-telescope/telescope.nvim",
-    --   config = function()
-    --     require("plugins.todocomments").setup()
-    --   end,
-    -- }
 
   end,
 }

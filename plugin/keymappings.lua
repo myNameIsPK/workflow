@@ -64,6 +64,9 @@ map("c", "<C-a>", "<Home>")
 -- map("c", "<C-j>", 'pumvisible() ? "\\<C-n>" : "\\<C-j>"', { expr = true, noremap = true })
 -- map("c", "<C-k>", 'pumvisible() ? "\\<C-p>" : "\\<C-k>"', { expr = true, noremap = true })
 
+-- set keymap to normal when escape insertmode
+map({ "i", "c" }, "<Esc>", "<ESC>:set iminsert=0<CR>")
+
 -- disable because sandwich.vim, `s` could be replaced by `cl`
 map({ "n", "x" }, "s", "<Nop>")
 
