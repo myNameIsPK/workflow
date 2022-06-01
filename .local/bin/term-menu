@@ -6,4 +6,5 @@
 classname="Term-menu"
 xdotool search --onlyvisible --class "$classname" windowunmap \
   || xdotool search --class "$classname" windowmap \
-  || st -c "$classname" -g 40x8+297+1 -e $1
+  || kitty --class "$classname" -e "$1"
+  # || st -c "$classname" -g 40x8+297+1 -e $1
