@@ -15,6 +15,5 @@ screenshot_dir="$HOME/Pictures/screenshots"
 
 filename="screenshot-$(date '+%y%m%d-%H%M-%S').png"
 
-setsid "$(screenshot $flag "$screenshot_dir/$filename" \
-  && notify-send "Screenshot taken!!")"
-  # > /dev/null 2>&1 &
+nohup "$(screenshot $flag "$screenshot_dir/$filename" \
+  && notify-send "Screenshot taken!!")" > /dev/null 2>&1 &
