@@ -17,12 +17,12 @@ if [ -z "$*" ] ; then
 fi
 
 case "$1" in
-	"-s") maim -s "$2" ;;
-	"-c") maim -i "$(xdotool getactivewindow)" "$2";;
-	"-f") maim "$2" ;;
-	"-sc") maim -s | xclip -selection clipboard -t image/png ;;
-	"-cc") maim -i "$(xdotool getactivewindow)" | xclip -selection clipboard -t image/png ;;
-	"-fc") maim | xclip -selection clipboard -t image/png ;;
-	"-fd") sleep "$2" && maim "$3" ;;
+  "-s") maim -s "$2" ;;
+  "-c") maim -i "$(xdotool getactivewindow)" "$2";;
+  "-f") maim "$2" ;;
+  "-sc") maim -s | xclip -selection clipboard -t image/png ;;
+  "-cc") maim -i "$(xdotool getactivewindow)" | xclip -selection clipboard -t image/png ;;
+  "-fc") maim | xclip -selection clipboard -t image/png ;;
+  "-fd") sleep "$2" && maim "$3" ;;
   *) print_help && exit 1
 esac
