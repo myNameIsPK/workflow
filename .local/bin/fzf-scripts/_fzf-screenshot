@@ -25,5 +25,3 @@ else
   setsid -f "$(screenshot "$flag" "$delay" "$screenshot_dir/$(filename)" \
   && notify-send "Screenshot taken!!")"
 fi
-
-exit
