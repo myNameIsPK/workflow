@@ -21,4 +21,4 @@ if [ -z "$delay" ]; then
 else
   setsid -f screenshot "$flag" "$delay" "$screenshot_dir/$filename"
 fi
-notify-send "Screenshot taken!!"
+# notify-send "Screenshot taken!!"

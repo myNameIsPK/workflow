@@ -20,7 +20,7 @@ picom &
 sxhkd -t 2 &
 dunst &
 # mpd &
-$HOME/.config/polybar/launch.sh &
+"$HOME"/.config/polybar/launch.sh &
 espanso daemon &
 
 # Start window manager
