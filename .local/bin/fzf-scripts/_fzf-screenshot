@@ -19,7 +19,7 @@ filename() {
 
 echo "$flag" "$screenshot_dir/$(filename)"
 if [ -z "$delay" ]; then 
-  setsid -f "$(screenshot "$flag" "$screenshot_dir/$(filename)" \
+  nohup "$(screenshot "$flag" "$screenshot_dir/$(filename)" \
   && notify-send "Screenshot taken!!")"
 else
   setsid -f "$(screenshot "$flag" "$delay" "$screenshot_dir/$(filename)" \
