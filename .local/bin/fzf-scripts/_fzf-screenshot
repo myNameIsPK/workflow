@@ -7,21 +7,13 @@ flag=$(screenshot -h | sed s/^\\s//g | grep ^- | fzf --nth=1 | awk '{print $1}')
 if [ "$flag" = "-fd" ]; then
   printf "How long will it delay : "
   read -r delay
-  # flag="$flag $delay"
+  flag="$flag $delay"
 fi
 
 screenshot_dir="$HOME/Pictures/screenshots"
 [ -z "$screenshot_dir" ] && mkdir -p "$screenshot_dir"
 
-filename() {
-  echo "screenshot-$(date '+%y%m%d-%H%M-%S').png"
-}
+filename="screenshot-$(date '+%y%m%d-%H%M-%S').png"
 
-echo "$flag" "$screenshot_dir/$(filename)"
-if [ -z "$delay" ]; then 
-  nohup "$(screenshot "$flag" "$screenshot_dir/$(filename)" \
+setsid -f "$(screenshot "$flag" "$screenshot_dir/$filename" \
   && notify-send "Screenshot taken!!")"
-else
-  setsid -f "$(screenshot "$flag" "$delay" "$screenshot_dir/$(filename)" \
-  && notify-send "Screenshot taken!!")"
-fi
