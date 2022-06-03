@@ -11,7 +11,7 @@ function M.setup()
   -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
   local diagnostics = null_ls.builtins.diagnostics
   -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/code_actions
-  -- local code_actions = null_ls.builtins.code_actions
+  local code_actions = null_ls.builtins.code_actions
 
   null_ls.setup {
     debug = false,
@@ -22,6 +22,7 @@ function M.setup()
       -- diagnostics.flake8
       formatting.latexindent,
       diagnostics.shellcheck,
+      code_actions.shellcheck,
       -- code_actions.gitsigns, -- gitsigns plugins integration
     },
   }

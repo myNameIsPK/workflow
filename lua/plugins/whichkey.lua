@@ -65,6 +65,7 @@ function M.setup()
       -- most people should not need to change this
       i = { "j", "k" },
       v = { "j", "k" },
+      n = { "s" }, -- vimSandwich
     },
   }
 end

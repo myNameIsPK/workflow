@@ -260,12 +260,12 @@ require("packer").startup {
     -- ####################
     -- 3rd Party
     -- ####################
-    use {
-      "glacambre/firenvim",
-      run = function()
-        vim.fn["firenvim#install"](1)
-      end,
-    }
+    -- use {
+    --   "glacambre/firenvim",
+    --   run = function()
+    --     vim.fn["firenvim#install"](1)
+    --   end,
+    -- }
 
     use {
       'iamcco/markdown-preview.nvim',
