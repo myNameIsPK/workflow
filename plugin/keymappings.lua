@@ -97,40 +97,11 @@ if plugin_installed "telescope.nvim" then
   map("n", "<leader>fp", "<Cmd>Telescope projects<Cr>", { desc = "Projects" })
 
   -- Custom
-  map("n", "<leader>fc", require("plugins.telescope").find_vim_files, { desc = "Config files(Neovim)" })
-  map("n", "<leader>fC", require("plugins.telescope").find_vim_data, { desc = "Data files(Neovim)" })
-  map("n", "<leader>fD", require("plugins.telescope").find_dotfiles, { desc = "Dotfiles" })
-  map("n", "<leader>td", require("plugins.telescope").todo_comments, { desc = "TODO comments" })
+  map("n", "<leader>fc", function() require("plugins.telescope").find_vim_files() end, { desc = "Config files(Neovim)" })
+  map("n", "<leader>fC", function() require("plugins.telescope").find_vim_data() end, { desc = "Data files(Neovim)" })
+  map("n", "<leader>fD", function() require("plugins.telescope").find_dotfiles() end, { desc = "Dotfiles" })
+  map("n", "<leader>td", function() require("plugins.telescope").todo_comments() end, { desc = "TODO comments" })
 
-end
-
-if plugin_installed("nvim-lspconfig") then
-  local lsp = vim.lsp.buf
-  map('n', 'gD', function() lsp.declaration() end, { desc = "Go to declaration"})
-  map('n', '<C-]>', function() lsp.definition() end, { desc = "Go to definition"})
-  map('n', '<localleader>R', function() lsp.references() end, { desc = "List references" })
-  map('n', '<localleader>I', function() lsp.implementation() end, { desc = "Go to implementation"})
-  map('n', 'K', function() lsp.hover() end, { desc = "Hover" })
-  map('n', '<C-k>', function() lsp.signature_help() end, { desc = "Signature help" })
-  map('n', '<localleader>wa', function() lsp.add_workspace_folder() end, { desc = "Workspace Add folder" })
-  map('n', '<localleader>wr', function() lsp.remove_workspace_folder() end, { desc = "Workspace Delete folder" })
-  map('n', '<localleader>wl', function() print(vim.inspect(lsp.list_workspace_folders())) end, { desc = "Workspace list folder" })
-  map('n', '<localleader>d', function() lsp.type_definition() end, { desc = "Type definition" })
-  map('n', '<localleader>rn', function() lsp.rename() end, { desc = "Rename" })
-  map('n', '<localleader>ca', function() lsp.code_action() end, { desc = "Code action" })
-  map('v', '<localleader>ca', function() lsp.range_code_action() end, { desc = "Code action" })
-  map('n', '<localleader>F', function() lsp.formatting() end, { desc = "formatting" })
-  -- FIXME: range format not work
-  map('v', '<localleader>F', function() lsp.range_formatting() end, { desc = "formatting" })
-
-  -- telescope
-  local ts = require("telescope.builtin")
-  map('n', '<localleader>ld', function() ts.lsp_definitions() end, { desc = "telescope definition" })
-  map('n', '<localleader>lt', function() ts.lsp_type_definitions() end, { desc = "telescope type definition" })
-  map('n', '<localleader>li', function() ts.lsp_implementations() end, { desc = "telescope implementation" })
-  map('n', '<localleader>lr', function() ts.lsp_references() end, { desc = "telescope references" })
-  map('n', '<localleader>ls', function() ts.lsp_document_symbols() end, { desc = "telescope document symbols" })
-  map('n', '<localleader>lS', function() ts.lsp_workspace_symbols() end, { desc = "telescope workspace symbols" })
 end
 
 map("n", "<leader>tm", "<Cmd>lua require('nabla').popup()<Cr>", { desc = "Equation Preview" })

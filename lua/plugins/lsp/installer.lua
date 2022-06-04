@@ -59,14 +59,6 @@ function M.setup()
       end
       opts = vim.tbl_deep_extend("force", server_opts, opts)
 
-      -- Add nvim api document plugin
-      if server.name == "sumneko_lua" then
-        local luadev_ok, luadev = pcall(require, "lua-dev")
-        if not luadev_ok then
-          return
-        end
-        opts = vim.tbl_deep_extend("force", opts, luadev.setup())
-      end
     end
 
     -- This is the same as lspconfig's setup function.

@@ -1,4 +1,4 @@
-return {
+local opts = {
   settings = {
     Lua = {
       diagnostics = {
@@ -16,3 +16,12 @@ return {
     },
   },
 }
+
+-- Add nvim api document plugin
+local luadev_ok, luadev = pcall(require, "lua-dev")
+if not luadev_ok then
+  return
+end
+opts = vim.tbl_deep_extend("force", opts, luadev.setup())
+
+return opts
