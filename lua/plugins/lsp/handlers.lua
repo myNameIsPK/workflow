@@ -2,38 +2,35 @@ local M = {}
 
 local function lsp_keymaps(bufnr)
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
   -- Enable completion triggered by <c-x><c-o>
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  local map = require("utils.mappings").map
-  local lsp = vim.lsp.buf
-
-  map('n', 'gD', function() lsp.declaration() end, { desc = "Go to declaration"})
-  map('n', 'gd', function() lsp.definition() end, { desc = "Go to definition"})
-  map('n', '<localleader>R', function() lsp.references() end, { desc = "List references" })
-  map('n', '<localleader>I', function() lsp.implementation() end, { desc = "Go to implementation"})
-  map('n', 'K', function() lsp.hover() end, { desc = "Hover" })
-  map('n', '<C-k>', function() lsp.signature_help() end, { desc = "Signature help" })
-  map('n', '<localleader>wa', function() lsp.add_workspace_folder() end, { desc = "Workspace Add folder" })
-  map('n', '<localleader>wr', function() lsp.remove_workspace_folder() end, { desc = "Workspace Delete folder" })
-  map('n', '<localleader>wl', function() print(vim.inspect(lsp.list_workspace_folders())) end, { desc = "Workspace list folder" })
-  map('n', '<localleader>d', function() lsp.type_definition() end, { desc = "Type definition" })
-  map('n', '<localleader>rn', function() lsp.rename() end, { desc = "Rename" })
-  map('n', '<localleader>ca', function() lsp.code_action() end, { desc = "Code action" })
-  map('v', '<localleader>ca', function() lsp.range_code_action() end, { desc = "Code action" })
-  map('n', '<localleader>F', function() lsp.formatting() end, { desc = "formatting" })
+  buf_set_keymap('n', 'gD', "<Cmd>lua vim.lsp.buf.declaration()<CR>", { desc = "Go to declaration"})
+  buf_set_keymap('n', '<C-]>', "<Cmd>lua vim.lsp.buf.definition()<CR>", { desc = "Go to definition"})
+  buf_set_keymap('n', 'gr', "<Cmd>lua vim.lsp.buf.references()<CR>", { desc = "List references" })
+  buf_set_keymap('n', 'gi', "<Cmd>lua vim.lsp.buf.implementation()<CR>", { desc = "Go to implementation"})
+  buf_set_keymap('n', 'K', "<Cmd>lua vim.lsp.buf.hover()<CR>", { desc = "Hover" })
+  buf_set_keymap('n', '<C-k>', "<Cmd>lua vim.lsp.buf.signature_help()<CR>", { desc = "Signature help" })
+  buf_set_keymap('n', '<localleader>wa', "<Cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", { desc = "Workspace Add folder" })
+  buf_set_keymap('n', '<localleader>wr', "<Cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", { desc = "Workspace Delete folder" })
+  buf_set_keymap('n', '<localleader>wl', "<Cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", { desc = "Workspace list folder" })
+  buf_set_keymap('n', '<localleader>d', "<Cmd>lua vim.lsp.buf.type_definition()<CR>", { desc = "Type definition" })
+  buf_set_keymap('n', '<localleader>rn', "<Cmd>lua vim.lsp.buf.rename()<CR>", { desc = "Rename" })
+  buf_set_keymap('n', '<localleader>ca', "<Cmd>lua vim.lsp.buf.code_action()<CR>", { desc = "Code action" })
+  buf_set_keymap('v', '<localleader>ca', "<Cmd>lua vim.lsp.buf.range_code_action()<CR>", { desc = "Code action" })
+  buf_set_keymap('n', '<localleader>F', "<Cmd>lua vim.lsp.buf.formatting()<CR>", { desc = "formatting" })
   -- FIXME: range format not work
-  map('v', '<localleader>F', function() lsp.range_formatting() end, { desc = "formatting" })
+  -- buf_set_keymap('v', '<localleader>F', "<Cmd>lua vim.lsp.buf.range_formatting()<CR>", { desc = "formatting" })
 
   -- telescope
-  local ts = require("telescope.builtin")
-  map('n', '<localleader>ld', function() ts.lsp_definitions() end, { desc = "telescope definition" })
-  map('n', '<localleader>lt', function() ts.lsp_type_definitions() end, { desc = "telescope type definition" })
-  map('n', '<localleader>li', function() ts.lsp_implementations() end, { desc = "telescope implementation" })
-  map('n', '<localleader>lr', function() ts.lsp_references() end, { desc = "telescope references" })
-  map('n', '<localleader>ls', function() ts.lsp_document_symbols() end, { desc = "telescope document symbols" })
-  map('n', '<localleader>lS', function() ts.lsp_workspace_symbols() end, { desc = "telescope workspace symbols" })
+  buf_set_keymap('n', '<localleader>ld', "<Cmd>lua require('telescope.builtin').vim.lsp.buf_definitions()<CR>", { desc = "telescope definition" })
+  buf_set_keymap('n', '<localleader>lt', "<Cmd>lua require('telescope.builtin').vim.lsp.buf_type_definitions()<CR>", { desc = "telescope type definition" })
+  buf_set_keymap('n', '<localleader>li', "<Cmd>lua require('telescope.builtin').vim.lsp.buf_implementations()<CR>", { desc = "telescope implementation" })
+  buf_set_keymap('n', '<localleader>lr', "<Cmd>lua require('telescope.builtin').vim.lsp.buf_references()<CR>", { desc = "telescope references" })
+  buf_set_keymap('n', '<localleader>ls', "<Cmd>lua require('telescope.builtin').vim.lsp.buf_document_symbols()<CR>", { desc = "telescope document symbols" })
+  buf_set_keymap('n', '<localleader>lS', "<Cmd>lua require('telescope.builtin').vim.lsp.buf_workspace_symbols()<CR>", { desc = "telescope workspace symbols" })
 end
 
 local function lsp_highlight_document(client)

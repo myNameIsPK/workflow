@@ -13,8 +13,9 @@ function M.setup()
   -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/code_actions
   local code_actions = null_ls.builtins.code_actions
 
+  local handlers = require("plugins.lsp.handlers")
+
   null_ls.setup {
-    debug = false,
     sources = {
       formatting.prettier.with { extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } },
       formatting.black.with { extra_args = { "--fast" } },
@@ -25,7 +26,13 @@ function M.setup()
       code_actions.shellcheck,
       -- code_actions.gitsigns, -- gitsigns plugins integration
     },
+    debug = false,
+    on_attach = handlers.on_attach,
+    capabilities = handlers.capabilities,
+    flags = { debounce_text_changes = 150 }, -- this make lsp not reload immediately everytime while you typing the words
+    root_dir = handlers.root_dir,
   }
+
 end
 
 return M
