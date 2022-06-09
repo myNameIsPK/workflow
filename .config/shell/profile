@@ -43,6 +43,9 @@ export FZF_DEFAULT_OPTS="--reverse --cycle"
 export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
 export STARSHIP_CONFIG=${XDG_CONFIG_HOME:-$HOME/.config}/starship/config.toml
 export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
+# Vagrant
+export VAGRANT_HOME="$XDG_DATA_HOME"/vagrant
+export VAGRANT_ALIAS_FILE="$XDG_DATA_HOME"/vagrant/aliases
 # Node#npm
 export NPM_CONFIG_USERCONFIG=${XDG_CONFIG_HOME:-$HOME/.config}/npm/npmrc
 # Rust#cargo
