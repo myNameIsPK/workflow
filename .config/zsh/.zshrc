@@ -46,7 +46,7 @@ zstyle ':completion:*' menu select
 # Ignore case when auto complete
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z}'
 zmodload zsh/complist
-compinit
+# compinit # move to last line
 _comp_options+=(globdots)		# Include hidden files.
 
 # Use vim keys in tab complete menu:
@@ -139,4 +139,5 @@ zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "hlissner/zsh-autopair"
 zsh_add_plugin "zsh-users/zsh-completions"
-fpath=("$ZDOTDIR/plugins/zsh-completions" $fpath) # and run `rm -f ~/.zcompdump; compinit`
+fpath=("$ZDOTDIR/plugins/zsh-completions" $fpath)
+compinit
