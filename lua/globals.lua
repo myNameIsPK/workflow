@@ -49,3 +49,8 @@ end
 _G.I = function(object)
   print(vim.inspect(object))
 end
+
+_G.R = function(plugin)
+  package.loaded[plugin] = nil
+  require(plugin)
+end

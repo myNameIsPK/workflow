@@ -104,8 +104,15 @@ if plugin_installed "telescope.nvim" then
 
 end
 
-map("n", "<leader>tm", "<Cmd>lua require('nabla').popup()<Cr>", { desc = "Equation Preview" })
 map("n", "<leader>ts", "<Cmd>set spell!<Cr>", { desc = "Spell toggle" })
+
+if plugin_installed("nabla.nvim") then
+  map("n", "<leader>te", "<Cmd>lua require('nabla').popup()<Cr>", { desc = "Equation Preview" })
+end
+
+if plugin_installed("markdown-preview.nvim") then
+  map("n", "<leader>tm", "<Cmd>MarkdownPreviewToggle<Cr>", { desc = "Markdown Preview" })
+end
 
 if plugin_installed("zk-nvim") then
   map("n", "<leader>zf", "<Cmd>ZkNotes<Cr>")

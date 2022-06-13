@@ -36,13 +36,13 @@ function M.setup()
 
   local map = require("utils.mappings").map
 
-  map({ "i", "s" }, "<C-k>", function()
+  map({ "i", "s" }, "<C-j>", function()
     if ls.expand_or_jumpable() then
       ls.expand_or_jump()
     end
   end)
 
-  map({ "i", "s" }, "<C-j>", function()
+  map({ "i", "s" }, "<C-k>", function()
     if ls.jumpable(-1) then
       ls.jump(-1)
     end
