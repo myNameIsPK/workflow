@@ -56,5 +56,10 @@ vim.cmd(
       autocmd BufWritePost $XDG_CONFIG_HOME/polybar/config :!polybar -rq mybar && notify-send polybar reloaded\!\!
     augroup END
 
+    augroup _ansible
+      autocmd!
+      autocmd BufRead *.yaml,*.yml if search('hosts:\|tasks:', 'nw') | set ft=yaml.ansible | endif
+    augroup END
+
   ]]
 )
