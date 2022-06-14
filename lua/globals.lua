@@ -40,17 +40,17 @@ my.kind_icons = {
 }
 
 my.save_and_exec = function ()
+  vim.cmd("silent! write")
   if vim.bo.filetype == "lua" then
-    vim.cmd("write")
     vim.cmd("luafile %")
+  elseif vim.bo.filetype == "vim" then
+    vim.cmd("source %")
   end
+  vim.notify("Save and Exec " .. vim.fn.getreg("%"), vim.log.levels.INFO)
 end
 
 _G.I = function(object)
   print(vim.inspect(object))
 end
 
-_G.R = function(plugin)
-  package.loaded[plugin] = nil
-  require(plugin)
-end
+_G.R = require("utils.modules").reload

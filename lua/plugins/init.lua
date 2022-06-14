@@ -103,7 +103,8 @@ require("packer").startup {
     use { "mickael-menu/zk-nvim" }
 
     use { "nvim-orgmode/orgmode" }
-    use { "nvim-neorg/neorg", require = "nvim-neorg/neorg-telescope" }
+
+    use { "nvim-neorg/neorg", requires = "nvim-neorg/neorg-telescope" }
 
     -- QOL
 
