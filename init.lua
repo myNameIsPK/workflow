@@ -15,6 +15,7 @@ require "plugins"
 pcall(require, "packer_compiled")
 
 require "plugins.telescope"
+require "plugins.lsp"
 require "plugins.cmp"
 require "plugins.autopairs"
 require "plugins.treesitter"

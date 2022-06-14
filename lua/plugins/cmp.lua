@@ -8,7 +8,7 @@ if not luasnip_ok then
   return
 end
 
-require("plugins.luasnip").setup()
+require "plugins.luasnip"
 
 -- local check_backspace = function()
 --   local col = vim.fn.col "." - 1

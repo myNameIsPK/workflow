@@ -13,6 +13,7 @@ require("packer").startup {
     use { "nvim-lua/popup.nvim" }
     use { "nvim-lua/plenary.nvim" }
     use { "kyazdani42/nvim-web-devicons" }
+    use { "antoinemadec/FixCursorHold.nvim" }
 
     -- Performance
     -- use { "dstein64/vim-startuptime" } -- use impatient LuaCacheProfile instead
@@ -38,12 +39,7 @@ require("packer").startup {
     use {
       "neovim/nvim-lspconfig",
       requires = {
-        {
-          "williamboman/nvim-lsp-installer",
-          config = function()
-            require("plugins.lsp").setup()
-          end,
-        },
+        { "williamboman/nvim-lsp-installer" },
         { "folke/lua-dev.nvim" },
       },
     }
