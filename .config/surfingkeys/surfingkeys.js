@@ -49,6 +49,11 @@ unmap('d')
 unmap('U')
 unmap('P')
 
+cmap('<Ctrl-n', '<Tab>')
+cmap('<Ctrl-p', '<Shift-Tab>')
+
+imap('<Ctrl-a>', '<Ctrl-f>')
+
 removeSearchAlias('b'); //baidu
 removeSearchAlias('e'); //wikipedia
 removeSearchAlias('w'); //bing
