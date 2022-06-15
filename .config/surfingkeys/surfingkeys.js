@@ -27,20 +27,27 @@ mapkey('<Ctrl-y>', 'Show me the money', function() {
     Front.showPopup('a well-known phrase uttered by characters in the 1996 film Jerry Maguire (Escape to close).');
 });
 
-// FIX: seem not work
-// an example to remove mapkey `Ctrl-i`
 unmap('<Ctrl-i>');
 
-// an example to replace `T` with `gt`, click `Default mappings` to see how `T` works.
 map('gt', 'T');
 
-map('K', 'E')
 map('J', 'R')
+map('K', 'E')
+map('H', 'S')
+map('L', 'D')
 unmap('E')
 unmap('R')
+unmap('S')
+unmap('D')
 
-map('<Ctrl-u', 'e')
-map('<Ctrl-d', 'd')
+map('<Ctrl-u>', 'e')
+map('<Ctrl-d>', 'd')
+map('<Ctrl-b>', 'U')
+map('<Ctrl-f>', 'P')
+unmap('e')
+unmap('d')
+unmap('U')
+unmap('P')
 
 removeSearchAlias('b'); //baidu
 removeSearchAlias('e'); //wikipedia
@@ -79,5 +86,5 @@ settings.theme = `
     background: #d3869b;
 }
 #sk_status, #sk_find {
-    font-size: 20pt;
+    font-size: 10pt;
 }`;
