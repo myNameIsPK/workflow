@@ -27,5 +27,3 @@
 
 [mergetool "nvimmerge"]
 	cmd = "nvim -d \"$LOCAL\" \"$MERGED\" \"$REMOTE\" -c \"wincmd w\""
-[remote "origin"]
-	url = -l
