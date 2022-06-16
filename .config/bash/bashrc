@@ -48,3 +48,7 @@ shopt -s cmdhist	# Save multi-line commands in history as single
 shopt -s dotglob	# Includ dot file in globbling
 shopt -s histappend	# Append history not overwrite when exit
 shopt -s checkwinsize	# Checks term size when bash regains control
+
+# >>>> Vagrant command completion (start)
+. /opt/vagrant/embedded/gems/2.2.19/gems/vagrant-2.2.19/contrib/bash/completion.sh
+# <<<<  Vagrant command completion (end)
