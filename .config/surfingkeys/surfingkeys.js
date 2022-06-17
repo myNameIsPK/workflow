@@ -45,7 +45,7 @@ map('<Ctrl-d>', 'd')
 map('<Ctrl-b>', 'U')
 map('<Ctrl-f>', 'P')
 unmap('e')
-unmap('d')
+// unmap('d')
 unmap('U')
 unmap('P')
 
