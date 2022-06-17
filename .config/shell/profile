@@ -48,6 +48,9 @@ export VAGRANT_HOME="$XDG_DATA_HOME"/vagrant
 export VAGRANT_ALIAS_FILE="$XDG_DATA_HOME"/vagrant/aliases
 # Node#npm
 export NPM_CONFIG_USERCONFIG=${XDG_CONFIG_HOME:-$HOME/.config}/npm/npmrc
+# Ruby#gem
+export GEM_HOME="$XDG_DATA_HOME"/gem
+export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gem
 # Rust#cargo
 export CARGO_HOME=${XDG_DATA_HOME:-$HOME/.local/share}/cargo
 export RUSTUP_HOME=${XDG_DATA_HOME:-$HOME/.local/share}/rustup
