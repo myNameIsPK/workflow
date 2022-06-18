@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 
 # pgrep -x sxhkd > /dev/null || sxhkd &
 sxhkd -c "$XDG_CONFIG_HOME/bspwm/sxhkdrc" &
