@@ -43,8 +43,8 @@ super + v
   win-toggle-term Volume pulsemixer
 
 # Monitoring
-ctrl + shift + Escape
-  win-toggle-term Monitoring btop
+# ctrl + shift + Escape
+#   win-toggle-term Monitoring btop
 
 # Increase volume
 XF86AudioRaiseVolume
