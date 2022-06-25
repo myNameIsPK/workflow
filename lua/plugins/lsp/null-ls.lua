@@ -23,6 +23,8 @@ function M.setup()
       -- diagnostics.flake8
       formatting.latexindent,
       diagnostics.shellcheck,
+      diagnostics.yamllint,
+      diagnostics.ansiblelint,
       code_actions.shellcheck,
       -- code_actions.gitsigns, -- gitsigns plugins integration
     },

@@ -11,7 +11,7 @@ local function map_wrapper(mode, lhs, rhs, options)
  end
 
 M.map = function(mode, keys, cmd, opt)
-   local options = { noremap = true, silent = true }
+   local options = { noremap = true, silent = false }
    if opt then
       options = vim.tbl_extend("force", options, opt)
    end

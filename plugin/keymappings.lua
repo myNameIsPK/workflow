@@ -133,11 +133,11 @@ if plugin_installed("nvim-treesitter") then
   map("n", "<leader>tp", "<Cmd>TSPlaygroundToggl<Cr>")
 end
 
-if plugin_installed("neorg") then
+if plugin_installed("nvim-colorizer.lua") then
   map("n", "<leader>tc", "<Cmd>ColorizerToggle<Cr>")
 end
 
-if plugin_installed("toggleterm") then
+if plugin_installed("toggleterm.nvim") then
   map("n", "<leader>tt", "<Cmd>ToggleTerm<Cr>")
 end
 

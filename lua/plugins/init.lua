@@ -123,7 +123,26 @@ require("packer").startup {
 
     use { "machakann/vim-sandwich" }
 
+    use {
+      "junegunn/vim-easy-align",
+      config = function ()
+        vim.cmd [[
+          xmap ga <Plug>(EasyAlign)
+          nmap ga <Plug>(EasyAlign)
+        ]]
+      end,
+    }
+
     -- UI
+    use {
+      "j-hui/fidget.nvim",
+      config = function ()
+        require("fidget").setup()
+      end
+    }
+
+    use { "lukas-reineke/indent-blankline.nvim" }
+
     use { "norcalli/nvim-colorizer.lua", cmd = "ColorizerToggle" }
 
     use { "jbyuki/nabla.nvim" }
