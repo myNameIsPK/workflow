@@ -65,9 +65,6 @@ map("c", "<C-a>", "<Home>")
 -- map("c", "<C-k>", 'pumvisible() ? "\\<C-p>" : "\\<C-k>"', { expr = true, noremap = true })
 vim.api.nvim_create_user_command("SudoW", "w !sudo tee %", {})
 
--- set keymap to normal when escape insertmode
-map({ "i", "c" }, "<Esc>", "<ESC>:set iminsert=0<CR>")
-
 -- disable because sandwich.vim, `s` could be replaced by `cl`
 map({ "n", "x" }, "s", "<Nop>")
 

@@ -26,6 +26,11 @@ vim.cmd(
     "   autocmd InsertLeave * :set relativenumber
     " augroup END
 
+    augroup _iminsert
+      autocmd!
+      autocmd InsertLeave * :set iminsert=0
+    augroup END
+
     augroup _quit_with_q
       autocmd!
       autocmd FileType qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR>
