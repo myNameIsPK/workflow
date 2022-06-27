@@ -4,12 +4,17 @@ my.hello_world = function()
   vim.notify([[hello world]])
 end
 
-my.diagnostic_signs = {
+local diagnostic_signs = {
   { name = "DiagnosticSignError", text = "" },
   { name = "DiagnosticSignWarn", text = "" },
   { name = "DiagnosticSignHint", text = "" },
   { name = "DiagnosticSignInfo", text = "" },
 }
+
+-- Define diagnostic_signs the same name as diagnostic_signs_highlight
+for _, sign in ipairs(diagnostic_signs) do
+  vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+end
 
 my.kind_icons = {
   Text = "",
