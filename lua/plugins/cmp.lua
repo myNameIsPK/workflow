@@ -8,8 +8,6 @@ if not luasnip_ok then
   return
 end
 
-require "plugins.luasnip"
-
 -- local check_backspace = function()
 --   local col = vim.fn.col "." - 1
 --   return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"

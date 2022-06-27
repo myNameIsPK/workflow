@@ -9,13 +9,16 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
-require "highlight"
+vim.cmd "colorscheme custom"
+require "colorscheme_settings"
+
 require "globals"
 require "plugins"
 pcall(require, "packer_compiled")
 
 require "plugins.telescope"
 require "plugins.lsp"
+require "plugins.luasnip"
 require "plugins.cmp"
 require "plugins.autopairs"
 require "plugins.treesitter"

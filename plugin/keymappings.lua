@@ -3,7 +3,7 @@ local plugin_installed = require("utils.plugins").plugin_installed
 
 --- Plaground make it work
 map("n", "<leader>rf", "<cmd>lua my.save_and_exec()<CR>")
-map("n", "<leader>ra", "<cmd>lua require('utils.modules').reload_all()<CR>")
+map("n", "<leader>ra", "<cmd>lua require('utils.reload').reload_all()<CR>")
 ---
 
 map("i", { "jk", "kj", "jj", "kk" }, "<Esc>")

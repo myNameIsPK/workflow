@@ -5,7 +5,7 @@ if not status_ok then
   return
 end
 
-local default_opts = require "telescope.themes".get_ivy {
+local default_opts = require("telescope.themes").get_ivy {
   vimgrep_arguments = { -- default
     "rg",
     "--color=never",
@@ -129,45 +129,35 @@ telescope.load_extension "projects"
 telescope.load_extension "ui-select"
 telescope.load_extension "zk"
 
-local function gen_picker(picker, default_opts)
+local function gen_picker(picker, opt)
   return function(opts)
     opts = opts or {}
-    opts = vim.tbl_deep_extend("force", default_opts, opts)
+    opts = vim.tbl_deep_extend("force", opt, opts)
     picker(opts)
   end
 end
 
 -- Custom
-local builtin = require("telescope.builtin")
-M.find_vim_files = gen_picker(
-  builtin.find_files,
-  {
-    prompt_title = "Vim files",
-    cwd = "$HOME/.config/nvim",
-    find_command = { "git", "ls-files" },
-  }
-)
+local builtin = require "telescope.builtin"
+M.find_vim_files = gen_picker(builtin.find_files, {
+  prompt_title = "Vim files",
+  cwd = "$HOME/.config/nvim",
+  find_command = { "git", "ls-files" },
+})
 
-M.find_vim_data = gen_picker(
-  builtin.find_files,
-  {
-    prompt_title = "Vim datas",
-    cwd = "$XDG_DATA_HOME/nvim/site",
-    find_command = { "find", "-type", "f" },
-  }
-)
+M.find_vim_data = gen_picker(builtin.find_files, {
+  prompt_title = "Vim datas",
+  cwd = "$XDG_DATA_HOME/nvim/site",
+  find_command = { "find", "-type", "f" },
+})
 
 local dotfile_dir = vim.env.DOTFILES
 local home_dir = vim.env.HOME
-M.find_dotfiles = gen_picker(
-  builtin.find_files,
-  {
-    prompt_title = "Dot files",
-    cwd = "$HOME",
-    find_command = { "git", "--git-dir=" .. dotfile_dir, "--work-tree=" .. home_dir, "ls-files" },
-  }
-)
-
+M.find_dotfiles = gen_picker(builtin.find_files, {
+  prompt_title = "Dot files",
+  cwd = "$HOME",
+  find_command = { "git", "--git-dir=" .. dotfile_dir, "--work-tree=" .. home_dir, "ls-files" },
+})
 
 -- TODO: make todo icon, color and only map on comments
 local todo_keywords = {
@@ -192,15 +182,12 @@ for keyword, values in pairs(todo_keywords) do
   end
 end
 -- delete leading "|"
-todo_patterns = todo_patterns:sub(2,todo_patterns:len())
+todo_patterns = todo_patterns:sub(2, todo_patterns:len())
 
-M.todo_comments = gen_picker(
-  builtin.grep_string,
-  {
-    prompt_title = "Todo comments",
-    use_regex_boolean = true,
-    search = todo_patterns,
- }
-)
+M.todo_comments = gen_picker(builtin.grep_string, {
+  prompt_title = "Todo comments",
+  use_regex_boolean = true,
+  search = todo_patterns,
+})
 
 return M

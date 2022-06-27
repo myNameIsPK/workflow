@@ -53,4 +53,4 @@ _G.I = function(object)
   print(vim.inspect(object))
 end
 
-_G.R = require("utils.modules").reload
+_G.R = require("utils.reload").reload
