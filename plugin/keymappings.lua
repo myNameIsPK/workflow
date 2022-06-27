@@ -138,6 +138,10 @@ if plugin_installed("toggleterm.nvim") then
   map("n", "<leader>tt", "<Cmd>ToggleTerm<Cr>")
 end
 
+if plugin_installed("indent-blankline.nvim") then
+  map("n", "<leader>ti", "<Cmd>IndentBlanklineToggle<Cr>")
+end
+
 local wk_ok, wk = pcall(require, "which-key")
 if wk_ok then
   wk.register {
