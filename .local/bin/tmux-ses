@@ -1,14 +1,17 @@
 #!/bin/sh
 
+directory="~"
 if [ $# -eq 1 ]; then
   ses_name=$1
 else 
-  ses_name=$(find ~/.local/src -maxdepth 1 -type d | fzf)
-  ses_name=$(basename "$ses_name")
+  directory=$(find ~/.local/src -maxdepth 1 -type d | fzf)
+  ses_name=$(basename "$directory")
 fi
 
 [ -z "$ses_name" ] && exit 1
 
-[ -z "$(tmux list-sessions | grep -q $ses_name)" ] \
-  && tmux new -s $ses_name \
-  || tmux attach -t $ses_name
+if [ -z "$(tmux list-sessions | grep -q $ses_name)" ]; then
+  tmux new -s $ses_name -c $directory
+else
+  tmux attach -t $ses_name
+fi

@@ -1,2 +1,2 @@
 #!/bin/sh
-"$(find ~/.local/bin/fzf-scripts -type f -exec basename {} \; | grep "^_" | fzf --delimiter "_fzf-" --with-nth="2..")"
+"$(find ~/.local/bin/fzf-scripts -type f,l -exec basename {} \; | grep "^_" | fzf --delimiter "_fzf-" --with-nth="2..")"
