@@ -14,6 +14,8 @@ if ! tmux has-session -t "$ses_name"; then
   tmux new-session -ds "$ses_name" -c "$directory"
 fi
 
-[ "$TMUX" ] \
-  && tmux switch-client -t "$ses_name" \
-  || tmux attach -t "$ses_name"
+if [ "$TMUX" ]; then
+  tmux switch-client -t "$ses_name"
+else
+  tmux attach -t "$ses_name"
+fi
