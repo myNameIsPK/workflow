@@ -10,8 +10,10 @@ fi
 
 [ -z "$ses_name" ] && exit 1
 
-if [ -z "$(tmux list-sessions | grep -q $ses_name)" ]; then
-  tmux new -s $ses_name -c $directory
-else
-  tmux attach -t $ses_name
+if ! tmux has-session -t "$ses_name"; then
+  tmux new-session -ds "$ses_name" -c "$directory"
 fi
+
+[ "$TMUX" ] \
+  && tmux switch-client -t "$ses_name" \
+  || tmux attach -t "$ses_name"
