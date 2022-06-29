@@ -1,7 +1,10 @@
 #!/bin/sh
 
 class=$1
-cmd=$2
+shift
+cmd=$*
+
+# TODO: make it can set size of windows
 # w=${3:-50}
 # h=${4:-75}
 
@@ -12,5 +15,5 @@ fi
 
 pid=$(xdotool search --class "$class")
 [ -z "$pid" ] \
-  && $TERMINAL --class "$class" -e "$cmd" \
+  && $TERMINAL --class "$class" $cmd \
   || xdotool windowkill "$pid"

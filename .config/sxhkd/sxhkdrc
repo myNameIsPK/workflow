@@ -24,7 +24,7 @@ super + space ; {b,q,d}
 
 # toggle scratchpad
 super + s
-  win-toggle-hidden scratchpad || win-toggle-term scratchpad "tmux-ses scratch"
+  win-toggle-hidden scratchpad || win-toggle-term scratchpad tmux-ses scratch
 
 # Screenshot menu
 super + shift + s
