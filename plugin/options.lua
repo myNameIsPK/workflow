@@ -1,5 +1,4 @@
 local opt = vim.opt
-local indent = 2
 
 opt.background = "dark"
 opt.list = true
@@ -47,8 +46,8 @@ opt.undofile = true -- enable persistent undo
 opt.updatetime = 300 -- faster completion
 opt.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 opt.expandtab = true -- convert tabs to spaces
-opt.shiftwidth = indent -- the number of spaces inserted for each indentation
-opt.tabstop = indent -- insert 2 spaces for a tab
+opt.shiftwidth = 2 -- the number of spaces inserted for each indentation
+opt.tabstop = 4 -- insert 2 spaces for a tab
 opt.cursorline = true -- highlight the current line
 opt.number = true -- set numbered lines
 opt.relativenumber = true -- set relative numbered lines

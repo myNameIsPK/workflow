@@ -1,4 +1,6 @@
-local augroup = vim.api.nvim_create_augroup
+local function group(group_name)
+  return vim.api.nvim_create_augroup(group_name, { clear = true })
+end
 local autocmd = vim.api.nvim_create_autocmd
 
 -- -- This regular auto group
@@ -8,9 +10,8 @@ local autocmd = vim.api.nvim_create_autocmd
 --     autocmd TextYankPost * silent! lua vim.highlight.on_yank()
 --   augroup END
 -- ]])
-local group = augroup("_general_settings", { clear = true })
 autocmd({ "TextYankPost" }, {
-  group = group,
+  group = group("_general_settings"),
   -- pattern = "*",
   callback = function() vim.highlight.on_yank() end,
   -- command = "silent! lua vim.highlight.on_yank()", -- or use command instead of callback

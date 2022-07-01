@@ -7,7 +7,7 @@
 
 -- set leader key before all plugins for safety
 vim.g.mapleader = " "
-vim.g.maplocalleader = ","
+vim.cmd "let maplocalleader = \"\\<BS>\"" -- map <BS> to localleader
 
 vim.cmd "colorscheme custom"
 require "colorscheme_settings"

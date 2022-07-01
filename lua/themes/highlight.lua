@@ -112,7 +112,7 @@ hi("Visual", { style = "reverse" })
 hi("MatchParen", { style = "reverse" })
 
 hi("StatusLine",   { bg = c.bg4 })
-hi("StatusLineNC", { bg = c.bg1 })
+hi("StatusLineNC", { bg = c.bg2 })
 
 hi("TabLine",     { bg = c.bg2 })
 hi("TabLineSel",  { bg = c.bg4 })
@@ -140,6 +140,11 @@ link("DiffChange", "Yellow")
 link("DiffDelete", "Red")
 link("DiffText",   "Blue")
 link("Directory",  "Blue")
+-- }}}
+-- LSP {{{
+link("LspReferenceText", "Bg2")
+link("LspReferenceWrite", "Bg2")
+link("LspReferenceRead", "Bg2")
 -- }}}
 -- Spell {{{
 hi("SpellBad",   { style = "undercurl", sp = c.red    })
