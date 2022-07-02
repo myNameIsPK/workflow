@@ -56,7 +56,7 @@ function M.reload(mod)
   local new = require(mod)
 
   if type(old) == "table" and type(new) == "table" then
-    vim.notify "pick object in new module to old module!!!"
+    vim.notify("reload: " .. mod)
     local repeat_tbl = {}
     _replace(old, new, repeat_tbl)
   end
@@ -72,7 +72,6 @@ function M.reload_all()
     pack = string.gsub(pack, ".lua$", "")
     pack = string.gsub(pack, "/", ".")
     M.reload(pack)
-    print("reload " .. pack)
   end
 end
 

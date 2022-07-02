@@ -110,6 +110,11 @@ require("packer").startup {
 
     use { "folke/which-key.nvim" }
 
+    use {
+      "anuvyklack/hydra.nvim",
+      requires = "anuvyklack/keymap-layer.nvim", -- needed only for pink hydras
+    }
+
     use { "numToStr/Comment.nvim" }
 
     use {
