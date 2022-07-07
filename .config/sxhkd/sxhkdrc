@@ -49,15 +49,15 @@ super + v
 # Increase volume
 XF86AudioRaiseVolume
   pactl set-sink-volume @DEFAULT_SINK@ +1000
-   
+
 # Decrease volume
 XF86AudioLowerVolume
   pactl set-sink-volume @DEFAULT_SINK@ -1000
-   
+
 # Mute volume
 XF86AudioMute
   pactl set-sink-mute @DEFAULT_SINK@ toggle
-   
+
 # Mute microphone
 XF86AudioMicMute
   pactl set-source-mute @DEFAULT_SOURCE@ toggle
