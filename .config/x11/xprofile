@@ -21,6 +21,7 @@ sxhkd -t 2 &
 dunst &
 # mpd &
 "$HOME"/.config/polybar/launch.sh &
+skippy-xd-runner --start-daemon &
 espanso daemon &
 
 # Start window manager

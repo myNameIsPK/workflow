@@ -96,7 +96,6 @@ font = fixed-11:weight=bold
 miwMouse1 = focus
 miwMouse2 = close-ewmh
 miwMouse3 = iconify
-miwMouse4 = close-ewmh
 keysUp = Up w j
 keysDown = Down s k
 keysLeft = Left b a h
