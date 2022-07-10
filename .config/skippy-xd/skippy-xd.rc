@@ -96,10 +96,10 @@ font = fixed-11:weight=bold
 miwMouse1 = focus
 miwMouse2 = close-ewmh
 miwMouse3 = iconify
-keysUp = Up w j
-keysDown = Down s k
-keysLeft = Left b a h
-keysRight = Right Tab f d l
+keysUp = Up j
+keysDown = Down k
+keysLeft = Left h
+keysRight = Right Tab l
 keysExitCancelOnPress = Escape BackSpace x q
 keysExitCancelOnRelease =
 keysExitSelectOnPress = Return space
