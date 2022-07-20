@@ -2,3 +2,8 @@
   path = .config/nvim
   url = https://github.com/myNameIsPK/nvim.git
   branch = main
+
+[submodule ".config/emacs"]
+  path = .config/emacs
+  url = https://github.com/pk-kampanart/emacs.d.git 
+  branch = main
