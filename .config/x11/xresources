@@ -12,6 +12,8 @@ Xft.dpi: 120
 ! FIXME: alpha make emacs transparence
 *.alpha: 0.8
 
+Emacs.default.attributeHeight: 110
+
 !! Set a default font and font size as below:
 *.font: monospace:size=11
 
