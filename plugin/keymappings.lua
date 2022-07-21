@@ -1,3 +1,4 @@
+-- stylua: ignore start
 local map = require("utils.mappings").map
 local plugin_installed = require("utils.plugins").plugin_installed
 
@@ -83,9 +84,11 @@ if plugin_installed "telescope.nvim" then
   map("n", "<leader>fa", "<Cmd>Telescope builtin<Cr>", { desc = "All Builtin" })
   map("n", "<leader>ff", "<Cmd>Telescope find_files<Cr>", { desc = "Files" })
   map("n", "<leader>fg", "<Cmd>Telescope live_grep<Cr>", { desc = "Grep Files" })
-  map("n", "<leader>fh", "<Cmd>Telescope help_tags<Cr>", { desc = "Buffers" })
-  map("n", "<leader>fb", "<Cmd>Telescope buffers<Cr>", { desc = "Help Tags" })
+  map("n", "<leader>fb", "<Cmd>Telescope buffers<Cr>", { desc = "Buffers" })
   map("n", "<leader>fr", "<Cmd>Telescope oldfiles<Cr>", { desc = "Recent Files" })
+
+  map("n", "<leader>hh", "<Cmd>Telescope help_tags<Cr>", { desc = "Helps" })
+  map("n", "<leader>hm", "<Cmd>Telescope man_pages<Cr>", { desc = "Man pages" })
 
   map('n', '<leader>fdb', '<cmd>Telescope diagnostics bufnr=0<cr>', { desc = "Diagnostics Buffer" })
   map('n', '<leader>fdw', '<cmd>Telescope diagnostics<cr>', { desc = "Diagnostics Workspace" })
@@ -148,8 +151,9 @@ if wk_ok then
     ["<leader>f"] = "Telescope",
     ["<leader>d"] = "Diagnostics", -- in diagnostic.lua
     ["<leader>l"] = "LSP", -- in lsp_handlers.lua
-    ["<leader>h"] = "Hunk(gitsigns)", -- in gitsigns.lua
+    ["<leader>h"] = "Helps",
     ["<leader>s"] = "Status",
     ["<leader>t"] = "Toggle",
   }
 end
+-- stylua: ignore end
