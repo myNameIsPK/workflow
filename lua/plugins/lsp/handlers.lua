@@ -17,6 +17,7 @@ local function lsp_keymaps(bufnr)
     vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
   end
 
+  -- stylua: ignore start
   nmap('n', 'gD', "<Cmd>lua vim.lsp.buf.declaration()<CR>", "Go to declaration")
   -- nmap('n', 'gd', "<Cmd>lua vim.lsp.buf.definition()<CR>", "Go to definition") -- use <C-]> instead
   nmap('n', 'gr', "<Cmd>lua vim.lsp.buf.references()<CR>", "List references")
@@ -41,20 +42,39 @@ local function lsp_keymaps(bufnr)
   nmap('n', '<localleader>lr', "<Cmd>lua require('telescope.builtin').lsp_references()<CR>", "telescope references")
   nmap('n', '<localleader>ls', "<Cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>", "telescope document symbols")
   nmap('n', '<localleader>lS', "<Cmd>lua require('telescope.builtin').lsp_workspace_symbols()<CR>", "telescope workspace symbols")
+  -- stylua: ignore end
 end
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     lsp_buf_options(args.buf, args.data.client_id)
     lsp_keymaps(args.buf)
-  end
+  end,
 })
+
+local function lsp_format_on_save(bufnr)
+  local lsp_formatting = function()
+    vim.lsp.buf.format {
+      filter = function(client)
+        return client.name == "null-ls"
+      end,
+      bufnr = bufnr,
+    }
+  end
+
+  vim.api.nvim_create_augroup("_lsp_auto_format", { clear = true })
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    group = "_lsp_auto_format",
+    buffer = bufnr,
+    callback = lsp_formatting,
+  })
+end
 
 -- TODO: convert to lua
 local function lsp_highlight_document(client)
   if client.server_capabilities.documentHighlightProvider then
     vim.cmd [[
-      augroup lsp_document_highlight
+      augroup _lsp_document_highlight
         autocmd! * <buffer>
         autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
         autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
@@ -65,26 +85,24 @@ local function lsp_highlight_document(client)
 end
 
 function M.on_attach(client, bufnr)
-  vim.notify(
-    "attaching LSP: " .. client.name .. " to buffer: " .. bufnr,
-    vim.log.levels.INFO
-  )
+  vim.notify("attaching LSP: " .. client.name .. " to buffer: " .. bufnr, vim.log.levels.INFO)
   -- lsp_keymaps(bufnr) -- use autocmd LspAttach innstead
+  lsp_format_on_save(bufnr)
   lsp_highlight_document(client)
 end
 
 -- TODO: refactor
 function M.root_dir(fname)
-  local root_pattern = require('lspconfig.util').root_pattern
-  return root_pattern('.git')(fname)
-    or root_pattern('tsconfig.base.json')(fname)
-    or root_pattern('package.json')(fname)
-    or root_pattern('.eslintrc.js')(fname)
-    or root_pattern('tsconfig.json')(fname)
+  local root_pattern = require("lspconfig.util").root_pattern
+  return root_pattern ".git"(fname)
+    or root_pattern "tsconfig.base.json"(fname)
+    or root_pattern "package.json"(fname)
+    or root_pattern ".eslintrc.js"(fname)
+    or root_pattern "tsconfig.json"(fname)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-local nvim_lsp_ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
+local nvim_lsp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if not nvim_lsp_ok then
   return
 end

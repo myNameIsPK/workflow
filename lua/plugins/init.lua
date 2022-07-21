@@ -35,6 +35,9 @@ require("packer").startup {
       end,
     }
 
+    -- Fzf
+    use { "ibhagwan/fzf-lua" }
+
     -- LSP
     use {
       "neovim/nvim-lspconfig",
@@ -80,10 +83,17 @@ require("packer").startup {
       },
     }
 
-    use { "lewis6991/spellsitter.nvim",
+    use {
+      "lewis6991/spellsitter.nvim",
       config = function()
         require("spellsitter").setup()
       end,
+    }
+
+    -- Document
+    use {
+      "danymat/neogen",
+      requires = "nvim-treesitter/nvim-treesitter",
     }
 
     -- DAP
@@ -130,7 +140,7 @@ require("packer").startup {
 
     use {
       "junegunn/vim-easy-align",
-      config = function ()
+      config = function()
         vim.cmd [[
           xmap ga <Plug>(EasyAlign)
           nmap ga <Plug>(EasyAlign)
@@ -141,9 +151,9 @@ require("packer").startup {
     -- UI
     use {
       "j-hui/fidget.nvim",
-      config = function ()
+      config = function()
         require("fidget").setup()
-      end
+      end,
     }
 
     use { "lukas-reineke/indent-blankline.nvim" }
@@ -163,10 +173,11 @@ require("packer").startup {
     -- }
 
     use {
-      'iamcco/markdown-preview.nvim',
-      run = function() vim.fn['mkdp#util#install']() end,
-      ft = {'markdown'}
+      "iamcco/markdown-preview.nvim",
+      run = function()
+        vim.fn["mkdp#util#install"]()
+      end,
+      ft = { "markdown" },
     }
-
   end,
 }
