@@ -2,7 +2,10 @@
 (set-frame-parameter (selected-frame) 'alpha '(100 100))
 (add-to-list 'default-frame-alist '(alpha 100 100))
 
-(setq inhibit-startup-message t)
+(setq inhibit-startup-message t
+      visible-bell t)
+
+(setq use-dialog-box nil)
 
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
@@ -10,13 +13,19 @@
 (tooltip-mode -1)
 ;; (set-fringe-mode 10)
 
-(setq visible-bell t)
+(savehist-mode 1)
+;; revert buffers when file changed
+(global-auto-revert-mode 1)
+;; including Dired and orther buffers
+(setq global-auto-revert-non-file-buffers t)
 
 ;; mouse even in terminal
 (unless (display-graphic-p)
   (xterm-mouse-mode 1))
 
 (set-face-attribute 'default nil :font "JetBrainsMono Nerd Font" :height 110)
+
+(set-default-coding-systems 'utf-8)
 
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
@@ -38,6 +47,27 @@
 ;; Use straight.el for use-package expressions
 (straight-use-package 'use-package)
 
+;;; Clean emacs directory
+;; Change the user-emacs-directory to keep unwanted things out of ~/.emacs.d
+(setq user-emacs-directory (expand-file-name "~/.cache/emacs/")
+      url-history-file (expand-file-name "url/history" user-emacs-directory))
+
+;; don't create lock file
+(setq create-lockfiles nil)
+
+;; no `#filename#` https://www.victorquinn.com/emacs-prevent-autosave-mess
+(setq auto-save-default nil)
+
+;; Use no-littering to automatically set common paths to the new user-emacs-directory
+(use-package no-littering)
+
+;; Keep customization settings in a temporary file (thanks Ambrevar!)
+(setq custom-file
+      (if (boundp 'server-socket-dir)
+          (expand-file-name "custom.el" server-socket-dir)
+        (expand-file-name (format "emacs-custom-%s.el" (user-uid)) temporary-file-directory)))
+(load custom-file t)
+
 (use-package gruvbox-theme
   :init
   (load-theme 'gruvbox-dark-soft t))
@@ -56,7 +86,6 @@
   (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
   (setq evil-want-C-u-scroll t)
-  (setq evil-want-C-i-jump nil)
   (setq evil-respect-visual-line-mode t)
   (setq evil-undo-system 'undo-tree)
   :config
@@ -64,5 +93,18 @@
   (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
 
+  (define-key evil-normal-state-map (kbd "C-n") 'evil-next-line)
+  (define-key evil-normal-state-map (kbd "C-p") 'evil-previous-line)
+
   (evil-set-initial-state 'messages-buffer-mode 'normal)
   (evil-set-initial-state 'dashboard-mode 'normal))
+
+(use-package evil-collection
+  :after evil
+  :config
+  (evil-collection-init))
+
+(use-package which-key
+  :init (which-key-mode)
+  :config
+  (setq which-key-idle-delay 0.3))
