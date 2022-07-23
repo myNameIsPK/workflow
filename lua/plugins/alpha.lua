@@ -3,9 +3,8 @@ if not status_ok then
   return
 end
 
-local dashboard = require("alpha.themes.dashboard")
+local dashboard = require "alpha.themes.dashboard"
 dashboard.section.header.val = {
-
   [[=================     ===============     ===============   ========  ========]],
   [[\\ . . . . . . .\\   //. . . . . . .\\   //. . . . . . .\\  \\. . .\\// . . //]],
   [[||. . ._____. . .|| ||. . ._____. . .|| ||. . ._____. . .|| || . . .\/ . . .||]],
@@ -22,10 +21,9 @@ dashboard.section.header.val = {
   [[||      .=='    _-'    `-_  `='    _-'   `-_    `='  _-'   `-_  /|  \/  |   ||]],
   [[||   .=='    _-'          `-__\._-'         `-_./__-'         `' |. /|  |   ||]],
   [[||.=='    _-'                                                     `' |  /==.||]],
-  [[=='    _-'                                                            \/   `==]],
+  [[=='    _-'                        N E O V I M                         \/   `==]],
   [[\   _-'                                                                `-_   /]],
   [[ `''                                                                      ``']],
-
 }
 dashboard.section.buttons.val = {
   dashboard.button("f", "  Find file", ":Telescope find_files <CR>"),
@@ -40,7 +38,13 @@ dashboard.section.buttons.val = {
 }
 
 local function footer()
-  return "myNameIsPK/nvim"
+  local total_plugins = #vim.fn.globpath(vim.fn.stdpath('data') .. '/site/pack/packer/*', '*', 0, 1)
+  local loaded_plugins = vim.tbl_count(_G.packer_plugins)
+
+  local version = vim.version()
+  local version_info = " v" .. version.major .. "." .. version.minor .. "." .. version.patch
+
+  return loaded_plugins .. "/" .. total_plugins .. " plugins loaded" .. version_info
 end
 
 dashboard.section.footer.val = footer()
