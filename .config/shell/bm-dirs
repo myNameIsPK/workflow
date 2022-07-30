@@ -2,6 +2,7 @@
 
 cf  ${XDG_CONFIG_HOME:-$HOME/.config}
 cfn ${XDG_CONFIG_HOME:-$HOME/.config}/nvim
+cfe ${XDG_CONFIG_HOME:-$HOME/.config}/emacs
 cfx ${XDG_CONFIG_HOME:-$HOME/.config}/x11
 cf  ${XDG_CONFIG_HOME:-$HOME/.config}
 lcs ${XDG_DATA_HOME:-$HOME/.local/share}
