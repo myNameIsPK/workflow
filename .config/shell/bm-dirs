@@ -13,7 +13,7 @@ d   ${XDG_DOCUMENTS_DIR:-$HOME/Documents}
 i   ${XDG_PICTURES_DIR:-$HOME/Pictures}
 m   ${XDG_MUSIC_DIR:-$HOME/Music}
 v   ${XDG_VIDEOS_DIR:-$HOME/Videos}
-sc  ${XDG_PICTURES_DIR:-$HOME/Pictures}/screenshots
+scs ${XDG_PICTURES_DIR:-$HOME/Pictures}/screenshots
 p   $HOME/Projects
 n   $HOME/notes
 z   $HOME/notes/zettels
