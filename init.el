@@ -1,18 +1,23 @@
+;;; Fix
 ;; fix emacs transparent when there is alpha in xresources
 (set-frame-parameter (selected-frame) 'alpha '(100 100))
 (add-to-list 'default-frame-alist '(alpha 100 100))
 
+;;; General Settings
 (setq inhibit-startup-message t
       visible-bell t)
 
+;; no gui dialog box
 (setq use-dialog-box nil)
 
+;; no graphic interfaces
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (tooltip-mode -1)
 ;; (set-fringe-mode 10)
 
+;; history in minibuffer
 (savehist-mode 1)
 ;; revert buffers when file changed
 (global-auto-revert-mode 1)
@@ -28,6 +33,13 @@
 (set-default-coding-systems 'utf-8)
 
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+
+;; ;;; Straight.el Settings
+;; (setq package-archives '(("melpa" . "https://melpa.org/packages/")
+;;                          ("melpa-stable" . "https://stable.melpa.org/packages/")
+;;                          ("org" . "https://orgmode.org/elpa/")
+;;                          ("elpa" . "https://elpa.gnu.org/packages/")
+;;                          ("nongnu-elpa" . "https://elpa.nongnu.org/nongnu/")))
 
 (defvar bootstrap-version)
 (let ((bootstrap-file
@@ -68,10 +80,12 @@
         (expand-file-name (format "emacs-custom-%s.el" (user-uid)) temporary-file-directory)))
 (load custom-file t)
 
+;;; Color theme
 (use-package gruvbox-theme
   :init
   (load-theme 'gruvbox-dark-soft t))
 
+;;; Evil
 (use-package undo-tree
   :init
   (global-undo-tree-mode 1))
@@ -104,7 +118,69 @@
   :config
   (evil-collection-init))
 
+;;; Which key
 (use-package which-key
   :init (which-key-mode)
   :config
   (setq which-key-idle-delay 0.3))
+
+;;;; Completions
+;;; Minibuffer Completions
+(use-package vertico
+  :init
+  (vertico-mode)
+  ;; Show more candidates
+  ;; (setq vertico-count 20)
+  (setq vertico-resize t)
+  (setq vertico-cycle t))
+
+(use-package orderless
+  :init
+  (setq completion-styles '(orderless basic)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles partial-completion)))))
+
+(use-package marginalia
+  ;; Either bind `marginalia-cycle` globally or only in the minibuffer
+  :bind (("M-A" . marginalia-cycle)
+         :map minibuffer-local-map
+         ("M-A" . marginalia-cycle))
+
+  ;; The :init configuration is always executed (Not lazy!)
+  :init
+
+  ;; Must be in the :init section of use-package such that the mode gets
+  ;; enabled right away. Note that this forces loading the package.
+  (marginalia-mode))
+
+(use-package consult)
+(use-package embark
+  :bind (("C-S-a" . embark-act)
+         :map minibuffer-local-map
+         ("C-S-a" . embark-act)))
+
+
+;;; Completion in region
+(use-package corfu
+  :custom
+  (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
+  (corfu-auto t)                 ;; Enable auto completion
+  (corfu-separator ?\s)          ;; Orderless field separator
+  ;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
+  ;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
+  ;; (corfu-preview-current nil)    ;; Disable current candidate preview
+  ;; (corfu-preselect-first nil)    ;; Disable candidate preselection
+  ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
+  ;; (corfu-echo-documentation nil) ;; Disable documentation in the echo area
+  ;; (corfu-scroll-margin 5)        ;; Use scroll margin
+
+  ;; Enable Corfu only for certain modes.
+  ;; :hook ((prog-mode . corfu-mode)
+  ;;        (shell-mode . corfu-mode)
+  ;;        (eshell-mode . corfu-mode))
+
+  ;; Recommended: Enable Corfu globally.
+  ;; This is recommended since Dabbrev can be used globally (M-/).
+  ;; See also `corfu-excluded-modes'.
+  :init
+  (global-corfu-mode))
