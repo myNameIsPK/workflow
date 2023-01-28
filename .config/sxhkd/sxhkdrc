@@ -12,7 +12,7 @@ super + Return
 # super + @space
 # 	dmenu_run
 super + space ; super + space
-  dmenu_run
+  dmenu_run -l 10 -b
 
 # fzf_dmenu replacement
 super + shift + space
