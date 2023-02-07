@@ -3,13 +3,13 @@ local opts = {
     Lua = {
       diagnostics = {
         -- Get the language server to recognize the `vim` global
-        globals = { 'vim' },
+        globals = { "vim" },
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
         library = {
-          [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-          [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+          [vim.fn.expand "$VIMRUNTIME/lua"] = true,
+          [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
         },
         maxPreload = 10000,
       },
@@ -18,10 +18,9 @@ local opts = {
 }
 
 -- Add nvim api document plugin
-local luadev_ok, luadev = pcall(require, "lua-dev")
-if not luadev_ok then
-  return
+local neodev_ok, neodev = pcall(require, "neodev")
+if neodev_ok then
+  neodev.setup()
 end
-opts = vim.tbl_deep_extend("force", opts, luadev.setup())
 
 return opts

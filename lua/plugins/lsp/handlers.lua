@@ -13,35 +13,35 @@ local function lsp_buf_options(bufnr, client_id)
 end
 
 local function lsp_keymaps(bufnr)
-  local function nmap(mode, lhs, rhs, desc)
+  local function map(mode, lhs, rhs, desc)
     vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
   end
 
   -- stylua: ignore start
-  nmap('n', 'gD', "<Cmd>lua vim.lsp.buf.declaration()<CR>", "Go to declaration")
-  -- nmap('n', 'gd', "<Cmd>lua vim.lsp.buf.definition()<CR>", "Go to definition") -- use <C-]> instead
-  nmap('n', 'gr', "<Cmd>lua vim.lsp.buf.references()<CR>", "List references")
-  nmap('n', 'gi', "<Cmd>lua vim.lsp.buf.implementation()<CR>", "Go to implementation")
-  nmap('n', 'K', "<Cmd>lua vim.lsp.buf.hover()<CR>", "Hover")
-  nmap('n', '<C-k>', "<Cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature help")
-  nmap('n', '<localleader>wa', "<Cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", "Workspace Add folder")
-  nmap('n', '<localleader>wr', "<Cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", "Workspace Delete folder")
-  nmap('n', '<localleader>wl', "<Cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", "Workspace list folder")
-  nmap('n', '<localleader>d', "<Cmd>lua vim.lsp.buf.type_definition()<CR>", "Type definition")
-  nmap('n', '<localleader>rn', "<Cmd>lua vim.lsp.buf.rename()<CR>", "Rename")
-  nmap('n', '<localleader>ca', "<Cmd>lua vim.lsp.buf.code_action()<CR>", "Code action")
-  nmap('v', '<localleader>ca', "<Cmd>lua vim.lsp.buf.range_code_action()<CR>", "Code action")
-  nmap('n', '<localleader>F', "<Cmd>lua vim.lsp.buf.formatting()<CR>", "formatting")
-  -- FIXME: range format not work
-  -- nmap('v', '<localleader>F', "<Cmd>lua vim.lsp.buf.range_formatting()<CR>", "formatting")
+  map('n', 'gD', "<Cmd>lua vim.lsp.buf.declaration()<CR>", "Go to declaration")
+  map('n', 'gd', "<Cmd>lua vim.lsp.buf.definition()<CR>", "Go to definition") -- use <C-]> instead
+  map('n', 'gr', "<Cmd>lua vim.lsp.buf.references()<CR>", "List references")
+  map('n', 'gi', "<Cmd>lua vim.lsp.buf.implementation()<CR>", "Go to implementation")
+  map('n', 'K', "<Cmd>lua vim.lsp.buf.hover()<CR>", "Hover")
+  map('n', '<C-k>', "<Cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature help")
+  map('n', '<localleader>lwa', "<Cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", "Workspace Add folder")
+  map('n', '<localleader>lwd', "<Cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", "Workspace Delete folder")
+  map('n', '<localleader>lwl', "<Cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", "Workspace list folder")
+  map('n', '<localleader>ld', "<Cmd>lua vim.lsp.buf.type_definition()<CR>", "Type definition")
+  map('n', '<localleader>lrn', "<Cmd>lua vim.lsp.buf.rename()<CR>", "Rename")
+  map('n', '<localleader>la', "<Cmd>lua vim.lsp.buf.code_action()<CR>", "Code action")
+  map('v', '<localleader>la', "<Cmd>'<,'>lua vim.lsp.buf.range_code_action()<CR>", "Code action")
+  -- FIXME: use vim.lsp.buf.format
+  map('n', '<localleader>lf', "<Cmd>lua vim.lsp.buf.formatting()<CR>", "formatting")
+  map('v', '<localleader>lf', "<Cmd>'<,'>lua vim.lsp.buf.range_formatting()<CR>", "formatting")
 
   -- telescope
-  nmap('n', '<localleader>ld', "<Cmd>lua require('telescope.builtin').lsp_definitions()<CR>", "telescope definition")
-  nmap('n', '<localleader>lt', "<Cmd>lua require('telescope.builtin').lsp_type_definitions()<CR>", "telescope type definition")
-  nmap('n', '<localleader>li', "<Cmd>lua require('telescope.builtin').lsp_implementations()<CR>", "telescope implementation")
-  nmap('n', '<localleader>lr', "<Cmd>lua require('telescope.builtin').lsp_references()<CR>", "telescope references")
-  nmap('n', '<localleader>ls', "<Cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>", "telescope document symbols")
-  nmap('n', '<localleader>lS', "<Cmd>lua require('telescope.builtin').lsp_workspace_symbols()<CR>", "telescope workspace symbols")
+  map('n', '<localleader>lD', "<Cmd>lua require('telescope.builtin').lsp_definitions()<CR>", "telescope definition")
+  map('n', '<localleader>lT', "<Cmd>lua require('telescope.builtin').lsp_type_definitions()<CR>", "telescope type definition")
+  map('n', '<localleader>lI', "<Cmd>lua require('telescope.builtin').lsp_implementations()<CR>", "telescope implementation")
+  map('n', '<localleader>lR', "<Cmd>lua require('telescope.builtin').lsp_references()<CR>", "telescope references")
+  map('n', '<localleader>lS', "<Cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>", "telescope document symbols")
+  map('n', '<localleader>lW', "<Cmd>lua require('telescope.builtin').lsp_workspace_symbols()<CR>", "telescope workspace symbols")
   -- stylua: ignore end
 end
 
@@ -101,11 +101,11 @@ function M.root_dir(fname)
     or root_pattern "tsconfig.json"(fname)
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
 local nvim_lsp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if not nvim_lsp_ok then
-  return
+if nvim_lsp_ok then
+  M.capabilities = cmp_nvim_lsp.default_capabilities()
+else
+  M.capabilities = vim.lsp.protocol.make_client_capabilities()
 end
-M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 
 return M

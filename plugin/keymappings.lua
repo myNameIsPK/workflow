@@ -114,18 +114,12 @@ if plugin_installed("markdown-preview.nvim") then
   map("n", "<leader>tm", "<Cmd>MarkdownPreviewToggle<Cr>", { desc = "Markdown Preview" })
 end
 
-if plugin_installed("zk-nvim") then
-  map("n", "<leader>zf", "<Cmd>ZkNotes<Cr>")
-  map("n", "<leader>zd", "<Cmd>ZkNew { dir = 'journal/daily' }<Cr>")
-end
-
 if plugin_installed("neorg") then
   map("n", "<leader>ng", "<Cmd>NeorgStart<Cr>")
 end
 
-if plugin_installed("nvim-lsp-installer") then
+if plugin_installed("mason-lspconfig.nvim") then
   map("n", "<leader>sl", "<Cmd>LspInfo<Cr>")
-  map("n", "<leader>tl", "<Cmd>LspInstallInfo<Cr>")
 end
 
 if plugin_installed("nvim-treesitter") then

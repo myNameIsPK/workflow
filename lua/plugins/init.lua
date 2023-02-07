@@ -36,14 +36,15 @@ require("packer").startup {
     }
 
     -- Fzf
-    use { "ibhagwan/fzf-lua" }
+    -- use { "ibhagwan/fzf-lua" }
 
     -- LSP
     use {
       "neovim/nvim-lspconfig",
       requires = {
-        { "williamboman/nvim-lsp-installer" },
-        { "folke/lua-dev.nvim" },
+        { "williamboman/mason.nvim" },
+        { "williamboman/mason-lspconfig.nvim" },
+        { "folke/neodev.nvim" },
       },
     }
     use { "jose-elias-alvarez/null-ls.nvim" }
@@ -59,7 +60,7 @@ require("packer").startup {
         { "L3MON4D3/LuaSnip" },
         { "rafamadriz/friendly-snippets" },
         { "saadparwaiz1/cmp_luasnip" },
-        -- { "hrsh7th/cmp-nvim-lua" }, -- lua-dev is better
+        -- { "hrsh7th/cmp-nvim-lua" }, -- neodev is better
         { "hrsh7th/cmp-nvim-lsp" },
         { "hrsh7th/cmp-nvim-lsp-document-symbol", after = "nvim-cmp" },
         { "hrsh7th/cmp-nvim-lsp-signature-help", after = "nvim-cmp" },
@@ -90,11 +91,11 @@ require("packer").startup {
       end,
     }
 
-    -- Document
-    use {
-      "danymat/neogen",
-      requires = "nvim-treesitter/nvim-treesitter",
-    }
+    -- -- Document
+    -- use {
+    --   "danymat/neogen",
+    --   requires = "nvim-treesitter/nvim-treesitter",
+    -- }
 
     -- DAP
     -- use { "mfussenegger/nvim-dap" }
@@ -105,25 +106,25 @@ require("packer").startup {
     -- Git
     use { "lewis6991/gitsigns.nvim" }
     use { "TimUntersberger/neogit" }
-    use { "sindrets/diffview.nvim" }
+    -- use { "sindrets/diffview.nvim" }
 
     -- Notes taking
     -- use { "renerocksai/telekasten.nvim" }
 
     use { "mickael-menu/zk-nvim" }
 
-    use { "nvim-orgmode/orgmode" }
+    -- use { "nvim-orgmode/orgmode" }
 
-    use { "nvim-neorg/neorg", requires = "nvim-neorg/neorg-telescope" }
+    -- use { "nvim-neorg/neorg", requires = "nvim-neorg/neorg-telescope" }
 
     -- QOL
 
     use { "folke/which-key.nvim" }
 
-    use {
-      "anuvyklack/hydra.nvim",
-      requires = "anuvyklack/keymap-layer.nvim", -- needed only for pink hydras
-    }
+    -- use {
+    --   "anuvyklack/hydra.nvim",
+    --   requires = "anuvyklack/keymap-layer.nvim", -- needed only for pink hydras
+    -- }
 
     use { "numToStr/Comment.nvim" }
 
@@ -156,11 +157,11 @@ require("packer").startup {
       end,
     }
 
-    use { "lukas-reineke/indent-blankline.nvim" }
+    -- use { "lukas-reineke/indent-blankline.nvim" }
 
     use { "norcalli/nvim-colorizer.lua", cmd = "ColorizerToggle" }
 
-    use { "jbyuki/nabla.nvim" }
+    -- use { "jbyuki/nabla.nvim" }
 
     -- use { "folke/todo-comments.nvim" }
 

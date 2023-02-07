@@ -13,7 +13,7 @@ function M.setup()
   -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/code_actions
   local code_actions = null_ls.builtins.code_actions
 
-  local handlers = require("plugins.lsp.handlers")
+  local handlers = require "plugins.lsp.handlers"
 
   null_ls.setup {
     sources = {
@@ -34,7 +34,6 @@ function M.setup()
     flags = { debounce_text_changes = 150 }, -- this make lsp not reload immediately everytime while you typing the words
     root_dir = handlers.root_dir,
   }
-
 end
 
 return M
