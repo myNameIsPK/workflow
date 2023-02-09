@@ -1,8 +1,11 @@
 -- vim: fmr={{{,}}} fdm=marker:
+-- stylua: ignore start
 -- Init {{{
 local c = require("themes.colors")
 local hi = require("utils.highlight").highlight
 local link = require("utils.highlight").hi_link
+
+c.bg_hard = c.dark0_hard
 
 c.bg0 = c.dark0_soft
 c.bg1 = c.dark1
@@ -109,7 +112,7 @@ hi("Search",    { fg = c.bg0, bg = c.yellow })
 
 hi("Visual", { style = "reverse" })
 
-hi("MatchParen", { style = "reverse" })
+hi("MatchParen", { fg = c.red, bg = c.bg3 })
 
 hi("StatusLine",   { bg = c.bg4 })
 hi("StatusLineNC", { bg = c.bg2 })
@@ -229,6 +232,9 @@ link("CmpItemKindEvent",         "Orange")
 link("CmpItemKindOperator",      "Orange")
 link("CmpItemKindTypeParameter", "Yellow")
 -- }}}
+-- Telescope {{{
+hi("TelescopeNormal", { fg = c.fg0, bg = c.bg_hard })
+-- }}}
 -- Treesitter {{{
 hi("TSStrong", { style = "bold" })
 hi("TSEmphasis", { style = "italic" })
@@ -287,4 +293,21 @@ link("TSURI", "BlueUnderline")
 link("TSVariable", "Fg")
 link("TSVariableBuiltin", "BlueItalic")
 -- }}}
+-- Neogit {{{
+link("NeogitNotificationInfo", "Blue")
+link("NeogitNotificationWarning", "Yellow")
+link("NeogitNotificationError", "Red")
+link("NeogitDiffAdd", "Green")
+link("NeogitDiffDelete", "Red")
+hi("NeogitDiffAddHighlight", { fg = c.fg0, bg = c.faded_green })
+hi("NeogitDiffDeleteHighlight", { fg = c.fg0, bg = c.faded_red })
+link("NeogitDiffContextHighlight", "CursorLine")
+link("NeogitHunkHeaderHighlight", "TabLine")
+link("NeogitHunkHeader", "TabLineFill")
+link("NeogitCommandCodeNormal", "Green")
+link("NeogitCommandCodeError", "Red")
+link("NeogitCommitViewHeader", "TabLineSel")
+link("NeogitFilePath", "GrayBold")
 -- }}}
+-- }}}
+-- stylua: ignore end

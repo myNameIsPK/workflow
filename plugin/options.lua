@@ -3,12 +3,12 @@ local opt = vim.opt
 opt.background = "dark"
 opt.list = true
 opt.listchars = {
-  tab = '→ ',
-  trail = '·',
+  tab = "→ ",
+  trail = "·",
   -- lead = '·',
-  extends = '»',
-  precedes = '«',
-  nbsp = '×',
+  extends = "»",
+  precedes = "«",
+  nbsp = "×",
   -- eol = '↲',
 }
 opt.keymap = "thai" -- use keymap in `keymap/{keymap}.vim`
@@ -58,8 +58,8 @@ opt.spell = false
 opt.spelllang = "en"
 opt.scrolloff = 8 -- is one of my fav
 opt.sidescrolloff = 8
--- opt.guicursor = {
---   [[n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50]],
---   [[a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor]],
---   [[sm:block-blinkwait175-blinkoff150-blinkon175]],
--- }
+opt.guicursor = {
+  [[n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50]],
+  [[a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor]],
+  [[sm:block-blinkwait175-blinkoff150-blinkon175]],
+}

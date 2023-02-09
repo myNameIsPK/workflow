@@ -1,16 +1,21 @@
 local M = {}
 
-local function lsp_buf_options(bufnr, client_id)
-  local client = vim.lsp.get_client_by_id(client_id)
-  if client.server_capabilities.completionProvider then
-    -- Enable completion triggered by <c-x><c-o>
-    vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
-  end
-  if client.server_capabilities.definitionProvider then
-    -- Enable tags command like <c-]> to use LSP
-    vim.bo[bufnr].tagfunc = "v:lua.vim.lsp.tagfunc"
-  end
-end
+-- NOTE: the lsp already set it for you
+-- local function lsp_buf_options(bufnr, client_id)
+--   local client = vim.lsp.get_client_by_id(client_id)
+--   if client.server_capabilities.completionProvider then
+--     -- Enable completion triggered by <c-x><c-o>
+--     vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
+--   end
+--   if client.server_capabilities.definitionProvider then
+--     -- Enable tags command like <c-]> to use LSP
+--     vim.bo[bufnr].tagfunc = "v:lua.vim.lsp.tagfunc"
+--   end
+--   if client.server_capabilities.documentFormattingProvider then
+--     -- Enable tags command like <c-]> to use LSP
+--     vim.bo[bufnr].tagfunc = "v:vim.lsp.formatexpr()"
+--   end
+-- end
 
 local function lsp_keymaps(bufnr)
   local function map(mode, lhs, rhs, desc)
@@ -31,9 +36,9 @@ local function lsp_keymaps(bufnr)
   map('n', '<localleader>lrn', "<Cmd>lua vim.lsp.buf.rename()<CR>", "Rename")
   map('n', '<localleader>la', "<Cmd>lua vim.lsp.buf.code_action()<CR>", "Code action")
   map('v', '<localleader>la', "<Cmd>'<,'>lua vim.lsp.buf.range_code_action()<CR>", "Code action")
-  -- FIXME: use vim.lsp.buf.format
-  map('n', '<localleader>lf', "<Cmd>lua vim.lsp.buf.formatting()<CR>", "formatting")
-  map('v', '<localleader>lf', "<Cmd>'<,'>lua vim.lsp.buf.range_formatting()<CR>", "formatting")
+  map('n', '<localleader>lf', "<Cmd>lua vim.lsp.buf.format()<CR>", "formatting")
+  -- TODO: creat format on range
+  -- map('v', '<localleader>lf', "<Cmd>'<,'>lua vim.lsp.buf.range_formatting()<CR>", "formatting")
 
   -- telescope
   map('n', '<localleader>lD', "<Cmd>lua require('telescope.builtin').lsp_definitions()<CR>", "telescope definition")
@@ -47,7 +52,7 @@ end
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
-    lsp_buf_options(args.buf, args.data.client_id)
+    -- lsp_buf_options(args.buf, args.data.client_id)
     lsp_keymaps(args.buf)
   end,
 })
