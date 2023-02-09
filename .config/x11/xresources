@@ -51,7 +51,7 @@ Emacs.default.attributeHeight: 110
 ! *.cursorColor: #ebdbb2
 
 !! gruvbox light:
-*.color0: #fbf1c7
+*.color0: #bdae93
 *.color1: #cc241d
 *.color2: #98971a
 *.color3: #d79921
