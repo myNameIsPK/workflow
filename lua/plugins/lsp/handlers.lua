@@ -1,22 +1,5 @@
 local M = {}
 
--- NOTE: the lsp already set it for you
--- local function lsp_buf_options(bufnr, client_id)
---   local client = vim.lsp.get_client_by_id(client_id)
---   if client.server_capabilities.completionProvider then
---     -- Enable completion triggered by <c-x><c-o>
---     vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
---   end
---   if client.server_capabilities.definitionProvider then
---     -- Enable tags command like <c-]> to use LSP
---     vim.bo[bufnr].tagfunc = "v:lua.vim.lsp.tagfunc"
---   end
---   if client.server_capabilities.documentFormattingProvider then
---     -- Enable tags command like <c-]> to use LSP
---     vim.bo[bufnr].tagfunc = "v:vim.lsp.formatexpr()"
---   end
--- end
-
 local function lsp_keymaps(bufnr)
   local function map(mode, lhs, rhs, desc)
     vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
@@ -52,7 +35,6 @@ end
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
-    -- lsp_buf_options(args.buf, args.data.client_id)
     lsp_keymaps(args.buf)
   end,
 })
