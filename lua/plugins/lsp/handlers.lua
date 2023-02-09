@@ -1,35 +1,45 @@
 local M = {}
 
+local lsp_formatting = function(bufnr)
+  bufnr = bufnr or nil
+  vim.lsp.buf.format {
+    filter = function(client)
+      return client.name == "null-ls"
+    end,
+    bufnr,
+  }
+end
+
 local function lsp_keymaps(bufnr)
   local function map(mode, lhs, rhs, desc)
     vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
   end
 
   -- stylua: ignore start
-  map('n', 'gD', "<Cmd>lua vim.lsp.buf.declaration()<CR>", "Go to declaration")
-  map('n', 'gd', "<Cmd>lua vim.lsp.buf.definition()<CR>", "Go to definition") -- use <C-]> instead
-  map('n', 'gr', "<Cmd>lua vim.lsp.buf.references()<CR>", "List references")
-  map('n', 'gi', "<Cmd>lua vim.lsp.buf.implementation()<CR>", "Go to implementation")
-  map('n', 'K', "<Cmd>lua vim.lsp.buf.hover()<CR>", "Hover")
-  map('n', '<C-k>', "<Cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature help")
-  map('n', '<localleader>lwa', "<Cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", "Workspace Add folder")
-  map('n', '<localleader>lwd', "<Cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", "Workspace Delete folder")
-  map('n', '<localleader>lwl', "<Cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", "Workspace list folder")
-  map('n', '<localleader>ld', "<Cmd>lua vim.lsp.buf.type_definition()<CR>", "Type definition")
-  map('n', '<localleader>lrn', "<Cmd>lua vim.lsp.buf.rename()<CR>", "Rename")
-  map('n', '<localleader>la', "<Cmd>lua vim.lsp.buf.code_action()<CR>", "Code action")
-  map('v', '<localleader>la', "<Cmd>'<,'>lua vim.lsp.buf.range_code_action()<CR>", "Code action")
-  map('n', '<localleader>lf', "<Cmd>lua vim.lsp.buf.format()<CR>", "formatting")
-  -- TODO: creat format on range
-  -- map('v', '<localleader>lf', "<Cmd>'<,'>lua vim.lsp.buf.range_formatting()<CR>", "formatting")
+  map('n', 'gD', function() vim.lsp.buf.declaration() end, "Go to declaration")
+  map('n', 'gd', function() vim.lsp.buf.definition() end, "Go to definition") -- use <C-]> instead
+  map('n', 'gr', function() vim.lsp.buf.references() end, "List references")
+  map('n', 'gi', function() vim.lsp.buf.implementation() end, "Go to implementation")
+  map('n', 'K', function() vim.lsp.buf.hover() end, "Hover")
+  map('n', '<C-k>', function() vim.lsp.buf.signature_help() end, "Signature help")
+  map('n', '<localleader>lwa', function() vim.lsp.buf.add_workspace_folder() end, "Workspace Add folder")
+  map('n', '<localleader>lwd', function() vim.lsp.buf.remove_workspace_folder() end, "Workspace Delete folder")
+  map('n', '<localleader>lwl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, "Workspace list folder")
+  map('n', '<localleader>ld', function() vim.lsp.buf.type_definition() end, "Type definition")
+  map('n', '<localleader>lrn', function() vim.lsp.buf.rename() end, "Rename")
+  map('n', '<localleader>la', function() vim.lsp.buf.code_action() end, "Code action")
+  map('v', '<localleader>la', function() vim.lsp.buf.range_code_action() end, "Code action")
+
+  map('n', '<localleader>lf', function() lsp_formatting() end, "formatting")
+  map('v', '<localleader>lf', function() lsp_formatting() end, "formatting")
 
   -- telescope
-  map('n', '<localleader>lD', "<Cmd>lua require('telescope.builtin').lsp_definitions()<CR>", "telescope definition")
-  map('n', '<localleader>lT', "<Cmd>lua require('telescope.builtin').lsp_type_definitions()<CR>", "telescope type definition")
-  map('n', '<localleader>lI', "<Cmd>lua require('telescope.builtin').lsp_implementations()<CR>", "telescope implementation")
-  map('n', '<localleader>lR', "<Cmd>lua require('telescope.builtin').lsp_references()<CR>", "telescope references")
-  map('n', '<localleader>lS', "<Cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>", "telescope document symbols")
-  map('n', '<localleader>lW', "<Cmd>lua require('telescope.builtin').lsp_workspace_symbols()<CR>", "telescope workspace symbols")
+  map('n', '<localleader>lD', function() require('telescope.builtin').lsp_definitions() end, "telescope definition")
+  map('n', '<localleader>lT', function() require('telescope.builtin').lsp_type_definitions() end, "telescope type definition")
+  map('n', '<localleader>lI', function() require('telescope.builtin').lsp_implementations() end, "telescope implementation")
+  map('n', '<localleader>lR', function() require('telescope.builtin').lsp_references() end, "telescope references")
+  map('n', '<localleader>lS', function() require('telescope.builtin').lsp_document_symbols() end, "telescope document symbols")
+  map('n', '<localleader>lW', function() require('telescope.builtin').lsp_workspace_symbols() end, "telescope workspace symbols")
   -- stylua: ignore end
 end
 
@@ -40,20 +50,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 local function lsp_format_on_save(bufnr)
-  local lsp_formatting = function()
-    vim.lsp.buf.format {
-      filter = function(client)
-        return client.name == "null-ls"
-      end,
-      bufnr = bufnr,
-    }
-  end
-
   vim.api.nvim_create_augroup("_lsp_auto_format", { clear = true })
   vim.api.nvim_create_autocmd("BufWritePre", {
     group = "_lsp_auto_format",
     buffer = bufnr,
-    callback = lsp_formatting,
+    callback = function()
+      lsp_formatting(bufnr)
+    end,
   })
 end
 
