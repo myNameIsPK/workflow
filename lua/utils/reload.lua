@@ -1,5 +1,6 @@
 local M = {}
 
+-- TODO: understand this code
 local function _assign(old, new, k)
   local otype = type(old[k])
   local ntype = type(new[k])
