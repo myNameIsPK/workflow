@@ -14,6 +14,7 @@
     format = "<b>%s</b>\n%b"
     history_length = 100
     corner_radius = 10
+    idle_threshold = 5s
     dmenu = "/usr/bin/dmenu -p dunst"
 
 [urgency_low]
