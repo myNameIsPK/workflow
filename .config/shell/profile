@@ -59,8 +59,9 @@ export RUSTUP_HOME=${XDG_DATA_HOME:-$HOME/.local/share}/rustup
 . "$XDG_DATA_HOME/cargo/env"
 
 # if running bash
-if [ -n "$BASH_VERSION" ]; then
-    [[ -f ${XDG_CONFIG_HOME:-$HOME/.config}/bash/bashrc ]] && source ${XDG_CONFIG_HOME:-$HOME/.config}/bash/bashrc
+if [ "$SHELL" -eq "/bin/bash"]; then
+    [ -f ${XDG_CONFIG_HOME:-$HOME/.config}/bash/bashrc ] && source ${XDG_CONFIG_HOME:-$HOME/.config}/bash/bashrc
+    [ -f ${XDG_CONFIG_HOME:-$HOME/.config}/fzf/fzf.bash ] && source ${XDG_CONFIG_HOME:-$HOME/.config}/fzf/fzf.bash
 fi
 
 # if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
