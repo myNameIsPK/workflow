@@ -38,6 +38,7 @@ setopt histignoredups	# Ignore duplicate in history
 setopt incappendhistory # append entered command to history, don't wait for shell exit
 setopt histignorespace # ignore command start with whitespace
 setopt correctall
+setopt combining_chars # fix unicode
 
 ## Basic auto/tab complete:
 autoload -U compinit
