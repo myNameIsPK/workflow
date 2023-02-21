@@ -48,3 +48,5 @@ shopt -s cmdhist	# Save multi-line commands in history as single
 shopt -s dotglob	# Includ dot file in globbling
 shopt -s histappend	# Append history not overwrite when exit
 shopt -s checkwinsize	# Checks term size when bash regains control
+
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash
