@@ -4,7 +4,7 @@
     origin = bottom-right
     width = 370
     height = 350
-    offset = 10x100
+    offset = 10x50
     padding = 2
     horizontal_padding = 2
     notification_limit = 10
