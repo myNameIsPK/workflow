@@ -5,25 +5,28 @@
     width = 370
     height = 350
     offset = 10x100
-    notification_limit = 10
     padding = 2
     horizontal_padding = 2
-    transparency = 25
+    notification_limit = 10
+    gap_size = 2
+    transparency = 30
     font = Monospace 12
     format = "<b>%s</b>\n%b"
+    history_length = 100
+    corner_radius = 10
+    dmenu = "/usr/bin/dmenu -p dunst"
 
 [urgency_low]
-    foreground = "#928374"
+    foreground = "#ebdbb2"
     background = "#1d2021"
-    timeout = 3
+    frame_color = "#928374"
 
 [urgency_normal]
     foreground = "#ebdbb2"
-    background = "#458588"
-    timeout = 5
+    background = "#1d2021"
+    frame_color = "#458588"
 
 [urgency_critical]
     foreground = "#ebdbb2"
-    background = "#1cc24d"
-    frame_color = "#cc241d"
-    timeout = 10
+    background = "#1d2021"
+    frame_color = "#fabd2f"
