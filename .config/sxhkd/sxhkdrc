@@ -14,10 +14,6 @@ super + Return
 super + space ; super + space
   dmenu_run -l 10 -b
 
-# fzf_dmenu replacement
-super + shift + space
-  term-menu fzf-all
-
 # launch specific program
 super + space ; {b,q,d}
   {brave,qutebrowser,discord}
@@ -25,10 +21,6 @@ super + space ; {b,q,d}
 # toggle scratchpad
 super + s
   win-toggle-hidden scratchpad || win-toggle-term scratchpad tmux-ses scratch
-
-# Screenshot menu
-super + shift + s
-  term-menu _fzf-screenshot
 
 # screecshot region to clipboard 
 ctrl + Print

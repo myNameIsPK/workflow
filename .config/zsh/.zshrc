@@ -89,7 +89,6 @@ bindkey -M emacs '^X^E' edit-command-line
 
 # TODO :edit hard code shortcut
 # Shortcut
-bindkey -s '^X^F' "^Ufzf-all^M"
 bindkey -s '^X^X' "^Ustartx^M"
 
 # Change cursor shape for different vi modes.
