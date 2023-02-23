@@ -6,7 +6,7 @@
 
 # terminal emulator
 super + Return
-	$TERMINAL
+  $TERMINAL
 
 # program launcher
 # super + @space
@@ -15,8 +15,8 @@ super + space ; super + space
   dmenu_run -l 10 -b
 
 # launch specific program
-super + space ; {b,q,d}
-  {brave,qutebrowser,discord}
+super + space ; {b,d}
+  {$BROWSER,discord}
 
 # toggle scratchpad
 super + s
