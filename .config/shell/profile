@@ -21,7 +21,14 @@ export VISUAL="nvim"
 export MANPAGER='nvim +Man!'
 export MANWIDTH=999
 export TERMINAL="kitty"
-export BROWSER="brave"
+
+if [ -e /usr/bin/firefox-nightly ]; then
+  export BROWSER="firefox-nightly"
+elif [ -e /usr/bin/ ]
+  export BROWSER="firefox"
+else
+  export BROWSER="brave"
+fi
 
 ## Dotfile management
 export DOTFILES=$HOME/.dotfile.git
