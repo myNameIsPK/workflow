@@ -12,7 +12,8 @@ super + Return
 # super + @space
 # 	dmenu_run
 super + space ; super + space
-  dmenu_run -l 10 -b
+  _fzf-run
+# dmenu_run -l 10 -b
 
 # launch specific program
 super + space ; {b,d}
