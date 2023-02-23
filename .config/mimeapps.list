@@ -1,8 +1,4 @@
 [Default Applications]
-
-# xdg-open will use these settings to determine how to open filetypes.
-# These .desktop entries can also be seen and changed in ~/.local/share/applications/
-
 text/x-shellscript=text.desktop;
 x-scheme-handler/magnet=torrent.desktop;
 application/x-bittorrent=torrent.desktop;
@@ -18,3 +14,25 @@ video/x-matroska=video.desktop
 x-scheme-handler/lbry=lbry.desktop
 inode/directory=file.desktop
 x-scheme-handler/msteams=teams.desktop
+x-scheme-handler/http=userapp-Nightly-ROWT01.desktop
+x-scheme-handler/https=userapp-Nightly-ROWT01.desktop
+x-scheme-handler/chrome=userapp-Nightly-ROWT01.desktop
+text/html=userapp-Nightly-ROWT01.desktop
+application/x-extension-htm=userapp-Nightly-ROWT01.desktop
+application/x-extension-html=userapp-Nightly-ROWT01.desktop
+application/x-extension-shtml=userapp-Nightly-ROWT01.desktop
+application/xhtml+xml=userapp-Nightly-ROWT01.desktop
+application/x-extension-xhtml=userapp-Nightly-ROWT01.desktop
+application/x-extension-xht=userapp-Nightly-ROWT01.desktop
+
+[Added Associations]
+x-scheme-handler/http=userapp-Nightly-ROWT01.desktop;
+x-scheme-handler/https=userapp-Nightly-ROWT01.desktop;
+x-scheme-handler/chrome=userapp-Nightly-ROWT01.desktop;
+text/html=userapp-Nightly-ROWT01.desktop;
+application/x-extension-htm=userapp-Nightly-ROWT01.desktop;
+application/x-extension-html=userapp-Nightly-ROWT01.desktop;
+application/x-extension-shtml=userapp-Nightly-ROWT01.desktop;
+application/xhtml+xml=userapp-Nightly-ROWT01.desktop;
+application/x-extension-xhtml=userapp-Nightly-ROWT01.desktop;
+application/x-extension-xht=userapp-Nightly-ROWT01.desktop;

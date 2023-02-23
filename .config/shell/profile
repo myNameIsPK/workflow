@@ -24,7 +24,7 @@ export TERMINAL="kitty"
 
 if [ -e /usr/bin/firefox-nightly ]; then
   export BROWSER="firefox-nightly"
-elif [ -e /usr/bin/ ]
+elif [ -e /usr/bin/ ]; then
   export BROWSER="firefox"
 else
   export BROWSER="brave"
