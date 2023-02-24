@@ -64,6 +64,9 @@ export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gem
 export CARGO_HOME=${XDG_DATA_HOME:-$HOME/.local/share}/cargo
 export RUSTUP_HOME=${XDG_DATA_HOME:-$HOME/.local/share}/rustup
 . "$XDG_DATA_HOME/cargo/env"
+# GO#go
+export GOPATH="$XDG_DATA_HOME"/go
+export GOMODCACHE="$XDG_CACHE_HOME"/go/mod
 
 export MYSHELL="$(ps -p $$ -ocomm=)"
 # if running bash
