@@ -6,6 +6,6 @@ if vim.g.colors_name == "gruvbox-material" then
 end
 
 if vim.g.colors_name == "gruvbox" then
-  vim.g.gruvbox_contrast_dark = "soft"
+  vim.g.gruvbox_contrast_dark = "medium"
   vim.g.gruvbox_italic = 1
 end

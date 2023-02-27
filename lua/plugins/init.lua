@@ -101,7 +101,7 @@ require("packer").startup {
     -- use { "mfussenegger/nvim-dap" }
 
     -- Colors Scheme
-    -- use { "sainnhe/gruvbox-material" }
+    use { "sainnhe/gruvbox-material" }
 
     -- Git
     use { "lewis6991/gitsigns.nvim" }

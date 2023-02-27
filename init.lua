@@ -9,7 +9,7 @@
 vim.g.mapleader = " "
 vim.cmd 'let maplocalleader = "\\<BS>"' -- map <BS> to localleader
 
-vim.cmd "colorscheme custom"
+vim.cmd "colorscheme gruvbox-material"
 require "colorscheme_settings"
 
 require "globals"
