@@ -1,184 +1,202 @@
-local utils = require "utils.plugins"
+require("utils.plugins").bootstrap_lazy()
 
-utils.bootstrap_packer()
+local plugins = {
+  always = {
+    -- { "nvim-lua/popup.nvim" },
+    { "nvim-lua/plenary.nvim" },
 
-require("packer").startup {
-  config = {
-    -- Move to lua dir so impatient.nvim can cache it
-    compile_path = vim.fn.stdpath "config" .. "/lua/packer_compiled.lua",
-  },
-  function(use)
-    -- Packer can manage itself as an optional plugin
-    use { "wbthomason/packer.nvim" }
-    use { "nvim-lua/popup.nvim" }
-    use { "nvim-lua/plenary.nvim" }
-    use { "kyazdani42/nvim-web-devicons" }
-    use { "antoinemadec/FixCursorHold.nvim" }
+    { "nvim-telescope/telescope.nvim" },
+    { "nvim-telescope/telescope-ui-select.nvim" },
 
-    -- Performance
-    -- use { "dstein64/vim-startuptime" } -- use impatient LuaCacheProfile instead
-    use {
-      "lewis6991/impatient.nvim",
-      config = function()
-        require("impatient").enable_profile() -- enable LuaCacheProfile
-      end,
-    }
+    -- { "ibhagwan/fzf-lua" },
 
-    -- Telescope
-    use { "nvim-telescope/telescope.nvim" }
-    use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
-    use { "nvim-telescope/telescope-ui-select.nvim" }
-    use {
-      "ahmedkhalf/project.nvim",
-      config = function()
-        require("project_nvim").setup()
-      end,
-    }
+    { "numToStr/Comment.nvim" },
 
-    -- Fzf
-    -- use { "ibhagwan/fzf-lua" }
-
-    -- LSP
-    use {
-      "neovim/nvim-lspconfig",
-      requires = {
-        { "williamboman/mason.nvim" },
-        { "williamboman/mason-lspconfig.nvim" },
-        { "folke/neodev.nvim" },
-      },
-    }
-    use { "jose-elias-alvarez/null-ls.nvim" }
-
-    use { "b0o/SchemaStore.nvim" }
-
-    -- Completion
-    use {
+    {
       "hrsh7th/nvim-cmp",
-      -- module = "cmp",
-      -- event = "InsertEnter",
-      requires = {
+      dependencies = {
         { "L3MON4D3/LuaSnip" },
         { "rafamadriz/friendly-snippets" },
         { "saadparwaiz1/cmp_luasnip" },
         -- { "hrsh7th/cmp-nvim-lua" }, -- neodev is better
         { "hrsh7th/cmp-nvim-lsp" },
-        { "hrsh7th/cmp-nvim-lsp-document-symbol", after = "nvim-cmp" },
-        { "hrsh7th/cmp-nvim-lsp-signature-help", after = "nvim-cmp" },
-        { "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
-        { "f3fora/cmp-spell", after = "nvim-cmp" },
-        { "hrsh7th/cmp-path", after = "nvim-cmp" },
-        { "hrsh7th/cmp-buffer", after = "nvim-cmp" },
-        -- { 'tzachar/cmp-tabnine', run = './install.sh', after = 'nvim-cmp' },
+        { "hrsh7th/cmp-nvim-lsp-document-symbol" },
+        { "hrsh7th/cmp-nvim-lsp-signature-help" },
+        { "hrsh7th/cmp-cmdline" },
+        { "f3fora/cmp-spell" },
+        { "hrsh7th/cmp-path" },
+        { "hrsh7th/cmp-buffer" },
+        -- { 'tzachar/cmp-tabnine' },
       },
-    }
+    },
 
-    use { "windwp/nvim-autopairs", after = "nvim-cmp" }
+    { "windwp/nvim-autopairs" },
+  },
+  perf = {
+    { "antoinemadec/FixCursorHold.nvim" },
 
-    -- Treesitter
-    use {
-      "nvim-treesitter/nvim-treesitter",
-      requires = {
-        { "nvim-treesitter/playground", after = "nvim-treesitter" },
-        { "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" },
-        { "JoosepAlviste/nvim-ts-context-commentstring", after = "nvim-treesitter" },
-      },
-    }
+    -- { "dstein64/vim-startuptime" } -- use impatient LuaCacheProfile instead
 
-    use {
-      "lewis6991/spellsitter.nvim",
+    {
+      "lewis6991/impatient.nvim",
+      lazy = false,
       config = function()
-        require("spellsitter").setup()
+        require("impatient").enable_profile() -- enable LuaCacheProfile
       end,
-    }
+    },
 
-    -- -- Document
-    -- use {
-    --   "danymat/neogen",
-    --   requires = "nvim-treesitter/nvim-treesitter",
-    -- }
+    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+  },
+  qol = {
+    {
+      "ahmedkhalf/project.nvim",
+      config = function()
+        require("project_nvim").setup()
+      end,
+    },
 
-    -- DAP
-    -- use { "mfussenegger/nvim-dap" }
+    { "folke/which-key.nvim" },
 
-    -- Colors Scheme
-    use { "sainnhe/gruvbox-material" }
-
-    -- Git
-    use { "lewis6991/gitsigns.nvim" }
-    use { "TimUntersberger/neogit" }
-    -- use { "sindrets/diffview.nvim" }
-
-    -- Notes taking
-    -- use { "renerocksai/telekasten.nvim" }
-
-    use { "mickael-menu/zk-nvim" }
-
-    -- use { "nvim-orgmode/orgmode" }
-
-    -- use { "nvim-neorg/neorg", requires = "nvim-neorg/neorg-telescope" }
-
-    -- QOL
-
-    use { "folke/which-key.nvim" }
-
-    -- use {
+    -- {
     --   "anuvyklack/hydra.nvim",
-    --   requires = "anuvyklack/keymap-layer.nvim", -- needed only for pink hydras
-    -- }
+    --   dependencies = "anuvyklack/keymap-layer.nvim", -- needed only for pink hydras
+    -- },
 
-    use { "numToStr/Comment.nvim" }
-
-    use {
+    {
       "akinsho/toggleterm.nvim",
       config = function()
         require("toggleterm").setup()
       end,
-    }
+    },
 
-    use { "goolord/alpha-nvim" }
+    {
+      "machakann/vim-sandwich",
+      lazy = false,
+    },
 
-    use { "machakann/vim-sandwich" }
-
-    use {
+    {
       "junegunn/vim-easy-align",
+      lazy = false,
       config = function()
         vim.cmd [[
           xmap ga <Plug>(EasyAlign)
           nmap ga <Plug>(EasyAlign)
-        ]]
+          ]]
       end,
-    }
+    },
 
-    -- UI
-    use {
+  },
+  ui = {
+    { "kyazdani42/nvim-web-devicons" },
+
+    {
       "j-hui/fidget.nvim",
-      config = function()
-        require("fidget").setup()
-      end,
-    }
+      lazy = false,
+      config = true,
+    },
 
-    -- use { "lukas-reineke/indent-blankline.nvim" }
+    -- { "lukas-reineke/indent-blankline.nvim" },
 
-    use { "norcalli/nvim-colorizer.lua", cmd = "ColorizerToggle" }
+    { "norcalli/nvim-colorizer.lua", cmd = "ColorizerToggle" },
 
-    -- use { "jbyuki/nabla.nvim" }
+    -- { "jbyuki/nabla.nvim" },
 
-    -- use { "folke/todo-comments.nvim" }
+    -- { "folke/todo-comments.nvim" },
 
-    -- 3rd Party
-    -- use {
+    -- {
     --   "glacambre/firenvim",
-    --   run = function()
+    --   build = function()
     --     vim.fn["firenvim#install"](1)
     --   end,
-    -- }
+    -- },
 
-    use {
+    { "goolord/alpha-nvim" },
+
+    {
       "iamcco/markdown-preview.nvim",
-      run = function()
+      build = function()
         vim.fn["mkdp#util#install"]()
       end,
       ft = { "markdown" },
-    }
-  end,
+    },
+  },
+  color = {
+    {
+      "sainnhe/gruvbox-material",
+      lazy = false,
+      priority = 1000,
+      config = function()
+        vim.g.gruvbox_material_visual = "reverse"
+        vim.g.gruvbox_material_background = "soft"
+        vim.g.gruvbox_material_disable_italic_comment = 0
+        vim.g.gruvbox_material_palette = "original"
+        -- vim.cmd "colorscheme gruvbox-material"
+      end,
+    },
+  },
+  git = {
+    { "lewis6991/gitsigns.nvim" },
+    { "TimUntersberger/neogit" },
+    -- { "sindrets/diffview.nvim" },
+  },
+  lsp = {
+    {
+      "neovim/nvim-lspconfig",
+      dependencies = {
+        { "williamboman/mason.nvim" },
+        { "williamboman/mason-lspconfig.nvim" },
+        { "folke/neodev.nvim" },
+      },
+    },
+  },
+  code = {
+    { "jose-elias-alvarez/null-ls.nvim" },
+
+    -- {
+    --   "danymat/neogen",
+    --   dependencies = "nvim-treesitter/nvim-treesitter",
+    -- },
+
+    -- { "mfussenegger/nvim-dap" },
+  },
+  treesitter = {
+    {
+      "nvim-treesitter/nvim-treesitter",
+      dependencies = {
+        { "nvim-treesitter/playground" },
+        { "nvim-treesitter/nvim-treesitter-textobjects" },
+        { "JoosepAlviste/nvim-ts-context-commentstring" },
+      },
+    },
+  },
+  lang = {
+    -- Json
+    { "b0o/SchemaStore.nvim" },
+  },
+  note = {
+    -- Notes taking
+    -- { "renerocksai/telekasten.nvim" },
+
+    { "mickael-menu/zk-nvim" },
+
+    -- { "nvim-orgmode/orgmode" },
+
+    -- { "nvim-neorg/neorg", dependencies = "nvim-neorg/neorg-telescope" },
+  }
 }
+
+local lazy_plugins = {}
+for _, plugin in pairs(plugins) do
+  table.insert(lazy_plugins, plugin)
+end
+
+local lazy_opts = {
+  defaults = {
+    lazy = true,
+  },
+  dev = {
+    path = "~/Projects",
+  },
+}
+
+require("lazy").setup(lazy_plugins, lazy_opts)

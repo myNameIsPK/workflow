@@ -5,16 +5,15 @@
 -- ██║██║ ╚████║██║   ██║██╗███████╗╚██████╔╝██║  ██║
 -- ╚═╝╚═╝  ╚═══╝╚═╝   ╚═╝╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝
 
--- set leader key before all plugins for safety
 vim.g.mapleader = " "
 vim.cmd 'let maplocalleader = "\\<BS>"' -- map <BS> to localleader
 
-vim.cmd "colorscheme gruvbox-material"
-require "colorscheme_settings"
+pcall(require, "impatient")
+
+vim.cmd "colorscheme custom"
 
 require "globals"
 require "plugins"
-pcall(require, "packer_compiled")
 
 require "plugins.telescope"
 require "plugins.lsp"

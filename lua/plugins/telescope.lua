@@ -52,10 +52,10 @@ local mappings = {
   },
 }
 
-telescope.load_extension "fzf"
-telescope.load_extension "projects"
-telescope.load_extension "ui-select"
-telescope.load_extension "zk"
+pcall(telescope.load_extension, "fzf")
+pcall(telescope.load_extension, "projects")
+pcall(telescope.load_extension, "ui-select")
+pcall(telescope.load_extension, "zk")
 
 local extensions = {
   fzf = {

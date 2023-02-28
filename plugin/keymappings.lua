@@ -7,10 +7,10 @@ map("n", "<leader>rf", "<cmd>lua my.save_and_exec()<CR>")
 map("n", "<leader>ra", "<cmd>lua require('utils.reload').reload_all()<CR>")
 ---
 
-map("i", { "jk", "kj", "jj", "kk" }, "<Esc>")
+-- map("i", { "jk", "kj", "jj", "kk" }, "<Esc>")
 
-map("i", "<M-j>", "<Esc>:m .+1<CR>==gi")
-map("i", "<M-k>", "<Esc>:m .-2<CR>==gi")
+map("i", { "<M-j>", "<M-Down>" }, "<Esc>:m .+1<CR>==gi")
+map("i", { "<M-k>", "<M-Up>", }, "<Esc>:m .-2<CR>==gi")
 
 map("i", ",", ",<c-g>u")
 map("i", ".", ".<c-g>u")
@@ -20,8 +20,8 @@ map("i", "?", "?<c-g>u")
 -- map("i", "<C-j>", 'pumvisible() ? "\\<C-n>" : "\\<C-j>"', { expr = true, noremap = true })
 -- map("i", "<C-k>", 'pumvisible() ? "\\<C-p>" : "\\<C-k>"', { expr = true, noremap = true })
 
-map("n", "j", "gj")
-map("n", "k", "gk")
+map("n", "<Up>", "g<Up>")
+map("n", "<Down>", "g<Down>")
 
 -- map("n", "<C-h>", "<C-w>h")
 -- map("n", "<C-j>", "<C-w>j")
@@ -33,8 +33,8 @@ map("n", "<C-Down>", ":resize +2<CR>")
 map("n", "<C-Left>", ":vertical resize -2<CR>")
 map("n", "<C-Right>", ":vertical resize +2<CR>")
 
-map("n", "<M-j>", ":m .+1<CR>==")
-map("n", "<M-k>", ":m .-2<CR>==")
+map("n", { "<M-j>", "<M-Down>" }, ":m .+1<CR>==")
+map("n", { "<M-k>", "<M-Up>" }, ":m .-2<CR>==")
 
 map("n", "[b", "<Cmd>bp<Cr>")
 map("n", "]b", "<Cmd>bn<Cr>")
@@ -49,12 +49,12 @@ map("n", "<expr> k", "(v:count > 1 ? \"m'\" . v:count : '') . 'k'")
 map("v", "<", "<gv")
 map("v", ">", ">gv")
 
-map({ "v", "x" } , "<M-k>", ":m '<-2<CR>gv=gv")
-map({ "v", "x" } , "<M-j>", ":m '>+1<CR>gv=gv")
+map({ "v", "x" } , { "<M-k>", "<M-Up>" }, ":m '<-2<CR>gv=gv")
+map({ "v", "x" } , { "<M-j>", "<M-Down>" }, ":m '>+1<CR>gv=gv")
 
 map("v", "p", '"_dP') -- not yank before paste in visual select
 
-map("t", "jk", "<C-\\><C-n>")
+-- map("t", "jk", "<C-\\><C-n>")
 
 -- map("t", "<C-h>", "<C-\\><C-n><C-w>h")
 -- map("t", "<C-j>", "<C-\\><C-n><C-w>j")
@@ -76,7 +76,10 @@ map('n', '<leader>dq', function() vim.diagnostic.setloclist() end, { desc = "Dia
 map('n', ']d', function() vim.diagnostic.goto_next() end, { desc = "Diagnostic Next" })
 
 map("n", "<leader>gg", "<Cmd>Neogit<Cr>")
-map("n", "<leader>sp", "<Cmd>PackerStatus<Cr>")
+map("n", "<leader>sp", "<Cmd>Lazy<Cr>")
+map("n", "<leader>sm", "<Cmd>Mason<Cr>")
+map("n", "<leader>sn", "<Cmd>NullLsInfo<Cr>")
+map("n", "<leader>sc", "<Cmd>CmpStatus<Cr>")
 
 -- Telescope
 if plugin_installed "telescope.nvim" then

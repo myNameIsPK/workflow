@@ -38,13 +38,13 @@ dashboard.section.buttons.val = {
 }
 
 local function footer()
-  local total_plugins = #vim.fn.globpath(vim.fn.stdpath('data') .. '/site/pack/packer/*', '*', 0, 1)
-  local loaded_plugins = vim.tbl_count(_G.packer_plugins)
+  local lazy_stats = require("lazy").stats()
+  local plugins_loaded = lazy_stats.loaded .. "/" .. lazy_stats.count .. " plugins loaded"
 
   local version = vim.version()
   local version_info = " v" .. version.major .. "." .. version.minor .. "." .. version.patch
 
-  return loaded_plugins .. "/" .. total_plugins .. " plugins loaded" .. version_info
+  return plugins_loaded .. version_info
 end
 
 dashboard.section.footer.val = footer()
