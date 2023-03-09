@@ -84,7 +84,6 @@ local plugins = {
           ]]
       end,
     },
-
   },
   ui = {
     { "kyazdani42/nvim-web-devicons" },
@@ -130,7 +129,7 @@ local plugins = {
         vim.g.gruvbox_material_background = "soft"
         vim.g.gruvbox_material_disable_italic_comment = 0
         vim.g.gruvbox_material_palette = "original"
-        -- vim.cmd "colorscheme gruvbox-material"
+        vim.cmd "colorscheme gruvbox-material"
       end,
     },
   },
@@ -182,7 +181,7 @@ local plugins = {
     -- { "nvim-orgmode/orgmode" },
 
     -- { "nvim-neorg/neorg", dependencies = "nvim-neorg/neorg-telescope" },
-  }
+  },
 }
 
 local lazy_plugins = {}
