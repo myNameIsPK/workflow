@@ -54,6 +54,9 @@ cmap('<Ctrl-p', '<Shift-Tab>')
 
 imap('<Ctrl-a>', '<Ctrl-f>')
 
+vmapkey('n', 'zzn')
+vmapkey('N', 'zzN')
+
 removeSearchAlias('b'); //baidu
 removeSearchAlias('e'); //wikipedia
 removeSearchAlias('w'); //bing
