@@ -55,8 +55,9 @@ cmap('<Ctrl-p', '<Shift-Tab>')
 imap('<Ctrl-a>', '<Ctrl-f>')
 
 Hints.setCharacters("arstgqwjbxcdv");
-// vmapkey('n', 'zzn')
-// vmapkey('N', 'zzN')
+
+api.vmap('n', 'zzn')
+api.vmap('N', 'zzN')
 
 // removeSearchAlias('b'); //baidu
 // removeSearchAlias('e'); //wikipedia
