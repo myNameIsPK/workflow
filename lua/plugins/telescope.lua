@@ -86,7 +86,7 @@ local default_opts = require("telescope.themes").get_ivy {
     "flex",
     "bottom_pane",
   },
-  border = false,
+  border = true,
   -- winblend = 15,
   borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
   dynamic_preview_title = true,
@@ -118,8 +118,10 @@ M.find_vim_files = gen_picker(builtin.find_files, {
 
 M.find_vim_data = gen_picker(builtin.find_files, {
   prompt_title = "Vim plugin",
-  cwd = "$XDG_DATA_HOME/nvim/site",
-  find_command = { "find", "-maxdepth", "4", "-path", "**/**/**/**/**", "-type", "d" },
+  -- cwd = "$XDG_DATA_HOME/nvim/site",
+  -- find_command = { "find", "-maxdepth", "4", "-path", "**/**/**/**/**", "-type", "d" },
+  cwd = "$XDG_DATA_HOME/nvim/lazy",
+  find_command = { "find", "-type", "f" },
 })
 
 local dotfile_dir = vim.env.DOTFILES

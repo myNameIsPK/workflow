@@ -54,7 +54,7 @@ map({ "v", "x" } , { "<M-j>", "<M-Down>" }, ":m '>+1<CR>gv=gv")
 
 map("v", "p", '"_dP') -- not yank before paste in visual select
 
-map("t", "<leader><esc>", "<C-\\><C-n>")
+map("t", "<c-g>", "<C-\\><C-n>")
 
 -- map("t", "<C-h>", "<C-\\><C-n><C-w>h")
 -- map("t", "<C-j>", "<C-\\><C-n><C-w>j")
@@ -84,6 +84,8 @@ map("n", "<leader>sc", "<Cmd>CmpStatus<Cr>")
 map("n", "<leader>tt", vim.cmd.terminal)
 map("n", "<leader>tl", function() vim.cmd.terminal("lf") end)
 
+map("n", "<leader>ee", vim.cmd.Ex)
+
 -- Telescope
 if plugin_installed "telescope.nvim" then
   -- Builtin
@@ -104,7 +106,7 @@ if plugin_installed "telescope.nvim" then
 
   -- Custom
   map("n", "<leader>fc", function() require("plugins.telescope").find_vim_files() end, { desc = "Config files(Neovim)" })
-  map("n", "<leader>fC", function() require("plugins.telescope").find_vim_data() end, { desc = "Data files(Neovim)" })
+  map("n", "<leader>fC", function() require("plugins.telescope").find_vim_data() end, { desc = "Plugins files(Neovim)" })
   map("n", "<leader>fD", function() require("plugins.telescope").find_dotfiles() end, { desc = "Dotfiles" })
   map("n", "<leader>td", function() require("plugins.telescope").todo_comments() end, { desc = "TODO comments" })
 

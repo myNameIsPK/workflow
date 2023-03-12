@@ -1,35 +1,60 @@
-local ls = require("luasnip")
+local ls = require "luasnip"
 
 local s = ls.snippet
 local sn = ls.snippet_node
+local isn = ls.indent_snippet_node
 local t = ls.text_node
 local i = ls.insert_node
 local f = ls.function_node
 local c = ls.choice_node
 local d = ls.dynamic_node
+local r = ls.restore_node
+local events = require "luasnip.util.events"
+local ai = require "luasnip.nodes.absolute_indexer"
+local fmt = require("luasnip.extras.fmt").fmt
+local m = require("luasnip.extras").m
+local lambda = require("luasnip.extras").l
+local rep = require("luasnip.extras").rep
 
-ls.config.set_config({
+ls.cleanup()
+
+ls.config.set_config {
   history = true,
   updateevents = "TextChanged,TextChangedI",
-})
+}
 
--- FIXME: Must type and press tab only, no completion
+-- stylua: ignore start
 ls.add_snippets("lua", {
-    s({ trig = "[[-", wordTrig = false, hidden = true }, {
-      t "--[[",
-      t { "", "\t" },
-      i(0),
-      t { "", "--]]" },
-    }),
-    s({ trig = "ig", wordTrig = true, hidden = true }, {
-      t "-- stylua: ignore",
-    }),
-  }
-)
+  s("ig", {
+    t "-- stylua: ignore",
+  }),
+
+  s("igstart", {
+    t "-- stylua: ignore start",
+  }),
+
+  s("igend", {
+    t "-- stylua: ignore end",
+  }),
+
+  s("preq", fmt([[
+    local {}_ok, {} = pcall(require, "{}")
+    if not {}_ok then
+      return
+    end
+  ]], {
+    i(2, "test"),
+    rep(2),
+    i(1, "module_name"),
+    rep(2),
+  }))
+
+})
+-- stylua: ignore end
 
 -- this work only friendly-snippets
-require('luasnip.loaders.from_vscode').lazy_load()
-require('luasnip.loaders.from_vscode').lazy_load { paths =  { '~/.config/nvim/snippets/vscode', }}
+require("luasnip.loaders.from_vscode").lazy_load()
+require("luasnip.loaders.from_vscode").lazy_load { paths = { "~/.config/nvim/snippets/vscode" } }
 
 local map = require("utils.mappings").map
 
