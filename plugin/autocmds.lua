@@ -10,7 +10,7 @@ local autocmd = vim.api.nvim_create_autocmd
 --     autocmd TextYankPost * silent! lua vim.highlight.on_yank()
 --   augroup END
 -- ]])
-autocmd({ "TextYankPost" }, {
+autocmd("TextYankPost", {
   group = group "_general_settings",
   -- pattern = "*",
   callback = function()
@@ -18,6 +18,26 @@ autocmd({ "TextYankPost" }, {
   end,
   -- command = "silent! lua vim.highlight.on_yank()", -- or use command instead of callback
   desc = "Highlight yanked text",
+})
+
+autocmd("TermOpen", {
+  group = group "_terminal_open",
+  pattern = "term://*",
+  callback = function()
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
+    vim.cmd.startinsert()
+  end,
+  desc = "Fix terminal behavior",
+})
+
+autocmd("TermClose", {
+  group = group "_terminal_close",
+  pattern = "term://*",
+  callback = function()
+    vim.fn.feedkeys "q"
+  end,
+  desc = "Close without showing exitcode",
 })
 
 vim.cmd [[

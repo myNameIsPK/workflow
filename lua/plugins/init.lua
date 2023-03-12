@@ -109,7 +109,7 @@ local plugins = {
     --   end,
     -- },
 
-    { "goolord/alpha-nvim" },
+    -- { "goolord/alpha-nvim" },
 
     {
       "iamcco/markdown-preview.nvim",
@@ -155,6 +155,8 @@ local plugins = {
     --   "danymat/neogen",
     --   dependencies = "nvim-treesitter/nvim-treesitter",
     -- },
+
+    -- TODO: neotest or vimtest
 
     -- { "mfussenegger/nvim-dap" },
   },

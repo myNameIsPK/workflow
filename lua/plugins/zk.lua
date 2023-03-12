@@ -29,8 +29,8 @@ local map = require("utils.mappings").map
 map("n", "<leader>nn", "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>")
 map("n", "<leader>no", "<Cmd>ZkNotes { sort = { 'modified' } }<CR>")
 map("n", "<leader>nt", "<Cmd>ZkTags<CR>")
-map("n", "<leader>nf", "<Cmd>ZkNotes { sort = { 'modified' }, match = vim.fn.input('Search: ') }<CR>")
 map("v", "<leader>nf", ":'<,'>ZkMatch<CR>")
+map("n", "<leader>nc", ":edit $ZK_NOTEBOOK_DIR/.zk/config.toml<CR>")
 
 local function zk_keymaps(bufnr)
   local function map_buf(mode, lhs, rhs, desc)

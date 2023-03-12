@@ -13,11 +13,11 @@ neorg.setup {
         },
       },
     },
-    ["core.gtd.base"] = {
-      config = {
-        workspace = "gtd",
-      },
-    },
+    -- ["core.gtd.base"] = {
+    --   config = {
+    --     workspace = "gtd",
+    --   },
+    -- },
     ["core.norg.completion"] = {
       config = {
         engine = "nvim-cmp",

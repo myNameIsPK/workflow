@@ -54,7 +54,7 @@ map({ "v", "x" } , { "<M-j>", "<M-Down>" }, ":m '>+1<CR>gv=gv")
 
 map("v", "p", '"_dP') -- not yank before paste in visual select
 
--- map("t", "jk", "<C-\\><C-n>")
+map("t", "<leader><esc>", "<C-\\><C-n>")
 
 -- map("t", "<C-h>", "<C-\\><C-n><C-w>h")
 -- map("t", "<C-j>", "<C-\\><C-n><C-w>j")
@@ -80,6 +80,9 @@ map("n", "<leader>sp", "<Cmd>Lazy<Cr>")
 map("n", "<leader>sm", "<Cmd>Mason<Cr>")
 map("n", "<leader>sn", "<Cmd>NullLsInfo<Cr>")
 map("n", "<leader>sc", "<Cmd>CmpStatus<Cr>")
+
+map("n", "<leader>tt", vim.cmd.terminal)
+map("n", "<leader>tl", function() vim.cmd.terminal("lf") end)
 
 -- Telescope
 if plugin_installed "telescope.nvim" then
@@ -132,10 +135,6 @@ end
 
 if plugin_installed("nvim-colorizer.lua") then
   map("n", "<leader>tc", "<Cmd>ColorizerToggle<Cr>")
-end
-
-if plugin_installed("toggleterm.nvim") then
-  map("n", "<leader>tt", "<Cmd>ToggleTerm<Cr>")
 end
 
 if plugin_installed("indent-blankline.nvim") then
