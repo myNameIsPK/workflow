@@ -21,7 +21,7 @@ super + space ; {b,d}
 
 # toggle scratchpad
 super + s
-  win-toggle-hidden scratchpad || $(win-toggle-term scratchpad tmux-ses scratch && xdotool search --class scratchpad windowsize 75% 75% windowmove 37% 37%)
+  win-toggle-hidden scratchpad || $(win-toggle-term scratchpad tmux-ses scratch && xdotool search --class scratchpad windowsize 75% 75%)
 
 # screecshot region to clipboard 
 ctrl + Print

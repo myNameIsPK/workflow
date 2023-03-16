@@ -2,5 +2,7 @@
 options=$*
 class_name="Term-menu"
 # st -c "Term-menu" -g 40x8+297+1 -e bash -c "fzf $options < /proc/$$/fd/0 > /proc/$$/fd/1"
-$TERMINAL --class "$class_name" -e bash -c "fzf $options < /proc/$$/fd/0 > /proc/$$/fd/1"
-xdotool search --class "$class_name" windowsize %@ 50% 50%
+
+if [ -z "$(ps -ef | grep $class_name)" ]; then
+  $TERMINAL --class "$class_name" -e bash -c "fzf $options < /proc/$$/fd/0 > /proc/$$/fd/1"
+fi
