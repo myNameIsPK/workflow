@@ -68,10 +68,6 @@ map("t", "<c-g>", "<C-\\><C-n>")
 map("c", "<C-a>", "<Home>")
 -- map("c", "<C-j>", 'pumvisible() ? "\\<C-n>" : "\\<C-j>"', { expr = true, noremap = true })
 -- map("c", "<C-k>", 'pumvisible() ? "\\<C-p>" : "\\<C-k>"', { expr = true, noremap = true })
-vim.api.nvim_create_user_command("SudoW", "w !sudo tee %", {})
-
--- disable because sandwich.vim, `s` could be replaced by `cl`
-map({ "n", "x" }, "s", "<Nop>")
 
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 map('n', '<leader>de', function() vim.diagnostic.open_float() end, { desc = "Diagnostic Float" })
