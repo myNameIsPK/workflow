@@ -27,8 +27,10 @@ if command -v firefox-nightly > /dev/null; then
   export BROWSER="firefox-nightly"
 elif command -v firefox > /dev/null; then
   export BROWSER="firefox"
-else
+elif command -v brave > /dev/null; then
   export BROWSER="brave"
+else
+  # export BROWSER="chrome"
 fi
 
 ## Dotfile management
