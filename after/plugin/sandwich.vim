@@ -1,3 +1,7 @@
+if !exists("g:loaded_sandwich")
+  finish
+endif
+
 " if you have not copied default recipes
 let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
 

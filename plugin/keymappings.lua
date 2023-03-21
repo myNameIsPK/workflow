@@ -36,8 +36,12 @@ map("n", "<C-Right>", ":vertical resize +2<CR>")
 map("n", { "<M-j>", "<M-Down>" }, ":m .+1<CR>==")
 map("n", { "<M-k>", "<M-Up>" }, ":m .-2<CR>==")
 
-map("n", "[b", "<Cmd>bp<Cr>")
 map("n", "]b", "<Cmd>bn<Cr>")
+map("n", "[b", "<Cmd>bp<Cr>")
+map("n", "]q", "<Cmd>cnext<Cr>")
+map("n", "[q", "<Cmd>cprev<Cr>")
+map("n", "]l", "<Cmd>lnext<Cr>")
+map("n", "[l", "<Cmd>lprev<Cr>")
 
 map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")
@@ -108,7 +112,6 @@ if plugin_installed "telescope.nvim" then
   map("n", "<leader>fc", function() require("plugins.telescope").find_vim_files() end, { desc = "Config files(Neovim)" })
   map("n", "<leader>fC", function() require("plugins.telescope").find_vim_data() end, { desc = "Plugins files(Neovim)" })
   map("n", "<leader>fD", function() require("plugins.telescope").find_dotfiles() end, { desc = "Dotfiles" })
-  map("n", "<leader>td", function() require("plugins.telescope").todo_comments() end, { desc = "TODO comments" })
 
 end
 
@@ -141,6 +144,10 @@ end
 
 if plugin_installed("indent-blankline.nvim") then
   map("n", "<leader>ti", "<Cmd>IndentBlanklineToggle<Cr>")
+end
+
+if plugin_installed("plenary.nvim") then
+  map("n", "<leader>td", "<Cmd>w<Cr><Plug>PlenaryTestFile")
 end
 
 local wk_ok, wk = pcall(require, "which-key")

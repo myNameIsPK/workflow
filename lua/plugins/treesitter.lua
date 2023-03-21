@@ -5,27 +5,27 @@ end
 
 tsconfigs.setup {
   ensure_installed = {
-    'lua',
-    'vim',
-    'bash',
-    'markdown',
-    'yaml',
-    'toml',
-    'python',
-    'make',
-    'regex',
-    'latex',
-    'bibtex',
-    'css',
-    'html',
-    'javascript',
-    'jsdoc',
-    'json',
-    'php',
-    'scss',
-    'tsx',
-    'typescript',
-    'query', -- for playground query editor buffer
+    "lua",
+    "vim",
+    "bash",
+    "markdown",
+    "yaml",
+    "toml",
+    "python",
+    "make",
+    "regex",
+    "latex",
+    "bibtex",
+    "css",
+    "html",
+    "javascript",
+    "jsdoc",
+    "json",
+    "php",
+    "scss",
+    "tsx",
+    "typescript",
+    "query", -- for playground query editor buffer
   }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
 
   sync_install = true, -- install languages synchronously (only applied to `ensure_installed`)
@@ -33,7 +33,7 @@ tsconfigs.setup {
 
   highlight = {
     enable = true, -- false will disable the whole extension
-    disable = { "help", "org" },  -- list of language that will be disabled
+    disable = { "org" }, -- list of language that will be disabled
     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
     -- Using this option may slow down your editor, and you may see some duplicate highlights.
@@ -55,7 +55,7 @@ tsconfigs.setup {
 
   indent = {
     enable = true,
-    disable = { "" },  -- list of language that will be disabled
+    disable = { "" }, -- list of language that will be disabled
   },
 
   playground = { -- "nvim-treesitter/playground"
@@ -64,23 +64,23 @@ tsconfigs.setup {
     updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
     persist_queries = false, -- Whether the query persists across vim sessions
     keybindings = {
-      toggle_query_editor = 'o',
-      toggle_hl_groups = 'i',
-      toggle_injected_languages = 't',
-      toggle_anonymous_nodes = 'a',
-      toggle_language_display = 'I',
-      focus_language = 'f',
-      unfocus_language = 'F',
-      update = 'R',
-      goto_node = '<cr>',
-      show_help = '?',
+      toggle_query_editor = "o",
+      toggle_hl_groups = "i",
+      toggle_injected_languages = "t",
+      toggle_anonymous_nodes = "a",
+      toggle_language_display = "I",
+      focus_language = "f",
+      unfocus_language = "F",
+      update = "R",
+      goto_node = "<cr>",
+      show_help = "?",
     },
   },
 
   query_linter = { -- linter in query editor buffer in playground
     enable = true,
     use_virtual_text = true,
-    lint_events = {"BufWrite", "CursorHold"},
+    lint_events = { "BufWrite", "CursorHold" },
   },
 
   context_commentstring = {
@@ -176,7 +176,7 @@ tsconfigs.setup {
     -- peek_definition_code: show textobject surrounding definition as determined using Neovim's built-in LSP in a floating window
     lsp_interop = {
       enable = true,
-      border = 'none',
+      border = "none",
       peek_definition_code = {
         ["<leader>df"] = "@function.outer",
         ["<leader>dF"] = "@class.outer",

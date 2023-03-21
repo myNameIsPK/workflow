@@ -70,18 +70,36 @@ local plugins = {
     },
 
     {
-      "machakann/vim-sandwich",
-      lazy = false,
-    },
-
-    {
-      "junegunn/vim-easy-align",
+      "echasnovski/mini.nvim",
       lazy = false,
       config = function()
-        vim.cmd [[
-          xmap ga <Plug>(EasyAlign)
-          nmap ga <Plug>(EasyAlign)
-          ]]
+        require("mini.align").setup()
+        require("mini.surround").setup()
+      end,
+    },
+
+    -- {
+    --   "machakann/vim-sandwich",
+    --   lazy = false,
+    -- },
+
+    -- {
+    --   "junegunn/vim-easy-align",
+    --   lazy = false,
+    --   config = function()
+    --     vim.cmd [[
+    --       xmap ga <Plug>(EasyAlign)
+    --       nmap ga <Plug>(EasyAlign)
+    --       ]]
+    --   end,
+    -- },
+
+    {
+      "ggandor/leap.nvim",
+      dependencies = "tpope/vim-repeat",
+      lazy = false,
+      init = function()
+        require("leap").add_default_mappings()
       end,
     },
   },
@@ -93,6 +111,16 @@ local plugins = {
       lazy = false,
       config = true,
     },
+
+    -- {
+    --   "stevearc/aerial.nvim",
+    --   cmd = "AerialToggle",
+    --   config = function()
+    --     require("aerial").setup {
+    --       filter_kind = false,
+    --     }
+    --   end,
+    -- },
 
     -- { "lukas-reineke/indent-blankline.nvim" },
 
