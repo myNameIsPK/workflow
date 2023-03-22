@@ -16,7 +16,7 @@ local plugins = {
       "hrsh7th/nvim-cmp",
       dependencies = {
         { "L3MON4D3/LuaSnip" },
-        { "rafamadriz/friendly-snippets" },
+        { "rafamadriz/friendly-snippets", lazy = false },
         { "saadparwaiz1/cmp_luasnip" },
         -- { "hrsh7th/cmp-nvim-lua" }, -- neodev is better
         { "hrsh7th/cmp-nvim-lsp" },
