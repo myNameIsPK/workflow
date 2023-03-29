@@ -26,7 +26,24 @@ local opts = {
 }
 
 local map = require("utils.mappings").map
-map("n", "<leader>nn", "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>")
+local api = require "zk.api"
+
+map("n", "<leader>nn", function()
+  local notepath = vim.env.ZK_NOTEBOOK_DIR .. "/zettels"
+  api.new(nil, {
+    dir = notepath,
+    title = vim.fn.input("Create Note At " .. notepath .. "\nTitle: "),
+    -- content = "This is content",
+    dryRun = true,
+  }, function(err, res)
+    assert(not err, tostring(err))
+    local content = vim.split(string.gsub(res.content, "\n$", ""), "\n")
+    vim.cmd.edit(res.path)
+    vim.pretty_print(content)
+    vim.api.nvim_buf_set_lines(0, -2, -1, true, content)
+  end)
+end)
+
 map("n", "<leader>no", "<Cmd>ZkNotes { sort = { 'modified' } }<CR>")
 map("n", "<leader>nt", "<Cmd>ZkTags<CR>")
 map("v", "<leader>nf", ":'<,'>ZkMatch<CR>")
