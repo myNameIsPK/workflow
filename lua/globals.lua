@@ -1,8 +1,8 @@
 _G.my = {}
 
-my.hello_world = function()
-  vim.notify([[hello world]])
-end
+my.opts = {
+  document_highlight = false,
+}
 
 local diagnostic_signs = {
   { name = "DiagnosticSignError", text = "" },
@@ -44,14 +44,14 @@ my.kind_icons = {
   TypeParameter = "",
 }
 
-my.save_and_exec = function ()
-  vim.cmd("silent! write")
+my.save_and_exec = function()
+  vim.cmd "silent! write"
   if vim.bo.filetype == "lua" then
-    vim.cmd("luafile %")
+    vim.cmd "luafile %"
   elseif vim.bo.filetype == "vim" then
-    vim.cmd("source %")
+    vim.cmd "source %"
   end
-  vim.notify("Save and Exec " .. vim.fn.getreg("%"), vim.log.levels.INFO)
+  vim.notify("Save and Exec " .. vim.fn.getreg "%", vim.log.levels.INFO)
 end
 
 _G.I = function(object)

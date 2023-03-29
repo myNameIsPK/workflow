@@ -79,7 +79,7 @@ end
 
 -- TODO: convert to lua
 local function lsp_highlight_document(client)
-  if client.server_capabilities.documentHighlightProvider then
+  if my.opts.document_highlight and client.server_capabilities.documentHighlightProvider then
     vim.cmd [[
       augroup _lsp_document_highlight
         autocmd! * <buffer>
