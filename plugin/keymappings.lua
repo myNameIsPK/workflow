@@ -80,6 +80,7 @@ map("n", "<leader>sp", "<Cmd>Lazy<Cr>")
 map("n", "<leader>sm", "<Cmd>Mason<Cr>")
 map("n", "<leader>sn", "<Cmd>NullLsInfo<Cr>")
 map("n", "<leader>sc", "<Cmd>CmpStatus<Cr>")
+map("n", "<leader>si", vim.cmd.Inspect)
 
 map("n", "<leader>tt", vim.cmd.terminal)
 map("n", "<leader>tl", function() vim.cmd.terminal("lf") end)

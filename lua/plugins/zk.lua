@@ -31,6 +31,7 @@ map("n", "<leader>no", "<Cmd>ZkNotes { sort = { 'modified' } }<CR>")
 map("n", "<leader>nt", "<Cmd>ZkTags<CR>")
 map("v", "<leader>nf", ":'<,'>ZkMatch<CR>")
 map("n", "<leader>nc", ":edit $ZK_NOTEBOOK_DIR/.zk/config.toml<CR>")
+map("n", "<leader>nd", "<Cmd>ZkNew { dir = 'journal/daily' }<CR>")
 
 local function zk_keymaps(bufnr)
   local function map_buf(mode, lhs, rhs, desc)

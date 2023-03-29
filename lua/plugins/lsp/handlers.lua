@@ -40,6 +40,17 @@ local function lsp_keymaps(bufnr)
   map('n', '<localleader>lR', function() require('telescope.builtin').lsp_references() end, "telescope references")
   map('n', '<localleader>lS', function() require('telescope.builtin').lsp_document_symbols() end, "telescope document symbols")
   map('n', '<localleader>lW', function() require('telescope.builtin').lsp_workspace_symbols() end, "telescope workspace symbols")
+
+  map("n", "<localleader>lsc", function()
+    local clients = vim.lsp.get_active_clients() 
+    if #clients >= 0 then
+      for _, c in pairs(clients) do
+        I(c.server_capabilities)
+      end
+    end
+  end,
+    "print LSP servercapabilities"
+  )
   -- stylua: ignore end
 end
 
@@ -81,7 +92,7 @@ local function lsp_highlight_document(client)
 end
 
 function M.on_attach(client, bufnr)
-  vim.notify("attaching LSP: " .. client.name .. " to buffer: " .. bufnr, vim.log.levels.INFO)
+  -- vim.notify("attaching LSP: " .. client.name .. " to buffer: " .. bufnr, vim.log.levels.INFO)
   -- lsp_keymaps(bufnr) -- use autocmd LspAttach innstead
   lsp_format_on_save(bufnr)
   lsp_highlight_document(client)

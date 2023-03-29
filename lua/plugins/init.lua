@@ -57,11 +57,6 @@ local plugins = {
 
     { "folke/which-key.nvim" },
 
-    -- {
-    --   "anuvyklack/hydra.nvim",
-    --   dependencies = "anuvyklack/keymap-layer.nvim", -- needed only for pink hydras
-    -- },
-
     {
       "akinsho/toggleterm.nvim",
       config = function()
@@ -91,22 +86,6 @@ local plugins = {
       end,
     },
 
-    -- {
-    --   "machakann/vim-sandwich",
-    --   lazy = false,
-    -- },
-
-    -- {
-    --   "junegunn/vim-easy-align",
-    --   lazy = false,
-    --   config = function()
-    --     vim.cmd [[
-    --       xmap ga <Plug>(EasyAlign)
-    --       nmap ga <Plug>(EasyAlign)
-    --       ]]
-    --   end,
-    -- },
-
     {
       "ggandor/leap.nvim",
       dependencies = "tpope/vim-repeat",
@@ -125,32 +104,9 @@ local plugins = {
       config = true,
     },
 
-    -- {
-    --   "stevearc/aerial.nvim",
-    --   cmd = "AerialToggle",
-    --   config = function()
-    --     require("aerial").setup {
-    --       filter_kind = false,
-    --     }
-    --   end,
-    -- },
-
-    -- { "lukas-reineke/indent-blankline.nvim" },
-
     { "norcalli/nvim-colorizer.lua", cmd = "ColorizerToggle" },
 
     -- { "jbyuki/nabla.nvim" },
-
-    -- { "folke/todo-comments.nvim" },
-
-    -- {
-    --   "glacambre/firenvim",
-    --   build = function()
-    --     vim.fn["firenvim#install"](1)
-    --   end,
-    -- },
-
-    -- { "goolord/alpha-nvim" },
 
     {
       "iamcco/markdown-preview.nvim",
@@ -216,10 +172,14 @@ local plugins = {
     { "b0o/SchemaStore.nvim" },
   },
   note = {
-    -- Notes taking
-    -- { "renerocksai/telekasten.nvim" },
-
     { "mickael-menu/zk-nvim" },
+    {
+      "jakewvincent/mkdnflow.nvim",
+      ft = { "markdown" },
+      config = function()
+        require("plugins.mkdnflow")
+      end,
+    },
 
     -- { "nvim-orgmode/orgmode" },
 
