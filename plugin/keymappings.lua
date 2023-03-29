@@ -87,6 +87,8 @@ map("n", "<leader>tl", function() vim.cmd.terminal("lf") end)
 
 map("n", "<leader>ee", vim.cmd.Ex)
 
+map("n", "<leader>rm", vim.cmd.RemoveThisFile, { desc = "remove current files" })
+
 -- Telescope
 if plugin_installed "telescope.nvim" then
   -- Builtin
