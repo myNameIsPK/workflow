@@ -29,14 +29,13 @@ local map = require("utils.mappings").map
 local api = require "zk.api"
 local notepath = vim.env.ZK_NOTEBOOK_DIR .. "/zettels"
 
----@param dir string Path of the note
----@param title string? Title of nots
-local function create_new_note(dir, title)
-  local note_opts = { dryRun = true }
-  note_opts.dir = dir
-  if title then
-    note_opts.title = title
-  end
+--- Create note in the new buffer(not saving the file yet)
+---
+---@param note_opts table New nots options but has `dryRun = true` by default
+---@see https://github.com/mickael-menu/zk/blob/main/docs/editors-integration.md#zknew
+local function create_new_note(note_opts)
+  note_opts = note_opts or {}
+  note_opts.dryRun = true
   api.new(nil, note_opts, function(err, res)
     assert(not err, tostring(err))
     local content = vim.split(string.gsub(res.content, "\n$", ""), "\n")
@@ -50,15 +49,18 @@ local function create_new_note(dir, title)
 end
 
 map("n", "<leader>nn", function()
-  create_new_note(vim.env.ZK_NOTEBOOK_DIR .. "/zettels", vim.fn.input("Create Note At " .. notepath .. "\nTitle: "))
+  create_new_note({
+    dir = vim.env.ZK_NOTEBOOK_DIR .. "/zettels",
+    title = vim.fn.input("Create Note At " .. notepath .. "\nTitle: "),
+  })
 end, { desc = "ZK Create new note" })
 
 map("n", "<leader>ndd", function()
-  create_new_note(vim.env.ZK_NOTEBOOK_DIR .. "/journal/daily")
+  create_new_note({ dir = vim.env.ZK_NOTEBOOK_DIR .. "/journal/daily", })
 end, { desc = "ZK Create today note" })
 
-map("n", "<leader>ndn", "TODO", { desc = "ZK Go to prev daily note" })
-map("n", "<leader>ndp", "TODO", { desc = "ZK Go to next daily note" })
+-- map("n", "<leader>ndn", "TODO", { desc = "ZK Go to prev daily note" })
+-- map("n", "<leader>ndp", "TODO", { desc = "ZK Go to next daily note" })
 
 map("n", "<leader>no", "<Cmd>ZkNotes { sort = { 'modified' } }<CR>")
 map("n", "<leader>nt", "<Cmd>ZkTags<CR>")
