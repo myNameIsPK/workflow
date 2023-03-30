@@ -4,7 +4,7 @@ directory="~"
 if [ $# -eq 1 ]; then
   ses_name=$1
 else 
-  directory=$(find ~/Projects ~/.local/src ~/.local/share/nvim/lazy ~/.local/share/nvim/site/pack/packer/**/ -maxdepth 1 -type d | fzf)
+  directory=$(find ~/Projects ~/.local/src ~/.local/src/nvim-plugins ~/.local/share/nvim/lazy ~/.local/share/nvim/site/pack/packer/**/ -maxdepth 1 -type d | fzf)
   ses_name=$(basename "$directory")
 fi
 
