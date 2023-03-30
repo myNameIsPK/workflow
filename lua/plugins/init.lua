@@ -172,12 +172,18 @@ local plugins = {
     { "b0o/SchemaStore.nvim" },
   },
   note = {
-    { "mickael-menu/zk-nvim" },
+    (function()
+      local plugin_path = vim.fn.finddir("zk-nvim", vim.env.HOME .. "/.local/src/nvim-plugins")
+      if plugin_path then
+        return { dir = plugin_path }
+      end
+      return { "mickael-menu/zk-nvim" }
+    end)(),
     {
       "jakewvincent/mkdnflow.nvim",
       ft = { "markdown" },
       config = function()
-        require("plugins.mkdnflow")
+        require "plugins.mkdnflow"
       end,
     },
 

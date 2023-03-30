@@ -29,8 +29,8 @@ local map = require("utils.mappings").map
 local api = require "zk.api"
 local notepath = vim.env.ZK_NOTEBOOK_DIR .. "/zettels"
 
---- Create note in the new buffer(not saving the file yet)
----
+---Create note in the new buffer(not saving the file yet)
+--
 ---@param note_opts table New nots options but has `dryRun = true` by default
 ---@see https://github.com/mickael-menu/zk/blob/main/docs/editors-integration.md#zknew
 local function create_new_note(note_opts)
@@ -49,22 +49,29 @@ local function create_new_note(note_opts)
 end
 
 map("n", "<leader>nn", function()
-  create_new_note({
+  create_new_note {
     dir = vim.env.ZK_NOTEBOOK_DIR .. "/zettels",
     title = vim.fn.input("Create Note At " .. notepath .. "\nTitle: "),
-  })
+  }
 end, { desc = "ZK Create new note" })
 
 map("n", "<leader>ndd", function()
-  create_new_note({ dir = vim.env.ZK_NOTEBOOK_DIR .. "/journal/daily", })
+  create_new_note { dir = vim.env.ZK_NOTEBOOK_DIR .. "/journal/daily" }
 end, { desc = "ZK Create today note" })
 
 -- map("n", "<leader>ndn", "TODO", { desc = "ZK Go to prev daily note" })
 -- map("n", "<leader>ndp", "TODO", { desc = "ZK Go to next daily note" })
 
-map("n", "<leader>no", "<Cmd>ZkNotes { sort = { 'modified' } }<CR>")
+map("n", "<leader>nf", function()
+  zk.edit { sort = { "modified" } }
+end, { desc = "ZK search noteS" })
+
+map("n", "<leader>ndf", function()
+  zk.edit { sort = { "modified" }, hrefs = { "journal/daily" } }
+end, { desc = "ZK search daily noteS" })
+
 map("n", "<leader>nt", "<Cmd>ZkTags<CR>")
-map("v", "<leader>nf", ":'<,'>ZkMatch<CR>")
+map("v", "<leader>no", ":'<,'>ZkMatch<CR>")
 map("n", "<leader>nc", ":edit $ZK_NOTEBOOK_DIR/.zk/config.toml<CR>")
 
 local function zk_keymaps(bufnr)
