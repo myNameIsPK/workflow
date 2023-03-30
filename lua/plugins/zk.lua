@@ -27,28 +27,43 @@ local opts = {
 
 local map = require("utils.mappings").map
 local api = require "zk.api"
+local notepath = vim.env.ZK_NOTEBOOK_DIR .. "/zettels"
 
-map("n", "<leader>nn", function()
-  local notepath = vim.env.ZK_NOTEBOOK_DIR .. "/zettels"
-  api.new(nil, {
-    dir = notepath,
-    title = vim.fn.input("Create Note At " .. notepath .. "\nTitle: "),
-    -- content = "This is content",
-    dryRun = true,
-  }, function(err, res)
+---@param dir string Path of the note
+---@param title string? Title of nots
+local function create_new_note(dir, title)
+  local note_opts = { dryRun = true }
+  note_opts.dir = dir
+  if title then
+    note_opts.title = title
+  end
+  api.new(nil, note_opts, function(err, res)
     assert(not err, tostring(err))
     local content = vim.split(string.gsub(res.content, "\n$", ""), "\n")
-    vim.cmd.edit(res.path)
-    vim.pretty_print(content)
-    vim.api.nvim_buf_set_lines(0, -2, -1, true, content)
+    if vim.fn.filereadable(res.path) == 1 then
+      vim.cmd.edit(res.path)
+    else
+      vim.cmd.edit(res.path)
+      vim.api.nvim_buf_set_lines(0, -2, -1, true, content)
+    end
   end)
-end)
+end
+
+map("n", "<leader>nn", function()
+  create_new_note(vim.env.ZK_NOTEBOOK_DIR .. "/zettels", vim.fn.input("Create Note At " .. notepath .. "\nTitle: "))
+end, { desc = "ZK Create new note" })
+
+map("n", "<leader>ndd", function()
+  create_new_note(vim.env.ZK_NOTEBOOK_DIR .. "/journal/daily")
+end, { desc = "ZK Create today note" })
+
+map("n", "<leader>ndn", "TODO", { desc = "ZK Go to prev daily note" })
+map("n", "<leader>ndp", "TODO", { desc = "ZK Go to next daily note" })
 
 map("n", "<leader>no", "<Cmd>ZkNotes { sort = { 'modified' } }<CR>")
 map("n", "<leader>nt", "<Cmd>ZkTags<CR>")
 map("v", "<leader>nf", ":'<,'>ZkMatch<CR>")
 map("n", "<leader>nc", ":edit $ZK_NOTEBOOK_DIR/.zk/config.toml<CR>")
-map("n", "<leader>nd", "<Cmd>ZkNew { dir = 'journal/daily' }<CR>")
 
 local function zk_keymaps(bufnr)
   local function map_buf(mode, lhs, rhs, desc)
