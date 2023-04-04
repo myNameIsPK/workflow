@@ -75,9 +75,7 @@ alias rm="rm -i"
 
 # Utilities
 alias vi="nvim"
-alias lv="lvim"
 alias dot="git --git-dir=$DOTFILES --work-tree=$HOME"
-alias colortest="msgcat --color=test"
 
 # ls Flags
 alias l="ls -CF"
