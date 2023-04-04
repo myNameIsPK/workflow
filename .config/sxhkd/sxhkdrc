@@ -8,9 +8,6 @@
 super + Return
   $TERMINAL
 
-super + shift + Return
-  wezterm
-
 # program launcher
 # super + @space
 # 	dmenu_run
