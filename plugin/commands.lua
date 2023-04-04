@@ -7,3 +7,22 @@ vim.api.nvim_create_user_command("RemoveThisFile", function()
     vim.fn.delete(current_file)
   end
 end, { desc = "Remove the current file" })
+
+local function qf_exist()
+  for _, w in ipairs(vim.fn.getwininfo()) do
+    if w.quickfix == 1 then
+      return true
+    end
+  end
+  return false
+end
+
+vim.api.nvim_create_user_command("QfToggle", function()
+  if qf_exist() then
+    vim.notify "close"
+    vim.cmd.cclose()
+  else
+    vim.notify "copen"
+    vim.cmd.copen()
+  end
+end, { desc = "Quixfix window toggle" })

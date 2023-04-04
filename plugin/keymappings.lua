@@ -115,6 +115,7 @@ if plugin_installed "telescope.nvim" then
 end
 
 map("n", "<leader>ts", "<Cmd>set spell!<Cr>", { desc = "Spell toggle" })
+map("n", "<leader>tq", function() vim.cmd.QfToggle() end, { desc = "Quixfix window toggle"})
 
 if plugin_installed("nabla.nvim") then
   map("n", "<leader>te", "<Cmd>lua require('nabla').popup()<Cr>", { desc = "Equation Preview" })
