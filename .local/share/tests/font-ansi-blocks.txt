@@ -1,0 +1,15 @@
+ 	0	1	2	3	4	5	6	7	8	9	A	B	C	D	E	F
+U+258x	▀	▁	▂	▃	▄	▅	▆	▇	█	▉	▊	▋	▌	▍	▎	▏
+U+259x	▐	░	▒	▓	▔	▕	▖	▗	▘	▙	▚	▛	▜	▝	▞	▟
+
+There should be no stripes (no lines between blocks) in the bear below
+https://github.com/mintty/mintty/issues/376
+  _            _
+▗▛▀▜▄ ▃▃▃,,. ~°°°┐
+▐▌▗███████%#X0,  #
+ ▀███▛▜███@K°%M#%°
+ ▟███ o▟██▙o #5M%
+ ██#██▛▗▄▄▖▜██#0K
+▕██M%█▏▝▜▛▘▕█████▏
+ ▜████▙━▘▝━▟████▛
+  ▝▀▀▜██████▛▀▀▘
