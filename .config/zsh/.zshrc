@@ -92,6 +92,8 @@ bindkey -M emacs '^X^E' edit-command-line
 # Shortcut
 bindkey -s '^X^X' "^Ustartx^M"
 
+bindkey -s '^X^T' "^Utmux-ses^M"
+
 # Change cursor shape for different vi modes.
 cursor_mode() {
   cursor_block='\e[2 q'
