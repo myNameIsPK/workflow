@@ -1,1 +1,1 @@
-/home/pk/.config/shell/profile
+.config/shell/profile
