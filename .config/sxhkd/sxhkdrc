@@ -70,7 +70,7 @@ XF86MonBrightnessDown
 # XF86AudioNext
 # XF86AudioPrev
 # XF86AudioPlay
-   
+
 # make sxhkd reload its configuration files:
 super + shift + ctrl + alt + Escape
 	pkill -USR1 -x sxhkd && notify-send sxhkd reloaded!!
