@@ -35,10 +35,15 @@ bspc rule -a Emacs state=tiled
 
 source "${XDG_CONFIG_HOME:-$HOME/.config}/bspwm/bspwm-func"
 
-bspc rule -a Volume sticky=on state=floating focus=on rectangle="$(percent_size 30 30)"
-bspc rule -a Monitoring sticky=on state=floating focus=on rectangle="$(percent_size 50 50)"
+bspc rule -a Volume     sticky=on state=floating focus=on  center=on
+bspc rule -a Monitoring sticky=on state=floating focus=on  center=on
 bspc rule -a scratchpad sticky=on state=floating center=on focus=on
-bspc rule -a Term-menu sticky=on state=floating center=on
+bspc rule -a Term-menu  sticky=on state=floating center=on
+
+bspc_size Volume     50 50
+bspc_size Monitoring 80 80
+bspc_size Scratchpad 85 75
+bspc_size Term-menu  40 30
 
 bspc_desktop 2 \
   Brave-browser \
