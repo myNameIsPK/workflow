@@ -42,7 +42,7 @@ bspc rule -a Term-menu  sticky=on state=floating center=on
 
 bspc_size Volume     50 50
 bspc_size Monitoring 80 80
-bspc_size Scratchpad 85 75
+bspc_size scratchpad 85 75
 bspc_size Term-menu  40 30
 
 bspc_desktop 2 \
