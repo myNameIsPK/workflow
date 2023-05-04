@@ -38,28 +38,19 @@ bspc rule -a Emacs state=tiled
 # bspc rule -a Kupfer.py focus=on
 # bspc rule -a Screenkey manage=off
 
-# source "${XDG_CONFIG_HOME:-$HOME/.config}/bspwm/bspwm-func"
+source "${XDG_CONFIG_HOME:-$HOME/.config}/bspwm/bspwm-func"
 
-bspc-desktop()
-{
-  desktop_num=${1}
-  shift 1
-  for class in ${@}
-  do
-    echo bspc rule -a "${class}" desktop="^${desktop_num}"
-  done
-}
-bspc-desktop 2 \
+bspc_desktop 2 \
   Brave-browser \
   firefox \
   firefox-nightly \
   qutebrowser
 
-bspc-desktop 3 \
+bspc_desktop 3 \
   Thunderbird \
   discord \
   Steam
 
-bspc-desktop 4 \
+bspc_desktop 4 \
   easyeffects \
   obs
