@@ -25,15 +25,22 @@ bspc config pointer_modifier      mod1
 bspc config pointer_action1       move
 bspc config pointer_action2       resize_corner
 
-bspc rule -a Brave-browser desktop='^2'
-bspc rule -a firefox desktop='^2'
-bspc rule -a firefox-nightly desktop='^2'
-bspc rule -a qutebrowser desktop='^4'
-bspc rule -a Thunderbird desktop='^3'
-bspc rule -a discord desktop='^3'
-bspc rule -a Steam desktop='^3'
-bspc rule -a easyeffects desktop='^4'
-bspc rule -a obs desktop='^4'
+source ./bspwm-func.sh
+
+bspc-desktop 2 \
+  Brave-browser \
+  firefox \
+  firefox-nightly \
+  qutebrowser
+
+bspc-desktop 3 \
+  Thunderbird \
+  discord \
+  Steam
+
+bspc-desktop 4 \
+  easyeffects \
+  obs
 
 bspc rule -a Volume sticky=on state=floating focus=on
 bspc rule -a Monitoring sticky=on state=floating focus=on
