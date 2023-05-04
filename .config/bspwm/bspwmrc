@@ -25,7 +25,20 @@ bspc config pointer_modifier      mod1
 bspc config pointer_action1       move
 bspc config pointer_action2       resize_corner
 
-source ./bspwm-func.sh
+
+bspc rule -a Volume sticky=on state=floating focus=on
+bspc rule -a Monitoring sticky=on state=floating focus=on
+bspc rule -a scratchpad sticky=on state=floating center=on focus=on
+bspc rule -a Term-menu sticky=on state=floating center=on
+
+bspc rule -a Zathura state=tiled
+bspc rule -a Emacs state=tiled
+# bspc rule -a Gimp desktop='^8' state=floating follow=on
+# bspc rule -a mplayer2 state=floating
+# bspc rule -a Kupfer.py focus=on
+# bspc rule -a Screenkey manage=off
+
+source "${XDG_CONFIG_HOME:-$HOME/.config}/bspwm/bspwm-func.sh"
 
 bspc-desktop 2 \
   Brave-browser \
@@ -41,15 +54,3 @@ bspc-desktop 3 \
 bspc-desktop 4 \
   easyeffects \
   obs
-
-bspc rule -a Volume sticky=on state=floating focus=on
-bspc rule -a Monitoring sticky=on state=floating focus=on
-bspc rule -a scratchpad sticky=on state=floating center=on focus=on
-bspc rule -a Term-menu sticky=on state=floating center=on
-
-bspc rule -a Zathura state=tiled
-bspc rule -a Emacs state=tiled
-# bspc rule -a Gimp desktop='^8' state=floating follow=on
-# bspc rule -a mplayer2 state=floating
-# bspc rule -a Kupfer.py focus=on
-# bspc rule -a Screenkey manage=off
