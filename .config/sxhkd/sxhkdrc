@@ -21,7 +21,7 @@ super + space ; {b,d}
 
 # toggle scratchpad
 super + s
-  win-toggle-hidden scratchpad && win-size scratchpad 85 70 center || win-toggle-term scratchpad tmux-ses scratch
+  win-toggle-hidden scratchpad || win-toggle-term scratchpad tmux-ses scratch && win-size scratchpad 85 70 center
 
 # screecshot region to clipboard 
 ctrl + Print
@@ -36,8 +36,8 @@ super + v
   win-toggle-term Volume pulsemixer
 
 # Monitoring
-# ctrl + shift + Escape
-#   win-toggle-term Monitoring btop
+ctrl + shift + Escape
+  win-toggle-term Monitoring btop
 
 super + shift + Tab
   skippy-xd-runner --activate-window-picker
