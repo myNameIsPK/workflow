@@ -26,11 +26,6 @@ bspc config pointer_action1       move
 bspc config pointer_action2       resize_corner
 
 
-bspc rule -a Volume sticky=on state=floating focus=on
-bspc rule -a Monitoring sticky=on state=floating focus=on
-bspc rule -a scratchpad sticky=on state=floating center=on focus=on
-bspc rule -a Term-menu sticky=on state=floating center=on
-
 bspc rule -a Zathura state=tiled
 bspc rule -a Emacs state=tiled
 # bspc rule -a Gimp desktop='^8' state=floating follow=on
@@ -39,6 +34,11 @@ bspc rule -a Emacs state=tiled
 # bspc rule -a Screenkey manage=off
 
 source "${XDG_CONFIG_HOME:-$HOME/.config}/bspwm/bspwm-func"
+
+bspc rule -a Volume sticky=on state=floating focus=on rectangle="$(percent_size 30 30)"
+bspc rule -a Monitoring sticky=on state=floating focus=on rectangle="$(percent_size 50 50)"
+bspc rule -a scratchpad sticky=on state=floating center=on focus=on
+bspc rule -a Term-menu sticky=on state=floating center=on
 
 bspc_desktop 2 \
   Brave-browser \
