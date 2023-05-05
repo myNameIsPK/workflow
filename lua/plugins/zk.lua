@@ -65,13 +65,13 @@ end, { desc = "ZK Create today note" })
 map("n", "<leader>nf", function()
   zk.edit { sort = { "modified" } }
 end, { desc = "ZK search noteS" })
+map("v", "<leader>nf", ":'<,'>ZkMatch<CR>")
 
 map("n", "<leader>ndf", function()
   zk.edit { sort = { "modified" }, hrefs = { "journal/daily" } }
 end, { desc = "ZK search daily noteS" })
 
 map("n", "<leader>nt", "<Cmd>ZkTags<CR>")
-map("v", "<leader>no", ":'<,'>ZkMatch<CR>")
 map("n", "<leader>nc", ":edit $ZK_NOTEBOOK_DIR/.zk/config.toml<CR>")
 
 local function zk_keymaps(bufnr)

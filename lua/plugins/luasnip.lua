@@ -50,6 +50,20 @@ ls.add_snippets("lua", {
   }))
 
 })
+
+ls.add_snippets("markdown", {
+
+  s("todo", fmt([[
+  - [{}] {}
+  ]], {
+    c(1, {
+        t(" "), t("x")
+      }),
+    i(2, "task..."),
+  })),
+
+})
+
 -- stylua: ignore end
 
 -- this work only friendly-snippets
