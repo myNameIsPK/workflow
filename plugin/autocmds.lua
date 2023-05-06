@@ -63,7 +63,8 @@ vim.cmd [[
       autocmd BufWritePost xresources :silent !xrdb -merge ~/.config/x11/xresources
       autocmd BufWritePost sxhkdrc :silent !pkill -USR1 -x sxhkd; notify-send sxhkd reloaded\!\!
       autocmd BufWritePost skippy-xd.rc :silent !pkill -USR1 -x skippy-xd; notify-send skippy-xd reloaded\!\!
-      autocmd BufWritePost $XDG_CONFIG_HOME/polybar/config :silent !polybar -rq mybar && notify-send polybar reloaded\!\!
+      autocmd BufWritePost $XDG_CONFIG_HOME/polybar/config.ini :silent !pkill -USR1 -x polybar && notify-send polybar reloaded\!\!
+      autocmd BufWritePost $XDG_CONFIG_HOME/colorsync/config.json :silent !colorsync && template-gen.bash && reload.sh
     augroup END
 
     augroup _compile

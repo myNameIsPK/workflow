@@ -12,4 +12,16 @@ local function mdlink_from_clipboard()
   vim.cmd.startinsert()
 end
 
-vim.keymap.set("n", "<leader>p", mdlink_from_clipboard, { buffer = true, desc = "Paste Markdown Link" })
+local function md_toggle_task_list()
+  local repl, count = vim.api.nvim_get_current_line():gsub("%[ %]", "[x]")
+  if count > 0 then
+    vim.api.nvim_set_current_line(repl)
+    return
+  else
+    local new_repl = vim.api.nvim_get_current_line():gsub("%[x%]", "[ ]")
+    vim.api.nvim_set_current_line(new_repl)
+  end
+end
+
+vim.keymap.set("n", "<localleader>p", mdlink_from_clipboard, { buffer = true, desc = "Paste Markdown Link" })
+vim.keymap.set("n", "<localleader>t", md_toggle_task_list, { buffer = true, desc = "Toggle Task list" })

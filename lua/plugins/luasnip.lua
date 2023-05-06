@@ -64,7 +64,7 @@ local snippets = {}
 snippets.markdown = {}
 
 snippets.markdown.task = function()
-  return sn(nil, fmt("- [{}] {} ", {
+  return sn(nil, fmt("- [{}] {}", {
       c(1, {
         i(nil, " "),
         i(nil, "x")
