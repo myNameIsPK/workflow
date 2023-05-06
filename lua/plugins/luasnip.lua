@@ -51,16 +51,32 @@ ls.add_snippets("lua", {
 
 })
 
+local function md_task()
+  return sn(nil, fmt([[
+    - [{}] {}
+    ]], {
+      c(1, {
+        t(" "),
+        t("x")
+      }),
+      i(2, "task..."),
+    }))
+end
+
+local function md_task_rec()
+  return sn(nil, {
+    d(1, md_task, {}),
+    t({"",""}),
+    c(2, {
+      t({""}),
+      d(nil, md_task_rec, {})
+    })
+  })
+end
+
 ls.add_snippets("markdown", {
 
-  s("todo", fmt([[
-  - [{}] {}
-  ]], {
-    c(1, {
-        t(" "), t("x")
-      }),
-    i(2, "task..."),
-  })),
+  s("todo", d(1, md_task_rec, {})),
 
 })
 
