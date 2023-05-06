@@ -56,8 +56,8 @@ local function md_task()
     - [{}] {}
     ]], {
       c(1, {
-        t(" "),
-        t("x")
+        i(nil, " "),
+        i(nil, "x")
       }),
       i(2, "task..."),
     }))
@@ -66,7 +66,7 @@ end
 local function md_task_rec()
   return sn(nil, {
     d(1, md_task, {}),
-    t({"",""}),
+    t({"",""}), -- newline
     c(2, {
       t({""}),
       d(nil, md_task_rec, {})
@@ -100,7 +100,7 @@ map({ "i", "s" }, "<C-k>", function()
   end
 end)
 
-map("i", "<C-l>", function()
+map({ "i", "s" }, "<C-l>", function()
   if ls.choice_active() then
     ls.change_choice(1)
   end
