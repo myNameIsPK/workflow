@@ -51,7 +51,11 @@ ls.add_snippets("lua", {
 
 })
 
-local function md_task()
+local snippets = {}
+
+snippets.markdown = {}
+
+snippets.markdown.task = function()
   return sn(nil, fmt([[
     - [{}] {}
     ]], {
@@ -63,20 +67,20 @@ local function md_task()
     }))
 end
 
-local function md_task_rec()
+snippets.markdown.recur_task = function()
   return sn(nil, {
-    d(1, md_task, {}),
+    d(1, snippets.markdown.task, {}),
     t({"",""}), -- newline
     c(2, {
       t({""}),
-      d(nil, md_task_rec, {})
+      d(nil, snippets.markdown.recur_task, {})
     })
   })
 end
 
 ls.add_snippets("markdown", {
 
-  s("todo", d(1, md_task_rec, {})),
+  s("todo", d(1, snippets.markdown.recur_task, {})),
 
 })
 
