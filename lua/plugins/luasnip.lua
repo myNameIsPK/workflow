@@ -15,12 +15,20 @@ local fmt = require("luasnip.extras.fmt").fmt
 local m = require("luasnip.extras").m
 local lambda = require("luasnip.extras").l
 local rep = require("luasnip.extras").rep
+local types = require "luasnip.util.types"
 
 ls.cleanup()
 
 ls.config.set_config {
   history = true,
   updateevents = "TextChanged,TextChangedI",
+  ext_opts = {
+    [types.choiceNode] = {
+      active = {
+        virt_text = { { "<- Choices", "WarningMsg" } },
+      },
+    },
+  },
 }
 
 -- stylua: ignore start
@@ -56,9 +64,7 @@ local snippets = {}
 snippets.markdown = {}
 
 snippets.markdown.task = function()
-  return sn(nil, fmt([[
-    - [{}] {}
-    ]], {
+  return sn(nil, fmt("- [{}] {} ", {
       c(1, {
         i(nil, " "),
         i(nil, "x")
@@ -80,7 +86,7 @@ end
 
 ls.add_snippets("markdown", {
 
-  s("todo", d(1, snippets.markdown.recur_task, {})),
+  s({ trig = "tl", name = "task list" }, d(1, snippets.markdown.recur_task, {})),
 
 })
 
@@ -111,5 +117,5 @@ map({ "i", "s" }, "<C-l>", function()
 end)
 
 map({ "i", "s" }, "<C-u>", function()
-  require("luasnip.extras.select_choice")()
+  require "luasnip.extras.select_choice"()
 end)
