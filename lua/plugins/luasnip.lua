@@ -105,3 +105,7 @@ map({ "i", "s" }, "<C-l>", function()
     ls.change_choice(1)
   end
 end)
+
+map({ "i", "s" }, "<C-u>", function()
+  require("luasnip.extras.select_choice")()
+end)
