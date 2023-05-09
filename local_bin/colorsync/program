@@ -10,12 +10,11 @@ def reload():
 
 def export_xrdb(config: dict):
     """Export xrdb file"""
-    with open(os.environ["XDG_CONFIG_HOME"]+"/x11/xresources.d/test", "w") as xrdb_file:
+    with open(f'{os.environ["XDG_CONFIG_HOME"]}/x11/xresources.d/test', "w") as xrdb_file:
         print("! this gen from color file", file=xrdb_file)
         print(f'*.background: {config["special"]["background"]}', file=xrdb_file)
 
 def main():
-
     with open("color.json") as config_file:
         config: dict = json.load(config_file)
 
