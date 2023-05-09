@@ -9,9 +9,8 @@ def reload():
     subprocess.run(["cat", "./scripts/reload.sh"])
 
 def main():
-
     config = colors.get()
-    export.xrdb(config)
+    export.all(config)
     reload()
 
 if __name__ == "__main__":
