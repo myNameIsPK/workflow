@@ -40,6 +40,8 @@ Emacs.default.attributeHeight: 110
 *.foreground: #ebdbb2
 *.cursorColor: #ebdbb2
 
+#include "xresources.d/test"
+
 ! !! gruvbox light:
 ! *.color0: #bdae93
 ! *.color1: #cc241d
