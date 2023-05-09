@@ -1,9 +1,15 @@
 #!/usr/bin/env sh
 
 xrdb_file="${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources"
+
 reload_xrdb ()
 {
   xrdb -merge $1
+}
+
+reload_bspwm ()
+{
+  bspc wm -r
 }
 
 reload_polybar ()
@@ -13,8 +19,9 @@ reload_polybar ()
 
 reload_all ()
 {
-  reload_xrdb $xrdb_file
-  reload_polybar
+  reload_xrdb $xrdb_file &
+  reload_polybar &
+  reload_bspwm &
 }
 
 reload_all
