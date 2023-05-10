@@ -49,15 +49,19 @@ if [ -n "$BASH_VERSION" ]; then
     [ -f ${XDG_CONFIG_HOME:-$HOME/.config}/bash/bashrc ] && source ${XDG_CONFIG_HOME:-$HOME/.config}/bash/bashrc
 fi
 
-if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-  while true; do
-    read "Do you want to startx? (y/n):" yn
+function startx_y_or_n() {
+  if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+    while true; do
+      printf "Do you want to startx? (y/n):"
+      read yn
       case $yn in
-          [Yy]* ) exec startx "$XINITRC"; break;;
-          [Nn]* ) exit;;
-          * ) break;;
+        [Yy]* ) exec startx "$XINITRC";;
+        [Nn]* ) break;;
+        * ) echo "(y/n) only";;
       esac
-  done
-fi
+    done
+  fi
+}
+startx_y_or_n
 
 ## End of file
