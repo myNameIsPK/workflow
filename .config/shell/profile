@@ -20,8 +20,9 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 
-export PATH="$(echo $(find ~/.local/bin -type d -printf %p:))$PATH"
-export PATH="$(echo $(find ~/local_bin -type d -printf %p:))$PATH"
+# export PATH="$(echo $(find ~/.local/bin -type d -printf %p:))$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$(echo $(find $HOME/local_bin -type d -printf %p:))$PATH"
 
 ## Default program
 export TERM="xterm-256color"
@@ -43,6 +44,7 @@ fi
 
 ## Home directory clean up
 source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/xdg_clean.profile
+source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/config.env
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
@@ -51,11 +53,12 @@ fi
 
 function startx_y_or_n() {
   if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+    # exec startx
     while true; do
       printf "Do you want to startx? (y/n):"
       read yn
       case $yn in
-        [Yy]* ) exec startx "$XINITRC";;
+        [Yy]* ) startx "$XINITRC"; break;;
         [Nn]* ) break;;
         * ) echo "(y/n) only";;
       esac
