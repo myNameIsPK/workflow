@@ -19,4 +19,5 @@ def xrdb(config: dict):
 
 def all(config: dict):
     """Export to all file type"""
+    print(config)
     xrdb(config)
