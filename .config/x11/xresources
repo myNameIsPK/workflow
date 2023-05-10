@@ -34,7 +34,7 @@ Emacs.default.attributeHeight: 110
 *.color13: #d3869b
 *.color14: #8ec07c
 *.color15: #ebdbb2
-*.background: #32302f 
+*.background: #32302f
 *.foreground: #ebdbb2
 *.cursorColor: #ebdbb2
 
