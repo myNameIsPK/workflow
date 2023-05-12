@@ -15,6 +15,8 @@ export VAGRANT_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"/vagrant
 export VAGRANT_ALIAS_FILE="${XDG_CONFIG_HOME:-$HOME/.config}"/vagrant/aliases
 
 ## Programmint languages
+# Python#pyenv
+export PYENV_ROOT=$XDG_DATA_HOME/pyenv
 # Node#npm
 export NPM_CONFIG_USERCONFIG=${XDG_CONFIG_HOME:-$HOME/.config}/npm/npmrc
 # Ruby#gem
