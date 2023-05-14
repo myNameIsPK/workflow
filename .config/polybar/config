@@ -36,8 +36,8 @@ white-alt = ${xrdb:color15:#ebdbb2}
 
 background = ${xrdb:background:#1d2021}
 background-alt = ${colors.black-alt}
-foreground = ${colors.white-alt}
-foreground-alt = ${xrdb.foreground:#a89984}
+foreground = ${xrdb.foreground:#a89984}
+foreground-alt = ${colors.white-alt}
 primary = ${colors.yellow}
 secondary = ${colors.red-alt}
 alert = ${colors.red}
