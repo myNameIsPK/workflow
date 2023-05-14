@@ -39,4 +39,4 @@ Emacs.default.attributeHeight: 110
 *.cursorColor: #ebdbb2
 
 ! TODO: remove hard code file path
-#include "/home/pk/.cache/colorsync/colorsync.xresources"
+#include "/home/pk/.cache/colorsync/color.xresources"
