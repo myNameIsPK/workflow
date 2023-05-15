@@ -16,5 +16,5 @@ source ${COLOR_CACHE}/colorsync/colors.sh
 
 for file_path in ${COLOR_TEMPLATES}*.${template_suffix}
 do
-  eval "echo -E \"$(cat ${file_path})\"" > $COLOR_CACHE/colorsync/$(basename -s ".$template_suffix" $file_path) 2>> $err_log
+  eval "echo \"$(cat ${file_path})\"" > $COLOR_CACHE/colorsync/$(basename -s ".$template_suffix" $file_path) 2>> $err_log
 done
