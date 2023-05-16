@@ -99,23 +99,23 @@ def load_colors(colors_dict: dict, light: bool = False) -> dict[str, Color]:
     bg_color = "light" if light else "dark"
     fg_color = "dark" if light else "light"
 
-    result["black"] = result[f"{bg_color}0"]
-    result["black_bright"] = result[f"{bg_color}4"]
-    result["black_faded"] = result[f"{bg_color}4"]
+    result["black"] = result[f"{bg_color}3"]
+    result["black_bright"] = result[f"{bg_color}0"]
+    result["black_faded"] = result["black_bright"]
 
-    result["white"] = result[f"{fg_color}4"]
-    result["white_bright"] = result[f"{fg_color}0"]
-    result["white_faded"] = result[f"{fg_color}0"]
-
-    for i, c in enumerate(BASE16_ORDER):
-        result[f"color{i}"] = result[c]
-        result[f"color0{i}"] = result[c]
+    result["white"] = result[f"{fg_color}0"]
+    result["white_bright"] = result[f"{fg_color}3"]
+    result["white_faded"] = result["white_bright"]
 
     alt = "faded" if light else "bright"
-    for i, c in enumerate(BASE16_ORDER, start=8):
+    for i, c in enumerate(BASE16_ORDER):
         result[f"color{i}"] = result[f"{c}_{alt}"]
-        if i < 10:
-            result[f"color0{i}"] = result[f"{c}_{alt}"]
+
+    for i, c in enumerate(BASE16_ORDER, start=8):
+        result[f"color{i}"] = result[c]
+
+    for i in range(0, 10):
+        result[f"color0{i}"] = result[f"color{i}"]
 
     result["background"] = result[f"{bg_color}0"]
     result["bg"] = result[f"{bg_color}0"]
@@ -131,5 +131,7 @@ def load_colors(colors_dict: dict, light: bool = False) -> dict[str, Color]:
     result["fg2"] = result[f"{fg_color}2"]
     result["fg3"] = result[f"{fg_color}3"]
     result["fg4"] = result[f"{fg_color}4"]
+
+    result["cursor"] = result["red"]
 
     return result

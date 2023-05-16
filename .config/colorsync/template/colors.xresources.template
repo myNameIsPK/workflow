@@ -16,5 +16,4 @@
 *.color15: ${color15}
 *.background: ${background}
 *.foreground: ${foreground}
-*.cursorColor: ${fg4}
-*.cursorColor: ${fg4}
+*.cursorColor: ${cursor}

@@ -6,3 +6,4 @@ git clone --bare https://github.com/pk-kampanart/workflow.git $HOME/.dotfile.git
 rm -f .bash* && dot checkout
 dot config --local status.showUntrackedFiles no
 ```
+<!-- TODO: write about gitcrypt -->

@@ -1,7 +1,7 @@
 foreground         ${foreground}
 background         ${background}
 # background_opacity \${background.alpha_dec}
-cursor             ${fg4}
+cursor             ${cursor}
 
 active_tab_foreground     ${background}
 active_tab_background     ${foreground}

@@ -1,5 +1,6 @@
 #!/bin/sh
 
+source $MY_COLOR_CACHE_DIR/colors.sh
 # pgrep -x sxhkd > /dev/null || sxhkd &
 sxhkd -c "$XDG_CONFIG_HOME/bspwm/sxhkdrc" &
 
@@ -17,8 +18,8 @@ bspc config single_monocle       true
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
-bspc config focused_border_color     "#d79921"
-# bspc config normal_border_color      "#202A25"
+bspc config focused_border_color     "${color3}"
+bspc config normal_border_color      "${color4}"
 
 bspc config focus_follows_pointer true
 bspc config pointer_modifier      mod1

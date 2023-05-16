@@ -6,9 +6,10 @@ cfe ${XDG_CONFIG_HOME:-$HOME/.config}/emacs
 cfx ${XDG_CONFIG_HOME:-$HOME/.config}/x11
 cfs ${XDG_CONFIG_HOME:-$HOME/.config}/shell
 lcs ${XDG_DATA_HOME:-$HOME/.local/share}
-src $HOME/.local/src
-lb  $HOME/local_bin
-lcb $HOME/.local/bin
+lcb ${XDG_DATA_HOME:-$HOME/.local/bin}
+src $MY_SRC
+bin $MY_BIN
+lib $MY_LIB
 D   ${XDG_DOWNLOAD_DIR:-$HOME/Downloads}
 d   ${XDG_DOCUMENTS_DIR:-$HOME/Documents}
 i   ${XDG_PICTURES_DIR:-$HOME/Pictures}

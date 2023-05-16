@@ -1,3 +1,0 @@
-
-this run \$(w) command
-\"this is in quote\"
