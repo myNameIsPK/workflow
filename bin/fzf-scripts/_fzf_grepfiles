@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# FIXME: make RG_PREFIX reuseable in "reload:"
+RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
+INITIAL_QUERY="${*:-}"
+IFS=: read -ra selected < <(
+  FZF_DEFAULT_COMMAND="$RG_PREFIX $(printf %q "$INITIAL_QUERY")" \
+  fzf --ansi \
+      --color 'hl:red' \
+      --header '<C-r>: use rigrep' \
+      --bind 'ctrl-r:reload:rg --column --line-number --no-heading --color=always {q} || true,+clear-query' \
+      --prompt 'fzfgrep> ' \
+      --delimiter : \
+      --preview 'bat --color=always {1} --highlight-line {2}' \
+      --preview-window 'right,50%,+{2}+3/3,~3'
+) 
+# we add `|| true`, so that it always exits with 0
+[ -n "${selected[0]}" ] && $EDITOR "${selected[0]}" "+${selected[1]}"

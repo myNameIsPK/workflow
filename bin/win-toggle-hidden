@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if [ -z "$1" ]; then
+	echo "Usage: $0 <classname>"
+	exit 1
+fi
+
+xdotool search --class "$1" windowstate --toggle HIDDEN windowactivate

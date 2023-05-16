@@ -1,0 +1,20 @@
+#!/bin/sh
+
+bmdirs="${XDG_CONFIG_HOME:-$HOME/.config}/shell/bm-dirs"
+bmfiles="${XDG_CONFIG_HOME:-$HOME/.config}/shell/bm-files"
+
+shell_shortcuts="${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc"
+
+rm -f "$shell_shortcuts" 2> /dev/null
+
+printf "# vi:ft=sh\nalias " > "$shell_shortcuts"
+
+eval "echo \"$(cat "$bmdirs")\"" | \
+  awk "!/^\s*#/ && !/^\s*$/ {
+    printf(\"%s='cd %s && pwd && ls -a' \\\\\n\", \$1, \$2) >> \"$shell_shortcuts\" ;
+  }"
+
+eval "echo \"$(cat "$bmfiles")\"" | \
+  awk "!/^\s*#/ && !/^\s*$/ {gsub(\"\\\s*#.*$\",\"\");
+    printf(\"%s='\$EDITOR %s' \\\\\n\",\$1,\$2)  >> \"$shell_shortcuts\" ;
+  }"
