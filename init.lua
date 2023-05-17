@@ -6,7 +6,8 @@
 -- ╚═╝╚═╝  ╚═══╝╚═╝   ╚═╝╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝
 
 vim.g.mapleader = " "
-vim.cmd 'let maplocalleader = "\\<BS>"' -- map <BS> to localleader
+-- vim.cmd 'let maplocalleader = "\\<BS>"' -- map <BS> to localleader
+vim.g.maplocalleader = ","
 
 pcall(require, "impatient")
 
