@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 
 xrdb_file="${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources"
+tmux_file="${XDG_CONFIG_HOME:-$HOME/.config}/tmux/tmux.conf"
 
 reload_xrdb ()
 {
@@ -14,7 +15,7 @@ reload_bspwm ()
 
 reload_polybar ()
 {
-  pkill -USR1 -x polybar
+  pkill -USR1 -x polybar &
 }
 
 # FIXME: not work
@@ -25,7 +26,7 @@ reload_kitty ()
 
 reload_tmux ()
 {
-  [ -e $TMUX ] && tmux source $XDG_CONFIG_HOME/tmux/tmux.con
+  [ -e $TMUX ] && tmux source $tmux_file
 }
 
 reload_vte ()
@@ -36,7 +37,7 @@ reload_vte ()
 reload_all ()
 {
   reload_xrdb $xrdb_file &
-  reload_polybar &
+  # reload_polybar &
   reload_bspwm &
   reload_kitty &
   reload_tmux &

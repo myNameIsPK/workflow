@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 options=$*
 class_name="Term-menu"
 window_id="$(xdotool search --class $class_name)"

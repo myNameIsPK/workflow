@@ -6,8 +6,8 @@ source $MY_COLOR_CACHE_DIR/colors.sh
 # if [ -n "$TMUX" ]; then
 #   # Tell tmux to pass the escape sequences through
 #   # (Source: http://permalink.gmane.org/gmane.comp.terminal-emulators.tmux.user/1324)
-#   put_template() { printf '\033Ptmux;\033\033]4;%d;rgb:%s\033\033\\\033\\' $@; }
-#   put_template_var() { printf '\033Ptmux;\033\033]%d;rgb:%s\033\033\\\033\\' $@; }
+#   put_template() { printf '\033Ptmux;\033\033]4;%d;%s\033\033\\\033\\' $@; }
+#   put_template_var() { printf '\033Ptmux;\033\033]%d;%s\033\033\\\033\\' $@; }
 #   put_template_custom() { printf '\033Ptmux;\033\033]%s%s\033\033\\\033\\' $@; }
 # elif [ "${TERM%%[-.]*}" = "screen" ]; then
 #   # GNU screen (screen, screen-256color, screen-256color-bce)
@@ -71,6 +71,5 @@ SEQ="$SEQ$(put_template_var 13 $cursor)"
 # fi
 for t in /dev/pts/[0-9]
 do
-  echo "$t"
   echo $SEQ > $t
 done
