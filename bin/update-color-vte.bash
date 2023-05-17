@@ -69,7 +69,17 @@ SEQ="$SEQ$(put_template_var 13 $cursor)"
 #   fi
 #   put_template_custom 12 ";7" # cursor (reverse video)
 # fi
-for t in /dev/pts/[0-9]
-do
-  echo $SEQ > $t
-done
+
+if [ -n $1 ]; then
+  if [ -f /dev/pts/$1 ]; then
+    echo $SEQ > /dev/pts/$1
+  else
+    echo "no file /dev/pts/$1"
+  fi
+else
+  for t in /dev/pts/[0-9]
+  do
+    echo $t
+    echo $SEQ > $t
+  done
+fi

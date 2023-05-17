@@ -19,7 +19,7 @@ export MY_BIN="$HOME/bin"
 export MY_LIB="$HOME/lib"
 export MY_SRC="$HOME/.local/src"
 export MY_COLOR_CACHE_DIR="$XDG_CACHE_HOME/colorsync"
-export NOTES_DIR=$HOME/notes
+export MY_NOTES_DIR=$HOME/notes
 
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$(echo $(find $MY_BIN -type d -printf %p:))$PATH"
