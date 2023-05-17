@@ -1,10 +1,3 @@
--- ██╗███╗   ██╗██╗████████╗██╗     ██╗   ██╗ █████╗
--- ██║████╗  ██║██║╚══██╔══╝██║     ██║   ██║██╔══██╗
--- ██║██╔██╗ ██║██║   ██║   ██║     ██║   ██║███████║
--- ██║██║╚██╗██║██║   ██║   ██║     ██║   ██║██╔══██║
--- ██║██║ ╚████║██║   ██║██╗███████╗╚██████╔╝██║  ██║
--- ╚═╝╚═╝  ╚═══╝╚═╝   ╚═╝╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝
-
 vim.g.mapleader = " "
 -- vim.cmd 'let maplocalleader = "\\<BS>"' -- map <BS> to localleader
 vim.g.maplocalleader = ","
@@ -14,8 +7,12 @@ pcall(require, "impatient")
 vim.cmd "colorscheme custom"
 
 require "globals"
-require "plugins"
+require "options"
+require "commands"
+require "keymappings"
+require "autocmds"
 
+require "plugins"
 require "plugins.telescope"
 require "plugins.lsp"
 require "plugins.luasnip"
