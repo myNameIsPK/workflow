@@ -114,7 +114,7 @@ if plugin_installed "telescope.nvim" then
 
 end
 
-map("n", "<leader>ts", function() vim.opt.spell = not(vim.opt.spell:get()) end, { desc = "Spell toggle" })
+map("n", "<leader>ts", function() vim.opt.spell = not vim.opt.spell:get() end, { desc = "Spell toggle" })
 map("n", "<leader>tq", function() vim.cmd.QfToggle() end, { desc = "Quixfix window toggle" })
 
 if plugin_installed("nabla.nvim") then

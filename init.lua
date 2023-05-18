@@ -1,10 +1,12 @@
+_G.my = {} -- this is my personal global stuffs
+
 vim.g.mapleader = " "
 -- vim.cmd 'let maplocalleader = "\\<BS>"' -- map <BS> to localleader
 vim.g.maplocalleader = ","
 
 pcall(require, "impatient")
 
-vim.cmd "colorscheme custom"
+-- vim.cmd "colorscheme custom"
 
 require "globals"
 require "options"

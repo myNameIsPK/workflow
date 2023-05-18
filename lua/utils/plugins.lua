@@ -2,17 +2,6 @@ local M = {}
 
 local fn = vim.fn
 
-function M.bootstrap_packer()
-  local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
-  if fn.empty(fn.glob(install_path)) > 0 then
-    vim.notify "Downloading packer.nvim..."
-    vim.notify(fn.system { "git", "clone", "https://github.com/wbthomason/packer.nvim", install_path })
-    vim.cmd "packadd! packer.nvim"
-    require("packer").sync()
-  end
-  vim.cmd "autocmd BufWritePost plugins/init.lua PackerCompile"
-end
-
 function M.bootstrap_lazy()
   local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
   if not vim.loop.fs_stat(lazypath) then

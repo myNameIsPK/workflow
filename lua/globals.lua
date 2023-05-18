@@ -1,4 +1,9 @@
-_G.my = {}
+if not _G.my then
+  _G.my = {}
+end
+
+my.exec_deps = { "git" }
+my.opt_exec_deps = { "rg", "fd", "fzf" }
 
 my.opts = {
   document_highlight = false,
