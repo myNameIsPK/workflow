@@ -2,21 +2,6 @@ local M = {}
 
 local fn = vim.fn
 
-function M.bootstrap_lazy()
-  local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
-  if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system {
-      "git",
-      "clone",
-      "--filter=blob:none",
-      "https://github.com/folke/lazy.nvim.git",
-      "--branch=stable",
-      lazypath,
-    }
-  end
-  vim.opt.rtp:prepend(lazypath)
-end
-
 ---Check if a plugin is on the system not whether or not it is loaded
 ---@param plugin_name string
 ---@return boolean

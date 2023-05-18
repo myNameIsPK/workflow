@@ -1,12 +1,16 @@
 _G.my = {} -- this is my personal global stuffs
 
 vim.g.mapleader = " "
--- vim.cmd 'let maplocalleader = "\\<BS>"' -- map <BS> to localleader
-vim.g.maplocalleader = ","
+if vim.fn.has "nvim-0.10.0" == 1 then
+  vim.g.maplocalleader = vim.keycode "<BS>"
+else
+  vim.cmd 'let maplocalleader = "\\<BS>"'
+end
 
 pcall(require, "impatient")
 
 -- vim.cmd "colorscheme custom"
+-- vim.cmd "colorscheme retrobox"
 
 require "globals"
 require "options"

@@ -1,4 +1,7 @@
-local ls = require "luasnip"
+local ls_ok, ls = pcall(require, "luasnip")
+if not ls_ok then
+  return
+end
 
 local s = ls.snippet
 local sn = ls.snippet_node
