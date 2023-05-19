@@ -80,12 +80,12 @@ map("n", "<leader>sp", "<Cmd>Lazy<Cr>")
 map("n", "<leader>sm", "<Cmd>Mason<Cr>")
 map("n", "<leader>sn", "<Cmd>NullLsInfo<Cr>")
 map("n", "<leader>sc", "<Cmd>CmpStatus<Cr>")
-map("n", "<leader>si", vim.cmd.Inspect)
+map("n", "<leader>si", vim.cmd.Inspect, { desc = "Inspect" })
 
-map("n", "<leader>tt", vim.cmd.terminal)
-map("n", "<leader>tl", function() vim.cmd.terminal("lf") end)
+map("n", "<leader>tt", vim.cmd.terminal, { desc = "Terminal" })
+map("n", "<leader>tl", function() vim.cmd.terminal("lf") end, { desc = "LF in terminal" })
 
-map("n", "<leader>ee", vim.cmd.Ex)
+map("n", "<leader>ee", vim.cmd.Ex, { desc = "File Explorer"})
 
 map("n", "<leader>rm", vim.cmd.RemoveThisFile, { desc = "remove current files" })
 
@@ -108,9 +108,9 @@ if plugin_installed "telescope.nvim" then
   map("n", "<leader>fp", "<Cmd>Telescope projects<Cr>", { desc = "Projects" })
 
   -- Custom
-  map("n", "<leader>fc", function() require("plugins.telescope").find_vim_files() end, { desc = "Config files(Neovim)" })
-  map("n", "<leader>fC", function() require("plugins.telescope").find_vim_data() end, { desc = "Plugins files(Neovim)" })
-  map("n", "<leader>fD", function() require("plugins.telescope").find_dotfiles() end, { desc = "Dotfiles" })
+  map("n", "<leader>fc", function() require("plugins_config.telescope").find_vim_files() end, { desc = "Config files(Neovim)" })
+  map("n", "<leader>fC", function() require("plugins_config.telescope").find_vim_data() end, { desc = "Plugins files(Neovim)" })
+  map("n", "<leader>fD", function() require("plugins_config.telescope").find_dotfiles() end, { desc = "Dotfiles" })
 
 end
 

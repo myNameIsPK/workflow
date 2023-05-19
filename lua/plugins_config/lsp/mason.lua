@@ -111,7 +111,7 @@ function M.setup()
     ensure_installed = { "lua_ls" },
   }
 
-  local handlers = require "plugins.lsp.handlers"
+  local handlers = require "plugins_config.lsp.handlers"
   for _, server in ipairs(mason_lspconfig.get_installed_servers()) do
     -- local opts = get_server_config(server)
     local opts = {
@@ -122,7 +122,7 @@ function M.setup()
     }
 
     -- Add personal server configs
-    local config_exist, config = pcall(require, "plugins.lsp.configs." .. server)
+    local config_exist, config = pcall(require, "plugins_config.lsp.configs." .. server)
     if config_exist then
       local conf_type = type(config)
       local server_opts
