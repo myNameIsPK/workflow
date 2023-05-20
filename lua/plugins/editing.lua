@@ -1,14 +1,15 @@
 return {
-  -- {
-  --   "akinsho/toggleterm.nvim",
-  --   config = function()
-  --     require("toggleterm").setup()
-  --   end,
-  -- },
+  {
+    "numToStr/Comment.nvim",
+    keys = { "gc", { "gc", mode = "v" } },
+    config = function()
+      require("Comment").setup()
+    end,
+  },
 
   {
     "echasnovski/mini.align",
-    event = "VeryLazy",
+    keys = { "ga", { "ga", mode = "v" } },
     config = function()
       require("mini.align").setup()
     end,
@@ -16,7 +17,7 @@ return {
 
   {
     "echasnovski/mini.surround",
-    event = "VeryLazy",
+    keys = { "gz", { "gz", mode = "v" } },
     config = function()
       require("mini.surround").setup {
         mappings = {
@@ -37,9 +38,9 @@ return {
 
   {
     "ggandor/leap.nvim",
+    keys = { "s", "S", { "s", mode = "v" }, { "S", mode = "v" } },
     dependencies = "tpope/vim-repeat",
-    lazy = false,
-    init = function()
+    config = function()
       require("leap").add_default_mappings()
     end,
   },

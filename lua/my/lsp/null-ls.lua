@@ -13,7 +13,7 @@ function M.setup()
   -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/code_actions
   local code_actions = null_ls.builtins.code_actions
 
-  local handlers = require "plugins_config.lsp.handlers"
+  local handlers = require "my.lsp.handlers"
 
   null_ls.setup {
     sources = {

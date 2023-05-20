@@ -75,90 +75,38 @@ map('n', '[d', function() vim.diagnostic.goto_prev() end, { desc = "Diagnostic P
 map('n', '<leader>dq', function() vim.diagnostic.setloclist() end, { desc = "Diagnostic Quixfix" })
 map('n', ']d', function() vim.diagnostic.goto_next() end, { desc = "Diagnostic Next" })
 
-map("n", "<leader>gg", "<Cmd>Neogit<Cr>")
-map("n", "<leader>sp", "<Cmd>Lazy<Cr>")
-map("n", "<leader>sm", "<Cmd>Mason<Cr>")
-map("n", "<leader>sn", "<Cmd>NullLsInfo<Cr>")
-map("n", "<leader>sc", "<Cmd>CmpStatus<Cr>")
 map("n", "<leader>si", vim.cmd.Inspect, { desc = "Inspect" })
 
 map("n", "<leader>tt", vim.cmd.terminal, { desc = "Terminal" })
 map("n", "<leader>tl", function() vim.cmd.terminal("lf") end, { desc = "LF in terminal" })
+
+map("n", "<leader>ts", function() vim.opt.spell = not(vim.opt.spell:get()) end, { desc = "Spell toggle" })
+map("n", "<leader>tq", function() vim.cmd.QfToggle() end, { desc = "Quixfix window toggle" })
 
 map("n", "<leader>ee", vim.cmd.Ex, { desc = "File Explorer"})
 
 map("n", "<leader>rm", vim.cmd.RemoveThisFile, { desc = "remove current files" })
 
 -- Telescope
-if plugin_installed "telescope.nvim" then
-  -- Builtin
-  map("n", "<leader>fa", "<Cmd>Telescope builtin<Cr>", { desc = "All Builtin" })
-  map("n", "<leader>ff", "<Cmd>Telescope find_files<Cr>", { desc = "Files" })
-  map("n", "<leader>fg", "<Cmd>Telescope live_grep<Cr>", { desc = "Grep Files" })
-  map("n", "<leader>fb", "<Cmd>Telescope buffers<Cr>", { desc = "Buffers" })
-  map("n", "<leader>fr", "<Cmd>Telescope oldfiles<Cr>", { desc = "Recent Files" })
+-- Builtin
+map("n", "<leader>fa", "<Cmd>Telescope builtin<Cr>", { desc = "All Builtin" })
+map("n", "<leader>ff", "<Cmd>Telescope find_files<Cr>", { desc = "Files" })
+map("n", "<leader>fg", "<Cmd>Telescope live_grep<Cr>", { desc = "Grep Files" })
+map("n", "<leader>fb", "<Cmd>Telescope buffers<Cr>", { desc = "Buffers" })
+map("n", "<leader>fr", "<Cmd>Telescope oldfiles<Cr>", { desc = "Recent Files" })
+map("n", "<leader>hh", "<Cmd>Telescope help_tags<Cr>", { desc = "Helps" })
+map("n", "<leader>hm", "<Cmd>Telescope man_pages<Cr>", { desc = "Man pages" })
+map('n', '<leader>fdb', '<cmd>Telescope diagnostics bufnr=0<cr>', { desc = "Diagnostics Buffer" })
+map('n', '<leader>fdw', '<cmd>Telescope diagnostics<cr>', { desc = "Diagnostics Workspace" })
+-- Loaded Extensions
+map("n", "<leader>fp", "<Cmd>Telescope projects<Cr>", { desc = "Projects" })
+-- Custom
+map("n", "<leader>fc", function() require("my.telescope").find_vim_files() end, { desc = "Config files(Neovim)" })
+map("n", "<leader>fC", function() require("my.telescope").find_vim_data() end, { desc = "Plugins files(Neovim)" })
+map("n", "<leader>fD", function() require("my.telescope").find_dotfiles() end, { desc = "Dotfiles" })
 
-  map("n", "<leader>hh", "<Cmd>Telescope help_tags<Cr>", { desc = "Helps" })
-  map("n", "<leader>hm", "<Cmd>Telescope man_pages<Cr>", { desc = "Man pages" })
-
-  map('n', '<leader>fdb', '<cmd>Telescope diagnostics bufnr=0<cr>', { desc = "Diagnostics Buffer" })
-  map('n', '<leader>fdw', '<cmd>Telescope diagnostics<cr>', { desc = "Diagnostics Workspace" })
-
-  -- Loaded Extensions
-  map("n", "<leader>fp", "<Cmd>Telescope projects<Cr>", { desc = "Projects" })
-
-  -- Custom
-  map("n", "<leader>fc", function() require("plugins_config.telescope").find_vim_files() end, { desc = "Config files(Neovim)" })
-  map("n", "<leader>fC", function() require("plugins_config.telescope").find_vim_data() end, { desc = "Plugins files(Neovim)" })
-  map("n", "<leader>fD", function() require("plugins_config.telescope").find_dotfiles() end, { desc = "Dotfiles" })
-
-end
-
-map("n", "<leader>ts", function() vim.opt.spell = not vim.opt.spell:get() end, { desc = "Spell toggle" })
-map("n", "<leader>tq", function() vim.cmd.QfToggle() end, { desc = "Quixfix window toggle" })
-
-if plugin_installed("nabla.nvim") then
-  map("n", "<leader>te", "<Cmd>lua require('nabla').popup()<Cr>", { desc = "Equation Preview" })
-end
-
-if plugin_installed("markdown-preview.nvim") then
-  map("n", "<leader>tm", "<Cmd>MarkdownPreviewToggle<Cr>", { desc = "Markdown Preview" })
-end
-
-if plugin_installed("neorg") then
-  map("n", "<leader>ng", "<Cmd>NeorgStart<Cr>")
-end
-
-if plugin_installed("mason-lspconfig.nvim") then
-  map("n", "<leader>sl", "<Cmd>LspInfo<Cr>")
-end
-
-if plugin_installed("nvim-treesitter") then
-  map("n", "<leader>st", "<Cmd>TSModuleInfo<Cr>")
-  map("n", "<leader>tp", "<Cmd>TSPlaygroundToggl<Cr>")
-end
-
-if plugin_installed("nvim-colorizer.lua") then
-  map("n", "<leader>tc", "<Cmd>ColorizerToggle<Cr>")
-end
-
-if plugin_installed("indent-blankline.nvim") then
-  map("n", "<leader>ti", "<Cmd>IndentBlanklineToggle<Cr>")
-end
-
-if plugin_installed("plenary.nvim") then
-  map("n", "<leader>td", "<Cmd>w<Cr><Plug>PlenaryTestFile")
-end
-
-local wk_ok, wk = pcall(require, "which-key")
-if wk_ok then
-  wk.register {
-    ["<leader>f"] = "Telescope",
-    ["<leader>d"] = "Diagnostics", -- in diagnostic.lua
-    ["<leader>l"] = "LSP", -- in lsp_handlers.lua
-    ["<leader>h"] = "Helps",
-    ["<leader>s"] = "Status",
-    ["<leader>t"] = "Toggle",
-  }
-end
+map("n", "<leader>sp", "<Cmd>Lazy<Cr>")
+map("n", "<leader>sm", "<Cmd>Mason<Cr>")
+map("n", "<leader>sn", "<Cmd>NullLsInfo<Cr>")
+map("n", "<leader>sc", "<Cmd>CmpStatus<Cr>")
 -- stylua: ignore end

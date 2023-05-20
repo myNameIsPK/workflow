@@ -1,9 +1,8 @@
-local ok, tsconfigs = pcall(require, "nvim-treesitter.configs")
-if not ok then
+local tsconfig_ok, tsconfig = pcall(require, "nvim-treesitter.configs")
+if not tsconfig_ok then
   return
 end
-
-tsconfigs.setup {
+tsconfig.setup {
   ensure_installed = {
     "lua",
     "vim",

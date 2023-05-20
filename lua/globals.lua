@@ -7,6 +7,7 @@ my.opt_exec_deps = { "rg", "fd", "fzf" }
 
 my.opts = {
   document_highlight = false,
+  samantic_tokens = false,
 }
 
 local diagnostic_signs = {

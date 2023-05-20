@@ -1,6 +1,6 @@
 local opt = vim.opt
 
-opt.background = "dark"
+opt.background = "light"
 opt.list = true
 opt.listchars = {
   tab = "→ ",
@@ -62,4 +62,20 @@ opt.guicursor = {
   [[n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50]],
   [[a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor]],
   [[sm:block-blinkwait175-blinkoff150-blinkon175]],
+}
+
+vim.diagnostic.config {
+  virtual_text = true,
+  -- signs = true,
+  update_in_insert = false,
+  underline = true,
+  severity_sort = true,
+  float = {
+    focusable = true,
+    style = "minimal",
+    border = "none",
+    source = true,
+    header = "",
+    prefix = "",
+  },
 }

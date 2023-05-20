@@ -11,19 +11,16 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local lazy_opts = {
-  defaults = {
-    lazy = true,
-  },
-  dev = {
-    path = vim.env.MY_SRC .. "/nvim-plugins/",
-    fallback = true,
-  },
-}
-
-require("lazy").setup({
+require("lazy").setup {
   spec = {
     { import = "plugins" },
     { import = "plugins.langs" },
   },
-}, lazy_opts)
+  defaults = {
+    lazy = true,
+  },
+  dev = {
+    path = vim.env.MY_SRC .. "/nvim-plugins",
+    fallback = true,
+  },
+}

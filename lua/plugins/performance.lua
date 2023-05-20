@@ -1,5 +1,8 @@
 return {
-  { "antoinemadec/FixCursorHold.nvim" },
+  {
+    "antoinemadec/FixCursorHold.nvim",
+    lazy = false,
+  },
 
   -- { "dstein64/vim-startuptime" } -- use impatient LuaCacheProfile instead
 

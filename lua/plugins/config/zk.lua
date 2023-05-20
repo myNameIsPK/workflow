@@ -1,7 +1,4 @@
-local status_ok, zk = pcall(require, "zk")
-if not status_ok then
-  return
-end
+local zk = require "zk"
 
 local opts = {
   -- can be "telescope", "fzf" or "select" (`vim.ui.select`)

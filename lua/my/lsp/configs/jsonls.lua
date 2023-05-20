@@ -1,8 +1,13 @@
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 return {
+  capabilities = capabilities,
   settings = {
     json = {
+      validate = { enable = true },
       -- Schemas https://www.schemastore.org
-      schemas = require('schemastore').json.schemas {
+      schemas = require("schemastore").json.schemas {
         -- select = {
         --   '.eslintrc',
         --   'package.json',

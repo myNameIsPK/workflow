@@ -1,13 +1,68 @@
 return {
-  { "nvim-telescope/telescope.nvim" },
-  { "nvim-telescope/telescope-ui-select.nvim" },
+  {
+    "nvim-telescope/telescope.nvim",
+    cmd = "Telescope",
+    config = function()
+      local ts = require "telescope"
+      pcall(ts.load_extension, "fzf")
+      pcall(ts.load_extension, "projects")
+      pcall(ts.load_extension, "ui-select")
+      pcall(ts.load_extension, "zk")
 
-  -- { "ibhagwan/fzf-lua" },
+      local actions = require "telescope.actions"
+      local action_layout = require "telescope.actions.layout"
+      local opts = {}
+      opts.extensions = {
+        fzf = {
+          fuzzy = true,
+          override_generic_sorter = true,
+          override_file_sorter = true,
+          case_mode = "smart_case",
+        },
+      }
+      opts.defaults = require("telescope.themes").get_ivy {
+        cycle_layout_list = {
+          "vertical",
+          "horizontal",
+          "center",
+          "cursor",
+          "flex",
+          "bottom_pane",
+        },
+        border = true,
+        winblend = 15,
+        borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+        dynamic_preview_title = true,
+        mappings = {
+          i = {
+            ["<C-l>"] = action_layout.cycle_layout_next,
+            ["<C-h>"] = action_layout.cycle_layout_prev,
 
-  { "numToStr/Comment.nvim" },
+            ["<Down>"] = actions.cycle_history_next,
+            ["<Up>"] = actions.cycle_history_prev,
+          },
+          n = {
+            ["<C-n>"] = actions.move_selection_next,
+            ["<C-p>"] = actions.move_selection_previous,
+
+            ["<C-c>"] = actions.close,
+          },
+        },
+      }
+
+      ts.setup(opts)
+    end,
+  },
+
+  { "nvim-telescope/telescope-ui-select.nvim", dependencies = { "nvim-telescope/telescope.nvim" } },
 
   {
     "hrsh7th/nvim-cmp",
+    event = { "InsertEnter", "CmdlineEnter" },
+    config = function()
+      require "plugins.config.cmp"
+      require "my.luasnip"
+    end,
     dependencies = {
       { "L3MON4D3/LuaSnip" },
       { "rafamadriz/friendly-snippets", lazy = false },
@@ -24,5 +79,11 @@ return {
     },
   },
 
-  { "windwp/nvim-autopairs" },
+  {
+    "windwp/nvim-autopairs",
+    event = { "InsertEnter" },
+    config = function()
+      require "plugins.config.autopairs"
+    end,
+  },
 }
