@@ -2,13 +2,41 @@ if not _G.my then
   _G.my = {}
 end
 
+---@type string[] list of dependencies of executables
 my.exec_deps = { "git" }
+---@type string[] list of optional dependencies of executables
 my.opt_exec_deps = { "rg", "fd", "fzf" }
 
+---@type table global configure options
 my.opts = {
-  document_highlight = false,
-  samantic_tokens = false,
+  ---@type table Config options of LSP
+  lsp = {
+    ---@type boolean Enable/Disable LSP document highlight
+    document_highlight = false,
+    ---@type boolean Enable/Disable LSP samantic tokens
+    samantic_tokens = false,
+  },
+  ---@type table Config options of colorscheme
+  colorscheme = {
+    ---@type "dark"|"light"
+    background_default = "light",
+    ---@type boolean Sync background with MY_BACKGROUND env vars
+    background_system_sync = true,
+  },
 }
+
+---@return "dark"|"light"
+my.opts.background_resolve = function(self)
+  if self.colorscheme.background_system_sync then
+    local bg_env = vim.env.MY_BACKGROUND
+    for _, v in ipairs { "light", "dark" } do
+      if bg_env == v then
+        return bg_env
+      end
+    end
+  end
+  return self.colorscheme.background_default
+end
 
 local diagnostic_signs = {
   { name = "DiagnosticSignError", text = "" },

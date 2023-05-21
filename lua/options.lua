@@ -1,6 +1,6 @@
 local opt = vim.opt
 
-opt.background = "light"
+opt.background = my.opts:background_resolve()
 opt.list = true
 opt.listchars = {
   tab = "→ ",
