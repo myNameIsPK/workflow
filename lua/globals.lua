@@ -18,6 +18,10 @@ my.opts = {
   },
   ---@type table Config options of colorscheme
   colorscheme = {
+    ---@type string name of the Neovim default colorscheme eg. "retrobox", "morning"
+    default = "retrobox",
+    ---@type boolean if true use the plugin colorscheme if posible(overide `default`)
+    use_plugin = false,
     ---@type "dark"|"light"
     background_default = "light",
     ---@type boolean Sync background with MY_BACKGROUND env vars
@@ -93,3 +97,8 @@ _G.I = function(object)
 end
 
 _G.R = require("utils.reload").reload
+
+local is_override, _ = pcall(require, "override_globals")
+if is_override then
+  vim.notify("Detect `override_globals.lua`: override `my` global vars", vim.log.levels.INFO)
+end

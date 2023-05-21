@@ -42,7 +42,7 @@ local function lsp_keymaps(bufnr)
   map('n', '<localleader>lW', function() require('telescope.builtin').lsp_workspace_symbols() end, "telescope workspace symbols")
 
   map("n", "<localleader>lsc", function()
-    local clients = vim.lsp.get_active_clients() 
+    local clients = vim.lsp.get_active_clients()
     if #clients >= 0 then
       for _, c in pairs(clients) do
         I(c.server_capabilities)

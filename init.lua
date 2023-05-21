@@ -9,10 +9,10 @@ end
 
 pcall(require, "impatient")
 
--- vim.cmd "colorscheme custom"
--- vim.cmd "colorscheme retrobox"
-
 require "globals"
+
+vim.cmd.colorscheme(my.opts.colorscheme.default)
+
 require "options"
 require "commands"
 require "keymappings"
