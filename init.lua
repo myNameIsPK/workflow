@@ -10,10 +10,15 @@ end
 pcall(require, "impatient")
 
 require "globals"
+require "options"
+
+local is_override, _ = pcall(require, "local_override")
+if is_override then
+  vim.notify("Detect `local_override.lua`: apply local setting", vim.log.levels.INFO)
+end
 
 vim.cmd.colorscheme(my.opts.colorscheme.default)
 
-require "options"
 require "commands"
 require "keymappings"
 require "autocmds"

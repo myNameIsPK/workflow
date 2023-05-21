@@ -8,26 +8,24 @@ my.exec_deps = { "git" }
 my.opt_exec_deps = { "rg", "fd", "fzf" }
 
 ---@type table global configure options
-my.opts = {
-  ---@type table Config options of LSP
-  lsp = {
-    ---@type boolean Enable/Disable LSP document highlight
-    document_highlight = false,
-    ---@type boolean Enable/Disable LSP samantic tokens
-    samantic_tokens = false,
-  },
-  ---@type table Config options of colorscheme
-  colorscheme = {
-    ---@type string name of the Neovim default colorscheme eg. "retrobox", "morning"
-    default = "retrobox",
-    ---@type boolean if true use the plugin colorscheme if posible(overide `default`)
-    use_plugin = false,
-    ---@type "dark"|"light"
-    background_default = "light",
-    ---@type boolean Sync background with MY_BACKGROUND env vars
-    background_system_sync = true,
-  },
-}
+my.opts = {}
+---@type table Config options of LSP
+my.opts.lsp = {}
+---@type boolean Enable/Disable LSP document highlight
+my.opts.lsp.document_highlight = false
+---@type boolean Enable/Disable LSP samantic tokens
+my.opts.lsp.samantic_tokens = false
+
+---@type table Config options of colorscheme
+my.opts.colorscheme = {}
+---@type string name of the Neovim default colorscheme eg. "retrobox", "morning"
+my.opts.colorscheme.default = "retrobox"
+---@type boolean if true use the plugin colorscheme if posible(overide `default`)
+my.opts.colorscheme.use_plugin = false
+---@type "dark"|"light"
+my.opts.colorscheme.background_default = "dark"
+---@type boolean Sync background with MY_BACKGROUND env vars
+my.opts.colorscheme.background_system_sync = true
 
 ---@return "dark"|"light"
 my.opts.background_resolve = function(self)
@@ -97,8 +95,3 @@ _G.I = function(object)
 end
 
 _G.R = require("utils.reload").reload
-
-local is_override, _ = pcall(require, "override_globals")
-if is_override then
-  vim.notify("Detect `override_globals.lua`: override `my` global vars", vim.log.levels.INFO)
-end

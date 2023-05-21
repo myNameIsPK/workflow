@@ -1,313 +1,81 @@
 -- vim: fmr={{{,}}} fdm=marker:
 -- stylua: ignore start
 -- Init {{{
-local c = require("themes.colors")
-local hi = require("utils.highlight").highlight
-local link = require("utils.highlight").hi_link
+local p = require("themes.palette")
+local c = {}
 
-c.bg_hard = c.dark0_hard
+c.neutral_red = p.neutral_red
+c.neutral_green = p.neutral_green
+c.neutral_yellow = p.neutral_yellow
+c.neutral_blue = p.neutral_blue
+c.neutral_purple = p.neutral_purple
+c.neutral_aqua = p.neutral_aqua
+c.neutral_orange = p.neutral_orange
 
-c.bg0 = c.dark0_soft
-c.bg1 = c.dark1
-c.bg2 = c.dark2
-c.bg3 = c.dark3
-c.bg4 = c.dark4
+local is_dark = (vim.opt.background:get() == "dark")
 
-c.fg0 = c.light0_soft
-c.fg1 = c.light1
-c.fg2 = c.light2
-c.fg3 = c.light3
-c.fg4 = c.light4
+if is_dark then
+  c.bg0 = p.dark0
+  c.bg1 = p.dark1
+  c.bg2 = p.dark2
+  c.bg3 = p.dark3
+  c.bg4 = p.dark4
 
-c.gray   = c.gray_245
+  c.fg0 = p.light0
+  c.fg1 = p.light1
+  c.fg2 = p.light2
+  c.fg3 = p.light3
+  c.fg4 = p.light4
 
-c.red    = c.bright_red
-c.green  = c.bright_green
-c.yellow = c.bright_yellow
-c.blue   = c.bright_blue
-c.purple = c.bright_purple
-c.aqua   = c.bright_aqua
-c.orange = c.bright_orange
+  c.red = p.bright_red
+  c.green = p.bright_green
+  c.yellow = p.bright_yellow
+  c.blue = p.bright_blue
+  c.purple = p.bright_purple
+  c.aqua = p.bright_aqua
+  c.orange = p.bright_orange
+else
+  c.bg0 = p.light0
+  c.bg1 = p.light1
+  c.bg2 = p.light2
+  c.bg3 = p.light3
+  c.bg4 = p.light4
 
-hi('Fg0', { fg = c.fg0 })
-hi('Fg1', { fg = c.fg1 })
-hi('Fg2', { fg = c.fg2 })
-hi('Fg3', { fg = c.fg3 })
-hi('Fg4', { fg = c.fg4 })
+  c.fg0 = p.dark0
+  c.fg1 = p.dark1
+  c.fg2 = p.dark2
+  c.fg3 = p.dark3
+  c.fg4 = p.dark4
 
-hi('Bg0', { bg = c.bg0 })
-hi('Bg1', { bg = c.bg1 })
-hi('Bg2', { bg = c.bg2 })
-hi('Bg3', { bg = c.bg3 })
-hi('Bg4', { bg = c.bg4 })
+  c.red = p.faded_red
+  c.green = p.faded_green
+  c.yellow = p.faded_yellow
+  c.blue = p.faded_blue
+  c.purple = p.faded_purple
+  c.aqua = p.faded_aqua
+  c.orange = p.faded_orange
+end
 
-hi('Gray',   { fg = c.gray   }, { "Grey" })
-hi('Red',    { fg = c.red    })
-hi('Orange', { fg = c.orange })
-hi('Yellow', { fg = c.yellow })
-hi('Green',  { fg = c.green  })
-hi('Aqua',   { fg = c.aqua   })
-hi('Blue',   { fg = c.blue   })
-hi('Purple', { fg = c.purple })
+if vim.fn.has("nvim") == 1 then
+  vim.g.terminal_color_0 = c.bg0[1]
+  vim.g.terminal_color_1 = c.neutral_red[1]
+  vim.g.terminal_color_2 = c.neutral_green[1]
+  vim.g.terminal_color_3 = c.neutral_yellow[1]
+  vim.g.terminal_color_4 = c.neutral_blue[1]
+  vim.g.terminal_color_5 = c.neutral_purple[1]
+  vim.g.terminal_color_6 = c.neutral_aqua[1]
+  vim.g.terminal_color_7 = c.fg4[1]
+  vim.g.terminal_color_8 = c.bg4[1]
+  vim.g.terminal_color_9 = c.red[1]
+  vim.g.terminal_color_10 = c.green[1]
+  vim.g.terminal_color_11 = c.yellow[1]
+  vim.g.terminal_color_12 = c.blue[1]
+  vim.g.terminal_color_13 = c.purple[1]
+  vim.g.terminal_color_14 = c.aqua[1]
+  vim.g.terminal_color_15 = c.fg0[1]
+end
 
-hi('GrayBold',   { fg = c.gray,   style = 'bold' })
-hi('RedBold',    { fg = c.red,    style = 'bold' })
-hi('OrangeBold', { fg = c.orange, style = 'bold' })
-hi('YellowBold', { fg = c.yellow, style = 'bold' })
-hi('GreenBold',  { fg = c.green,  style = 'bold' })
-hi('AquaBold',   { fg = c.aqua,   style = 'bold' })
-hi('BlueBold',   { fg = c.blue,   style = 'bold' })
-hi('PurpleBold', { fg = c.purple, style = 'bold' })
+c = vim.tbl_map(function(v) return v[1] end, c)
 
-hi('GrayItalic',   { fg = c.gray,   style = 'italic' })
-hi('RedItalic',    { fg = c.red,    style = 'italic' })
-hi('OrangeItalic', { fg = c.orange, style = 'italic' })
-hi('YellowItalic', { fg = c.yellow, style = 'italic' })
-hi('GreenItalic',  { fg = c.green,  style = 'italic' })
-hi('AquaItalic',   { fg = c.aqua,   style = 'italic' })
-hi('BlueItalic',   { fg = c.blue,   style = 'italic' })
-hi('PurpleItalic', { fg = c.purple, style = 'italic' })
-
-hi('GrayUnderline',   { fg = c.gray,   style = 'underline' })
-hi('RedUnderline',    { fg = c.red,    style = 'underline' })
-hi('OrangeUnderline', { fg = c.orange, style = 'underline' })
-hi('YellowUnderline', { fg = c.yellow, style = 'underline' })
-hi('GreenUnderline',  { fg = c.green,  style = 'underline' })
-hi('AquaUnderline',   { fg = c.aqua,   style = 'underline' })
-hi('BlueUnderline',   { fg = c.blue,   style = 'underline' })
-hi('PurpleUnderline', { fg = c.purple, style = 'underline' })
--- }}}
--- UI {{{
-hi("Normal", { fg = c.fg0, bg = c.bg0 })
-
-hi("Cursor", { style = "reverse" }, {
-  "vCursor",
-  "iCursor",
-  "lCursor",
-  "CursorIM",
-})
-
-link("CursorLine", "Bg1", {
-  "CursorColumn",
-})
-hi("ColorColumn", { bg = c.red })
-
-link("CursorLineNr", "YellowBold")
-link("LineNr", "Fg4")
-
-link("SignColumn", "Bg0")
-
-hi("Folded", { fg = c.gray, bg = c.bg2 }, {
-  "FoldColumn"
-})
-
-link("Whitespace", "Gray", {
-  "NonText",
-  "EndOfBuffer",
-  "SpecialKey",
-})
-
-hi("IncSearch", { fg = c.bg0, bg = c.red    })
-hi("Search",    { fg = c.bg0, bg = c.yellow })
-
-hi("Visual", { style = "reverse" })
-
-hi("MatchParen", { fg = c.red, bg = c.bg3 })
-
-hi("StatusLine",   { bg = c.bg4 })
-hi("StatusLineNC", { bg = c.bg2 })
-
-hi("TabLine",     { bg = c.bg2 })
-hi("TabLineSel",  { bg = c.bg4 })
-hi("TabLineFill", { bg = c.bg0 })
-
-hi("VertSplit", { fg = c.bg3, bg = c.bg0 })
--- }}}
--- Completion {{{
-hi("Pmenu",      { fg = c.fg1,  bg = c.bg2   })
-hi("PmenuSel",   { fg = c.bg2,  bg = c.gray, style = "bold" })
-hi("WildMenu",   { fg = c.gray, bg = c.bg2,  style = "bold" })
-hi("PmenuSbar",  { bg = c.bg2   })
-hi("PmenuThumb", { bg = c.bg3   })
--- }}}
--- Message {{{
-link("ErrorMsg",   "RedBold")
-link("WarningMsg", "YellowBold")
-link("ModeMsg",    "YellowBold")
-link("MoreMsg",    "YellowBold")
-link("Question",   "OrangeBold")
--- }}}
--- Diff {{{
-link("DiffAdd",    "Green")
-link("DiffChange", "Yellow")
-link("DiffDelete", "Red")
-link("DiffText",   "Blue")
-link("Directory",  "Blue")
--- }}}
--- LSP {{{
-link("LspReferenceText", "Bg2")
-link("LspReferenceWrite", "Bg2")
-link("LspReferenceRead", "Bg2")
--- }}}
--- Spell {{{
-hi("SpellBad",   { style = "undercurl", sp = c.red    })
-hi("SpellCap",   { style = "undercurl", sp = c.yellow })
-hi("SpellRare",  { style = "undercurl", sp = c.orange })
-hi("SpellLocal", { style = "undercurl", sp = c.purple })
--- }}}
--- Syntax {{{
-hi("Boolean",        { fg    = c.purple    })
-hi("Number",         { fg    = c.purple    })
-hi("Float",          { fg    = c.purple    })
-
-hi("PreProc",        { fg    = c.purple,   style = "italic" })
-hi("PreCondit",      { fg    = c.purple,   style = "italic" })
-hi("Include",        { fg    = c.purple,   style = "italic" })
-hi("Define",         { fg    = c.purple,   style = "italic" })
-hi("Conditional",    { fg    = c.red,      style = "italic" })
-hi("Repeat",         { fg    = c.red,      style = "italic" })
-hi("Keyword",        { fg    = c.red,      style = "italic" })
-hi("Typedef",        { fg    = c.red,      style = "italic" })
-hi("Exception",      { fg    = c.red,      style = "italic" })
-hi("Statement",      { fg    = c.red,      style = "italic" })
-
-hi("Error",          { fg    = c.red       })
-hi("StorageClass",   { fg    = c.orange    })
-hi("Tag",            { fg    = c.orange    })
-hi("Label",          { fg    = c.orange    })
-hi("Structure",      { fg    = c.orange    })
-hi("Operator",       { fg    = c.orange    })
-hi("Title",          { fg    = c.orange,   style = "bold"   })
-hi("Special",        { fg    = c.yellow    })
-hi("SpecialChar",    { fg    = c.yellow    })
-hi("Type",           { fg    = c.yellow    })
-
-hi("Function",       { fg    = c.green,    style = "bold"   })
-
-hi("String",         { fg    = c.green     })
-hi("Character",      { fg    = c.green     })
-hi("Constant",       { fg    = c.aqua      })
-hi("Macro",          { fg    = c.aqua      })
-hi("Identifier",     { fg    = c.blue      })
-
-hi("Comment",        { fg    = c.gray,     style = "italic" })
-hi("SpecialComment", { fg    = c.gray,     style = "italic" })
-hi("Todo",           { fg    = c.purple,   style = "italic" })
-
-hi("Delimiter",      { fg    = c.fg0       })
-hi("Ignore",         { fg    = c.gray      })
-hi("Underlined",     { style = "underline" })
--- }}}
--- Plugins {{{
--- Cmp {{{
-hi("CmpItemAbbrMatch", { fg = c.green, style = "bold"})
-hi("CmpItemAbbrMatchFuzzy", { fg = c.purple, style = "bold"})
-link("CmpItemAbbr",              "Fg")
-link("CmpItemAbbrDeprecated",    "Red")
-link("CmpItemMenu",              "Gray")
-link("CmpItemKind",              "Yellow")
-link("CmpItemKindText",          "Gray")
-link("CmpItemKindMethod",        "Green")
-link("CmpItemKindFunction",      "Green")
-link("CmpItemKindConstructor",   "Green")
-link("CmpItemKindField",         "Green")
-link("CmpItemKindVariable",      "Blue")
-link("CmpItemKindClass",         "Yellow")
-link("CmpItemKindInterface",     "Yellow")
-link("CmpItemKindModule",        "Yellow")
-link("CmpItemKindProperty",      "Blue")
-link("CmpItemKindUnit",          "Purple")
-link("CmpItemKindValue",         "Purple")
-link("CmpItemKindEnum",          "Yellow")
-link("CmpItemKindKeyword",       "Red")
-link("CmpItemKindSnippet",       "Aqua")
-link("CmpItemKindColor",         "Aqua")
-link("CmpItemKindFile",          "Aqua")
-link("CmpItemKindReference",     "Aqua")
-link("CmpItemKindFolder",        "Aqua")
-link("CmpItemKindEnumMember",    "Purple")
-link("CmpItemKindConstant",      "Blue")
-link("CmpItemKindStruct",        "Yellow")
-link("CmpItemKindEvent",         "Orange")
-link("CmpItemKindOperator",      "Orange")
-link("CmpItemKindTypeParameter", "Yellow")
--- }}}
--- Telescope {{{
-hi("TelescopeNormal", { fg = c.fg0, bg = c.bg_hard })
--- }}}
--- Treesitter {{{
-hi("TSStrong", { style = "bold" })
-hi("TSEmphasis", { style = "italic" })
-hi("TSUnderline", { style = "underline" })
-hi("TSTodo", { fg = c.fg0, bg = c.orange, style = "bold" })
-hi("TSNote", { fg = c.fg0, bg = c.blue, style = "bold" })
-hi("TSWarning", { fg = c.bg0, bg = c.yellow, style = "bold" })
-hi("TSDanger", { fg = c.fg0, bg = c.red, style = "bold" })
-link("TSAnnotation", "Purple")
-link("TSAttribute", "Purple")
-link("TSBoolean", "Purple")
-link("TSCharacter", "Aqua")
-link("TSComment", "Comment")
-link("TSConditional", "Red")
-link("TSConstBuiltin", "BlueItalic")
-link("TSConstMacro", "BlueItalic")
-link("TSConstant", "Fg")
-link("TSConstructor", "GreenBold")
-link("TSException", "Red")
-link("TSField", "Green")
-link("TSFloat", "Purple")
-link("TSFuncBuiltin", "GreenBold")
-link("TSFuncMacro", "GreenBold")
-link("TSFunction", "GreenBold")
-link("TSInclude", "Red")
-link("TSKeyword", "Red")
-link("TSKeywordFunction", "Red")
-link("TSKeywordOperator", "Orange")
-link("TSLabel", "Orange")
-link("TSMethod", "GreenBold")
-link("TSNamespace", "YellowItalic")
-link("TSNone", "Fg")
-link("TSNumber", "Purple")
-link("TSOperator", "Orange")
-link("TSParameter", "Fg")
-link("TSParameterReference", "Fg")
-link("TSProperty", "Fg")
-link("TSPunctBracket", "Fg")
-link("TSPunctDelimiter", "Gray")
-link("TSPunctSpecial", "Blue")
-link("TSRepeat", "Red")
-link("TSStorageClass", "Orange")
-link("TSString", "Aqua")
-link("TSStringEscape", "Green")
-link("TSStringRegex", "Green")
-link("TSStructure", "BlueItalic")
-link("TSSymbol", "Fg")
-link("TSTag", "Orange")
-link("TSTagDelimiter", "Green")
-link("TSText", "Green")
-link("TSStrike", "Gray")
-link("TSMath", "Blue")
-link("TSType", "Yellow")
-link("TSTypeBuiltin", "YellowItalic")
-link("TSURI", "BlueUnderline")
-link("TSVariable", "Fg")
-link("TSVariableBuiltin", "BlueItalic")
--- }}}
--- Neogit {{{
-link("NeogitNotificationInfo", "Blue")
-link("NeogitNotificationWarning", "Yellow")
-link("NeogitNotificationError", "Red")
-link("NeogitDiffAdd", "Green")
-link("NeogitDiffDelete", "Red")
-hi("NeogitDiffAddHighlight", { fg = c.fg0, bg = c.faded_green })
-hi("NeogitDiffDeleteHighlight", { fg = c.fg0, bg = c.faded_red })
-link("NeogitDiffContextHighlight", "CursorLine")
-link("NeogitHunkHeaderHighlight", "TabLine")
-link("NeogitHunkHeader", "TabLineFill")
-link("NeogitCommandCodeNormal", "Green")
-link("NeogitCommandCodeError", "Red")
-link("NeogitCommitViewHeader", "TabLineSel")
-link("NeogitFilePath", "GrayBold")
--- }}}
 -- }}}
 -- stylua: ignore end

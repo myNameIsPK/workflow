@@ -1,2 +1,3 @@
 vim.g.colors_name = "custom"
-require("themes.highlight")
+vim.cmd.highlight "clear"
+require "themes"

@@ -63,6 +63,7 @@ opt.guicursor = {
   [[a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor]],
   [[sm:block-blinkwait175-blinkoff150-blinkon175]],
 }
+opt.inccommand = "split" -- when `:s` also show in preview window
 
 vim.diagnostic.config {
   virtual_text = true,
