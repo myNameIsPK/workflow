@@ -47,6 +47,7 @@ return {
       vim.g.gruvbox_material_disable_italic_comment = 0
       vim.g.gruvbox_material_palette = "original"
       vim.cmd.colorscheme "gruvbox-material"
+      vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", { link = "Comment" })
     end,
   },
 }

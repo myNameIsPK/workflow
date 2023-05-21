@@ -78,4 +78,7 @@ end
 c = vim.tbl_map(function(v) return v[1] end, c)
 
 -- }}}
+
+-- TODO: colorsheme setting
+
 -- stylua: ignore end
