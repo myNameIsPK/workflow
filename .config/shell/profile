@@ -18,7 +18,7 @@ export MY_SHELL="$(ps -p $$ -ocomm=)"
 export MY_BIN="$HOME/bin"
 export MY_LIB="$HOME/lib"
 export MY_SRC="$HOME/.local/src"
-export MY_BACKGROUND="light"
+export MY_BACKGROUND="dark"
 export MY_COLOR_CACHE_DIR="$XDG_CACHE_HOME/colorsync"
 export MY_NOTES_DIR=$HOME/notes
 
@@ -53,7 +53,7 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 trap break SIGINT
-function startx_y_or_n() {
+startx_y_or_n() {
   if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
     # exec startx
     while true; do
