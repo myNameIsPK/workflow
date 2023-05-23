@@ -18,7 +18,7 @@ export MY_SHELL="$(ps -p $$ -ocomm=)"
 export MY_BIN="$HOME/bin"
 export MY_LIB="$HOME/lib"
 export MY_SRC="$HOME/.local/src"
-export MY_BACKGROUND="dark"
+export MY_BACKGROUND="light"
 export MY_COLOR_CACHE_DIR="$XDG_CACHE_HOME/colorsync"
 export MY_NOTES_DIR=$HOME/notes
 
@@ -52,6 +52,7 @@ if [ -n "$BASH_VERSION" ]; then
     [ -f ${XDG_CONFIG_HOME:-$HOME/.config}/bash/bashrc ] && source ${XDG_CONFIG_HOME:-$HOME/.config}/bash/bashrc
 fi
 
+# FIXME: now C-c not work in this shell
 trap break SIGINT
 startx_y_or_n() {
   if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then

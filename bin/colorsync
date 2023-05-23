@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import sys
 import os
-sys.path.append(os.environ["MY_LIB"]+"/colorsync")
+sys.path.append(os.environ["MY_LIB"])
 from colorsync.__main__ import main
 
 if __name__ == "__main__":
