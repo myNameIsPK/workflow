@@ -4,14 +4,14 @@ if not ok then
 end
 
 -- from LunarVim/Neovim_from_scratch
-autopairs.setup({
+autopairs.setup {
   check_ts = true,
   ts_config = {
     lua = { "string", "source" }, -- it will not add a pair on that treesitter node
     javascript = { "string", "template_string" },
     java = false, -- don't check treesitter on java
   },
-  disable_filetype = { "TelescopePrompt", "spectre_panel" },
+  disable_filetype = { "TelescopePrompt", "lisp" },
   fast_wrap = {
     map = "<m-e>",
     chars = { "{", "[", "(", '"', "'" },
@@ -23,14 +23,14 @@ autopairs.setup({
     highlight = "pmenusel",
     highlight_grey = "linenr",
   },
-})
+}
 
-local Rule = require('nvim-autopairs.rule')
+local Rule = require "nvim-autopairs.rule"
 -- local cond = require('nvim-autopairs.conds')
 -- local ts_conds = require('nvim-autopairs.ts-conds')
 
 -- -- NOTE: clean EXAMPLE
-autopairs.add_rule(Rule("$$","$$","tex"))
+autopairs.add_rule(Rule("$$", "$$", "tex"))
 -- autopairs.add_rule(
 --   Rule("$$","$$")
 --     :with_pair(cond.not_filetypes({"lua"}))

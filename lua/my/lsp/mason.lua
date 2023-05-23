@@ -5,8 +5,9 @@ function M.setup()
   if not mason_lspconfig_ok then
     return
   end
+
   mason_lspconfig.setup {
-    ensure_installed = { "lua_ls" },
+    ensure_installed = { "lua_ls@3.0.0" },
   }
 
   local handlers = require "my.lsp.handlers"

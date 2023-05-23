@@ -13,6 +13,7 @@ return {
   {
     "williamboman/mason.nvim",
     -- lazy = false,
+    cmd = "Mason",
     config = function()
       -- `:h mason-setting`
       require("mason").setup()
