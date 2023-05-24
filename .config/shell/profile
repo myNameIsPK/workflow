@@ -53,9 +53,9 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 # FIXME: now C-c not work in this shell
-trap break SIGINT
 startx_y_or_n() {
   if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+    trap break SIGINT
     # exec startx
     while true; do
       printf "Do you want to startx? (y/n):"
