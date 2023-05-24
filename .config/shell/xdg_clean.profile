@@ -10,6 +10,8 @@ export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
 # export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
 export STARSHIP_CONFIG=${XDG_CONFIG_HOME:-$HOME/.config}/starship/config.toml
 export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
+# Docker
+export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 # Vagrant
 export VAGRANT_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"/vagrant
 export VAGRANT_ALIAS_FILE="${XDG_CONFIG_HOME:-$HOME/.config}"/vagrant/aliases
