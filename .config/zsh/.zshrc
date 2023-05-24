@@ -145,3 +145,10 @@ fpath=("$ZDOTDIR/plugins/zsh-completions" $fpath)
 compinit
 
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
+
+# Modified from Guix auto bash config
+if [ -n "$GUIX_ENVIRONMENT" ]; then
+    if [[ $PS1 =~ (.*)"\\$" ]]; then
+        PS1="${match[1]} [guix env]\\\$ "
+    fi
+fi
