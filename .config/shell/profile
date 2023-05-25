@@ -47,6 +47,10 @@ fi
 source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/xdg_clean.profile
 source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/config.env
 
+## Guix <https://guix.gnu.org/manual/en/html_node/Invoking-guix-package.html>
+GUIX_PROFILE="$HOME/.guix-profile" ; \
+source "$GUIX_PROFILE/etc/profile"
+
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     [ -f ${XDG_CONFIG_HOME:-$HOME/.config}/bash/bashrc ] && source ${XDG_CONFIG_HOME:-$HOME/.config}/bash/bashrc
