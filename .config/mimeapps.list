@@ -24,6 +24,7 @@ application/x-extension-shtml=userapp-Nightly-ROWT01.desktop
 application/xhtml+xml=userapp-Nightly-ROWT01.desktop
 application/x-extension-xhtml=userapp-Nightly-ROWT01.desktop
 application/x-extension-xht=userapp-Nightly-ROWT01.desktop
+x-scheme-handler/discord-460807638964371468=discord-460807638964371468.desktop
 
 [Added Associations]
 x-scheme-handler/http=userapp-Nightly-ROWT01.desktop;
