@@ -65,7 +65,7 @@ startx_y_or_n() {
       printf "Do you want to start X server? (y/n): "
       read yn
       case $yn in
-        [Yy]*) startx "$XINITRC"; break ;;
+        [Yy]*) startx "$XINITRC" && break ;;
         [Nn]*) break ;;
         *) echo "(y/n) only";;
       esac
