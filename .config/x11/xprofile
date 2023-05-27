@@ -23,7 +23,8 @@ dunst &
 "$HOME"/.config/polybar/launch.sh &
 # skippy-xd-runner --start-daemon &
 # espanso daemon &
-prime-offload && optimus-manager-qt &
+prime-offload &
+optimus-manager-qt &
 
 # Start window manager
 exec bspwm
