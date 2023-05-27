@@ -62,14 +62,15 @@ startx_y_or_n() {
     trap break SIGINT
     # exec startx
     while true; do
-      printf "Do you want to startx? (y/n):"
+      printf "Do you want to start X server? (y/n): "
       read yn
       case $yn in
-        [Yy]* ) startx "$XINITRC"; break;;
-        [Nn]* ) break;;
-        * ) echo "(y/n) only";;
+        [Yy]*) startx "$XINITRC"; break ;;
+        [Nn]*) break ;;
+        *) echo "(y/n) only";;
       esac
     done
+    trap - SIGINT
   fi
 }
 startx_y_or_n
