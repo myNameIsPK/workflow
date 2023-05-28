@@ -27,4 +27,6 @@ cd $firmware_path
 # util/docker_build.sh $KEYBOARD:$KEYMAP:flash
 make $KEYBOARD:$KEYMAP:flash
 
+exec xset r rate 300 50 & # refresh repeat rate (same as in .xprofile)
+
 clear
