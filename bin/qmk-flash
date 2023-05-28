@@ -9,6 +9,7 @@ firmware_path="${MY_SRC:-$HOME/.local/src}/qmk_firmware"
 config_path="${MY_SRC}/my_qmk"
 
 keymap_path="${config_path}/${KEYBOARD}/${KEYMAP}"
+dest_path="${firmware_path}/keyboards/${KEYBOARD}/keymaps/${KEYMAP}"
 
 if [[ ! -d $firmware_path ]]; then
   echo "Clone qmk_firmware from github"
@@ -31,12 +32,15 @@ refresh ()
 
 clear ()
 {
-  rm -rf "${firmware_path}/keyboards/${KEYBOARD}/keymaps/${KEYMAP}"
+  echo "Remove keymap in ${dest_path}"
+  rm -rf ${dest_path}
 }
 
 trap 'clear' ERR
 
-cp -rf $keymap_path "${firmware_path}/keyboards/${KEYBOARD}/keymaps/${KEYMAP}"
+echo "Copy keymap to ${dest_path}"
+cp -rf $keymap_path "${dest_path}"
+
 cd $firmware_path
 # util/docker_build.sh $KEYBOARD:$KEYMAP:flash
 make $KEYBOARD:$KEYMAP:flash && refresh
