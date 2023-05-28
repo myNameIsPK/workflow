@@ -1,6 +1,5 @@
 -- stylua: ignore start
 local map = require("utils.mappings").map
-local plugin_installed = require("utils.plugins").plugin_installed
 
 --- Plaground make it work
 map("n", "<leader>rf", "<cmd>lua my.save_and_exec()<CR>")
@@ -8,6 +7,12 @@ map("n", "<leader>ra", "<cmd>lua require('utils.reload').reload_all()<CR>")
 ---
 
 -- map("i", { "jk", "kj", "jj", "kk" }, "<Esc>")
+
+-- like in emacs keybinds <c-n>,<c-p> is cursor up,down
+-- this make <c-f>,<c-b> is <right>,<left> in emacs too
+-- if you want full page up,down use <PageUp/Dn> instead
+map("n", "<c-f>", "<right>")
+map("n", "<c-b>", "<left>")
 
 map("i", { "<M-j>", "<M-Down>" }, "<Esc>:m .+1<CR>==gi")
 map("i", { "<M-k>", "<M-Up>", }, "<Esc>:m .-2<CR>==gi")

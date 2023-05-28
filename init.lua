@@ -13,9 +13,8 @@ require "globals"
 require "options"
 
 local is_override, _ = pcall(require, "local_override")
-if is_override then
-  vim.notify("Detect `local_override.lua`: apply local setting", vim.log.levels.INFO)
-end
+---@type boolean|nil
+my.got_override = is_override
 
 vim.cmd.colorscheme(my.opts.colorscheme.default)
 

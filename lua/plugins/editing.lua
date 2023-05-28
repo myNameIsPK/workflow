@@ -17,17 +17,17 @@ return {
 
   {
     "echasnovski/mini.surround",
-    keys = { "gz", { "gz", mode = "v" } },
+    keys = { "<c-s>", { "<c-s>", mode = "v" } },
     config = function()
       require("mini.surround").setup {
         mappings = {
-          add = "gza", -- Add surrounding in Normal and Visual modes
-          delete = "gzd", -- Delete surrounding
-          find = "gzf", -- Find surrounding (to the right)
-          find_left = "gzF", -- Find surrounding (to the left)
-          highlight = "gzh", -- Highlight surrounding
-          replace = "gzr", -- Replace surrounding
-          update_n_lines = "gzn", -- Update `n_lines`
+          add = "<c-s>a", -- Add surrounding in Normal and Visual modes
+          delete = "<c-s>d", -- Delete surrounding
+          find = "<c-s>f", -- Find surrounding (to the right)
+          find_left = "<c-s>F", -- Find surrounding (to the left)
+          highlight = "<c-s>h", -- Highlight surrounding
+          replace = "<c-s>r", -- Replace surrounding
+          update_n_lines = "<c-s>n", -- Update `n_lines`
 
           suffix_last = "l", -- Suffix to search with "prev" method
           suffix_next = "n", -- Suffix to search with "next" method

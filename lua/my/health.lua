@@ -50,6 +50,13 @@ function M.check()
       error("No '" .. exec .. "' executable")
     end
   end
+
+  start "Local configs override"
+  if my.got_override then
+    ok("Detect local settings: got overrided")
+  else
+    ok("Undetect local settings: notthing change from settings")
+  end
 end
 
 return M
