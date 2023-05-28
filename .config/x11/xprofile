@@ -21,7 +21,7 @@ sxhkd -t 2 &
 dunst &
 # mpd &
 "$HOME"/.config/polybar/launch.sh &
-# skippy-xd-runner --start-daemon &
+skippy-xd-runner --config ~/.config/skippy-xd/skippy-xd.rc --start-daemon &
 # espanso daemon &
 prime-offload &
 optimus-manager-qt &
