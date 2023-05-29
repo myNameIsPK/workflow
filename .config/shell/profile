@@ -53,28 +53,23 @@ test -f $HOME/.per_host_profile && source $HOME/.per_host_profile
 GUIX_PROFILE="$HOME/.guix-profile" ; \
 source "$GUIX_PROFILE/etc/profile"
 
-# if running bash
-if [ -n "$BASH_VERSION" ]; then
-    [ -f ${XDG_CONFIG_HOME:-$HOME/.config}/bash/bashrc ] && source ${XDG_CONFIG_HOME:-$HOME/.config}/bash/bashrc
-fi
+[ -n "$BASH_VERSION" ] && [ -f ${XDG_CONFIG_HOME:-$HOME/.config}/bash/bashrc ] && source ${XDG_CONFIG_HOME:-$HOME/.config}/bash/bashrc
 
-# FIXME: now C-c not work in this shell
 startx_y_or_n() {
-  if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-    trap break SIGINT
-    # exec startx
-    while true; do
-      printf "Do you want to start X server? (y/n): "
-      read yn
-      case $yn in
-        [Yy]*) startx "$XINITRC" && break ;;
-        [Nn]*) break ;;
-        *) echo "(y/n) only";;
-      esac
-    done
-    trap - SIGINT
-  fi
+  trap break SIGINT
+  # exec startx
+  while true; do
+    printf "Do you want to start X server? (y/n): "
+    read yn
+    case $yn in
+      [Yy]*) startx "$XINITRC" && break ;;
+      [Nn]*) break ;;
+      *) echo "(y/n) only";;
+    esac
+  done
+  trap - SIGINT
 }
-startx_y_or_n
+
+if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then startx_y_or_n; fi
 
 ## End of file
