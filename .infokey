@@ -1,0 +1,7 @@
+#info
+^d scroll-half-screen-down
+^u scroll-half-screen-up
+n search-next
+N search-previous
+^w^w next-window
+^ww next-window
