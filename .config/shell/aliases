@@ -48,6 +48,7 @@ alias gp="git pull"
 alias gP="git push"
 alias gPf="git push --force-with-lease"
 alias gsr="git remote set-url origin"
+alias grv="git remote -v"
 alias ggraph="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 
 # LazyGit
@@ -90,7 +91,7 @@ alias duh="du -h --max-depth=1 | sort -h -r"
 
 # Hack
 alias cd-="cd -"
-alias ....="cd ../.."
-alias ......="cd ../../.."
-alias ........="cd ../../../.."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
 alias :q=exit
