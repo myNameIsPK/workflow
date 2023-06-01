@@ -9,5 +9,5 @@ cd "$REPOS_PATH" || exit 1
 git pull
 git add .
 git commit -m "SYNC: $(date "+%Y-%m-%d %H-%M-%S")"
-git push -q --signed
+git push -q
 notify-send "notes sync"
