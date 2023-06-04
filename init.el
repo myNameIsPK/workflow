@@ -83,7 +83,7 @@
 ;;; Color theme
 (use-package gruvbox-theme
   :init
-  (load-theme 'gruvbox-dark-soft t))
+  (load-theme 'gruvbox-light-soft t))
 
 ;;; Evil
 (use-package undo-tree
