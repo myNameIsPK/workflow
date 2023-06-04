@@ -113,3 +113,8 @@ Plugin {
     ToggleOpt=grp:shift_caps_toggle
   }
 }
+Plugin {
+  type=kbled
+  Config {
+  }
+}
