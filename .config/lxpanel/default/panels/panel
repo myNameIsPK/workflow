@@ -2,7 +2,7 @@
 # Use preference dialog in lxpanel to adjust config when you can.
 
 Global {
-  edge=bottom
+  edge=top
   allign=left
   margin=0
   widthtype=percent
@@ -21,6 +21,7 @@ Global {
   backgroundfile=/usr/share/lxpanel/images/background.png
   autohide=1
   align=left
+  heightwhenhidden=0
 }
 Plugin {
   type=space
@@ -50,6 +51,8 @@ Plugin {
 Plugin {
   type=deskno
   Config {
+    BoldFont=1
+    WMLabels=0
   }
 }
 Plugin {

@@ -21,6 +21,7 @@ sxhkd -t 2 &
 dunst &
 # mpd &
 "$HOME"/.config/polybar/launch.sh &
+# lxpanel &
 skippy-xd-runner --config ~/.config/skippy-xd/skippy-xd.rc --start-daemon &
 # espanso daemon &
 prime-offload &
