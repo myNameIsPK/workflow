@@ -32,7 +32,10 @@ local notepath = vim.env.ZK_NOTEBOOK_DIR .. "/zettels"
 ---@see https://github.com/mickael-menu/zk/blob/main/docs/editors-integration.md#zknew
 local function create_new_note(note_opts)
   note_opts = note_opts or {}
-  note_opts.dryRun = true
+  note_opts.dir = note_opts.dir or notepath
+  -- insertLinkAtLocation not work with dryRun
+  note_opts.dryRun = not note_opts.insertLinkAtLocation
+
   api.new(nil, note_opts, function(err, res)
     assert(not err, tostring(err))
     local content = vim.split(string.gsub(res.content, "\n$", ""), "\n")
@@ -45,11 +48,47 @@ local function create_new_note(note_opts)
   end)
 end
 
-map("n", "<leader>nn", function()
-  create_new_note {
-    dir = vim.env.ZK_NOTEBOOK_DIR .. "/zettels",
-    title = vim.fn.input("Create Note At " .. notepath .. "\nTitle: "),
+---@return number[] tuple tuple of tuple of mark "<" and ">" ((r, c), (r, c))
+local function get_range()
+  local a = vim.api.nvim_buf_get_mark(0, "<")
+  local b = vim.api.nvim_buf_get_mark(0, ">")
+  return a, b
+end
+
+local function get_lsp_range(a, b)
+  local location = {}
+  location.uri = vim.lsp.util.make_given_range_params().textDocument.uri
+  location.range = {
+    start = { line = a[1] - 1, character = a[2] },
+    ["end"] = { line = b[1] - 1, character = b[2] + 1 },
   }
+  return location
+end
+
+---return string from selected range
+---@param get_line boolean|nil get text by line or not
+---@param a number[] tuple
+---@param b number[] tuple
+---@return string
+local function get_selected_text(a, b, get_line)
+  local str_table = {}
+  if get_line then
+    str_table = vim.api.nvim_buf_get_lines(0, a[1] - 1, b[1], true)
+  else
+    str_table = vim.api.nvim_buf_get_text(0, a[1] - 1, a[2], b[1] - 1, b[2] + 1, {})
+  end
+  if #str_table == 1 then
+    return str_table[1]
+  end
+  local str = ""
+  for _, txt in pairs(str_table) do
+    str = str .. txt .. "\n"
+  end
+  return string.gsub(str, "\n$", "")
+end
+
+map("n", "<leader>nn", function()
+  create_new_note { title = vim.fn.input("Create Note At " .. notepath .. "\nTitle: ") }
 end, { desc = "ZK Create new note" })
 
 map("n", "<leader>ndd", function()
@@ -61,7 +100,7 @@ end, { desc = "ZK Create today note" })
 
 map("n", "<leader>nf", function()
   zk.edit { sort = { "modified" } }
-end, { desc = "ZK search noteS" })
+end, { desc = "ZK search notes" })
 map("v", "<leader>nf", ":'<,'>ZkMatch<CR>")
 
 map("n", "<leader>ndf", function()
@@ -72,26 +111,64 @@ map("n", "<leader>nt", "<Cmd>ZkTags<CR>")
 map("n", "<leader>nc", ":edit $ZK_NOTEBOOK_DIR/.zk/config.toml<CR>")
 
 local function zk_keymaps(bufnr)
-  local function map_buf(mode, lhs, rhs, desc)
-    vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
+  local function map_buf(mode, lhs, rhs, desc, map_opts)
+    map_opts = map_opts or {}
+    map_opts = vim.tbl_extend("force", map_opts, { buffer = bufnr, desc = desc })
+    vim.keymap.set(mode, lhs, rhs, map_opts)
   end
-  map_buf("n", "<CR>", "<Cmd>lua vim.lsp.buf.definition()<CR>")
-  -- This overrides the global `<leader>zn` mapping to create the note in the same directory as the current buffer.
-  map_buf("n", "<leader>nn", "<Cmd>ZkNew { dir = vim.fn.expand('%:p:h'), title = vim.fn.input('Title: ') }<CR>")
-  -- Create a new note in the same directory as the current buffer, using the current selection for title.
-  map_buf("v", "<leader>nnt", ":'<,'>ZkNewFromTitleSelection { dir = vim.fn.expand('%:p:h') }<CR>")
-  -- Create a new note in the same directory as the current buffer, using the current selection for note content and asking for its title.
-  map_buf(
-    "v",
-    "<leader>nnc",
-    ":'<,'>ZkNewFromContentSelection { dir = vim.fn.expand('%:p:h'), title = vim.fn.input('Title: ') }<CR>"
-  )
-  -- Open notes linking to the current buffer.
-  map_buf("n", "<leader>nb", "<Cmd>ZkBacklinks<CR>")
-  -- Open notes linked by the current buffer.
-  map_buf("n", "<leader>nl", "<Cmd>ZkLinks<CR>")
-  -- Open the code actions for a visual selection.
-  map_buf("v", "<leader>na", ":'<,'>lua vim.lsp.buf.range_code_action()<CR>")
+
+  map_buf("n", "<CR>", vim.lsp.buf.definition)
+
+  map_buf("n", "<leader>nn", function()
+    create_new_note {
+      title = vim.fn.input "Creating Note\nTitle: ",
+    }
+  end, "ZK Create new Note")
+
+  map_buf("v", "<leader>nnt", function()
+    local a, b = get_range()
+    create_new_note {
+      title = get_selected_text(a, b),
+    }
+  end, "Zk new notes from title", { expr = true })
+
+  map_buf("v", "<leader>nnT", function()
+    local a, b = get_range()
+    local location = get_lsp_range(a, b)
+    vim.print(location)
+    create_new_note {
+      title = get_selected_text(a, b),
+      insertLinkAtLocation = location,
+    }
+  end, "Zk new notes from title (insert link)", { expr = true })
+
+  map_buf("v", "<leader>nnc", function()
+    local a, b = get_range()
+    create_new_note {
+      title = vim.fn.input "Creating Note\nTitle: ",
+      content = get_selected_text(a, b, true),
+    }
+  end, "Zk new notes from content", { expr = true })
+
+  map_buf("v", "<leader>nnC", function()
+    local a, b = get_range()
+    local location = get_lsp_range(a, b)
+    create_new_note {
+      title = vim.fn.input "Creating Note\nTitle: ",
+      content = get_selected_text(a, b, true),
+      insertLinkAtLocation = location,
+    }
+  end, "Zk new notes from content (insert link)", { expr = true })
+
+  map_buf("n", "<leader>nb", function()
+    zk.edit({ linkTo = { vim.api.nvim_buf_get_name(0) } }, { title = "Zk Backlinks" })
+  end, "Zk Backlinks")
+
+  map_buf("n", "<leader>nl", function()
+    zk.edit({ linkedBy = { vim.api.nvim_buf_get_name(0) } }, { title = "Zk Links" })
+  end, "Zk Links")
+
+  map_buf("v", "<leader>na", ":'<,'>lua vim.lsp.buf.code_action()<CR>")
 end
 
 opts.lsp.config.on_attach = function(_, bufnr)

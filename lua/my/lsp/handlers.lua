@@ -28,7 +28,7 @@ local function lsp_keymaps(bufnr)
   map('n', '<localleader>ld', function() vim.lsp.buf.type_definition() end, "Type definition")
   map('n', '<localleader>lrn', function() vim.lsp.buf.rename() end, "Rename")
   map('n', '<localleader>la', function() vim.lsp.buf.code_action() end, "Code action")
-  map('v', '<localleader>la', function() vim.lsp.buf.range_code_action() end, "Code action")
+  map('v', '<localleader>la', function() vim.lsp.buf.code_action() end, "Code action")
 
   map('n', '<localleader>lf', function() lsp_formatting() end, "formatting")
   map('v', '<localleader>lf', function() lsp_formatting() end, "formatting")
