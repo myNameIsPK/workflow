@@ -18,13 +18,14 @@ nm-applet &
 nitrogen --restore &
 picom &
 sxhkd -t 2 &
+sudo xremap $XDG_CONFIG_HOME/xremap/config.yml &
 ## TODO: make swhkd work
 # swhks & pkexec swhkd -d -c $XDG_CONFIG_HOME/swhkd/swhkdrc >> /tmp/swhkd.log 2>&1 &
 dunst &
 # mpd &
 "$HOME"/.config/polybar/launch.sh &
 # lxpanel &
-skippy-xd-runner --config ~/.config/skippy-xd/skippy-xd.rc --start-daemon &
+skippy-xd-runner --config $XDG_CONFIG_HOME/skippy-xd/skippy-xd.rc --start-daemon &
 # espanso daemon &
 ## prime-offload must run for optimus-manager
 prime-offload & optimus-manager-qt &
