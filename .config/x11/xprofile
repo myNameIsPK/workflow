@@ -17,7 +17,9 @@ exec setxkbmap us,th -option grp:alt_caps_toggle &
 nm-applet &
 nitrogen --restore &
 picom &
-sxhkd -t 2 &
+# sxhkd -t 2 &
+swhks &
+pkexec swhkd &
 dunst &
 # mpd &
 "$HOME"/.config/polybar/launch.sh &
