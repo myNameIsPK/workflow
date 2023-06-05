@@ -6,66 +6,66 @@
 
 # terminal emulator
 super + Return
-  $TERMINAL
+	$TERMINAL
 
 # program launcher
 # super + @space
 # 	dmenu_run
 super + space ; super + space
-  _fzf_run
-# dmenu_run -l 10 -b
+	_fzf_run
+	# dmenu_run -l 10 -b
 
 # launch specific program
 super + space ; {b,d}
-  {$BROWSER,discord}
+	{$BROWSER,discord}
 
 # toggle scratchpad
 super + s
-  win-toggle-hidden scratchpad || win-toggle-term scratchpad tmux-ses scratch
-  # win-toggle-hidden scratchpad || win-toggle-term scratchpad tmux-ses scratch && win-size scratchpad 85 70 center
+	win-toggle-hidden scratchpad || win-toggle-term scratchpad tmux-ses scratch
+	# win-toggle-hidden scratchpad || win-toggle-term scratchpad tmux-ses scratch && win-size scratchpad 85 70 center
 
 # screecshot region to clipboard 
 ctrl + Print
-  screenshot -sc && notify-send "screenshot region to clipboard"
+	screenshot -sc && notify-send "screenshot region to clipboard"
 
 # screecshot current window to clipboard 
 ctrl + alt + Print
-  screenshot -cc && notify-send "screenshot this window to clipboard"
+	screenshot -cc && notify-send "screenshot this window to clipboard"
 
 # Volume settings
 super + v
-  win-toggle-term Volume pulsemixer
+	win-toggle-term Volume pulsemixer
 
 # Monitoring
 ctrl + shift + Escape
-  win-toggle-term Monitoring btop
+	win-toggle-term Monitoring btop
 
 super + shift + Tab
-  skippy-xd-runner --activate-window-picker
+	skippy-xd-runner --activate-window-picker
 
 # Increase volume
 XF86AudioRaiseVolume
-  pactl set-sink-volume @DEFAULT_SINK@ +1000
+	pactl set-sink-volume @DEFAULT_SINK@ +1000
 
 # Decrease volume
 XF86AudioLowerVolume
-  pactl set-sink-volume @DEFAULT_SINK@ -1000
+	pactl set-sink-volume @DEFAULT_SINK@ -1000
 
 # Mute volume
 XF86AudioMute
-  pactl set-sink-mute @DEFAULT_SINK@ toggle
+	pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 # Mute microphone
 XF86AudioMicMute
-  pactl set-source-mute @DEFAULT_SOURCE@ toggle
+	pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 # Increase brightness
 XF86MonBrightnessUp
-  xbacklight + 10
+	xbacklight + 10
 
 # Decrease brightness
 XF86MonBrightnessDown
-  xbacklight - 10
+	xbacklight - 10
 
 # TODO:add audio key
 # XF86AudioNext

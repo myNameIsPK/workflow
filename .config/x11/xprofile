@@ -18,8 +18,7 @@ nm-applet &
 nitrogen --restore &
 picom &
 # sxhkd -t 2 &
-swhks &
-pkexec swhkd &
+swhks & pkexec swhkd -d -c $XDG_CONFIG_HOME/swhkd/swhkdrc >> /tmp/swhkd.log 2>&1 &
 dunst &
 # mpd &
 "$HOME"/.config/polybar/launch.sh &
