@@ -13,20 +13,21 @@ exec xset r rate 300 50 &
 # exec setxkbmap us,th,us -variant ,,colemak_dh -option grp:alt_caps_toggle &
 exec setxkbmap us,th -option grp:alt_caps_toggle &
 
-# Autostart program
+## Autostart program
 nm-applet &
 nitrogen --restore &
 picom &
-# sxhkd -t 2 &
-swhks & pkexec swhkd -d -c $XDG_CONFIG_HOME/swhkd/swhkdrc >> /tmp/swhkd.log 2>&1 &
+sxhkd -t 2 &
+## TODO: make swhkd work
+# swhks & pkexec swhkd -d -c $XDG_CONFIG_HOME/swhkd/swhkdrc >> /tmp/swhkd.log 2>&1 &
 dunst &
 # mpd &
 "$HOME"/.config/polybar/launch.sh &
 # lxpanel &
 skippy-xd-runner --config ~/.config/skippy-xd/skippy-xd.rc --start-daemon &
 # espanso daemon &
-prime-offload &
-optimus-manager-qt &
+## prime-offload must run for optimus-manager
+prime-offload & optimus-manager-qt &
 
-# Start window manager
+## Start window manager
 exec bspwm
