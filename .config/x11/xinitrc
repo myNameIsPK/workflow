@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 # TODO: Is this really work?
 # nvidia gpu only

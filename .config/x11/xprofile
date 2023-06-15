@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 # Reduce scale of display
 # xrandr --output eDP1 --scale .85
