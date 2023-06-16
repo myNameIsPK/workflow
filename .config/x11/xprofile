@@ -27,8 +27,11 @@ dunst &
 # lxpanel &
 skippy-xd-runner --config $XDG_CONFIG_HOME/skippy-xd/skippy-xd.rc --start-daemon &
 # espanso daemon &
-## prime-offload must run for optimus-manager
-prime-offload & optimus-manager-qt &
+
+if [[ $(cat /etc/hostname) == laptop* ]]; then 
+  ## prime-offload must run for optimus-manager
+  prime-offload & optimus-manager-qt &
+fi
 
 ## Start window manager
 exec bspwm

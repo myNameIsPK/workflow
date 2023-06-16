@@ -51,7 +51,7 @@ test -f $HOME/.per_host_profile && source $HOME/.per_host_profile
 
 ## Guix <https://guix.gnu.org/manual/en/html_node/Invoking-guix-package.html>
 GUIX_PROFILE="$HOME/.guix-profile" ; \
-source "$GUIX_PROFILE/etc/profile"
+test -f "$GUIX_PROFILE/etc/profile" && source "$GUIX_PROFILE/etc/profile"
 
 [ -n "$BASH_VERSION" ] && [ -f ${XDG_CONFIG_HOME:-$HOME/.config}/bash/bashrc ] && source ${XDG_CONFIG_HOME:-$HOME/.config}/bash/bashrc
 
