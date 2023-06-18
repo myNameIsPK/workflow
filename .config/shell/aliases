@@ -17,6 +17,8 @@ alias tks="tmux kill-sess"
 alias tkp="tmux kill-pane"
 alias td="tmux detach-client"
 
+alias ts="~/bin/tmux-ses"
+
 # Git shortcut
 alias g="git"
 alias gs="git status"
