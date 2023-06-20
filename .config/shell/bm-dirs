@@ -6,7 +6,7 @@ cfe ${XDG_CONFIG_HOME:-$HOME/.config}/emacs
 cfx ${XDG_CONFIG_HOME:-$HOME/.config}/x11
 cfs ${XDG_CONFIG_HOME:-$HOME/.config}/shell
 lcs ${XDG_DATA_HOME:-$HOME/.local/share}
-lcb ${XDG_DATA_HOME:-$HOME/.local/bin}
+lcb $HOME/.local/bin
 src $MY_SRC
 bin $MY_BIN
 lib $MY_LIB
