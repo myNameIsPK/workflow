@@ -55,7 +55,8 @@ bspc_desktop 2 \
 bspc_desktop 3 \
   Thunderbird \
   discord \
-  Steam
+  Steam \
+  yuzu
 
 bspc_desktop 4 \
   easyeffects \
