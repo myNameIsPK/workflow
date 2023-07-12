@@ -45,6 +45,7 @@
 
 enum layer_names {
     _ALPHA = 0,
+    _QWERTY,
     _SYML,
     _NAV,
     _ADJ,
@@ -54,6 +55,13 @@ enum layer_names {
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+[_QWERTY] = LAYOUT_ortho_5x15(
+  KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_PGUP, KC_INS,  KC_PGDN, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_QUOT,
+  HPR_TAB, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    _______, _______, _______, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
+  CTL_ESC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    _______, _______, _______, KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
+  SFT_BSP, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    _______, _______, _______, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, SFT_ENT,
+  KC_LCTL, MEH_GRV, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  _______, _______, _______, HPR_TAB, RAISE,   KC_RGUI, KC_RALT, UMLAUT,  KC_RCTL
+),
     /* ALPHA
      * .--------------------------------------------------------------------------------------------------------------------------------------.
      * | `      | 1      | 2      | 3      | 4      | 5      | PG UP  | INSERT | PG DN  | 6      | 7      | 8      | 9      | 0      | '      |
