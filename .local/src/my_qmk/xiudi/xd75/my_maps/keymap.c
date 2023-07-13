@@ -43,13 +43,8 @@
 #define _____ _______
 #define ______ _______
 
-#define SFT_BSP SFT_T(KC_BSPC) // Tap for Backspace, hold for Shift
-#define SFT_ENT SFT_T(KC_ENT)  // Tap for Enter, hold for Shift
-
 enum layer_names {
     _ALPHA = 0,
-    _QWERTY,
-    _COLEMAK,
     _SYML,
     _NAV,
     _ADJ,
@@ -59,27 +54,6 @@ enum layer_names {
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-[_QWERTY] = LAYOUT_ortho_5x15(
-  KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    _______, QK_BOOT, _______, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_QUOT,
-  KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    _______, _______, _______, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
-  KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    _______, _______, _______, KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_ENT,
-  KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    _______, _______, _______, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-  KC_LCTL, KC_LGUI, KC_LALT, KC_TAB,  KC_ESC,  KC_SPC,  KC_TAB,  _______, KC_DEL,  KC_BSPC, KC_ENT,  KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT 
-),
-[_COLEDH] = LAYOUT_ortho_5x15(
-  KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    _______, QK_BOOT, _______, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_QUOT,
-  KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    _______, _______, _______, KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSPC,
-  KC_ESC,  KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    _______, _______, _______, KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    KC_ENT,
-  KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    _______, _______, _______, KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-  KC_LCTL, KC_LGUI, KC_LALT, KC_TAB,  KC_ESC,  KC_SPC,  KC_TAB,  _______, KC_DEL,  KC_BSPC, KC_ENT,  KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT 
-),
-[_INPRG] = LAYOUT_ortho_5x15( // in progress keymap
-  KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    _______, QK_BOOT, _______, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_QUOT,
-  KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_J,    KC_B,    _______, _______, _______, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
-  KC_ESC,  KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    _______, _______, _______, KC_M,    KC_N,    KC_E,    KC_L,    KC_SCLN, KC_ENT,
-  KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    _______, _______, _______, KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-  KC_LCTL, KC_LGUI, KC_LALT, KC_TAB,  KC_ESC,  KC_SPC,  KC_TAB,  _______, KC_DEL,  KC_BSPC, KC_ENT,  KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT 
-),
     /* ALPHA
      * .--------------------------------------------------------------------------------------------------------------------------------------.
      * | `      | 1      | 2      | 3      | 4      | 5      | PG UP  | INSERT | PG DN  | 6      | 7      | 8      | 9      | 0      | '      |
@@ -94,11 +68,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * '--------------------------------------------------------------------------------------------------------------------------------------'
      */
     [_ALPHA] = LAYOUT_ortho_5x15( /* ALPHA */
-        KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    _______, _______, _______, KC_6,   KC_7,    KC_8,    KC_9,    KC_0,     KC_QUOT,
-        KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_J,    KC_B,    _______, _______, _______, KC_Y,   KC_U,    KC_I,    KC_O,    KC_P,     KC_BSPC,
-        KC_ESC,  LGUI_A,  LALT_R,  LSFT_S,  LCTL__T, KC_G,    _______, _______, _______, KC_M,   RCTL_J,  RSFT_K,  RALT_L,  RGUI_SCLN,KC_ENT,
-        KC_LSFT, LSG_Z,   KC_X,    KC_C,    KC_D,    KC_V,    _______, _______, _______, KC_K,   KC_H,    KC_COMM, KC_DOT,  RSG_SLSH, KC_RSFT,
-        KC_LCTL, KC_LGUI, KC_LALT, KC_TAB,  LT_ESC,  LT_SPC,  LT_TAB,  _______, KC_DEL,  LT_BSPC,LT_ENT,  KC_LEFT, KC_DOWN, KC_UP,    KC_RGHT
+        KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_PGUP, KC_INS,  KC_PGDN, KC_6,   KC_7,    KC_8,    KC_9,    KC_0,     KC_QUOT,
+        KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_J,    KC_B,    KC_HOME, QK_BOOT, KC_END,  KC_Y,   KC_U,    KC_I,    KC_O,    KC_P,     KC_BSPC,
+        KC_ESC,  LGUI_A,  LALT_R,  LSFT_S,  LCTL__T, KC_G,    KC_MINS, KC_PSCR, KC_EQL,  KC_M,   RCTL_J,  RSFT_K,  RALT_L,  RGUI_SCLN,KC_ENT,
+        KC_LSFT, LSG_Z,   KC_X,    KC_C,    KC_D,    KC_V,    KC_LBRC, KC_BSLS, KC_RBRC, KC_K,   KC_H,    KC_COMM, KC_DOT,  RSG_SLSH, KC_RSFT,
+        KC_LCTL, KC_LGUI, KC_LALT, KC_TAB,  LT_ESC,  LT_SPC,  LT_TAB,  KC_CAPS, KC_DEL,  LT_BSPC,LT_ENT,  KC_LEFT, KC_DOWN, KC_UP,    KC_RGHT
     ),
 
     /* SYMLEFT
