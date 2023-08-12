@@ -20,7 +20,7 @@ set index-active-fg             "#d79921"
 set inputbar-bg                 "#f2e5bc"
 set inputbar-fg                 "#32302f"
 
-set statusbar-bg                "#f2e5bc"
+set statusbar-bg                "#ebdbb2"
 set statusbar-fg                "#32302f"
 
 set highlight-color             "#d79921"
