@@ -3,13 +3,15 @@ local opt = vim.opt
 opt.background = my.opts:background_resolve()
 opt.list = true
 opt.listchars = {
-  tab = "→ ",
+  tab = "  →",
   trail = "·",
   -- lead = '·',
   extends = "»",
   precedes = "«",
   nbsp = "×",
   -- eol = '↲',
+  multispace = "·",
+  lead = " ",
 }
 opt.keymap = "thai" -- use keymap in `keymap/{keymap}.vim`
 opt.iminsert = 0 -- not use keymap by default
