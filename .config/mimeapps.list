@@ -38,3 +38,4 @@ application/x-extension-shtml=userapp-Nightly-ROWT01.desktop;
 application/xhtml+xml=userapp-Nightly-ROWT01.desktop;
 application/x-extension-xhtml=userapp-Nightly-ROWT01.desktop;
 application/x-extension-xht=userapp-Nightly-ROWT01.desktop;
+application/x-bibtex=nvim.desktop;
