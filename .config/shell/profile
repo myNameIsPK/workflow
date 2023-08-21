@@ -47,7 +47,7 @@ fi
 source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/xdg_clean.profile
 source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/config.env
 
-test -f $HOME/.per_host_profile && source $HOME/.per_host_profile
+test -f $HOME/.profile.local && source $HOME/.profile.local
 
 ## Guix <https://guix.gnu.org/manual/en/html_node/Invoking-guix-package.html>
 GUIX_PROFILE="$HOME/.guix-profile" ; \

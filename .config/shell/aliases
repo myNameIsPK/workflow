@@ -74,7 +74,7 @@ alias fgrep="fgrep --color=auto"
 # Confirm file operation
 alias cp="cp -i"
 alias mv="mv -i"
-alias rm="rm -i"
+alias rm="rm -vi"
 
 # Utilities
 alias vi="nvim"
