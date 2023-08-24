@@ -4,13 +4,9 @@ return {
     cmd = "Telescope",
     config = function()
       local ts = require "telescope"
-      pcall(ts.load_extension, "fzf")
-      pcall(ts.load_extension, "projects")
-      pcall(ts.load_extension, "ui-select")
-      pcall(ts.load_extension, "zk")
-
       local actions = require "telescope.actions"
       local action_layout = require "telescope.actions.layout"
+
       local opts = {}
       opts.extensions = {
         fzf = {
@@ -18,6 +14,10 @@ return {
           override_generic_sorter = true,
           override_file_sorter = true,
           case_mode = "smart_case",
+        },
+        bibtex = {
+          depth = 10,
+          context = true,
         },
       }
       opts.defaults = require("telescope.themes").get_ivy {
@@ -51,10 +51,17 @@ return {
       }
 
       ts.setup(opts)
+      pcall(ts.load_extension, "fzf")
+      pcall(ts.load_extension, "projects")
+      pcall(ts.load_extension, "ui-select")
+      pcall(ts.load_extension, "zk")
+      pcall(ts.load_extension, "bibtex")
     end,
   },
 
   { "nvim-telescope/telescope-ui-select.nvim", dependencies = { "nvim-telescope/telescope.nvim" } },
+
+  { "nvim-telescope/telescope-bibtex.nvim", dependencies = { "nvim-telescope/telescope.nvim" } },
 
   {
     "hrsh7th/nvim-cmp",
