@@ -26,6 +26,7 @@ return {
     "j-hui/fidget.nvim",
     -- FIXME: fidget cause the crash when `lua-ls@3.6.20` load some shit
     -- cond = false,
+    tag = "legacy",
     lazy = false,
     config = true,
   },
