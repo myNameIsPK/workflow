@@ -12,10 +12,13 @@ bin $MY_BIN
 lib $MY_LIB
 D   ${XDG_DOWNLOAD_DIR:-$HOME/Downloads}
 d   ${XDG_DOCUMENTS_DIR:-$HOME/Documents}
+B   ${XDG_DOCUMENTS_DIR:-$HOME/Documents}/books
 i   ${XDG_PICTURES_DIR:-$HOME/Pictures}
 m   ${XDG_MUSIC_DIR:-$HOME/Music}
 v   ${XDG_VIDEOS_DIR:-$HOME/Videos}
 GG  ${XDG_VIDEOS_DIR:-$HOME/Games}
+Gn  ${XDG_VIDEOS_DIR:-$HOME/Games}/native
+Gw  ${XDG_VIDEOS_DIR:-$HOME/Games}/windows
 scs ${XDG_PICTURES_DIR:-$HOME/Pictures}/screenshots
 p   $HOME/Projects
 n   $HOME/notes
