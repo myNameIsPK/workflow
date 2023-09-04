@@ -29,7 +29,7 @@ return {
         socket_name = "default",
         target_pane = "{marked}",
       }
-      vim.g.slime_cell_delimiter = "#%%"
+      vim.g.slime_cell_delimiter = "# %%"
       vim.keymap.set("n" , "<leader>cc", "<Plug>SlimeParagraphSend")
       vim.keymap.set("v" , "<leader>cc", "<Plug>SlimeRegionSend")
       vim.keymap.set("n" , "<leader>cv", "<Plug>SlimeConfig")
