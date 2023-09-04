@@ -77,7 +77,7 @@ map("c", "<C-a>", "<Home>")
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 map('n', '<leader>de', function() vim.diagnostic.open_float() end, { desc = "Diagnostic Float" })
 map('n', '[d', function() vim.diagnostic.goto_prev() end, { desc = "Diagnostic Prev" })
-map('n', '<leader>dq', function() vim.diagnostic.setloclist() end, { desc = "Diagnostic Quixfix" })
+map('n', '<leader>dq', function() vim.diagnostic.setloclist() end, { desc = "Diagnostic Quickfix" })
 map('n', ']d', function() vim.diagnostic.goto_next() end, { desc = "Diagnostic Next" })
 
 map("n", "<leader>si", vim.cmd.Inspect, { desc = "Inspect" })
@@ -86,7 +86,7 @@ map("n", "<leader>tt", vim.cmd.terminal, { desc = "Terminal" })
 map("n", "<leader>tl", function() vim.cmd.terminal("lf") end, { desc = "LF in terminal" })
 
 map("n", "<leader>ts", function() vim.opt.spell = not(vim.opt.spell:get()) end, { desc = "Spell toggle" })
-map("n", "<leader>tq", function() vim.cmd.QfToggle() end, { desc = "Quixfix window toggle" })
+map("n", "<leader>tq", function() vim.cmd.QfToggle() end, { desc = "Quickfix window toggle" })
 
 map("n", "<leader>ee", vim.cmd.Ex, { desc = "File Explorer"})
 
@@ -99,12 +99,14 @@ map("n", "<leader>ff", "<Cmd>Telescope find_files<Cr>", { desc = "Files" })
 map("n", "<leader>fg", "<Cmd>Telescope live_grep<Cr>", { desc = "Grep Files" })
 map("n", "<leader>fb", "<Cmd>Telescope buffers<Cr>", { desc = "Buffers" })
 map("n", "<leader>fr", "<Cmd>Telescope oldfiles<Cr>", { desc = "Recent Files" })
+map("n", "<leader>fq", "<Cmd>Telescope quickfix<Cr>", { desc = "Quickfix" })
 map("n", "<leader>hh", "<Cmd>Telescope help_tags<Cr>", { desc = "Helps" })
 map("n", "<leader>hm", "<Cmd>Telescope man_pages<Cr>", { desc = "Man pages" })
 map('n', '<leader>fdb', '<cmd>Telescope diagnostics bufnr=0<cr>', { desc = "Diagnostics Buffer" })
 map('n', '<leader>fdw', '<cmd>Telescope diagnostics<cr>', { desc = "Diagnostics Workspace" })
 -- Loaded Extensions
 map("n", "<leader>fp", "<Cmd>Telescope projects<Cr>", { desc = "Projects" })
+map("n", "<leader>fl", "<Cmd>Telescope bibtex<Cr>", { desc = "Bib(La)tex" })
 -- Custom
 map("n", "<leader>fc", function() require("my.telescope").find_vim_files() end, { desc = "Config files(Neovim)" })
 map("n", "<leader>fC", function() require("my.telescope").find_vim_data() end, { desc = "Plugins files(Neovim)" })

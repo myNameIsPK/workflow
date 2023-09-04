@@ -2,7 +2,7 @@ return {
   {
     "mickael-menu/zk-nvim",
     keys = "<leader>n",
-    ft = "md",
+    ft = "markdown",
     dev = true,
     config = function()
       require "plugins.config.zk"
