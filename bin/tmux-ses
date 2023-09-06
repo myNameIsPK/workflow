@@ -4,12 +4,14 @@ directory="~"
 if [ $# -eq 1 ]; then
   ses_name=$1
 else 
-  directory=$(find \
+  directory=$({ \
+    printf "notes\nnvim\n"; \
+    find \
     ~/Projects \
     ~/.local/src \
     ~/.local/src/nvim-plugins \
     ~/.local/share/nvim/lazy \
-    -maxdepth 1 -type d | fzf)
+    -maxdepth 1 -type d; } | fzf)
   ses_name=$(basename "$directory" | tr "." "_")
 fi
 
