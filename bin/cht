@@ -1,8 +1,17 @@
 #!/bin/sh
 
 url="cheat.sh/"
+options="?style=default"
 
-[ -z $1 ] && read -p "$url" query || query=$1
+if [ -z $1 ]; then
+  echo "Query /:help for help"
+  echo "/TOPIC"
+  echo "/TOPIC"
+  printf "%s" "$url"
+  read -r query
+else
+  query=$1
+fi
 
 tr_query=$(echo "$query" | tr "[:blank:]" "+")
-curl $url$tr_query | bat -n
+curl "$url$tr_query$options" | bat -n
