@@ -44,8 +44,8 @@ else
 fi
 
 ## Home directory clean up
-source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/xdg_clean.profile
-source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/config.env
+. ${XDG_CONFIG_HOME:-$HOME/.config}/shell/xdg_clean.profile
+. ${XDG_CONFIG_HOME:-$HOME/.config}/shell/config.env
 
 test -f $HOME/.profile.local && source $HOME/.profile.local
 
