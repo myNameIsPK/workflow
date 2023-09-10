@@ -13,14 +13,14 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 
 ## MY environments vars
-export DOTFILES=$HOME/.dotfile.git
+export DOTFILES="$HOME/.dotfile.git"
 export MY_SHELL="$(ps -p $$ -ocomm=)"
 export MY_BIN="$HOME/bin"
 export MY_LIB="$HOME/lib"
 export MY_SRC="$HOME/.local/src"
 export MY_BACKGROUND="light"
 export MY_COLOR_CACHE_DIR="$XDG_CACHE_HOME/colorsync"
-export MY_NOTES_DIR=$HOME/notes
+export MY_NOTES_DIR="$HOME/notes"
 
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$(echo $(find $MY_BIN -type d -printf %p:))$PATH"
