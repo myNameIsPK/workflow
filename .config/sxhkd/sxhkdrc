@@ -24,6 +24,10 @@ super + s
 	win-toggle-hidden scratchpad || win-toggle-term scratchpad tmux-ses scratch
 	# win-toggle-hidden scratchpad || win-toggle-term scratchpad tmux-ses scratch && win-size scratchpad 85 70 center
 
+# toggle scratchpad
+super + n
+	win-toggle-hidden notes || win-toggle-term notes tmux-ses notes
+
 # screecshot region to clipboard 
 ctrl + Print
 	screenshot -sc && notify-send "screenshot region to clipboard"
