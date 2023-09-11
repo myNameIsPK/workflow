@@ -1,2 +1,4 @@
 straight
 elpa
+.local/*
+*.bak
