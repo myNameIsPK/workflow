@@ -153,3 +153,6 @@ if [ -n "$GUIX_ENVIRONMENT" ]; then
         PS1="${match[1]} [guix env]\\\$ "
     fi
 fi
+
+# bun completions
+[ -s "/home/pk/.bun/_bun" ] && source "/home/pk/.bun/_bun"
