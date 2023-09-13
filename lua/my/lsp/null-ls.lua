@@ -22,7 +22,7 @@ function M.setup()
       formatting.stylua,
       -- diagnostics.flake8
       -- formatting.latexindent,
-      -- diagnostics.shellcheck,
+      diagnostics.shellcheck,
       -- diagnostics.yamllint,
       -- diagnostics.ansiblelint,
       -- code_actions.shellcheck,

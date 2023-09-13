@@ -31,20 +31,22 @@ my.opts.colorscheme.background_system_sync = true
 my.opts.background_resolve = function(self)
   if self.colorscheme.background_system_sync then
     local bg_env = vim.env.MY_BACKGROUND
-    for _, v in ipairs { "light", "dark" } do
-      if bg_env == v then
-        return bg_env
-      end
+    if bg_env == "light" or bg_env == "dark" then
+      return bg_env
     end
   end
   return self.colorscheme.background_default
 end
 
 local diagnostic_signs = {
-  { name = "DiagnosticSignError", text = "" },
-  { name = "DiagnosticSignWarn", text = "" },
-  { name = "DiagnosticSignHint", text = "" },
-  { name = "DiagnosticSignInfo", text = "" },
+  -- { name = "DiagnosticSignError", text = "" },
+  -- { name = "DiagnosticSignWarn", text = "" },
+  -- { name = "DiagnosticSignHint", text = "" },
+  -- { name = "DiagnosticSignInfo", text = "" },
+  { name = "DiagnosticSignError", text = "E" },
+  { name = "DiagnosticSignWarn", text = "W" },
+  { name = "DiagnosticSignHint", text = "H" },
+  { name = "DiagnosticSignInfo", text = "I" },
 }
 
 -- Define diagnostic_signs the same name as diagnostic_signs_highlight

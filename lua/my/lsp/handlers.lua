@@ -18,15 +18,15 @@ local function lsp_keymaps(bufnr)
   -- stylua: ignore start
   map('n', 'gD', function() vim.lsp.buf.declaration() end, "Go to declaration")
   map('n', 'gd', function() vim.lsp.buf.definition() end, "Go to definition") -- use <C-]> instead
-  map('n', 'gr', function() vim.lsp.buf.references() end, "List references")
-  map('n', 'gi', function() vim.lsp.buf.implementation() end, "Go to implementation")
   map('n', 'K', function() vim.lsp.buf.hover() end, "Hover")
   map('n', '<C-k>', function() vim.lsp.buf.signature_help() end, "Signature help")
+  map('n', '<localleader>lr', function() vim.lsp.buf.references() end, "List references")
+  map('n', '<localleader>li', function() vim.lsp.buf.implementation() end, "Go to implementation")
   map('n', '<localleader>lwa', function() vim.lsp.buf.add_workspace_folder() end, "Workspace Add folder")
   map('n', '<localleader>lwd', function() vim.lsp.buf.remove_workspace_folder() end, "Workspace Delete folder")
   map('n', '<localleader>lwl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, "Workspace list folder")
   map('n', '<localleader>ld', function() vim.lsp.buf.type_definition() end, "Type definition")
-  map('n', '<localleader>lrn', function() vim.lsp.buf.rename() end, "Rename")
+  map('n', '<localleader>ln', function() vim.lsp.buf.rename() end, "Rename")
   map('n', '<localleader>la', function() vim.lsp.buf.code_action() end, "Code action")
   map('v', '<localleader>la', function() vim.lsp.buf.code_action() end, "Code action")
 

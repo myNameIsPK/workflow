@@ -19,7 +19,7 @@ opt.iminsert = 0 -- not use keymap by default
 opt.shortmess:append "c" -- shorten ins-completion-menu message
 opt.backup = false -- creates a backup file
 -- FIXME: very slow in wsl
-opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
+-- opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
 opt.cmdheight = 1 -- more space in the neovim command line for displaying messages
 opt.colorcolumn = "99999" -- fixes indentline for now
 opt.completeopt = "menuone,noselect"
@@ -83,3 +83,5 @@ vim.diagnostic.config {
     prefix = "",
   },
 }
+
+vim.opt.quickfixtextfunc = "v:lua.require'my.plugin.quickfixtext'.quickfixtext"

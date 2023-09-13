@@ -14,8 +14,14 @@ map("n", "<leader>ra", "<cmd>lua require('utils.reload').reload_all()<CR>")
 map("n", "<c-f>", "<right>")
 map("n", "<c-b>", "<left>")
 
-map("i", { "<M-j>", "<M-Down>" }, "<Esc>:m .+1<CR>==gi")
-map("i", { "<M-k>", "<M-Up>", }, "<Esc>:m .-2<CR>==gi")
+map("i", "<M-Down>", "<Esc>:m .+1<CR>==gi")
+map("i", "<M-Up>", "<Esc>:m .-2<CR>==gi")
+
+map({ "v", "x" } , "<M-Up>", ":m '<-2<CR>gv=gv")
+map({ "v", "x" } , "<M-Down>", ":m '>+1<CR>gv=gv")
+
+map("n", "<M-Down>", ":m .+1<CR>==")
+map("n", "<M-Up>", ":m .-2<CR>==")
 
 map("i", ",", ",<c-g>u")
 map("i", ".", ".<c-g>u")
@@ -38,9 +44,6 @@ map("n", "<C-Down>", ":resize +2<CR>")
 map("n", "<C-Left>", ":vertical resize -2<CR>")
 map("n", "<C-Right>", ":vertical resize +2<CR>")
 
-map("n", { "<M-j>", "<M-Down>" }, ":m .+1<CR>==")
-map("n", { "<M-k>", "<M-Up>" }, ":m .-2<CR>==")
-
 map("n", { "<M-]>", "]b" }, ":bn<Cr>")
 map("n", { "<M-[>", "[b" }, ":bp<Cr>")
 map("n", "]q", "<Cmd>cnext<Cr>")
@@ -58,10 +61,12 @@ map("n", "<expr> k", "(v:count > 1 ? \"m'\" . v:count : '') . 'k'")
 map("v", "<", "<gv")
 map("v", ">", ">gv")
 
-map({ "v", "x" } , { "<M-k>", "<M-Up>" }, ":m '<-2<CR>gv=gv")
-map({ "v", "x" } , { "<M-j>", "<M-Down>" }, ":m '>+1<CR>gv=gv")
-
 map("v", "p", '"_dP') -- not yank before paste in visual select
+-- map("n", "<del>", '"_') -- send all delete to null on every opration
+map("n", "<leader>p", '"+p')
+map("n", "<leader>P", '"*p')
+map("n", "<leader>y", '"+y')
+map("n", "<leader>Y", '"+Y')
 
 map("t", "<c-g>", "<C-\\><C-n>")
 
