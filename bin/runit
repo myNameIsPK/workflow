@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-
-setsid -f "$@" >/dev/null 2>&1 && exit
