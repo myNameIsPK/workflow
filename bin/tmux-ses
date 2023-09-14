@@ -14,7 +14,7 @@ else
     ~/.local/src/nvim-plugins \
     ~/.local/share/nvim/lazy \
     -maxdepth 1 -type d; \
-    } | fzf)
+    } | fzf -1)
   ses_name=$(basename "$directory" | tr "." "_")
 fi
 
