@@ -80,6 +80,7 @@ alias rm="rm -vi"
 alias vi="nvim"
 alias dot="git --git-dir=$DOTFILES --work-tree=$HOME"
 alias dotcd="GIT_DIR=$DOTFILES GIT_WORK_TREE=$HOME $SHELL"
+alias dotenv="GIT_DIR=$DOTFILES GIT_WORK_TREE=$HOME"
 
 # ls Flags
 alias l="ls -CF"

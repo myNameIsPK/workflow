@@ -15,7 +15,6 @@ super + space ; super + space
 	_fzf_run
 	# dmenu_run -l 10 -b
 
-super + space ; super + space
 # launch specific program
 super + space ; {b,d,y}
 	{$BROWSER,discord,~/scripts/yuzu_launcher.sh}
@@ -27,7 +26,7 @@ super + s
 
 # toggle scratchpad
 super + n
-	win-toggle-hidden notes || win-toggle-term scratchpad tmux-ses scratch
+	win-toggle-hidden notes || win-toggle-term notes tmux-ses notes
 
 # screecshot region to clipboard 
 ctrl + Print
