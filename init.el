@@ -46,8 +46,8 @@
   (load bootstrap-file nil 'nomessage))
 (setq straight-use-package-by-default 1)
 (straight-use-package 'use-package)
-; (setq use-package-always-defer 1
-;      use-package-always-ensure 1)
+(setq use-package-always-defer 1
+     use-package-always-ensure 1)
 
 ;;; Clean Directory
 
@@ -56,7 +56,9 @@
   (setq no-littering-etc-directory
           (expand-file-name ".local/etc" user-emacs-directory)
         no-littering-var-directory
-          (expand-file-name ".local/var" user-emacs-directory)))
+          (expand-file-name ".local/var" user-emacs-directory))
+  :config
+  (no-littering-theme-backups))
 
 ;;; Undo Tree
 (use-package undo-tree
@@ -67,7 +69,7 @@
 (use-package evil
   :init
   (setq evil-want-keybinding nil
-	evil-want-C-u-scroll t)
+   evil-want-C-u-scroll t)
   :config
   (evil-mode 1)
   (evil-set-undo-system 'undo-tree)
@@ -79,3 +81,8 @@
 
 ;;; Completion
 (fido-vertical-mode 1) ; fuzzy find
+
+;;; Terminal
+(use-package vterm
+  :config
+  (setq vterm-shell "/usr/bin/zsh"))
