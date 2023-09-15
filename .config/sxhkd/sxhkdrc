@@ -15,9 +15,7 @@ super + space ; super + space
 	_fzf_run
 	# dmenu_run -l 10 -b
 
-super + space ; e
-	xdg-open ~/
-
+super + space ; super + space
 # launch specific program
 super + space ; {b,d,y}
 	{$BROWSER,discord,~/scripts/yuzu_launcher.sh}
