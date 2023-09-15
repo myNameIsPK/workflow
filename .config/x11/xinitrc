@@ -49,3 +49,17 @@ if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile" ]; then
 else
   . "$HOME/.xprofile"
 fi
+
+# Reduce scale of display
+# xrandr --output eDP1 --scale .85
+
+# FIXME: not work when unplug keyboard
+# Set key repeat delay 280 ms, 40 per sec
+( sleep 1; xset r rate 300 50 ) &
+
+# Switch between keyboard layouts
+# list all key combinations `grep "grp:.*toggle" /usr/share/X11/xkb/rules/base.lst`
+# setxkbmap us,us -variant ,colemak_dh -option grp:win_space_toggle &
+# exec setxkbmap us,th,us -variant ,,colemak_dh -option grp:alt_caps_toggle &
+( sleep 1; setxkbmap us,th -option grp:alt_caps_toggle ) &
+
