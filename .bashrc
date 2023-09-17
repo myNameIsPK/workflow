@@ -7,6 +7,10 @@
 # ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝
 # FIXME: fix all config that follow behind .zshrc
                                                 
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
 # default PS1='[\u@\h \W]\$ '
 rst=$(tput sgr0)
 # blk=$(tput setaf 0)
@@ -22,9 +26,6 @@ PS1='${red}[${rst}\u${red}@${rst}\h ${blu}\W${red}]${gre}\$${rst} '
 # Load aliases
 shortcuts-gen > /dev/null 2>&1
 [[ -f ${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases ]] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases"
-
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
 
 ## SET VI MODE ###(use inputrc instead)
 #set -o vi

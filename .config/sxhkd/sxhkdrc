@@ -16,8 +16,8 @@ super + space ; super + space
 	# dmenu_run -l 10 -b
 
 # launch specific program
-super + space ; {b,d}
-	{$BROWSER,discord}
+super + space ; {b,d,e}
+	{$BROWSER,discord,emacs}
 
 # toggle scratchpad
 super + s
