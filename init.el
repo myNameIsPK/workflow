@@ -89,15 +89,19 @@
     :prefix "SPC"
     :non-normal-prefix "M-SPC")
 
-  ;; (general-create-definer my-local-leader-def
-  ;;   :keymaps '(normal insert emacs)
-  ;;   :prefix "SPC m"
-  ;;   :non-normal-prefix "M-SPC m")
+  (general-create-definer my-local-leader-def
+    :keymaps '(normal insert emacs)
+    :prefix "SPC m"
+    :non-normal-prefix "M-SPC m")
 
   (my-leader-def
     "" nil
     "gg" 'magit-status
-    "dd" 'dired))
+    "dd" 'dired)
+
+  (my-local-leader-def
+   "" nil
+   "g" 'vc-dir))
 
 ;;; Git
 (use-package magit)
