@@ -76,6 +76,11 @@
   (define-key evil-normal-state-map (kbd "C-n") 'evil-next-line)
   (define-key evil-normal-state-map (kbd "C-p") 'evil-previous-line))
 
+(use-package evil-collection
+  :after evil
+  :config
+  (evil-collection-init))
+
 ;;; Git
 (use-package magit)
 
