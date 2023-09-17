@@ -86,3 +86,12 @@
 (use-package vterm
   :config
   (setq vterm-shell "/usr/bin/zsh"))
+
+;;; Org Mode
+(use-package org
+  :custom
+  (org-directory "~/notes/org")
+  (org-agenda-files '("tasks.org" "jobs.org"))
+  (org-capture-templates
+    `(("t" "Task" entry (file+olp "tasks.org" "Inbox")
+          "* TODO %?\n  %U\n  %a\n  %i"))))
