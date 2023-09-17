@@ -16,8 +16,8 @@ super + space ; super + space
 	# dmenu_run -l 10 -b
 
 # launch specific program
-super + space ; {b,d,y}
-	{$BROWSER,discord,~/scripts/yuzu_launcher.sh}
+super + space ; {b,d}
+	{$BROWSER,discord}
 
 # toggle scratchpad
 super + s
