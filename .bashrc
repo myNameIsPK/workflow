@@ -1,12 +1,4 @@
 #!/bin/bash
-# ██████╗  █████╗ ███████╗██╗  ██╗██████╗  ██████╗
-# ██╔══██╗██╔══██╗██╔════╝██║  ██║██╔══██╗██╔════╝
-# ██████╔╝███████║███████╗███████║██████╔╝██║     
-# ██╔══██╗██╔══██║╚════██║██╔══██║██╔══██╗██║     
-# ██████╔╝██║  ██║███████║██║  ██║██║  ██║╚██████╗
-# ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝
-# FIXME: fix all config that follow behind .zshrc
-                                                
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -26,17 +18,6 @@ PS1='${red}[${rst}\u${red}@${rst}\h ${blu}\W${red}]${gre}\$${rst} '
 # Load aliases
 shortcuts-gen > /dev/null 2>&1
 [[ -f ${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases ]] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases"
-
-## SET VI MODE ###(use inputrc instead)
-#set -o vi
-
-# Set keybindings for vi mode
-#bind -m vi-command 'Control-l: clear-screen'
-#bind -m vi-insert 'Control-l: clear-screen'
-
-# Ignore case when tab completion
-#bind "set completion-ignore-case on"
-##################
 
 HISTCONTROL=ignoreboth	# Ignore duplicate in history 
 
