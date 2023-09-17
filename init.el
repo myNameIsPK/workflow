@@ -97,7 +97,10 @@
   (my-leader-def
     "" nil
     "gg" 'magit-status
-    "dd" 'dired)
+    "dd" 'dired
+    "h" (general-simulate-key "C-h")
+    "x" (general-simulate-key "C-x")
+    "c" (general-simulate-key "C-c"))
 
   (my-local-leader-def
    "" nil
