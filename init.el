@@ -81,6 +81,24 @@
   :config
   (evil-collection-init))
 
+(use-package general
+  :after evil
+  :config
+  (general-create-definer my-leader-def
+    :keymaps '(normal insert emacs)
+    :prefix "SPC"
+    :non-normal-prefix "M-SPC")
+
+  ;; (general-create-definer my-local-leader-def
+  ;;   :keymaps '(normal insert emacs)
+  ;;   :prefix "SPC m"
+  ;;   :non-normal-prefix "M-SPC m")
+
+  (my-leader-def
+    "" nil
+    "gg" 'magit-status
+    "dd" 'dired))
+
 ;;; Git
 (use-package magit)
 
