@@ -29,6 +29,9 @@
 
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
+(setq scroll-margin 8)
+(setq scroll-conservatively 1)
+
 ;; prevent emacs customize `init.el' file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 

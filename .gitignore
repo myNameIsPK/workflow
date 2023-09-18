@@ -3,3 +3,4 @@ elpa
 .local/*
 *.bak
 parinfer*/**
+custom.el
