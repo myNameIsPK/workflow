@@ -27,13 +27,13 @@
 (setq-default standard-indent 4)
 (setq-default electric-indent-inhibit t) ; no global auto indent
 
-;; autopair
-(setq electric-pair-pairs
-      '((?\{ . ?\})
-        (?\( . ?\))
-        (?\[ . ?\])
-        (?\" . ?\")))
-(electric-pair-mode 1)
+;; ;; autopair
+;; (setq electric-pair-pairs
+;;       '((?\{ . ?\})
+;;         (?\( . ?\))
+;;         (?\[ . ?\])
+;;         (?\" . ?\")))
+;; (electric-pair-mode 1)
 
 ;; prevent emacs customize `init.el' file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -90,6 +90,7 @@
 
 ;;; Evil
 (use-package evil
+  :ensure t
   :defer nil
   :init
   (setq evil-want-keybinding nil
@@ -135,8 +136,19 @@
     "" nil
     "g" 'vc-dir))
 
+;;; Help
+(use-package helpful
+  ;; :commands helpful--read-symbol
+  :config
+  (global-set-key [remap describe-function] #'helpful-callable)
+  (global-set-key [remap describe-command]  #'helpful-command)
+  (global-set-key [remap describe-variable] #'helpful-variable)
+  (global-set-key [remap describe-key]      #'helpful-key)
+  (global-set-key [remap describe-symbol]   #'helpful-symbol))
+
 ;;; Git
-(use-package magit)
+(use-package magit
+  :ensure t)
 
 ;;; Completion
 
@@ -176,9 +188,12 @@
     `(("t" "Task" entry (file+olp "tasks.org" "Inbox")
        "* TODO %?\n  %U\n  %a\n  %i"))))
 
+(setq-default initial-major-mode 'org-mode
+              initial-scratch-message "#+title: Scratch Buffer\n\n")
 ;;; Elisp
 (use-package parinfer-rust-mode
   :hook
   emacs-lisp-mode
   :init
   (setq parinfer-rust-auto-download t)) 
+
