@@ -21,6 +21,20 @@
 (setq scroll-margin 8)
 (setq scroll-conservatively 1)
 
+;; indentation
+(setq-default tab-width 4)
+(setq-default indent-tabs-mode nil) ; spaces instead of tabs
+(setq-default standard-indent 4)
+(setq-default electric-indent-inhibit t) ; no global auto indent
+
+;; autopair
+(setq electric-pair-pairs
+      '((?\{ . ?\})
+        (?\( . ?\))
+        (?\[ . ?\])
+        (?\" . ?\")))
+(electric-pair-mode 1)
+
 ;; prevent emacs customize `init.el' file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
