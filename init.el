@@ -187,6 +187,11 @@
   (setq corfu-auto t
         corfu-quit-no-match 'separator))
 
+(use-package corfu-terminal
+  :init
+  (unless (display-graphic-p)
+    (corfu-terminal-mode t)))
+
 ;;; Terminal
 (use-package vterm
   :config
