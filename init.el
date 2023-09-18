@@ -74,14 +74,20 @@
 ;; minibuffer history
 (use-package savehist
   :defer nil
-  :init
-  (savehist-mode))
+  :after no-littering
+  :config
+  (setq savehist-save-minibuffer-history t
+        savehist-autosave-interval nil)
+  (savehist-mode t))
 
 ;; open recent files
 (use-package recentf
   :defer nil
-  :init
-  (recentf-mode))
+  :after no-littering
+  :config
+  (setq recentf-auto-cleanup nil
+        recentf-max-saved-items 200)
+  (recentf-mode t))
 
 ;;; Undo Tree
 (use-package undo-tree
@@ -173,6 +179,13 @@
          ("M-A" . marginalia-cycle))
   :init
   (marginalia-mode))
+
+(use-package corfu
+  :init
+  (global-corfu-mode)
+  :config
+  (setq corfu-auto t
+        corfu-quit-no-match 'separator))
 
 ;;; Terminal
 (use-package vterm
