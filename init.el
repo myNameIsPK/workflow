@@ -1,20 +1,9 @@
-;;; Fix
-;; fix emacs transparent when there is alpha in xresources
-(set-frame-parameter (selected-frame) 'alpha '(100 100))
-(add-to-list 'default-frame-alist '(alpha 100 100))
-
 ;;; General Settings
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (tooltip-mode -1)
 
-(use-package savehist
-  :defer nil
-  :init
-  (savehist-mode))
-
- ; minibuffer history
 (global-auto-revert-mode 1) ; revert buffers when file change on disk
 (setq global-auto-revert-non-file-buffers t)
 
@@ -46,7 +35,7 @@
       (bootstrap-version 5))
   (unless (file-exists-p bootstrap-file)
     (with-current-buffer
-        (url-retrieve-synchronously
+       (url-retrieve-synchronously
          "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
          'silent 'inhibit-cookies)
       (goto-char (point-max))
@@ -58,7 +47,6 @@
      use-package-always-ensure 1)
 
 ;;; Clean Directory
-
 (use-package no-littering
   :init
   (setq no-littering-etc-directory
@@ -67,6 +55,19 @@
           (expand-file-name ".local/var" user-emacs-directory))
   :config
   (no-littering-theme-backups))
+
+;;; QOL
+;; minibuffer history
+(use-package savehist
+  :defer nil
+  :init
+  (savehist-mode))
+
+;; open recent files
+(use-package recentf
+  :defer nil
+  :init
+  (recentf-mode))
 
 ;;; Undo Tree
 (use-package undo-tree
@@ -97,12 +98,14 @@
   :after evil
   :config
   (general-create-definer my-leader-def
-    :keymaps '(normal visual motion insert emacs)
+    :states '(normal visual motion insert emacs)
+    :keymaps '(override)
     :prefix "SPC"
     :non-normal-prefix "M-SPC")
 
   (general-create-definer my-local-leader-def
-    :keymaps '(normal visual motion insert emacs)
+    :states '(normal visual motion insert emacs)
+    :keymaps '(override)
     :prefix "SPC m"
     :non-normal-prefix "M-SPC m")
 
@@ -115,8 +118,8 @@
     "c" (general-simulate-key "C-c"))
 
   (my-local-leader-def
-   "" nil
-   "g" 'vc-dir))
+    "" nil
+    "g" 'vc-dir))
 
 ;;; Git
 (use-package magit)
@@ -127,7 +130,7 @@
   :init
   (vertico-mode)
   ;; Show more candidates
-  ;; (setq vertico-count 20)
+  (setq vertico-count 15)
   (setq vertico-resize t)
   (setq vertico-cycle t))
 
