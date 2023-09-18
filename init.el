@@ -9,7 +9,12 @@
 (tool-bar-mode -1)
 (tooltip-mode -1)
 
-(savehist-mode 1) ; minibuffer history
+(use-package savehist
+  :defer nil
+  :init
+  (savehist-mode))
+
+ ; minibuffer history
 (global-auto-revert-mode 1) ; revert buffers when file change on disk
 (setq global-auto-revert-non-file-buffers t)
 
@@ -67,6 +72,7 @@
 
 ;;; Evil
 (use-package evil
+  :defer nil
   :init
   (setq evil-want-keybinding nil
    evil-want-C-u-scroll t)
@@ -88,12 +94,12 @@
   :after evil
   :config
   (general-create-definer my-leader-def
-    :keymaps '(normal insert emacs)
+    :keymaps '(normal visual motion insert emacs)
     :prefix "SPC"
     :non-normal-prefix "M-SPC")
 
   (general-create-definer my-local-leader-def
-    :keymaps '(normal insert emacs)
+    :keymaps '(normal visual motion insert emacs)
     :prefix "SPC m"
     :non-normal-prefix "M-SPC m")
 
@@ -127,4 +133,11 @@
   (org-agenda-files '("tasks.org" "jobs.org"))
   (org-capture-templates
     `(("t" "Task" entry (file+olp "tasks.org" "Inbox")
-          "* TODO %?\n  %U\n  %a\n  %i"))))
+       "* TODO %?\n  %U\n  %a\n  %i"))))
+
+;;; Elisp
+(use-package parinfer-rust-mode
+  :hook
+  emacs-lisp-mode
+  :init
+  (setq parinfer-rust-auto-download t)) 

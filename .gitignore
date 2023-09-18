@@ -2,3 +2,4 @@ straight
 elpa
 .local/*
 *.bak
+parinfer*/**
