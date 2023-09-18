@@ -119,7 +119,28 @@
 (use-package magit)
 
 ;;; Completion
-(fido-vertical-mode 1) ; fuzzy find
+
+(use-package vertico
+  :init
+  (vertico-mode)
+  ;; Show more candidates
+  ;; (setq vertico-count 20)
+  (setq vertico-resize t)
+  (setq vertico-cycle t))
+
+(unless (default-value vertico-mode) (fido-vertical-mode 1)) ; fuzzy find
+
+(use-package orderless
+  :custom
+  (orderless-matching-styles '(orderless-literal orderless-regexp orderless-flex))
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
+
+(use-package marginalia
+  :bind (:map minibuffer-local-map
+         ("M-A" . marginalia-cycle))
+  :init
+  (marginalia-mode))
 
 ;;; Terminal
 (use-package vterm
