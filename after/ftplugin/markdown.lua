@@ -3,6 +3,7 @@ vim.opt_local.wrap = true
 vim.opt_local.linebreak = true
 vim.opt_local.breakindent = true
 vim.opt_local.conceallevel = 3
+vim.opt_local.concealcursor = "nc"
 
 local function mdlink_from_clipboard()
   local pos = vim.api.nvim_win_get_cursor(0)

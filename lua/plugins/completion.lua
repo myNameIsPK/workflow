@@ -38,12 +38,18 @@ return {
             ["<C-l>"] = action_layout.cycle_layout_next,
             ["<C-h>"] = action_layout.cycle_layout_prev,
 
-            ["<Down>"] = actions.cycle_history_next,
-            ["<Up>"] = actions.cycle_history_prev,
+            ["<Down>"] = actions.move_selection_next,
+            ["<Up>"] = actions.move_selection_previous,
+
+            ["<M-n>"] = actions.cycle_history_next,
+            ["<M-p>"] = actions.cycle_history_prev,
           },
           n = {
             ["<C-n>"] = actions.move_selection_next,
             ["<C-p>"] = actions.move_selection_previous,
+
+            ["<M-n>"] = actions.cycle_history_next,
+            ["<M-p>"] = actions.cycle_history_prev,
 
             ["<C-c>"] = actions.close,
           },

@@ -17,6 +17,7 @@ opt.listchars = {
 opt.keymap = "thai" -- use keymap in `keymap/{keymap}.vim`
 opt.iminsert = 0 -- not use keymap by default
 opt.shortmess:append "c" -- shorten ins-completion-menu message
+opt.shortmess:append "I" -- no intro message
 opt.backup = false -- creates a backup file
 -- FIXME: very slow in wsl
 -- opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
@@ -49,7 +50,7 @@ opt.undofile = true -- enable persistent undo
 opt.updatetime = 300 -- faster completion
 opt.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 opt.expandtab = true -- convert tabs to spaces
-opt.shiftwidth = 2 -- the number of spaces inserted for each indentation
+opt.shiftwidth = 4 -- the number of spaces inserted for each indentation
 opt.tabstop = 4 -- insert 4 spaces for a tab
 opt.cursorline = true -- highlight the current line
 opt.number = true -- set numbered lines
@@ -61,6 +62,7 @@ opt.spell = false
 opt.spelllang = "en"
 opt.scrolloff = 8 -- is one of my fav
 opt.sidescrolloff = 8
+opt.smoothscroll = true
 opt.guicursor = {
   [[n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50]],
   [[a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor]],

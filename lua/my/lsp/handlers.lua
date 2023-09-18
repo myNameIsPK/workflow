@@ -20,7 +20,7 @@ local function lsp_keymaps(bufnr)
   map('n', 'gd', function() vim.lsp.buf.definition() end, "Go to definition") -- use <C-]> instead
   map('n', 'K', function() vim.lsp.buf.hover() end, "Hover")
   map('n', '<C-k>', function() vim.lsp.buf.signature_help() end, "Signature help")
-  map('n', '<localleader>lr', function() vim.lsp.buf.references() end, "List references")
+  map('n', 'gr', function() vim.lsp.buf.references() end, "List references")
   map('n', '<localleader>li', function() vim.lsp.buf.implementation() end, "Go to implementation")
   map('n', '<localleader>lwa', function() vim.lsp.buf.add_workspace_folder() end, "Workspace Add folder")
   map('n', '<localleader>lwd', function() vim.lsp.buf.remove_workspace_folder() end, "Workspace Delete folder")

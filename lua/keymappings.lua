@@ -39,10 +39,10 @@ map("n", "<Down>", "g<Down>")
 -- map("n", "<C-k>", "<C-w>k")
 -- map("n", "<C-l>", "<C-w>l")
 
-map("n", "<C-Up>", ":resize -2<CR>")
-map("n", "<C-Down>", ":resize +2<CR>")
-map("n", "<C-Left>", ":vertical resize -2<CR>")
-map("n", "<C-Right>", ":vertical resize +2<CR>")
+-- map("n", "<C-Up>", ":resize -2<CR>")
+-- map("n", "<C-Down>", ":resize +2<CR>")
+-- map("n", "<C-Left>", ":vertical resize -2<CR>")
+-- map("n", "<C-Right>", ":vertical resize +2<CR>")
 
 map("n", { "<M-]>", "]b" }, ":bn<Cr>")
 map("n", { "<M-[>", "[b" }, ":bp<Cr>")
@@ -55,6 +55,7 @@ map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")
 map("n", "J", "mzJ`z")
 
+-- [count] j/k become jump motion
 map("n", "<expr> j", "(v:count > 1 ? \"m'\" . v:count : '') . 'j'")
 map("n", "<expr> k", "(v:count > 1 ? \"m'\" . v:count : '') . 'k'")
 
