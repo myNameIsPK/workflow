@@ -89,6 +89,10 @@
         recentf-max-saved-items 200)
   (recentf-mode t))
 
+(use-package editorconfig
+  :config
+  (editorconfig-mode 1))
+
 ;;; Undo Tree
 (use-package undo-tree
   :config
@@ -146,6 +150,7 @@
 (use-package helpful
   ;; :commands helpful--read-symbol
   :config
+  (setq apropos-do-all t)
   (global-set-key [remap describe-function] #'helpful-callable)
   (global-set-key [remap describe-command]  #'helpful-command)
   (global-set-key [remap describe-variable] #'helpful-variable)
@@ -157,7 +162,7 @@
   :ensure t)
 
 ;;; Completion
-
+;; Mini-buffer completion
 (use-package vertico
   :init
   (vertico-mode)
@@ -180,18 +185,55 @@
   :init
   (marginalia-mode))
 
-(use-package corfu
+(use-package consult
   :init
-  (global-corfu-mode)
+  (setq xref-show-xrefs-function #'consult-xref
+        xref-show-definitions-function #'consult-xref))
+
+(use-package embark
+  :bind
+  (("C-." . embark-act)         ;; pick some comfortable binding
+   ("C-;" . embark-dwim)        ;; good alternative: M-.
+   ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
+  :init
+  ;; Optionally replace the key help with a completing-read interface
+  (setq prefix-help-command #'embark-prefix-help-command)
+  ;; Show the Embark target at point via Eldoc.  You may adjust the Eldoc
+  ;; strategy, if you want to see the documentation from multiple providers.
+  (add-hook 'eldoc-documentation-functions #'embark-eldoc-first-target)
+  ;; (setq eldoc-documentation-strategy #'eldoc-documentation-compose-eagerly)
+
+  :config
+  ;; Hide the mode line of the Embark live/completions buffers
+  (add-to-list 'display-buffer-alist
+               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                 nil
+                 (window-parameters (mode-line-format . none)))))
+
+(use-package embark-consult
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode))
+
+;; Completion at point
+(use-package corfu
+  :init (global-corfu-mode)
   :config
   (setq corfu-auto t
         corfu-quit-no-match 'separator))
 
 (use-package corfu-terminal
+  :after corfu
   :init
   (unless (display-graphic-p)
     (corfu-terminal-mode t)))
 
+(use-package cape
+  :after corfu
+  :init
+  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+  (add-to-list 'completion-at-point-functions #'cape-file)
+  (add-to-list 'completion-at-point-functions #'cape-elisp-block))
+  
 ;;; Terminal
 (use-package vterm
   :config
@@ -214,4 +256,3 @@
   emacs-lisp-mode
   :init
   (setq parinfer-rust-auto-download t)) 
-
