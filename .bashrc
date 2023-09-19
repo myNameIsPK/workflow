@@ -14,6 +14,15 @@ blu="\[$(tput setaf 4)\]"
 # cya="\[$(tput setaf 6)\]"
 # whi="\[$(tput setaf 7)\]"
 PS1="${red}[${rst}\u${red}@${rst}\h ${blu}\W${red}]${gre}\$${rst} "
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWSTASHSTATE=1
+GIT_PS1_SHOWUNTRACKEDFILES=1
+GIT_PS1_SHOWUPSTREAM=1
+GIT_PS1_STATESEPARATOR=1
+GIT_PS1_DESCRIBE_STYLE=1
+GIT_PS1_SHOWCOLORHINTS=1
+. /usr/share/git/completion/git-prompt.sh
+PS1+='$(__git_ps1 "(%s) ")'
 
 # Load aliases
 shortcuts-gen > /dev/null 2>&1

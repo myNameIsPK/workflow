@@ -1,19 +1,17 @@
 #!/bin/zsh
 
 # default PS1='[%n@%M %c]\$ '
-# autoload -U colors && colors
-# PS1="%B%{$fg[red]%}[%{$fg[white]%}%n%{$fg[red]%}@%{$fg[white]%}%M %{$fg[blue]%}%c%{$fg[red]%}]%{$fg[green]%}$%b%{$reset_color%}"
-
-rst="\[$(tput sgr0)\]"
-# blk="\[$(tput setaf 0)\]"
-red="\[$(tput setaf 1)\]"
-gre="\[$(tput setaf 2)\]"
-# yel="\[$(tput setaf 3)\]"
-blu="\[$(tput setaf 4)\]"
-# mgt="\[$(tput setaf 5)\]"
-# cya="\[$(tput setaf 6)\]"
-# whi="\[$(tput setaf 7)\]"
-PS1="${red}[${rst}%n${red}@${rst}%M ${blu}%c${red}]${gre}\$${rst}"
+rst="%{$(tput sgr0)%}"
+# blk="%{$(tput setaf 0)%}"
+red="%{$(tput setaf 1)%}"
+gre="%{$(tput setaf 2)%}"
+# yel="%{$(tput setaf 3)%}"
+blu="%{$(tput setaf 4)%}"
+# mgt="%{$(tput setaf 5)%}"
+# cya="%{$(tput setaf 6)%}"
+# whi="%{$(tput setaf 7)%}"
+exitcolor() { if [[ $? == 0 ]]; then echo "${gre}"; else echo "${red}"; fi }
+PS1="${red}[${rst}%n${red}@${rst}%M ${blu}%c${red}]\$(exitcolor)\$${rst}"
 [ -f "$ZDOTDIR/zsh-git-prompt" ] && source "$ZDOTDIR/zsh-git-prompt"
 PS1+="%b "
 
