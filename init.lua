@@ -7,7 +7,7 @@ else
   vim.cmd 'let maplocalleader = "\\<BS>"'
 end
 
-pcall(require, "impatient")
+vim.loader.enable()
 
 require "globals"
 require "options"
