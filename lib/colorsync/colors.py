@@ -99,13 +99,22 @@ def load_colors(colors_dict: dict, light: bool = False) -> dict[str, Color]:
     bg_color = "light" if light else "dark"
     fg_color = "dark" if light else "light"
 
-    result["black"] = result[f"{bg_color}0"]
-    result["black_bright"] = result[f"{bg_color}3"]
-    result["black_faded"] = result["black_bright"]
+    if False: # swap black to white if light theme
+        result["black"] = result[f"{bg_color}0"]
+        result["black_bright"] = result[f"{bg_color}3"]
+        result["black_faded"] = result["black_bright"]
 
-    result["white"] = result[f"{fg_color}3"]
-    result["white_bright"] = result[f"{fg_color}0"]
-    result["white_faded"] = result["white_bright"]
+        result["white"] = result[f"{fg_color}3"]
+        result["white_bright"] = result[f"{fg_color}0"]
+        result["white_faded"] = result["white_bright"]
+    else:
+        result["black"] = result["dark0"]
+        result["black_bright"] = result["dark3"]
+        result["black_faded"] = result["black_bright"]
+
+        result["white"] = result["light3"]
+        result["white_bright"] = result["light0"]
+        result["white_faded"] = result["white_bright"]
 
     alt = "faded" if light else "bright"
     for i, c in enumerate(BASE16_ORDER):
