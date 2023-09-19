@@ -4,16 +4,16 @@
 [[ $- != *i* ]] && return
 
 # default PS1='[\u@\h \W]\$ '
-rst=$(tput sgr0)
-# blk=$(tput setaf 0)
-red=$(tput setaf 1)
-gre=$(tput setaf 2)
-# yel=$(tput setaf 3)
-blu=$(tput setaf 4)
-# mgt=$(tput setaf 5)
-# cya=$(tput setaf 6)
-# whi=$(tput setaf 7)
-PS1='${red}[${rst}\u${red}@${rst}\h ${blu}\W${red}]${gre}\$${rst} '
+rst="\[$(tput sgr0)\]"
+# blk="\[$(tput setaf 0)\]"
+red="\[$(tput setaf 1)\]"
+gre="\[$(tput setaf 2)\]"
+# yel="\[$(tput setaf 3)\]"
+blu="\[$(tput setaf 4)\]"
+# mgt="\[$(tput setaf 5)\]"
+# cya="\[$(tput setaf 6)\]"
+# whi="\[$(tput setaf 7)\]"
+PS1="${red}[${rst}\u${red}@${rst}\h ${blu}\W${red}]${gre}\$${rst} "
 
 # Load aliases
 shortcuts-gen > /dev/null 2>&1
