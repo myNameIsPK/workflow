@@ -23,6 +23,4 @@ require "keymappings"
 require "autocmds"
 
 require "lazy_boostrap"
-
--- require "my.luasnip"
 -- require "my.lsp"

@@ -76,10 +76,14 @@ return {
     event = { "InsertEnter", "CmdlineEnter" },
     config = function()
       require "plugins.config.cmp"
-      require "my.luasnip"
     end,
     dependencies = {
-      { "L3MON4D3/LuaSnip" },
+      {
+        "L3MON4D3/LuaSnip",
+        config = function()
+          require "plugins.config.luasnip"
+        end,
+      },
       { "rafamadriz/friendly-snippets", event = "InsertEnter" },
       { "saadparwaiz1/cmp_luasnip" },
       -- { "hrsh7th/cmp-nvim-lua" }, -- neodev is better
