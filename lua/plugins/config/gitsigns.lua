@@ -9,7 +9,7 @@ gitsigns.setup {
     local map = function(mode, l, r, opts)
       opts = opts or {}
       opts.buffer = bufnr
-      require("utils.mappings").map(mode, l, r, opts)
+      require("my.map-helper").map(mode, l, r, opts)
     end
 
     map('n', ']c', function()

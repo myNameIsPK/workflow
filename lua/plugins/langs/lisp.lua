@@ -1,7 +1,20 @@
 return {
   {
     "gpanders/nvim-parinfer",
-    ft = { "clojure", "scheme", "lisp", "racket", "hy", "fennel", "janet", "carp", "wast", "yuck" },
+    init = function()
+      vim.g.parinfer_filetypes = {
+        "clojure",
+        "scheme",
+        "lisp",
+        "racket",
+        "hy",
+        "fennel",
+        "janet",
+        "carp",
+        "wast",
+        "yuck",
+      }
+    end,
     lazy = false,
     config = function()
       vim.keymap.set("n", "<leader>tl", "<cmd>ParinferToggle!<cr>")

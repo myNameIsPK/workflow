@@ -60,7 +60,8 @@ opt.signcolumn = "auto"
 opt.wrap = false
 opt.spell = false
 opt.spelllang = "en"
-opt.scrolloff = 8 -- is one of my fav
+opt.spelloptions:append { "camel" } -- spell check CamelCase
+opt.scrolloff = 8
 opt.sidescrolloff = 8
 opt.smoothscroll = true
 opt.guicursor = {
@@ -69,6 +70,8 @@ opt.guicursor = {
   [[sm:block-blinkwait175-blinkoff150-blinkon175]],
 }
 opt.inccommand = "split" -- when `:s` also show in preview window
+
+-- opt.quickfixtextfunc = "v:lua.require'my.plugin.quickfixtext'.quickfixtext"
 
 vim.diagnostic.config {
   virtual_text = true,
@@ -85,5 +88,3 @@ vim.diagnostic.config {
     prefix = "",
   },
 }
-
-vim.opt.quickfixtextfunc = "v:lua.require'my.plugin.quickfixtext'.quickfixtext"

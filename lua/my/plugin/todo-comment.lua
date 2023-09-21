@@ -51,7 +51,7 @@ local function jobcallback(_, data, event)
     })
     vim.cmd.copen()
   elseif event == "stderr" then
-    vim.notify("Todo comments Error" .. I(data), vim.log.levels.ERROR)
+    vim.notify("Todo comments Error: " .. vim.inspect(data), vim.log.levels.ERROR)
   end
 end
 

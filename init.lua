@@ -24,6 +24,5 @@ require "autocmds"
 
 require "lazy_boostrap"
 
-require "my.telescope"
 -- require "my.luasnip"
 -- require "my.lsp"

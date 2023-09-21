@@ -19,8 +19,5 @@ return {
       require("mason").setup()
     end,
   },
-  {
-    "williamboman/mason-lspconfig.nvim",
-    keys = { { "<leader>sl", "<cmd>LspInfo<cr>" } },
-  },
+  { "williamboman/mason-lspconfig.nvim" },
 }

@@ -22,7 +22,7 @@ local opts = {
   },
 }
 
-local map = require("utils.mappings").map
+local map = require("my.map-helper").map
 local api = require "zk.api"
 local notepath = vim.env.ZK_NOTEBOOK_DIR .. "/zettels"
 local journalpath = vim.env.ZK_NOTEBOOK_DIR .. "/journal/daily"

@@ -31,25 +31,27 @@ return {
         },
         border = true,
         winblend = 15,
-        borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+        -- borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+        borderchars = { "", "", "", "", "", "", "", "" },
         dynamic_preview_title = true,
+        color_devicons = true,
+        path_display = { len = 2, exclude = { -1, -2 } },
         mappings = {
           i = {
-            ["<C-l>"] = action_layout.cycle_layout_next,
-            ["<C-h>"] = action_layout.cycle_layout_prev,
+            ["<M-o>"] = action_layout.cycle_layout_next,
+            ["<M-n>"] = actions.cycle_history_next,
+            ["<M-p>"] = actions.cycle_history_prev,
 
             ["<Down>"] = actions.move_selection_next,
             ["<Up>"] = actions.move_selection_previous,
-
-            ["<M-n>"] = actions.cycle_history_next,
-            ["<M-p>"] = actions.cycle_history_prev,
           },
           n = {
-            ["<C-n>"] = actions.move_selection_next,
-            ["<C-p>"] = actions.move_selection_previous,
-
+            ["<M-o>"] = action_layout.cycle_layout_next,
             ["<M-n>"] = actions.cycle_history_next,
             ["<M-p>"] = actions.cycle_history_prev,
+
+            ["<C-n>"] = actions.move_selection_next,
+            ["<C-p>"] = actions.move_selection_previous,
 
             ["<C-c>"] = actions.close,
           },
@@ -78,7 +80,7 @@ return {
     end,
     dependencies = {
       { "L3MON4D3/LuaSnip" },
-      { "rafamadriz/friendly-snippets", lazy = false },
+      { "rafamadriz/friendly-snippets", event = "InsertEnter" },
       { "saadparwaiz1/cmp_luasnip" },
       -- { "hrsh7th/cmp-nvim-lua" }, -- neodev is better
       { "hrsh7th/cmp-nvim-lsp" },

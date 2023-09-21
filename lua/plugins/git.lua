@@ -19,11 +19,6 @@ return {
     keys = { { "<leader>gg", "<Cmd>Neogit<Cr>" } },
     config = function()
       require("neogit").setup {
-        signs = {
-          section = { "", "" },
-          item = { "", "" },
-          hunk = { "+", "-" },
-        },
         integrations = {
           -- Requires you to have `sindrets/diffview.nvim` installed.
           diffview = true,

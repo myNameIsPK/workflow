@@ -13,10 +13,10 @@ function M.quickfixtext(info)
     entry = entry .. "|"
 
     if items[idx].lnum ~= 0 then
-      entry = entry .. items[idx].lnum .. ":"
+      entry = entry .. items[idx].lnum
     end
     if items[idx].col ~= 0 then
-      entry = entry .. items[idx].col
+      entry = entry .. ":" .. items[idx].col
     end
     entry = entry .. "|"
 

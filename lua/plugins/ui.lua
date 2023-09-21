@@ -1,21 +1,13 @@
 return {
   {
     "folke/which-key.nvim",
-    event = "VimEnter",
+    -- event = "VimEnter",
     config = function()
       require("which-key").setup {
         window = {
           margin = { 0, 0, 0, 0 }, -- extra window margin [top, right, bottom, left]
-          padding = { 0, 0, 0, 0 }, -- extra window padding [top, right, bottom, left]
+          padding = { 0, 0, 0, 0 },
         },
-      }
-      require("which-key").register {
-        ["<leader>f"] = "Telescope",
-        ["<leader>d"] = "Diagnostics",
-        ["<leader>h"] = "Helps",
-        ["<leader>s"] = "Status",
-        ["<leader>t"] = "Toggle",
-        ["<leader>n"] = "Notes",
       }
     end,
   },

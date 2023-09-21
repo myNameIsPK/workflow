@@ -96,4 +96,4 @@ _G.I = function(object)
   print(vim.inspect(object))
 end
 
-_G.R = require("utils.reload").reload
+_G.R = require("my.plugin.reload").reload

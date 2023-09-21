@@ -1,10 +1,5 @@
 -- stylua: ignore start
-local map = require("utils.mappings").map
-
---- Plaground make it work
-map("n", "<leader>rf", "<cmd>lua my.save_and_exec()<CR>")
-map("n", "<leader>ra", "<cmd>lua require('utils.reload').reload_all()<CR>")
----
+local map = require("my.map-helper").map
 
 -- map("i", { "jk", "kj", "jj", "kk" }, "<Esc>")
 
@@ -64,10 +59,9 @@ map("v", ">", ">gv")
 
 map("v", "p", '"_dP') -- not yank before paste in visual select
 -- map("n", "<del>", '"_') -- send all delete to null on every opration
-map("n", "<leader>p", '"+p')
-map("n", "<leader>P", '"*p')
+map("n", "<M-y>", '"+p')
 map("n", "<leader>y", '"+y')
-map("n", "<leader>Y", '"+Y')
+map("n", "<leader>Y", '"+y$')
 
 map("t", "<c-g>", "<C-\\><C-n>")
 
@@ -83,43 +77,54 @@ map("c", "<C-a>", "<Home>")
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 map('n', '<leader>de', function() vim.diagnostic.open_float() end, { desc = "Diagnostic Float" })
 map('n', '[d', function() vim.diagnostic.goto_prev() end, { desc = "Diagnostic Prev" })
-map('n', '<leader>dq', function() vim.diagnostic.setloclist() end, { desc = "Diagnostic Quickfix" })
+map('n', '<leader>dc', function() vim.diagnostic.setloclist() end, { desc = "Diagnostic Loclist" })
 map('n', ']d', function() vim.diagnostic.goto_next() end, { desc = "Diagnostic Next" })
 
-map("n", "<leader>si", vim.cmd.Inspect, { desc = "Inspect" })
+map("n", "<leader>pd", vim.cmd.Ex, { desc = "File Explorer"})
 
-map("n", "<leader>tt", vim.cmd.terminal, { desc = "Terminal" })
-map("n", "<leader>tl", function() vim.cmd.terminal("lf") end, { desc = "LF in terminal" })
+map("n", "<leader>hI", vim.cmd.Inspect, { desc = "Inspect" })
 
-map("n", "<leader>ts", function() vim.opt.spell = not(vim.opt.spell:get()) end, { desc = "Spell toggle" })
-map("n", "<leader>tq", function() vim.cmd.QfToggle() end, { desc = "Quickfix window toggle" })
+map("n", "<leader>tsh", vim.cmd.terminal, { desc = "Terminal" })
+map("n", "<leader>tlf", function() vim.cmd.terminal("lf") end, { desc = "LF in terminal" })
+map("n", "<leader>tsp", function() vim.opt.spell = not(vim.opt.spell:get()) end, { desc = "Toggle Spell" })
+map("n", "<leader>tq", function() vim.cmd.QfToggle() end, { desc = "Toggle Quickfix window" })
+map("n", "<leader>twk", function() require("which-key") end, { desc = "Enable Which Key" })
 
-map("n", "<leader>ee", vim.cmd.Ex, { desc = "File Explorer"})
-
-map("n", "<leader>rm", vim.cmd.RemoveThisFile, { desc = "remove current files" })
+map("n", "<leader>rf", "<cmd>lua my.save_and_exec()<CR>", { desc = "save and eval file" })
+map("n", "<leader>ra", "<cmd>lua require('my.plugin.reload').reload_all()<CR>", { desc = "BREAK!! reload all plugins"})
 
 -- Telescope
 -- Builtin
-map("n", "<leader>fa", "<Cmd>Telescope builtin<Cr>", { desc = "All Builtin" })
-map("n", "<leader>ff", "<Cmd>Telescope find_files<Cr>", { desc = "Files" })
-map("n", "<leader>fg", "<Cmd>Telescope live_grep<Cr>", { desc = "Grep Files" })
-map("n", "<leader>fb", "<Cmd>Telescope buffers<Cr>", { desc = "Buffers" })
+map("n", "<leader>ta", "<Cmd>Telescope builtin<Cr>", { desc = "All Builtin" })
+map("n", "<leader>tr", "<Cmd>Telescope resume<Cr>", { desc = "Resume Picker" })
+map("n", "<leader>ff", "<Cmd>Telescope fd hidden=true<Cr>", { desc = "Files Grep" })
+map("n", "<leader>fg", "<Cmd>Telescope live_grep<Cr>", { desc = "Files Grep" })
 map("n", "<leader>fr", "<Cmd>Telescope oldfiles<Cr>", { desc = "Recent Files" })
-map("n", "<leader>fq", "<Cmd>Telescope quickfix<Cr>", { desc = "Quickfix" })
+map("n", "<leader>fl", "<Cmd>Telescope current_buffer_fuzzy_find<Cr>", { desc = "Find Lines" })
+map("n", "<leader>ft", "<Cmd>Telescope current_buffer_tags<Cr>", { desc = "Find Tags" })
 map("n", "<leader>hh", "<Cmd>Telescope help_tags<Cr>", { desc = "Helps" })
 map("n", "<leader>hm", "<Cmd>Telescope man_pages<Cr>", { desc = "Man pages" })
-map('n', '<leader>fdb', '<cmd>Telescope diagnostics bufnr=0<cr>', { desc = "Diagnostics Buffer" })
-map('n', '<leader>fdw', '<cmd>Telescope diagnostics<cr>', { desc = "Diagnostics Workspace" })
+map("n", "<leader>hk", "<Cmd>Telescope keymaps<Cr>", { desc = "Keymaps" })
+map("n", "<leader>hf", "<Cmd>Telescope keymaps<Cr>", { desc = "Highlight Fonts" })
+map("n", "<leader>hv", "<Cmd>Telescope vim_options<Cr>", { desc = "Vim Options" })
+map("n", "<leader>bb", "<Cmd>Telescope buffers<Cr>", { desc = "Buffers" })
+map("n", "<leader>qq", "<Cmd>Telescope quickfix<Cr>", { desc = "Quickfix" })
+map("n", "<leader>qh", "<Cmd>Telescope quickfixhistory<Cr>", { desc = "Quickfix History" })
+map('n', '<leader>db', '<cmd>Telescope diagnostics bufnr=0<cr>', { desc = "Diagnostics Buffer" })
+map('n', '<leader>dw', '<cmd>Telescope diagnostics<cr>', { desc = "Diagnostics Workspace" })
+map("n", "<leader>pf", "<Cmd>Telescope git_files<Cr>", { desc = "Projects Files" })
+map("n", "<leader>pg", "<Cmd>Telescope live_grep<Cr>", { desc = "Projects Grep" })
 -- Loaded Extensions
-map("n", "<leader>fp", "<Cmd>Telescope projects<Cr>", { desc = "Projects" })
-map("n", "<leader>fl", "<Cmd>Telescope bibtex<Cr>", { desc = "Bib(La)tex" })
+map("n", "<leader>pp", "<Cmd>Telescope projects<Cr>", { desc = "Projects Picker" })
+-- map("n", "<leader>fl", "<Cmd>Telescope bibtex<Cr>", { desc = "Bib(La)tex" })
 -- Custom
-map("n", "<leader>fc", function() require("my.telescope").find_vim_files() end, { desc = "Config files(Neovim)" })
-map("n", "<leader>fC", function() require("my.telescope").find_vim_data() end, { desc = "Plugins files(Neovim)" })
-map("n", "<leader>fD", function() require("my.telescope").find_dotfiles() end, { desc = "Dotfiles" })
+map("n", "<leader>fc", function() require("my.plugin.telescope").find_vim_files() end, { desc = "Config files(Neovim)" })
+map("n", "<leader>fP", function() require("my.plugin.telescope").find_vim_data() end, { desc = "Plugins files(Neovim)" })
+map("n", "<leader>fD", function() require("my.plugin.telescope").find_dotfiles() end, { desc = "Dotfiles" })
 
-map("n", "<leader>sp", "<Cmd>Lazy<Cr>")
-map("n", "<leader>sm", "<Cmd>Mason<Cr>")
-map("n", "<leader>sn", "<Cmd>NullLsInfo<Cr>")
-map("n", "<leader>sc", "<Cmd>CmpStatus<Cr>")
+map("n", "<leader>hP", "<Cmd>Lazy<Cr>")
+map("n", "<leader>hL", "<Cmd>LspInfo<Cr>")
+map("n", "<leader>hM", "<Cmd>Mason<Cr>")
+map("n", "<leader>hN", "<Cmd>NullLsInfo<Cr>")
+map("n", "<leader>hcp", "<Cmd>CmpStatus<Cr>")
 -- stylua: ignore end
