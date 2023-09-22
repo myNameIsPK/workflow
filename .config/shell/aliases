@@ -58,15 +58,19 @@ alias gz="lazygit"
 alias dz="lazygit --git-dir=$DOTFILES --work-tree=$HOME"
 
 # Packages
-pmsize () {
+pksize () {
     pacman -Qi \
         | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' \
         | sort -h \
         | fzf --tac --no-sort --multi --preview 'pacman -Qi $(echo {} | cut -d" " -f2)'
 }
 
-pmlist () {
+pklist () {
     pacman -Qqe | fzf --multi --preview 'pacman -Qi {}'
+}
+
+pkcantremove () {
+    pacman -Qei | awk '/^Name/{name=$3}/^Required By/{if ($4 != "None") print name" : "$4}'
 }
 
 # FZF integration
