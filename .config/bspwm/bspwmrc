@@ -49,17 +49,17 @@ bspc_size notes      85 100
 bspc_size Term-menu  40 30
 
 bspc_desktop 2 \
-  Brave-browser \
-  firefox \
-  firefox-nightly \
-  qutebrowser
+    Brave-browser \
+    firefox \
+    firefox-nightly \
+    qutebrowser
 
 bspc_desktop 3 \
-  Thunderbird \
-  discord \
-  Steam \
-  yuzu
+    Thunderbird \
+    discord \
+    Steam \
+    yuzu
 
 bspc_desktop 4 \
-  easyeffects \
-  obs
+    easyeffects \
+    obs
