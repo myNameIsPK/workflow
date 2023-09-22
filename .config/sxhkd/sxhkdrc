@@ -19,6 +19,9 @@ super + space ; super + space
 super + space ; {b,d,e}
 	{$BROWSER,discord,emacs}
 
+super + k
+	onboard
+
 # toggle scratchpad
 super + s
 	win-toggle-hidden scratchpad || win-toggle-term scratchpad tmux-ses scratch
