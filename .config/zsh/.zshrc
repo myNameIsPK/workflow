@@ -123,7 +123,7 @@ cursor_mode() {
   zle -N zle-line-init
 }
 
-# cursor_mode
+cursor_mode
 
 # Plugin
 function zsh_add_file() {

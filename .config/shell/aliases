@@ -59,7 +59,14 @@ alias dz="lazygit --git-dir=$DOTFILES --work-tree=$HOME"
 
 # Packages
 pmsize () {
-  pacman -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h
+    pacman -Qi \
+        | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' \
+        | sort -h \
+        | fzf --tac --no-sort --multi --preview 'pacman -Qi $(cut -d" " -f2 {})'
+ 
+}
+pmlist () {
+    pacman -Qqe | fzf --multi --preview 'pacman -Qi {}'
 }
 
 # FZF integration
@@ -83,9 +90,13 @@ alias dotcd="GIT_DIR=$DOTFILES GIT_WORK_TREE=$HOME $SHELL"
 alias dotenv="GIT_DIR=$DOTFILES GIT_WORK_TREE=$HOME"
 
 alias emd="emacs --daemon"
-alias em="emacsclient -t"
+alias em="emacsclient -t -a ${EDITOR}"
 alias ema="emacsclient -c -a emacs"
 alias doom="emacs -nw --with-profile doom"
+
+manfzf () {
+    man -k . | fzf
+}
 
 # ls Flags
 alias l="ls -CF"
