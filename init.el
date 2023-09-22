@@ -11,9 +11,6 @@
       visible-bell t
       use-dialog-box nil)
 
-(unless (display-graphic-p)
-  (xterm-mouse-mode 1))
-
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)

@@ -10,6 +10,13 @@
 
 (setq package-enable-at-startup nil)
 (setq inhibit-x-resources t)
-(add-hook 'tty-setup-hook
-  (lambda ()
-    (message "In TYY")))
+
+(defun my/tty-hook ()
+  "tty setup hook"
+  (interactive)
+  (xterm-mouse-mode 1)
+  (load-theme 'modus-operandi)
+  (setq xterm-box-blink-seq "\e[1 q")
+  (send-string-to-terminal xterm-box-blink-seq))
+
+(add-hook 'tty-setup-hook 'my/tty-hook)
