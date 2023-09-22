@@ -135,9 +135,10 @@
     "" nil
     "gg" 'magit-status
     "dd" 'dired
-    "h" (general-simulate-key "C-h")
-    "x" (general-simulate-key "C-x")
-    "c" (general-simulate-key "C-c"))
+    ;; "h" (general-simulate-key "C-h") ; this seen in `C-h k' but not seen in `C-h b'
+    "h" (general-key "C-h")
+    "x" (general-key "C-x")
+    "c" (general-key "C-c"))
 
   (my-local-leader-def
     "" nil
@@ -170,11 +171,19 @@
 
 (unless (default-value vertico-mode) (fido-vertical-mode 1)) ; fuzzy find
 
+;; Unorder querying.
 (use-package orderless
   :custom
   (orderless-matching-styles '(orderless-literal orderless-regexp orderless-flex))
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
+
+;; More precise completion.
+(use-package prescient
+  :after (corfu vertico orderless)
+  :custom (completion-styles '(prescient orderless basic)
+           prescient-sort-full-matches-first t)
+  :config (prescient-persist-mode))
 
 (use-package marginalia
   :bind (:map minibuffer-local-map
@@ -246,7 +255,13 @@
        "* TODO %?\n  %U\n  %a\n  %i"))))
 
 (setq-default initial-major-mode 'org-mode
-              initial-scratch-message "#+title: Scratch Buffer\n\n")
+              initial-scratch-message
+  "#+title: Scratch Buffer
+
+#+begin_src elisp
+
+#+end_src")
+
 ;;; Elisp
 (use-package parinfer-rust-mode
   :hook
