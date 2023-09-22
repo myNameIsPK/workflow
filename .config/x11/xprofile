@@ -25,7 +25,7 @@ dunst &
 # mpd &
 "$HOME"/.config/polybar/launch.sh &
 # lxpanel &
-skippy-xd-runner --config $XDG_CONFIG_HOME/skippy-xd/skippy-xd.rc --start-daemon &
+# skippy-xd --start-daemon &
 # espanso daemon &
 
 if [[ $(cat /etc/hostname) == laptop* ]]; then 

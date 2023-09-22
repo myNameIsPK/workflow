@@ -47,9 +47,6 @@ super + v
 ctrl + shift + Escape
 	win-toggle-term Monitoring btop
 
-super + shift + Tab
-	skippy-xd --toggle-window-picker
-
 # Increase volume
 XF86AudioRaiseVolume
 	pactl set-sink-volume @DEFAULT_SINK@ +1000
