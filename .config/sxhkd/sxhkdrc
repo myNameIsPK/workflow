@@ -48,7 +48,7 @@ ctrl + shift + Escape
 	win-toggle-term Monitoring btop
 
 super + shift + Tab
-	skippy-xd-runner --activate-window-picker
+	skippy-xd --toggle-window-picker
 
 # Increase volume
 XF86AudioRaiseVolume

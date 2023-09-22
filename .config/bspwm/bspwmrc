@@ -9,7 +9,7 @@ bspc monitor -d project browser III IV V VI VII VIII IX X
 bspc config border_width         2
 bspc config window_gap           2
 
-# bspc config automatic_scheme spiral
+# bspc config automatic_scheme alternate
 # bspc config initial_polarity first_child
 # bspc config removal_adjustment true
 
