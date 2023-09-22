@@ -70,7 +70,12 @@ pklist () {
 }
 
 pkcantremove () {
-    pacman -Qei | awk '/^Name/{name=$3}/^Required By/{if ($4 != "None") print name" : "$4}'
+    pacman -Qei \
+        | awk '\
+            /^Name/{name=$3}\
+            /^Required By/{if ($4 != "None")\
+                {name=name" "NF-3;\
+                for (i=4;i<=NF;i++){name=name" "$i}print name}}'
 }
 
 # FZF integration
