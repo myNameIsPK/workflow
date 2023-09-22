@@ -98,9 +98,9 @@ alias dot="git --git-dir=$DOTFILES --work-tree=$HOME"
 alias dotcd="GIT_DIR=$DOTFILES GIT_WORK_TREE=$HOME $SHELL"
 alias dotenv="GIT_DIR=$DOTFILES GIT_WORK_TREE=$HOME"
 
+alias em="emacsclient -t -a ''" # this autostart emacs daemon
 alias emd="emacs --daemon"
-alias em="emacsclient -t -a ${EDITOR}"
-alias ema="emacsclient -c -a emacs"
+alias emls="emacsclient -t -a '' --eval \"(dired \"\$(pwd)\")\""
 alias doom="emacs -nw --with-profile doom"
 
 manfzf () {
