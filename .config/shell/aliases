@@ -82,6 +82,11 @@ alias dot="git --git-dir=$DOTFILES --work-tree=$HOME"
 alias dotcd="GIT_DIR=$DOTFILES GIT_WORK_TREE=$HOME $SHELL"
 alias dotenv="GIT_DIR=$DOTFILES GIT_WORK_TREE=$HOME"
 
+alias emd="emacs --daemon"
+alias em="emacsclient -t"
+alias ema="emacsclient -c -a emacs"
+alias doom="emacs -nw --with-profile doom"
+
 # ls Flags
 alias l="ls -CF"
 alias ll="ls -lAFrt"
