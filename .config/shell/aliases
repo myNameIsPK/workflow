@@ -108,7 +108,7 @@ manfzf () {
 }
 
 infofzf () {
-    info -k . | fzf | cut -d'-' -f1 | sed "s/\"\(.*\)\"/\1/" | xargs -0 -I{} info "{}"
+    info "$(info -k . | fzf | sed "s#\"\(.*\)\"\s*--.*#\1#")"
 }
 
 # ls Flags
