@@ -104,7 +104,11 @@ alias emls="emacsclient -t -a '' --eval \"(dired \\\"\$(pwd)\\\")\""
 alias doom="emacs -nw --with-profile doom"
 
 manfzf () {
-    man -k . | fzf
+    man -k . | fzf | cut -d' ' -f1 | xargs -I{} man {}
+}
+
+infofzf () {
+    info -k . | fzf | cut -d'-' -f1 | sed "s/\"\(.*\)\"/\1/" | xargs -0 -I{} info "{}"
 }
 
 # ls Flags
