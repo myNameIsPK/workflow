@@ -103,6 +103,8 @@ alias emd="emacs --daemon"
 alias emls="emacsclient -t -a '' --eval \"(dired \\\"\$(pwd)\\\")\""
 alias doom="emacs -nw --with-profile doom"
 
+alias psg="ps aux | rg "
+
 manfzf () {
     man -k . | fzf | cut -d' ' -f1 | xargs -I{} man {}
 }
