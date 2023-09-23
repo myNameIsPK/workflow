@@ -100,6 +100,7 @@ alias dotenv="GIT_DIR=$DOTFILES GIT_WORK_TREE=$HOME"
 
 alias em="emacsclient -t -a ''" # this autostart emacs daemon
 alias emd="emacs --daemon"
+alias emk="pkill emacs"
 alias emls="emacsclient -t -a '' --eval \"(dired \\\"\$(pwd)\\\")\""
 alias doom="emacs -nw --with-profile doom"
 
