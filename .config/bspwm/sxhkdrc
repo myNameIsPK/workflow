@@ -61,7 +61,7 @@ super + brace{left,right}
 	bspc monitor -f {prev,next}
 
 # focus the last node/desktop
-super + {grave,Tab}
+super + {l,Tab}
 	bspc {node,desktop} -f last
 
 # focus the las# focus the older or newer node in the focus history
