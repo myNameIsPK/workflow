@@ -17,7 +17,7 @@ super + space ; super + space
 
 # launch specific program
 super + space ; {b,d,e}
-	{$BROWSER,discord,emacs}
+	{$BROWSER,discord,emacsclient -c -a ''}
 
 super + k
 	onboard
