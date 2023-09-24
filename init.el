@@ -55,7 +55,7 @@
 (setq straight-use-package-by-default 1)
 (straight-use-package 'use-package)
 (setq use-package-always-defer 1
-     use-package-always-ensure 1)
+      use-package-always-ensure 1)
 
 ;;; Clean Directory
 (use-package no-littering
@@ -86,6 +86,11 @@
         recentf-max-saved-items 200)
   (recentf-mode t))
 
+;; Repeatable key `describe-repeat-maps'
+(use-package repeat
+  :init
+  (repeat-mode t))
+
 (use-package editorconfig
   :config
   (editorconfig-mode 1))
@@ -101,46 +106,66 @@
   :defer nil
   :init
   (setq evil-want-keybinding nil
-   evil-want-C-u-scroll t)
+        evil-want-C-u-scroll t) ;; use `\ C-u' instead
   :config
   (evil-mode 1)
   (evil-set-undo-system 'undo-tree)
   (define-key evil-normal-state-map (kbd "C-n") 'evil-next-line)
-  (define-key evil-normal-state-map (kbd "C-p") 'evil-previous-line))
+  (define-key evil-normal-state-map (kbd "C-p") 'evil-previous-line)
+
+  ;; TODO: reduce hardcode
+  (defvar my/win-repeat-map
+    (let ((map (make-sparse-keymap)))
+      (define-key map (kbd "w") #'evil-window-next)
+      (define-key map (kbd "W") #'evil-window-prev)
+      (define-key map (kbd "+") #'evil-window-increase-height)
+      (define-key map (kbd "-") #'evil-window-decrease-height)
+      ;; (define-key map (kbd "<down>") #'evil-window-down)
+      ;; (define-key map (kbd "<left>") #'evil-window-left)
+      ;; (define-key map (kbd "<right>") #'evil-window-right)
+      ;; (define-key map (kbd "<up>") #'evil-window-up)        
+      map))
+  (dolist (cmd '(evil-window-next evil-window-prev evil-window-increase-height evil-window-decrease-height evil-window-down evil-window-left evil-window-right evil-window-up))
+    (put cmd 'repeat-map 'my/win-repeat-map)))
+
 
 (use-package goto-chg)
 
 (use-package evil-collection
   :after evil
   :config
-  (evil-collection-init))
+  (evil-collection-init)
+  ;; `repeat-mode' integration
+  (setq evil-collection-unimpaired-want-repeat-mode-integration t))
 
 ;;; Keymaps
 (use-package general
   :after evil
   :config
-  (general-create-definer my-leader-def
+  (general-create-definer my/leader-def
     :states '(normal visual motion insert emacs)
     :keymaps '(override)
     :prefix "SPC"
     :non-normal-prefix "M-SPC")
 
-  (general-create-definer my-local-leader-def
+  (general-create-definer my/local-leader-def
     :states '(normal visual motion insert emacs)
     :keymaps '(override)
     :prefix "SPC m"
     :non-normal-prefix "M-SPC m")
 
-  (my-leader-def
+  (my/leader-def
     "" nil
     "gg" 'magit-status
     "dd" 'dired
+    "bb" 'switch-to-buffer
+    "pf" 'project-find-file
     ;; "h" (general-simulate-key "C-h") ; this seen in `C-h k' but not seen in `C-h b'
     "h" (general-key "C-h")
     "x" (general-key "C-x")
     "c" (general-key "C-c"))
 
-  (my-local-leader-def
+  (my/local-leader-def
     "" nil
     "g" 'vc-dir))
 
@@ -187,34 +212,57 @@
 
 (use-package marginalia
   :bind (:map minibuffer-local-map
-         ("M-A" . marginalia-cycle))
+         ("M-C" . marginalia-cycle))
   :init
   (marginalia-mode))
 
 (use-package consult
   :init
   (setq xref-show-xrefs-function #'consult-xref
-        xref-show-definitions-function #'consult-xref))
+        xref-show-definitions-function #'consult-xref)
 
-(use-package embark
-  :bind
-  (("C-." . embark-act)         ;; pick some comfortable binding
-   ("C-;" . embark-dwim)        ;; good alternative: M-.
-   ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
-  :init
-  ;; Optionally replace the key help with a completing-read interface
-  (setq prefix-help-command #'embark-prefix-help-command)
-  ;; Show the Embark target at point via Eldoc.  You may adjust the Eldoc
-  ;; strategy, if you want to see the documentation from multiple providers.
-  (add-hook 'eldoc-documentation-functions #'embark-eldoc-first-target)
-  ;; (setq eldoc-documentation-strategy #'eldoc-documentation-compose-eagerly)
+  :bind (:map minibuffer-mode-map
+          ("M-s" . consult-history)
+          ("M-r" . consult-history))
 
   :config
-  ;; Hide the mode line of the Embark live/completions buffers
-  (add-to-list 'display-buffer-alist
-               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
-                 nil
-                 (window-parameters (mode-line-format . none)))))
+  (global-set-key [remap switch-to-buffer] #'consult-buffer)
+  (global-set-key [remap imenu] #'consult-imenu)
+  (global-set-key [remap goto-line] #'consult-goto-line)
+
+  ;; https://github.com/minad/consult#use-package-example
+  (my/leader-def
+    "fr" 'consult-recent-file
+    "ol" 'consult-outline)
+  (my/local-leader-def
+    "M-x" 'consult-mode-command))
+
+(use-package embark
+  :bind (("C-h B" . embark-bindings) ; alternative for `describe-bindings'
+         :map minibuffer-local-map
+         ("M-a" . embark-act)
+         ("M-A" . embark-act-all)
+         ("M-." . embark-dwim)
+         ("M-B" . embark-become)
+         ("M-S" . embark-collect)
+         ("M-E" . embark-export))
+  :config
+  (setq prefix-help-command #'embark-prefix-help-command) ; `<prefix> ?'
+  (add-hook 'eldoc-documentation-functions #'embark-eldoc-first-target)
+  (setq eldoc-documentation-strategy #'eldoc-documentation-compose-eagerly)
+
+  ;; ;; Hide the mode line of the Embark live/completions buffers
+  ;; (add-to-list 'display-buffer-alist
+  ;;              '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+  ;;                nil
+  ;;                (window-parameters (mode-line-format . none)))))
+
+  (my/leader-def
+    "." 'embark-dwim
+    "a" 'embark-act
+    "L" 'embark-collect
+    "S" 'embark-collect
+    "E" 'embark-export))
 
 (use-package embark-consult
   :hook
@@ -225,7 +273,8 @@
   :init (global-corfu-mode)
   :config
   (setq corfu-auto t
-        corfu-quit-no-match 'separator))
+        corfu-quit-no-match 'separator)
+  (corfu-popupinfo-mode))
 
 (use-package corfu-terminal
   :after corfu
@@ -256,10 +305,8 @@
 
 (setq-default initial-major-mode 'org-mode
               initial-scratch-message
-  "#+title: Scratch Buffer
-
-#+begin_src elisp
-
+  "#+title: Scratch Buffer\n
+#+begin_src elisp\n
 #+end_src")
 
 ;;; Elisp
@@ -267,4 +314,4 @@
   :hook
   emacs-lisp-mode
   :init
-  (setq parinfer-rust-auto-download t)) 
+  (setq parinfer-rust-auto-download t))
