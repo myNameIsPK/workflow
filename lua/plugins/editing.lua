@@ -39,10 +39,11 @@ return {
 
   {
     "ggandor/leap.nvim",
-    keys = { "s", "S", { "s", mode = "v" }, { "S", mode = "v" } },
+    keys = { "s", "S", { "s", mode = "v" }, { "S", mode = "v" }, "<leader>s" },
     dependencies = "tpope/vim-repeat",
     config = function()
       require("leap").add_default_mappings()
+      vim.keymap.set("n", "<leader>ss", "<Plug>(leap-from-window)")
     end,
   },
 

@@ -119,6 +119,6 @@ map({ "i", "s" }, "<C-l>", function()
   end
 end)
 
-map({ "i", "s" }, "<C-u>", function()
+map({ "i", "s" }, "<C-h>", function()
   require "luasnip.extras.select_choice"()
 end)

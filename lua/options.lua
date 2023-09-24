@@ -16,7 +16,7 @@ opt.listchars = {
 }
 opt.keymap = "thai" -- use keymap in `keymap/{keymap}.vim`
 opt.iminsert = 0 -- not use keymap by default
-opt.shortmess:append "c" -- shorten ins-completion-menu message
+-- opt.shortmess:append "c" -- shorten ins-completion-menu message
 opt.shortmess:append "I" -- no intro message
 opt.backup = false -- creates a backup file
 -- FIXME: very slow in wsl
@@ -43,7 +43,7 @@ opt.splitbelow = true -- force all horizontal splits to go below current window
 opt.splitright = true -- force all vertical splits to go to the right of current window
 opt.swapfile = false -- creates a swapfile
 opt.termguicolors = true -- set term gui colors (most terminals support this)
-opt.timeoutlen = 400 -- time to wait for a mapped sequence to complete (in milliseconds)
+opt.timeoutlen = 800 -- time to wait for a mapped sequence to complete (in milliseconds)
 opt.title = true -- set the title of window to the value of the titlestring
 -- opt.titlestring = "%<%F%=%l/%L - nvim" -- what the title of the window will be set to
 opt.undofile = true -- enable persistent undo
@@ -70,8 +70,11 @@ opt.guicursor = {
   [[sm:block-blinkwait175-blinkoff150-blinkon175]],
 }
 opt.inccommand = "split" -- when `:s` also show in preview window
+opt.path:append { "**" } -- fuzzy find file in cwd with `:find`
 
 -- opt.quickfixtextfunc = "v:lua.require'my.plugin.quickfixtext'.quickfixtext"
+
+vim.g.netrw_banner = 0
 
 vim.diagnostic.config {
   virtual_text = true,
