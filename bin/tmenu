@@ -6,6 +6,8 @@ main () {
         usetmux
     elif [ -n "$DISPLAY" ]; then
         usex11
+    else
+        fzf-tmux < /proc/$$/fd/0 > /proc/$$/fd/1
     fi
 }
 
