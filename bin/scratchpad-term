@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
-win-toggle-hidden scratchpad || win-toggle-term scratchpad tmux-ses scratch
-sleep 1
-win-hidden-on-lose-focus scratchpad
+class=${1:-scratchpad}
+
+win-toggle-hidden $class || win-toggle-term $class tmux-ses $class
+sleep 0.05
+win-hidden-on-lose-focus $class

@@ -10,6 +10,8 @@ if [ -z "$class" ] || [ -z "$cmd" ]; then
 fi
 
 pid=$(xdotool search --class "$class")
-[ -z "$pid" ] \
-  && $TERMINAL --class "$class" $cmd \
-  || xdotool windowkill "$pid"
+if [ -z "$pid" ]; then
+  $TERMINAL --class "$class" $cmd
+else
+  xdotool windowkill "$pid"
+fi

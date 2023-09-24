@@ -23,12 +23,8 @@ super + k
 	onboard
 
 # toggle scratchpad
-super + s
-    scratchpad-term
-
-# toggle scratchpad
-super + n
-	win-toggle-hidden notes || win-toggle-term notes tmux-ses notes
+super + {s,n}
+	scratchpad-term {'',notes}
 
 # screecshot region to clipboard 
 ctrl + Print

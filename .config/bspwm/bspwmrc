@@ -42,9 +42,6 @@ bspc rule -a scratchpad sticky=on state=floating center=on focus=on
 bspc rule -a notes      sticky=on state=floating center=on focus=on
 bspc rule -a Term-menu  sticky=on state=floating center=on
 
-# TODO: make scratch hidden when unfocus
-# node NODE_SEL --flag hidden
-
 bspc_size Volume     50 50
 bspc_size Monitoring 80 80
 bspc_size scratchpad 85 75
