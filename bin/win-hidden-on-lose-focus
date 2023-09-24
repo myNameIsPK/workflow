@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Send HIDDEN to window one time when lose focus and kill itself.
+# Muse use only with visible window, otherwise it will hide on focus
+
+class=$1
+set -e
+
+xdotool search --onlyvisible --class $class behave %1 focus \
+    behave %1 blur windowstate --add HIDDEN \
+    exec sh -c 'pkill xdotool'
+
+notify-send "suck"

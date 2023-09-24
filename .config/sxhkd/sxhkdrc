@@ -24,8 +24,7 @@ super + k
 
 # toggle scratchpad
 super + s
-	win-toggle-hidden scratchpad || win-toggle-term scratchpad tmux-ses scratch
-	# win-toggle-hidden scratchpad || win-toggle-term scratchpad tmux-ses scratch && win-size scratchpad 85 70 center
+    scratchpad-term
 
 # toggle scratchpad
 super + n

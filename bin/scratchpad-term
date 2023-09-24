@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+win-toggle-hidden scratchpad || win-toggle-term scratchpad tmux-ses scratch
+sleep 1
+win-hidden-on-lose-focus scratchpad
