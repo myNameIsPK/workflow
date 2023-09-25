@@ -6,6 +6,7 @@ class=$1
 set -e
 
 xdotool search --onlyvisible --class $class \
+    behave %1 focus \
     behave %1 blur \
     windowstate --add HIDDEN \
     exec sh -c 'pkill xdotool'
