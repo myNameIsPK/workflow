@@ -35,4 +35,4 @@ if [[ $(cat /etc/hostname) == laptop* ]]; then
 fi
 
 ## Start window manager
-exec bspwm
+# exec bspwm
