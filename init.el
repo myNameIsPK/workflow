@@ -77,6 +77,10 @@
         savehist-autosave-interval nil)
   (savehist-mode t))
 
+;; example: run `M-x' on `M-x' again and again
+(setq enable-recursive-minibuffers t)
+(minibuffer-depth-indicate-mode t)
+
 ;; open recent files
 (use-package recentf
   :defer nil
@@ -153,6 +157,7 @@
 
   (my/leader-def
     "" nil
+    "u" 'universal-argument-more
     ;; "h" (general-simulate-key "C-h") ; this seen in `C-h k' but not seen in `C-h b'
     "h" (general-key "C-h")
     "x" (general-key "C-x")
@@ -165,6 +170,7 @@
     "bm" 'bookmark-set
     "bl" 'bookmark-list
     "bj" 'bookmark-jump
+    "pp" 'project-switch-project
     "pf" 'project-find-file
     "pb" 'project-switch-to-buffer
     "pd" 'project-dired)
@@ -172,6 +178,15 @@
   (my/local-leader-def
     "" nil
     "g" 'vc-dir))
+
+(use-package god-mode
+  :general (my/leader-def ";" 'god-execute-with-current-bindings)
+  :config
+  ;; (global-set-key (kbd "<escape>") #'god-local-mode)
+  (setq god-exempt-major-modes nil ; list of mode to disable
+        god-exempt-predicates nil)
+  (define-key god-local-mode-map (kbd ".") #'repeat)
+  (define-key god-local-mode-map (kbd "<escape>") #'(god-local-mode nil)))
 
 ;;; Help
 (use-package helpful
@@ -196,7 +211,12 @@
   ;; Show more candidates
   (setq vertico-count 15)
   (setq vertico-resize t)
-  (setq vertico-cycle t))
+  (setq vertico-cycle t)
+  (add-hook 'minibuffer-setup-hook #'vertico-repeat-save)
+  (my/leader-def
+    "tr" 'vertico-repeat)
+  (general-def
+    "M-T" 'vertico-suspend))
 
 (unless (default-value vertico-mode) (fido-vertical-mode 1)) ; fuzzy find
 
@@ -249,12 +269,28 @@
   (setq prefix-help-command #'embark-prefix-help-command) ; `<prefix> ?'
   (add-hook 'eldoc-documentation-functions #'embark-eldoc-first-target)
   (setq eldoc-documentation-strategy #'eldoc-documentation-compose-eagerly)
+  (setq embark-prompter 'embark-completing-read-prompter) ; show completion available when perform action
 
-  ;; ;; Hide the mode line of the Embark live/completions buffers
-  ;; (add-to-list 'display-buffer-alist
-  ;;              '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
-  ;;                nil
-  ;;                (window-parameters (mode-line-format . none)))))
+  ;; (defun with-minibuffer-keymap (keymap)
+  ;;  (lambda (fn &rest args)
+  ;;    (minibuffer-with-setup-hook
+  ;;        (lambda ()
+  ;;          (use-local-map
+  ;;           (make-composed-keymap keymap (current-local-map))))
+  ;;      (apply fn args))))
+  ;; (defvar embark-completing-read-prompter-map
+  ;;   (let ((map (make-sparse-keymap)))
+  ;;     (define-key map (kbd "<tab>") 'abort-recursive-edit)
+  ;;     map))
+  ;; (advice-add 'embark-completing-read-prompter :around
+  ;;             (with-minibuffer-keymap embark-completing-read-prompter-map))
+  ;; (defun embark-act-with-completing-read (&optional arg)
+  ;;   (interactive "P")
+  ;;   (let* ((embark-prompter 'embark-completing-read-prompter)
+  ;;          (act (propertize "Act" 'face 'highlight))
+  ;;          (embark-indicator (lambda (_keymap targets) nil)))
+  ;;     (embark-act arg)))
+  ;; (define-key vertico-map (kbd "<tab>") 'embark-act-with-completing-read)
 
   :general
   ("C-h B" 'embark-bindings) ; alternative for `describe-bindings'
@@ -268,8 +304,8 @@
   (my/leader-def
     "." 'embark-dwim
     "a" 'embark-act
-    "L" 'embark-collect
     "S" 'embark-collect
+    "L" 'embark-live
     "E" 'embark-export))
 
 (use-package embark-consult
@@ -279,10 +315,19 @@
 ;; Completion at point
 (use-package corfu
   :init (global-corfu-mode)
+  :general
+  (corfu-map
+    :states 'insert
+    "C-y" 'corfu-insert
+    "C-e" 'corfu-quit)
   :config
   (setq corfu-auto t
-        corfu-quit-no-match 'separator)
-  (corfu-popupinfo-mode))
+        corfu-cycle t
+        corfu-quit-no-match nil
+        corfu-echo-delay nil
+        corfu-preselect 'valid
+        corfu-popupinfo-delay nil)
+  (corfu-popupinfo-mode t))
 
 (use-package corfu-terminal
   :after corfu
@@ -295,8 +340,18 @@
   :init
   (add-to-list 'completion-at-point-functions #'cape-dabbrev)
   (add-to-list 'completion-at-point-functions #'cape-file)
-  (add-to-list 'completion-at-point-functions #'cape-elisp-block))
-  
+  (add-to-list 'completion-at-point-functions #'cape-elisp-block)
+  (add-to-list 'completion-at-point-functions #'cape-elisp-symbol)
+  (add-to-list 'completion-at-point-functions #'cape-keyword)
+  (add-to-list 'completion-at-point-functions #'cape-history)
+  (add-to-list 'completion-at-point-functions #'cape-abbrev)
+  (add-to-list 'completion-at-point-functions #'cape-dict))
+  ;; (add-to-list 'completion-at-point-functions #'cape-line)
+  ;; (add-to-list 'completion-at-point-functions #'cape-tex)
+  ;; (add-to-list 'completion-at-point-functions #'cape-sgml)
+  ;; (add-to-list 'completion-at-point-functions #'cape-rfc1345)
+  ;; (add-to-list 'completion-at-point-functions #'cape-emoji))
+
 ;;; Terminal
 (use-package vterm
   :config
@@ -304,18 +359,39 @@
 
 ;;; Org Mode
 (use-package org
-  :custom
-  (org-directory "~/notes/org")
-  (org-agenda-files '("tasks.org" "jobs.org"))
-  (org-capture-templates
-    `(("t" "Task" entry (file+olp "tasks.org" "Inbox")
-       "* TODO %?\n  %U\n  %a\n  %i"))))
+  :init
+  (setq org-directory "~/notes/org")
+  (setq org-agenda-files '("inbox.org"
+                           "project.org" ; main project file
+                           "someday.org"
+                           "anniversary.org"
+                           "archive.org"))
+  (setq org-refile-targets
+    '(("archive.org" :maxlevel . 1)))
+  (advice-add 'org-refile :after 'org-save-all-org-buffers)
 
-(setq-default initial-major-mode 'org-mode
-              initial-scratch-message
-  "#+title: Scratch Buffer\n
-#+begin_src elisp\n
-#+end_src")
+  (setq org-todo-keywords
+    '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
+      (sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANC(k@)")))
+  (setq org-capture-templates
+    '(("t" "Task" entry (file+olp "inbox.org" "Inbox")
+       "* TODO %?\n  %U\n  %a\n  %i")))
+
+  (setq org-agenda-cutom-commands
+    '(("w" "working" todo "NEXT")
+      ("h" "hobby" tags-todo "+hobby")))
+
+  :general
+  (my/leader-def
+    "SPC l" 'org-store-link
+    "SPC c" 'org-capture
+    "SPC a" 'org-agenda))
+
+;; (setq-default initial-major-mode 'org-mode
+;;               initial-scratch-message
+;;   "#+title: Scratch Buffer\n
+;; #+begin_src elisp\n
+;; #+end_src")
 
 ;;; Elisp
 (use-package parinfer-rust-mode
