@@ -7,8 +7,6 @@ set -e
 
 xdotool search --onlyvisible --class "$class" \
     behave %1 blur \
-    exec sh -c <<-EOF
-        pkill xdotool
-        && xdotool search --onlyvisible --class ${class} windowstate --add HIDDEN
-        && pkill xdotool
-EOF
+    exec sh -c "\
+        xdotool search --onlyvisible --class ${class} windowstate --add HIDDEN \
+        && pkill xdotool"
