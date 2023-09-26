@@ -88,17 +88,14 @@
 
 ;; Repeatable key `describe-repeat-maps'
 (use-package repeat
-  :init
-  (repeat-mode t))
+  :init (repeat-mode t))
 
 (use-package editorconfig
-  :config
-  (editorconfig-mode 1))
+  :config (editorconfig-mode 1))
 
 ;;; Undo Tree
 (use-package undo-tree
-  :config
-  (global-undo-tree-mode 1))
+  :config (global-undo-tree-mode 1))
 
 ;;; Evil
 (use-package evil
@@ -156,14 +153,21 @@
 
   (my/leader-def
     "" nil
-    "gg" 'magit-status
-    "dd" 'dired
-    "bb" 'switch-to-buffer
-    "pf" 'project-find-file
     ;; "h" (general-simulate-key "C-h") ; this seen in `C-h k' but not seen in `C-h b'
     "h" (general-key "C-h")
     "x" (general-key "C-x")
-    "c" (general-key "C-c"))
+    "c" (general-key "C-c")
+    "hh" 'describe-symbol
+    "ff" 'find-file
+    "gg" 'magit-status
+    "dd" 'dired
+    "bb" 'switch-to-buffer
+    "bm" 'bookmark-set
+    "bl" 'bookmark-list
+    "bj" 'bookmark-jump
+    "pf" 'project-find-file
+    "pb" 'project-switch-to-buffer
+    "pd" 'project-dired)
 
   (my/local-leader-def
     "" nil
@@ -225,27 +229,22 @@
           ("M-s" . consult-history)
           ("M-r" . consult-history))
 
+  :general
+  ;; https://github.com/minad/consult#use-package-example
+  (my/leader-def
+    "fg" 'consult-ripgrep
+    "fr" 'consult-recent-file
+    "ol" 'consult-outline)
+  (my/local-leader-def
+    "M-x" 'consult-mode-command)
   :config
   (global-set-key [remap switch-to-buffer] #'consult-buffer)
   (global-set-key [remap imenu] #'consult-imenu)
   (global-set-key [remap goto-line] #'consult-goto-line)
-
-  ;; https://github.com/minad/consult#use-package-example
-  (my/leader-def
-    "fr" 'consult-recent-file
-    "ol" 'consult-outline)
-  (my/local-leader-def
-    "M-x" 'consult-mode-command))
+  (global-set-key [remap bookmark-jump] #'consult-bookmark)
+  (global-set-key [remap project-list-buffers] #'consult-project-buffer))
 
 (use-package embark
-  :bind (("C-h B" . embark-bindings) ; alternative for `describe-bindings'
-         :map minibuffer-local-map
-         ("M-a" . embark-act)
-         ("M-A" . embark-act-all)
-         ("M-." . embark-dwim)
-         ("M-B" . embark-become)
-         ("M-S" . embark-collect)
-         ("M-E" . embark-export))
   :config
   (setq prefix-help-command #'embark-prefix-help-command) ; `<prefix> ?'
   (add-hook 'eldoc-documentation-functions #'embark-eldoc-first-target)
@@ -257,6 +256,15 @@
   ;;                nil
   ;;                (window-parameters (mode-line-format . none)))))
 
+  :general
+  ("C-h B" 'embark-bindings) ; alternative for `describe-bindings'
+  (minibuffer-local-map
+    "M-a" 'embark-act
+    "M-A" 'embark-act-all
+    "M-." 'embark-dwim
+    "M-B" 'embark-become
+    "M-S" 'embark-collect
+    "M-E" 'embark-export)
   (my/leader-def
     "." 'embark-dwim
     "a" 'embark-act
@@ -315,3 +323,11 @@
   emacs-lisp-mode
   :init
   (setq parinfer-rust-auto-download t))
+
+
+;; ;;; Exwm
+;; (add-to-list 'load-path "~/.local/src/xelb/")
+;; (add-to-list 'load-path "~/.local/src/exwm/")
+;; (require 'exwm)
+;; (require 'exwm-config)
+;; (exwm-config-example)
