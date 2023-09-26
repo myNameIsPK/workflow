@@ -15,7 +15,6 @@
 
 ## Autostart program
 nm-applet &
-# nitrogen --restore &
 feh --no-fehbg --bg-scale ~/Pictures/wallpapers/astronaut_with_jellyfish_hd.jpg &
 picom &
 sxhkd -t 2 &
@@ -25,9 +24,6 @@ sudo xremap $XDG_CONFIG_HOME/xremap/config.yml &
 dunst &
 # mpd &
 "$HOME"/.config/polybar/launch.sh &
-# lxpanel &
-# skippy-xd --start-daemon &
-# espanso daemon &
 
 if [[ $(cat /etc/hostname) == laptop* ]]; then 
   ## prime-offload must run for optimus-manager
@@ -36,4 +32,4 @@ fi
 
 ## Start window manager
 exec bspwm
-# exec emacs
+# exec emacs # :-)
