@@ -5,7 +5,10 @@
 class=$1
 set -e
 
-xdotool search --onlyvisible --class $class \
+xdotool search --onlyvisible --class "$class" \
     behave %1 blur \
-    windowstate --add HIDDEN \
-    exec sh -c 'pkill xdotool'
+    exec sh -c <<-EOF
+        pkill xdotool
+        && xdotool search --onlyvisible --class ${class} windowstate --add HIDDEN
+        && pkill xdotool
+EOF

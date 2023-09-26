@@ -35,5 +35,5 @@ if [[ $(cat /etc/hostname) == laptop* ]]; then
 fi
 
 ## Start window manager
-# exec bspwm
-exec emacs
+exec bspwm
+# exec emacs
