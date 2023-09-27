@@ -30,6 +30,9 @@ mapkey('<Ctrl-y>', 'Show me the money', function() {
 mapkey('yM', 'Copy link markdown format', function() {
   Clipboard.write(''.concat('[',document.title,'](',window.location.href,')'));
 });
+mapkey('yO', 'Copy link orgmode format', function() {
+  Clipboard.write(''.concat('[',window.location.href,'][',document.title,']'));
+});
 
 unmap('<Ctrl-i>');
 

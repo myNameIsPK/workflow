@@ -1,5 +1,4 @@
 [Desktop Entry]
 Type=Application
 Name=File Manager
-/* FIXME: make it use env */
 Exec=/usr/bin/kitty -e lf %u
