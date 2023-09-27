@@ -15,7 +15,6 @@
   "tty setup hook"
   (interactive)
   (xterm-mouse-mode 1)
-  (load-theme 'modus-operandi)
   (setq xterm-box-blink-seq "\e[1 q")
   (send-string-to-terminal xterm-box-blink-seq))
 

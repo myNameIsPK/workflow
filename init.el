@@ -13,6 +13,7 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+(load-theme 'modus-operandi)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
 (setq scroll-margin 8)
@@ -377,9 +378,9 @@
     '(("t" "Task" entry (file+olp "inbox.org" "Inbox")
        "* TODO %?\n  %U\n  %a\n  %i")))
 
-  (setq org-agenda-cutom-commands
-    '(("w" "working" todo "NEXT")
-      ("h" "hobby" tags-todo "+hobby")))
+  (setq org-agenda-custom-commands
+        '(("w" "working" todo "NEXT")
+          ("h" "hobby" tags-todo "+hobby")))
 
   :general
   (my/leader-def
