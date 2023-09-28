@@ -67,9 +67,10 @@ map("v", ">", ">gv")
 
 map("v", "p", '"_dP') -- not yank before paste in visual select
 -- map("n", "<del>", '"_') -- send all delete to null on every opration
-map("n", "<M-y>", '"+p')
-map({"n","v"}, "<leader>y", '"+y')
-map({"n","v"}, "<leader>Y", '"+y$')
+map("n", "<M-y>", '"+]p', {desc="Past from clipboard"})
+map({"n","v"}, "<leader>y", '"+y', {desc="yank to Clipboard"})
+map({"n","v"}, "<leader>Y", '"+y$' , {desc="yank to Clipboard"})
+map("n", "<leader><C-y>", '<Cmd>let @+=@"<Cr>', {desc = "Send last yank to Clipboard"})
 
 map("t", "<c-g>", "<C-\\><C-n>")
 
