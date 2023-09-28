@@ -3,6 +3,7 @@
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (tooltip-mode -1)
+(column-number-mode)
 
 (global-auto-revert-mode 1) ; revert buffers when file change on disk
 (setq global-auto-revert-non-file-buffers t)
@@ -129,7 +130,6 @@
       map))
   (dolist (cmd '(evil-window-next evil-window-prev evil-window-increase-height evil-window-decrease-height evil-window-down evil-window-left evil-window-right evil-window-up))
     (put cmd 'repeat-map 'my/win-repeat-map)))
-
 
 (use-package goto-chg)
 
@@ -269,7 +269,7 @@
   :config
   (setq prefix-help-command #'embark-prefix-help-command) ; `<prefix> ?'
   (add-hook 'eldoc-documentation-functions #'embark-eldoc-first-target)
-  (setq eldoc-documentation-strategy #'eldoc-documentation-compose-eagerly)
+  ;; (setq eldoc-documentation-strategy #'eldoc-documentation-compose-eagerly)
   (setq embark-prompter 'embark-completing-read-prompter) ; show completion available when perform action
 
   ;; (defun with-minibuffer-keymap (keymap)
@@ -345,8 +345,8 @@
   (add-to-list 'completion-at-point-functions #'cape-elisp-symbol)
   (add-to-list 'completion-at-point-functions #'cape-keyword)
   (add-to-list 'completion-at-point-functions #'cape-history)
-  (add-to-list 'completion-at-point-functions #'cape-abbrev)
-  (add-to-list 'completion-at-point-functions #'cape-dict))
+  (add-to-list 'completion-at-point-functions #'cape-abbrev))
+  ;; (add-to-list 'completion-at-point-functions #'cape-dict))
   ;; (add-to-list 'completion-at-point-functions #'cape-line)
   ;; (add-to-list 'completion-at-point-functions #'cape-tex)
   ;; (add-to-list 'completion-at-point-functions #'cape-sgml)
@@ -358,35 +358,69 @@
   :config
   (setq vterm-shell "/usr/bin/zsh"))
 
+;;; Zen mode
+(use-package olivetti
+  :general
+  (my/leader-def "tz" 'olivetti-mode))
+
 ;;; Org Mode
 (use-package org
   :init
   (setq org-directory "~/notes/org")
-  (setq org-agenda-files '("inbox.org"
+  (setq org-agenda-files '("inbox.org" ; for capture
                            "project.org" ; main project file
                            "someday.org"
-                           "anniversary.org"
+                           "tickler.org"
                            "archive.org"))
+  (setq org-refile-allow-creating-parent-nodes t)
+  (setq org-refile-use-outline-path 'file)
+  (setq org-outline-path-complete-in-steps nil)
   (setq org-refile-targets
-    '(("archive.org" :maxlevel . 1)))
+    '((nil :maxlevel . 9)
+      ("project.org" :maxlevel . 9)
+      ("someday.org" :maxlevel . 9)
+      ("archive.org" :maxlevel . 9)))
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
 
   (setq org-todo-keywords
-    '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
-      (sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANC(k@)")))
+    '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)" "CANCELED(c@/!)")))
+      ;; (sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANC(k@)")))
+
   (setq org-capture-templates
-    '(("t" "Task" entry (file+olp "inbox.org" "Inbox")
-       "* TODO %?\n  %U\n  %a\n  %i")))
+    '(("q" "Quick Capture" entry (file+olp "inbox.org" "Inbox")
+        "* TODO %?\n  %U\n  %a\n  %i" :prepend t)
+      ("c" "Clipboard" entry (file+olp "inbox.org" "Inbox")
+        "* TODO %?\n  %U\n  %x\n  %i" :prepend t)))
 
   (setq org-agenda-custom-commands
-        '(("w" "working" todo "NEXT")
-          ("h" "hobby" tags-todo "+hobby")))
+    '(("n" "Next action" todo "NEXT")
+      ("N" "Next action tree" todo-tree "NEXT")
+      ("h" . "Home and Hobbies")
+      ("hh" "Hobby" tags-todo "hobby|@home")
+      ("hn" "Hobby next"
+        ((tags-todo "hobby+@home")
+         (todo "NEXT")))
+      ("p" . "Project")
+      ("ps" "Project Search" search "" ((org-agenda-files '("project.org"))))
+      ("pa" "Project Agenda" agenda "" ((org-agenda-files '("project.org"))))
+      ("r" "Recurring Agenda" agenda "" ((org-agenda-files '("tickler.org"))))
+      ("A" "Appointment" agenda*)))
 
   :general
   (my/leader-def
     "SPC l" 'org-store-link
     "SPC c" 'org-capture
-    "SPC a" 'org-agenda))
+    "SPC a" 'org-agenda
+    "oc" 'org-capture-goto-last-stored
+    "or" 'org-refile-goto-last-stored)
+  (my/leader-def
+    :keymaps 'org-mode-map
+    "R" 'org-refile
+    "A" 'org-archive-subtree
+    "tl" 'org-toggle-link-display
+    "il" 'org-insert-last-stored-link
+    "is" 'org-schedule
+    "id" 'org-deadline))
 
 ;; (setq-default initial-major-mode 'org-mode
 ;;               initial-scratch-message
