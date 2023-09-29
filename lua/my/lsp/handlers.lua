@@ -59,11 +59,10 @@ end
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local bufnr = args.buf
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-    -- NOTE: disable semantic tokens highlight because it mess up TS todo comment
-    if not my.opts.lsp.samantic_tokens and client.server_capabilities.semanticTokensProvider then
-      client.server_capabilities.semanticTokensProvider = nil
-    end
+    -- local client = vim.lsp.get_client_by_id(args.data.client_id)
+    -- if not my.opts.lsp.samantic_tokens and client.server_capabilities.semanticTokensProvider then
+    --   client.server_capabilities.semanticTokensProvider = nil
+    -- end
     lsp_keymaps(bufnr)
   end,
 })
