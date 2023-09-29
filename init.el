@@ -3,7 +3,7 @@
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (tooltip-mode -1)
-(column-number-mode)
+(column-number-mode 1)
 
 (global-auto-revert-mode 1) ; revert buffers when file change on disk
 (setq global-auto-revert-non-file-buffers t)
@@ -169,8 +169,9 @@
     "dd" 'dired
     "bb" 'switch-to-buffer
     "bm" 'bookmark-set
-    "bl" 'bookmark-list
-    "bj" 'bookmark-jump
+    "bl" 'list-bookmarks
+    "jb" 'bookmark-jump
+    "tl" 'display-line-numbers-mode
     "pp" 'project-switch-project
     "pf" 'project-find-file
     "pb" 'project-switch-to-buffer
@@ -342,10 +343,10 @@
   (add-to-list 'completion-at-point-functions #'cape-dabbrev)
   (add-to-list 'completion-at-point-functions #'cape-file)
   (add-to-list 'completion-at-point-functions #'cape-elisp-block)
-  (add-to-list 'completion-at-point-functions #'cape-elisp-symbol)
-  (add-to-list 'completion-at-point-functions #'cape-keyword)
-  (add-to-list 'completion-at-point-functions #'cape-history)
-  (add-to-list 'completion-at-point-functions #'cape-abbrev))
+  (add-to-list 'completion-at-point-functions #'cape-elisp-symbol))
+  ;; (add-to-list 'completion-at-point-functions #'cape-keyword)
+  ;; (add-to-list 'completion-at-point-functions #'cape-history)
+  ;; (add-to-list 'completion-at-point-functions #'cape-abbrev))
   ;; (add-to-list 'completion-at-point-functions #'cape-dict))
   ;; (add-to-list 'completion-at-point-functions #'cape-line)
   ;; (add-to-list 'completion-at-point-functions #'cape-tex)
@@ -354,9 +355,9 @@
   ;; (add-to-list 'completion-at-point-functions #'cape-emoji))
 
 ;;; Terminal
-(use-package vterm
-  :config
-  (setq vterm-shell "/usr/bin/zsh"))
+;; (use-package vterm
+;;   :config
+;;   (setq vterm-shell "/usr/bin/zsh"))
 
 ;;; Zen mode
 (use-package olivetti
@@ -400,9 +401,7 @@
       ("hn" "Hobby next"
         ((tags-todo "hobby+@home")
          (todo "NEXT")))
-      ("p" . "Project")
-      ("ps" "Project Search" search "" ((org-agenda-files '("project.org"))))
-      ("pa" "Project Agenda" agenda "" ((org-agenda-files '("project.org"))))
+      ("p" "Project Agenda" agenda "" ((org-agenda-files '("project.org"))))
       ("r" "Recurring Agenda" agenda "" ((org-agenda-files '("tickler.org"))))
       ("A" "Appointment" agenda*)))
 

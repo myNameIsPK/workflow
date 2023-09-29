@@ -6,3 +6,5 @@ parinfer*/**
 custom.el
 recentf
 history
+eln-cache/
+transient/
