@@ -99,26 +99,24 @@ ls.add_snippets("markdown", {
 require("luasnip.loaders.from_vscode").lazy_load()
 require("luasnip.loaders.from_vscode").lazy_load { paths = { "~/.config/nvim/snippets/vscode" } }
 
-local map = require("my.map-helper").map
-
-map({ "i", "s" }, "<C-j>", function()
+my.map({ "i", "s" }, "<C-j>", function()
   if ls.expand_or_jumpable() then
     ls.expand_or_jump()
   end
 end)
 
-map({ "i", "s" }, "<C-k>", function()
+my.map({ "i", "s" }, "<C-k>", function()
   if ls.jumpable(-1) then
     ls.jump(-1)
   end
 end)
 
-map({ "i", "s" }, "<C-l>", function()
+my.map({ "i", "s" }, "<C-l>", function()
   if ls.choice_active() then
     ls.change_choice(1)
   end
 end)
 
-map({ "i", "s" }, "<C-h>", function()
+my.map({ "i", "s" }, "<C-h>", function()
   require "luasnip.extras.select_choice"()
 end)

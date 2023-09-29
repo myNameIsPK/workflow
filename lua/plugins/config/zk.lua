@@ -22,7 +22,6 @@ local opts = {
   },
 }
 
-local map = require("my.map-helper").map
 local api = require "zk.api"
 local notepath = vim.env.ZK_NOTEBOOK_DIR .. "/zettels"
 local journalpath = vim.env.ZK_NOTEBOOK_DIR .. "/journal/daily"
@@ -87,25 +86,25 @@ local function get_selected_text(a, b, get_line)
   return string.gsub(str, "\n$", "")
 end
 
-map("n", "<leader>nn", function()
+my.map("n", "<leader>nn", function()
   create_new_note { title = vim.fn.input("Create Note At " .. notepath .. "\nTitle: ") }
 end, { desc = "ZK Create new note" })
 
-map("n", "<leader>ndd", function()
+my.map("n", "<leader>ndd", function()
   create_new_note { dir = journalpath }
 end, { desc = "ZK Create today note" })
 
-map("n", "<leader>nf", function()
+my.map("n", "<leader>nf", function()
   zk.edit { sort = { "modified" } }
 end, { desc = "ZK search notes" })
-map("v", "<leader>nf", ":'<,'>ZkMatch<CR>")
+my.map("v", "<leader>nf", ":'<,'>ZkMatch<CR>")
 
-map("n", "<leader>ndf", function()
+my.map("n", "<leader>ndf", function()
   zk.edit { sort = { "modified" }, hrefs = { "journal/daily" } }
 end, { desc = "ZK search daily note" })
 
-map("n", "<leader>nt", "<Cmd>ZkTags<CR>")
-map("n", "<leader>nc", ":edit $ZK_NOTEBOOK_DIR/.zk/config.toml<CR>")
+my.map("n", "<leader>nt", "<Cmd>ZkTags<CR>")
+my.map("n", "<leader>nc", ":edit $ZK_NOTEBOOK_DIR/.zk/config.toml<CR>")
 
 local function zk_keymaps(bufnr)
   local function map_buf(mode, lhs, rhs, desc, map_opts)

@@ -97,3 +97,5 @@ _G.I = function(object)
 end
 
 _G.R = require("my.plugin.reload").reload
+
+my.map = require("my.map-helper").map
