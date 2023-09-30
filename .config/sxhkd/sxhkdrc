@@ -24,7 +24,7 @@ super + k
 
 # toggle scratchpad
 super + {s,n}
-	scratchpad-term {'',notes}
+	scratchpad-term {'',Notes}
 
 # screecshot region to clipboard 
 ctrl + Print

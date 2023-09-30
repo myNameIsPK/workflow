@@ -27,7 +27,7 @@ fi
 if ! tmux has-session -t "$ses_name"; then
   case "$ses_name" in
     Notes)
-      tmux new-session -ds "$ses_name" -c "$MY_NOTES_DIR" "$EDITOR" .
+      tmux new-session -ds "$ses_name" -c "$MY_NOTES_DIR" \; send-keys C-u "$EDITOR ." Enter
     ;;
     Nvim)
       tmux new-session -ds "$ses_name" -c "$XDG_CONFIG_HOME/nvim" \; send-keys C-u "$EDITOR init.lua" Enter
