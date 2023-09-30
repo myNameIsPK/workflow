@@ -16,9 +16,9 @@ else
     ~/.local/src \
     ~/.local/src/nvim-plugins \
     ~/.local/share/nvim/lazy \
+    ~/.config/emacs/straight/repos \
     -maxdepth 1 -type d; \
-  } | fzf --history="${XDG_CACHE_HOME}"/tmux-ses-history --history-size=20 \
-          --bind=ctrl-j:jump,enter:replace-query+print-query) # https://github.com/junegunn/fzf/issues/1693#issuecomment-699642792
+  } | fzf --bind=ctrl-j:jump,enter:replace-query+print-query) # https://github.com/junegunn/fzf/issues/1693#issuecomment-699642792
   ses_name=$(basename "$directory" | tr "." "_")
 fi
 
@@ -30,10 +30,10 @@ if ! tmux has-session -t "$ses_name"; then
       tmux new-session -ds "$ses_name" -c "$MY_NOTES_DIR" "$EDITOR" .
     ;;
     Nvim)
-      tmux new-session -ds "$ses_name" -c "$XDG_CONFIG_HOME/nvim"
+      tmux new-session -ds "$ses_name" -c "$XDG_CONFIG_HOME/nvim" \; send-keys C-u "$EDITOR init.lua" Enter
     ;;
     Emacs)
-      tmux new-session -ds "$ses_name" -c "$XDG_CONFIG_HOME/emacs" \; if-shell "emacsclient -t -a ''"
+      tmux new-session -ds "$ses_name" -c "$XDG_CONFIG_HOME/emacs" \; send-keys C-u "emacsclient -t -a '' init.el" Enter
     ;;
     *)
       tmux new-session -ds "$ses_name" -c "$directory"
