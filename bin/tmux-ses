@@ -6,7 +6,9 @@ if [ $# -eq 1 ]; then
 else
   directory=$({ \
     # TODO bookmark directory
-    printf "notes\nnvim\n"; \
+    echo "Nvim"; \
+    echo "Emacs"; \
+    echo "Notes"; \
     # project file
     find \
     ~/Projects \
@@ -14,7 +16,8 @@ else
     ~/.local/src/nvim-plugins \
     ~/.local/share/nvim/lazy \
     -maxdepth 1 -type d; \
-    } | fzf --print-query --history="${XDG_CACHE_HOME}"/tmux-ses-history --history-size=20 --bind 'ctrl-j:jump')
+  } | fzf --history="${XDG_CACHE_HOME}"/tmux-ses-history --history-size=20 \
+          --bind=ctrl-j:jump,enter:replace-query+print-query)
   ses_name=$(basename "$directory" | tr "." "_")
 fi
 
@@ -22,13 +25,13 @@ fi
 
 if ! tmux has-session -t "$ses_name"; then
   case "$ses_name" in
-    notes)
+    Notes)
       tmux new-session -ds "$ses_name" -c "$MY_NOTES_DIR"
     ;;
-    nvim)
+    Nvim)
       tmux new-session -ds "$ses_name" -c "$XDG_CONFIG_HOME/nvim"
     ;;
-    emacs)
+    Emacs)
       tmux new-session -ds "$ses_name" -c "$XDG_CONFIG_HOME/emacs"
     ;;
     *) tmux new-session -ds "$ses_name" -c "$directory"
