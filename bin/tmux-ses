@@ -5,7 +5,7 @@ if [ $# -eq 1 ]; then
   ses_name=$1
 else
   directory=$({ \
-    # bookmark directory
+    # TODO bookmark directory
     printf "notes\nnvim\n"; \
     # project file
     find \
@@ -14,7 +14,7 @@ else
     ~/.local/src/nvim-plugins \
     ~/.local/share/nvim/lazy \
     -maxdepth 1 -type d; \
-    } | fzf --print-query)
+    } | fzf --print-query --history="${XDG_CACHE_HOME}"/tmux-ses-history --history-size=20 --bind 'ctrl-j:jump')
   ses_name=$(basename "$directory" | tr "." "_")
 fi
 
