@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+# vim: sw=2
 
 directory="~"
 if [ $# -eq 1 ]; then
@@ -17,7 +18,7 @@ else
     ~/.local/share/nvim/lazy \
     -maxdepth 1 -type d; \
   } | fzf --history="${XDG_CACHE_HOME}"/tmux-ses-history --history-size=20 \
-          --bind=ctrl-j:jump,enter:replace-query+print-query)
+          --bind=ctrl-j:jump,enter:replace-query+print-query) # https://github.com/junegunn/fzf/issues/1693#issuecomment-699642792
   ses_name=$(basename "$directory" | tr "." "_")
 fi
 
@@ -26,15 +27,16 @@ fi
 if ! tmux has-session -t "$ses_name"; then
   case "$ses_name" in
     Notes)
-      tmux new-session -ds "$ses_name" -c "$MY_NOTES_DIR"
+      tmux new-session -ds "$ses_name" -c "$MY_NOTES_DIR" "$EDITOR" .
     ;;
     Nvim)
       tmux new-session -ds "$ses_name" -c "$XDG_CONFIG_HOME/nvim"
     ;;
     Emacs)
-      tmux new-session -ds "$ses_name" -c "$XDG_CONFIG_HOME/emacs"
+      tmux new-session -ds "$ses_name" -c "$XDG_CONFIG_HOME/emacs" \; if-shell "emacsclient -t -a ''"
     ;;
-    *) tmux new-session -ds "$ses_name" -c "$directory"
+    *)
+      tmux new-session -ds "$ses_name" -c "$directory"
     ;;
   esac
 fi
