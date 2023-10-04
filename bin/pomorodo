@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+lapwt=25m
+lapbt=5m
+longb=15m
+
+# lapwt=5s
+# lapbt=1s
+# longb=3s
+
+while true
+do
+    for i in {1..4}; do
+        sleep $lapwt
+        notify-send "$i/25m passed, you should break!!"
+        sleep $lapbt
+        notify-send -u critical "$i/5m passed, now work!!"
+    done
+    notify-send "Time to Long break"
+    sleep $longb
+    notify-send "15m passed, Long break end"
+done

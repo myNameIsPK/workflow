@@ -4,7 +4,6 @@
 	name = kampanart
 
 [init]
-	defaultBranch = main
 
 [alias]
   ss = status -s
