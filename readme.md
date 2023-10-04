@@ -5,5 +5,6 @@ echo ".dotfile.git" >> .gitignore
 git clone --bare https://github.com/pk-kampanart/workflow.git $HOME/.dotfile.git
 rm -f .bash* && dot checkout
 dot config --local status.showUntrackedFiles no
+pacman -S git-crypt
+dot crypt unlock
 ```
-<!-- TODO: write about gitcrypt -->
