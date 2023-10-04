@@ -15,10 +15,12 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (load-theme 'modus-operandi)
+(add-to-list 'default-frame-alist '(font . "Monospace-11"))
+
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
-(setq scroll-margin 8)
-(setq scroll-conservatively 1)
+(setq scroll-margin 8
+      scroll-conservatively 1)
 
 ;; indentation
 (setq-default tab-width 4)
@@ -321,7 +323,9 @@
   (corfu-map
     :states 'insert
     "C-y" 'corfu-insert
-    "C-e" 'corfu-quit)
+    "C-e" 'corfu-quit
+    "C-k" 'corfu-info-documentation ; popup info
+    "C-j" 'corfu-info-location) ; peek definition
   :config
   (setq corfu-auto t
         corfu-cycle t
@@ -433,7 +437,6 @@
   emacs-lisp-mode
   :init
   (setq parinfer-rust-auto-download t))
-
 
 ;; ;;; Exwm
 ;; (add-to-list 'load-path "~/.local/src/xelb/")
