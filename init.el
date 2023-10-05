@@ -380,6 +380,7 @@
   (setq org-refile-allow-creating-parent-nodes t)
   (setq org-refile-use-outline-path 'file)
   (setq org-outline-path-complete-in-steps nil)
+  (setq org-auto-align-tags nil)
   (setq org-refile-targets
     '((nil :maxlevel . 9)
       ("project.org" :maxlevel . 9)
@@ -387,8 +388,13 @@
       ("archive.org" :maxlevel . 9)))
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
 
+  (require 'org-habit)
+  (add-to-list 'org-modules 'org-habit)
+
+  (setq org-hide-leading-stars t)
+  (setq org-log-into-drawer t)
   (setq org-todo-keywords
-    '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)" "CANCELED(c@/!)")))
+    '((sequence "TODO(t)" "NEXT(n)" "WAIT(w)" "|" "DONE(d!)" "CANCELED(c@/!)")))
       ;; (sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANC(k@)")))
 
   (setq org-capture-templates
@@ -420,7 +426,7 @@
     :keymaps 'org-mode-map
     "R" 'org-refile
     "A" 'org-archive-subtree
-    "tl" 'org-toggle-link-display
+    "tL" 'org-toggle-link-display
     "il" 'org-insert-last-stored-link
     "is" 'org-schedule
     "id" 'org-deadline))
