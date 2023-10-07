@@ -35,6 +35,10 @@ ctrl + alt + Print
 	screenshot -cc && notify-send "screenshot this window to clipboard"
 
 # Volume settings
+super + w
+	win-toggle-term Network nmtui
+
+# Volume settings
 super + v
 	win-toggle-term Volume pulsemixer
 
