@@ -39,7 +39,9 @@ shopt -s dotglob	# Includ dot file in globbling
 shopt -s histappend	# Append history not overwrite when exit
 shopt -s checkwinsize	# Checks term size when bash regains control
 
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash
+if command -v fzf > /dev/null && [ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash ]; then
+    source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash
+fi
 
 # Automatically added by the Guix install script.
 if [ -n "$GUIX_ENVIRONMENT" ]; then

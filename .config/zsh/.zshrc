@@ -149,7 +149,9 @@ zsh_add_plugin "hlissner/zsh-autopair"
 fpath=("$ZDOTDIR/plugins/zsh-completions" $fpath)
 compinit
 
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
+if command -v fzf > /dev/null && [ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ]; then
+    source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
+fi
 
 # Modified from Guix auto bash config
 if [ -n "$GUIX_ENVIRONMENT" ]; then
