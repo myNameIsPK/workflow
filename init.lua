@@ -23,4 +23,3 @@ require "keymappings"
 require "autocmds"
 
 require "lazy_boostrap"
--- require "my.lsp"

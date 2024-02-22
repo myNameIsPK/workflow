@@ -3,13 +3,6 @@ local function group(group_name)
 end
 local autocmd = vim.api.nvim_create_autocmd
 
--- -- This regular auto group
--- vim.cmd([[
---   augroup _general_settings
---     autocmd!
---     autocmd TextYankPost * silent! lua vim.highlight.on_yank()
---   augroup END
--- ]])
 autocmd("TextYankPost", {
   group = group "_general_settings",
   -- pattern = "*",
@@ -38,6 +31,90 @@ autocmd("TermClose", {
     vim.fn.feedkeys "q"
   end,
   desc = "Close without showing exitcode",
+})
+
+local lsp_formatting = function(bufnr)
+  bufnr = bufnr or nil
+  vim.lsp.buf.format {
+    filter = function(client)
+      return client.name == "null-ls"
+    end,
+    bufnr,
+  }
+end
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local bufnr = args.buf
+    local function map(mode, lhs, rhs, desc)
+      vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
+    end
+
+    -- stylua: ignore start
+    map('n', 'gD', function() vim.lsp.buf.declaration() end, "Go to declaration")
+    map('n', 'gd', function() vim.lsp.buf.definition() end, "Go to definition") -- use <C-]> instead
+    map('n', 'K', function() vim.lsp.buf.hover() end, "Hover")
+    map('n', '<C-k>', function() vim.lsp.buf.signature_help() end, "Signature help")
+    map('n', 'gr', function() vim.lsp.buf.references() end, "List references")
+    map('n', '<localleader>i', function() vim.lsp.buf.implementation() end, "Go to implementation")
+    map('n', '<localleader>wa', function() vim.lsp.buf.add_workspace_folder() end, "Workspace Add folder")
+    map('n', '<localleader>wd', function() vim.lsp.buf.remove_workspace_folder() end, "Workspace Delete folder")
+    map('n', '<localleader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, "Workspace list folder")
+    map('n', '<localleader>d', function() vim.lsp.buf.type_definition() end, "Type definition")
+    map('n', '<localleader>n', function() vim.lsp.buf.rename() end, "Rename")
+    map('n', '<localleader>a', function() vim.lsp.buf.code_action() end, "Code action")
+    map('v', '<localleader>a', function() vim.lsp.buf.code_action() end, "Code action")
+
+    map('n', '<localleader>f', function() lsp_formatting() end, "formatting")
+    map('v', '<localleader>f', function() lsp_formatting() end, "formatting")
+
+    -- telescope
+    map('n', '<localleader>D', function() require('telescope.builtin').lsp_definitions() end, "telescope definition")
+    map('n', '<localleader>R', function() require('telescope.builtin').lsp_references() end, "telescope references")
+    map('n', '<localleader>T', function() require('telescope.builtin').lsp_type_definitions() end, "telescope type definition")
+    map('n', '<localleader>I', function() require('telescope.builtin').lsp_implementations() end, "telescope implementation")
+    map('n', '<localleader>S', function() require('telescope.builtin').lsp_document_symbols() end, "telescope document symbols")
+    map('n', '<localleader>W', function() require('telescope.builtin').lsp_workspace_symbols() end, "telescope workspace symbols")
+    map('n', '<localleader><C-i>', function() require('telescope.builtin').lsp_incoming_calls() end, "telescope incoming calls")
+    map('n', '<localleader><C-o>', function() require('telescope.builtin').lsp_outgoing_calls() end, "telescope outgoing calls")
+
+    map("n", "<localleader>sc", function()
+      local clients = vim.lsp.get_clients()
+      if #clients >= 0 then
+        for _, c in pairs(clients) do
+          vim.print(c.server_capabilities)
+        end
+      end
+    end,
+      "print LSP servercapabilities"
+    )
+    -- stylua: ignore end
+
+    for _, client in ipairs(vim.lsp.get_clients { bufnr = bufnr }) do
+      if client.server_capabilities.documentHighlightProvider then
+        -- Autocommands in autocommand??
+        vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+          buffer = bufnr,
+          callback = function()
+            vim.lsp.buf.document_highlight()
+          end,
+        })
+        vim.api.nvim_create_autocmd({ "CursorMoved" }, {
+          buffer = bufnr,
+          callback = function()
+            vim.lsp.buf.clear_references()
+          end,
+        })
+      end
+    end
+  end,
+})
+
+autocmd("BufWritePre", {
+  group = group "_lsp_auto_format",
+  callback = function()
+    lsp_formatting(nil)
+  end,
 })
 
 vim.cmd [[

@@ -2,9 +2,15 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
-      { "nvim-treesitter/playground" },
       { "nvim-treesitter/nvim-treesitter-textobjects" },
-      { "JoosepAlviste/nvim-ts-context-commentstring" },
+      {
+        "JoosepAlviste/nvim-ts-context-commentstring",
+        config = function()
+          require("ts_context_commentstring").setup {
+            enable_autocmd = false,
+          }
+        end,
+      },
       { "windwp/nvim-ts-autotag" },
       { "RRethy/nvim-treesitter-endwise" },
     },
@@ -18,6 +24,7 @@ return {
           "bash",
           "markdown",
           "yaml",
+          "query",
           -- "toml",
           -- "python",
           -- "make",
@@ -33,7 +40,6 @@ return {
           -- "scss",
           -- "tsx",
           -- "typescript",
-          "query", -- for playground query editor buffer
         }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
 
         sync_install = true, -- install languages synchronously (only applied to `ensure_installed`)
@@ -89,11 +95,6 @@ return {
           enable = true,
           use_virtual_text = true,
           lint_events = { "BufWrite", "CursorHold" },
-        },
-
-        context_commentstring = {
-          enable = true,
-          enable_autocmd = false,
         },
 
         autotag = {

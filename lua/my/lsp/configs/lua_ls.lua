@@ -22,7 +22,6 @@ local opts = {
   },
 }
 
--- FIXME: Why tf this break with `lua_ls@3.6.20`
 -- Add nvim api document plugin
 local neodev_ok, neodev = pcall(require, "neodev")
 if neodev_ok then
