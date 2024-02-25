@@ -94,6 +94,7 @@ alias rm="rm -vi"
 
 # Utilities
 alias vi="nvim"
+alias vig="nvim +Neogit"
 alias dot="git --git-dir=$DOTFILES --work-tree=$HOME"
 alias dotcd="GIT_DIR=$DOTFILES GIT_WORK_TREE=$HOME $SHELL"
 alias dotenv="GIT_DIR=$DOTFILES GIT_WORK_TREE=$HOME"
@@ -102,6 +103,7 @@ alias em="emacsclient -t -a ''" # this autostart emacs daemon
 alias emd="emacs --daemon"
 alias emk="pkill emacs"
 alias emls="emacsclient -t -a '' --eval \"(dired \\\"\$(pwd)\\\")\""
+alias emg="emacsclient -t -a '' --eval \"(progn (magit \\\"\$(pwd)\\\") (delete-other-windows))\""
 alias doom="emacs -nw --with-profile doom"
 
 alias psg="ps aux | rg "
