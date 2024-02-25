@@ -11,3 +11,4 @@ keymap:
     remap:
       C-p: up
       C-n: down
+      C-w: C-backspace
