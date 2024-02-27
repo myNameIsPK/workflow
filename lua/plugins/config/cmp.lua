@@ -83,11 +83,12 @@ cmp.setup {
     { name = "buffer", keyword_lenght = 5 },
   }),
   formatting = {
+    expandable_indicator = true,
     -- fields = { "kind", "abbr", "menu" }, --vscode-like menu
+    fields = { "abbr", "kind", "menu" },
     deprecated = true,
     format = function(entry, vim_item)
-      -- kinds from my _G.kind_icons
-      vim_item.kind = string.format("%s %s", my.kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+      -- vim_item.kind = string.format("%s %s", my.kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
       -- vim_item.kind = string.format("%s", my.kind_icons[vim_item.kind])
       vim_item.menu = ({
         nvim_lsp = "[LSP]",

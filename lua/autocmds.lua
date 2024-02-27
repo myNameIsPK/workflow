@@ -79,11 +79,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map('n', '<localleader><C-o>', function() require('telescope.builtin').lsp_outgoing_calls() end, "telescope outgoing calls")
 
     map("n", "<localleader>sc", function()
-      local clients = vim.lsp.get_clients()
-      if #clients >= 0 then
-        for _, c in pairs(clients) do
-          vim.print(c.server_capabilities)
-        end
+      for _, client in ipairs(vim.lsp.get_clients()) do
+        vim.print(client.server_capabilities)
       end
     end,
       "print LSP servercapabilities"

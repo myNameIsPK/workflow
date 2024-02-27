@@ -68,6 +68,7 @@ return {
   },
   {
     "TimUntersberger/neogit",
+    cmd = "Neogit",
     keys = { { "<leader>gg", "<Cmd>Neogit<Cr>" } },
     config = function()
       require("neogit").setup {

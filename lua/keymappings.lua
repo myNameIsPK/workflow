@@ -53,13 +53,23 @@ my.map("n", "[l", "<Cmd>lprev<Cr>")
 my.map("n", "]L", "<Cmd>llast<Cr>")
 my.map("n", "[L", "<Cmd>lfirst<Cr>")
 
-my.map("n", "n", "nzzzv")
-my.map("n", "N", "Nzzzv")
+_G.Nohl_delay_timer = vim.uv.new_timer()
+--- @param key string Keymap use to send delayed `:nohlsearch`
+local function delay_nohl(key)
+  vim.api.nvim_feedkeys(key, 'n', false)
+  Nohl_delay_timer:stop()
+  Nohl_delay_timer = vim.defer_fn(function() vim.cmd.nohlsearch() end, 1000)
+end
+
+my.map("n", "*", function() delay_nohl("*") end)
+my.map("n", "#", function() delay_nohl("#") end)
+my.map("n", "n", function() delay_nohl("nzzzv") end)
+my.map("n", "N", function() delay_nohl("Nzzzv") end)
 my.map("n", "J", "mzJ`z")
 
 -- [count] j/k become jump motion
-my.map("n", "<expr> j", "(v:count > 1 ? \"m'\" . v:count : '') . 'j'")
-my.map("n", "<expr> k", "(v:count > 1 ? \"m'\" . v:count : '') . 'k'")
+my.map("n", "j", "(v:count > 1 ? \"m'\" . v:count : '') . 'j'", { expr = true })
+my.map("n", "k", "(v:count > 1 ? \"m'\" . v:count : '') . 'k'", { expr = true })
 
 my.map("v", "<", "<gv")
 my.map("v", ">", ">gv")
@@ -105,6 +115,7 @@ my.map("n", "<leader>pd", vim.cmd.Ex, { desc = "Projects Directory"})
 
 my.map("n", "<leader>hI", vim.cmd.Inspect, { desc = "Inspect" })
 
+my.map("n", "<leader>tit", vim.cmd.InspectTree, { desc = "Open InspectTree" })
 my.map("n", "<leader>tsh", vim.cmd.terminal, { desc = "Terminal" })
 my.map("n", "<leader>tlf", function() vim.cmd.terminal("lf") end, { desc = "LF in terminal" })
 my.map("n", "<leader>tsp", function() vim.opt.spell = not(vim.opt.spell:get()) end, { desc = "Toggle Spell" })
