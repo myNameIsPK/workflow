@@ -24,7 +24,7 @@ sudo xremap $XDG_CONFIG_HOME/xremap/config.yml &
 dunst &
 # mpd &
 "$HOME"/.config/polybar/launch.sh &
-/usr/lib/kdeconnectd &
+/usr/lib/kdeconnectd && kdeconnect-indicator &
 
 if [[ $(cat /etc/hostname) == laptop* ]]; then 
   ## prime-offload must run for optimus-manager
