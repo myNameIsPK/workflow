@@ -11,9 +11,9 @@ blu="%{$(tput setaf 4)%}"
 # cya="%{$(tput setaf 6)%}"
 # whi="%{$(tput setaf 7)%}"
 exitcolor() { if [[ $? == 0 ]]; then echo "${gre}"; else echo "${red}"; fi }
-# PS1="${red}[${rst}%n${red}@${rst}%M ${blu}%c${red}]\$(exitcolor)\$${rst}"
-# [ -f "$ZDOTDIR/zsh-git-prompt" ] && source "$ZDOTDIR/zsh-git-prompt"
-# PS1+="%b "
+PS1="${red}[${rst}%n${red}@${rst}%M ${blu}%c${red}]\$(exitcolor)\$${rst}"
+[ -f "$ZDOTDIR/zsh-git-prompt" ] && source "$ZDOTDIR/zsh-git-prompt"
+PS1+="%b "
 
 # Load aliases
 shortcuts-gen > /dev/null 2>&1
@@ -53,6 +53,8 @@ zstyle ':completion:*' menu select
 
 # Ignore case when auto complete
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z}'
+# Groups
+zstyle ':completion:*:*:*:*:descriptions' format '%F{green}-- %d --%f'
 # Group completion
 zstyle ':completion:*' group-name ''
 # Group type order
