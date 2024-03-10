@@ -11,9 +11,9 @@ blu="%{$(tput setaf 4)%}"
 # cya="%{$(tput setaf 6)%}"
 # whi="%{$(tput setaf 7)%}"
 exitcolor() { if [[ $? == 0 ]]; then echo "${gre}"; else echo "${red}"; fi }
-PS1="${red}[${rst}%n${red}@${rst}%M ${blu}%c${red}]\$(exitcolor)\$${rst}"
-[ -f "$ZDOTDIR/zsh-git-prompt" ] && source "$ZDOTDIR/zsh-git-prompt"
-PS1+="%b "
+# PS1="${red}[${rst}%n${red}@${rst}%M ${blu}%c${red}]\$(exitcolor)\$${rst}"
+# [ -f "$ZDOTDIR/zsh-git-prompt" ] && source "$ZDOTDIR/zsh-git-prompt"
+# PS1+="%b "
 
 # Load aliases
 shortcuts-gen > /dev/null 2>&1
@@ -53,9 +53,37 @@ zstyle ':completion:*' menu select
 
 # Ignore case when auto complete
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z}'
+# Group completion
+zstyle ':completion:*' group-name ''
+# Group type order
+zstyle ':completion:*:*:-command-:*:*' group-order alias builtins functions commands
 zmodload zsh/complist
 # compinit # move to last line
 _comp_options+=(globdots) # Include hidden files.
+
+# Vim text-object
+autoload -Uz select-bracketed select-quoted
+zle -N select-quoted
+zle -N select-bracketed
+for km in viopp visual; do
+  bindkey -M $km -- '-' vi-up-line-or-history
+  for c in {a,i}${(s..)^:-\'\"\`\|,./:;=+@}; do
+    bindkey -M $km $c select-quoted
+  done
+  for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
+    bindkey -M $km $c select-bracketed
+  done
+done
+
+# vim-surround
+autoload -Uz surround
+zle -N delete-surround surround
+zle -N add-surround surround
+zle -N change-surround surround
+bindkey -M vicmd cs change-surround
+bindkey -M vicmd ds delete-surround
+bindkey -M vicmd ys add-surround
+bindkey -M visual S add-surround
 
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
