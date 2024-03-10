@@ -119,7 +119,7 @@ alias ll="ls -lAFrt"
 alias la="ls -lAF --group-directories-first"
 alias lh="ls -lAFhS"
 
-# Check disk space
+# Human readable
 alias df="df -h"
 alias free="free -m"
 alias duh="du -h --max-depth=1 | sort -h -r"
