@@ -32,17 +32,20 @@ SAVEHIST=10000000
 bindkey -v
 export KEYTIMEOUT=0
 
-stty stop undef		# Disable ctrl-s to freeze terminal.
+stty stop undef # Disable ctrl-s to freeze terminal.
 
 ## SETOPT
-unsetopt beep	# disable bell-noise
-setopt autocd		# Automatically cd into typed directory.
+unsetopt beep # disable bell-noise
+setopt autocd # Automatically cd into typed directory.
 setopt interactive_comments
-setopt histignoredups	# Ignore duplicate in history
+setopt histignoredups # Ignore duplicate in history
 setopt incappendhistory # append entered command to history, don't wait for shell exit
 setopt histignorespace # ignore command start with whitespace
 setopt correctall
 setopt combining_chars # fix unicode
+setopt auto_pushd # Push the current directory visited on the stack.
+setopt pushd_ignore_dups # Do not store duplicates in the stack.
+# setopt pushd_silent # Do not print the directory stack after pushd or popd.
 
 ## Basic auto/tab complete:
 autoload -U compinit
@@ -52,7 +55,7 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z}'
 zmodload zsh/complist
 # compinit # move to last line
-_comp_options+=(globdots)		# Include hidden files.
+_comp_options+=(globdots) # Include hidden files.
 
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
@@ -95,7 +98,6 @@ bindkey -M emacs '^X^E' edit-command-line
 # TODO :edit hard code shortcut
 # Shortcut
 bindkey -s '^X^X' "^Ustartx^M"
-
 bindkey -s '^X^S' "^Utmux-ses^M"
 
 # Change cursor shape for different vi modes.
@@ -132,12 +134,13 @@ function zsh_add_file() {
 
 function zsh_add_plugin() {
     PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
-    if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then 
-        # For plugins
+    PLUGIN_PATH="$ZDOTDIR/plugins/$PLUGIN_NAME"
+    if [ -z "$PLUGIN_PATH" ]; then
+        git clone "https://github.com/$1.git" "$ZDOTDIR/plugins/$PLUGIN_NAME"
+    fi
+    if [ -d "$PLUGIN_PATH" ]; then 
         zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" || \
         zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.zsh"
-    else
-        git clone "https://github.com/$1.git" "$ZDOTDIR/plugins/$PLUGIN_NAME"
     fi
 }
 
