@@ -4,9 +4,12 @@
 # pgrep -x sxhkd > /dev/null || sxhkd &
 sxhkd -c "$XDG_CONFIG_HOME/bspwm/sxhkdrc" &
 
-# bspc monitor -d project browser III IV V VI VII VIII IX X
-bspc monitor -d project browser III IV V
-bspc monitor HDMI-A-1 -d VI VII VIII IX X
+if [ "$HOST" = "desktop-home" ]; then
+    bspc monitor HDMI-A-0 -d 1 2 3 4 5
+    bspc monitor HDMI-A-1 -d 6 7 8 9 10
+else
+    bspc monitor -d 1 2 3 4 5 6 7 8 9 10
+fi
 
 bspc config border_width         2
 bspc config window_gap           2
