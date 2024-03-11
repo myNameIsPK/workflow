@@ -2,11 +2,19 @@
 
 # Reduce scale of display
 # xrandr --output eDP1 --scale .85
-if [ "$(uname -n)" = "desktop-home" ]; then
-    xrandr --newmode "1112x834_60.00"  75.81  1112 1168 1288 1464  834 835 838 863  -HSync +Vsync
-    xrandr --addmode HDMI-A-1 1112x834_60.00
-    xrandr --output HDMI-A-1 --mode 1112x834_60.00 --right-of HDMI-A-0
-fi
+
+case "$(cat /etc/hostname)" in
+    *laptop*) echo 1
+        ## prime-offload must run for optimus-manager
+        prime-offload & optimus-manager-qt &
+        ;;
+    desktop-home)
+        # Ipad Air gen3
+        xrandr --newmode "1112x834_60.00"  75.81  1112 1168 1288 1464  834 835 838 863  -HSync +Vsync
+        xrandr --addmode HDMI-A-1 1112x834_60.00
+        xrandr --output HDMI-A-1 --mode 1112x834_60.00 --right-of HDMI-A-0
+        ;;
+esac
 
 # FIXME: not work when unplug keyboard
 # Set key repeat delay 280 ms, 40 per sec
@@ -23,18 +31,13 @@ nm-applet &
 feh --no-fehbg --bg-scale ~/Pictures/wallpapers/astronaut_with_jellyfish_hd.jpg &
 picom &
 sxhkd -t 2 &
-sudo xremap $XDG_CONFIG_HOME/xremap/config.yml &
+sudo xremap "$XDG_CONFIG_HOME/xremap/config.yml" &
 ## TODO: make swhkd work
 # swhks & pkexec swhkd -d -c $XDG_CONFIG_HOME/swhkd/swhkdrc >> /tmp/swhkd.log 2>&1 &
 dunst &
 # mpd &
 "$HOME"/.config/polybar/launch.sh &
-/usr/lib/kdeconnectd && kdeconnect-indicator &
-
-if [[ $(cat /etc/hostname) == laptop* ]]; then 
-  ## prime-offload must run for optimus-manager
-  prime-offload & optimus-manager-qt &
-fi
+/usr/lib/kdeconnectd &
 
 ## Start window manager
 exec bspwm
