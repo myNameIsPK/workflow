@@ -53,18 +53,24 @@ my.map("n", "[l", "<Cmd>lprev<Cr>")
 my.map("n", "]L", "<Cmd>llast<Cr>")
 my.map("n", "[L", "<Cmd>lfirst<Cr>")
 
-_G.Nohl_delay_timer = vim.uv.new_timer()
+local nohl_delay_timer
+if vim.fn.has "nvim-0.10.0" == 1 then
+  nohl_delay_timer = vim.uv.new_timer()
+else
+  nohl_delay_timer = vim.loop.new_timer()
+end
 --- @param key string Keymap use to send delayed `:nohlsearch`
 local function delay_nohl(key)
   vim.api.nvim_feedkeys(key, 'n', false)
-  Nohl_delay_timer:stop()
-  Nohl_delay_timer = vim.defer_fn(function() vim.cmd.nohlsearch() end, 1000)
+  nohl_delay_timer:stop()
+  nohl_delay_timer = vim.defer_fn(function() vim.cmd.nohlsearch() end, 1000)
 end
 
 my.map("n", "*", function() delay_nohl("*") end)
 my.map("n", "#", function() delay_nohl("#") end)
 my.map("n", "n", function() delay_nohl("nzzzv") end)
 my.map("n", "N", function() delay_nohl("Nzzzv") end)
+
 my.map("n", "J", "mzJ`z")
 
 -- [count] j/k become jump motion

@@ -19,7 +19,7 @@ my.opts.lsp.samantic_tokens = false
 ---@type table Config options of colorscheme
 my.opts.colorscheme = {}
 ---@type string name of the Neovim default colorscheme eg. "retrobox", "morning"
-my.opts.colorscheme.default = "retrobox"
+my.opts.colorscheme.default = "default"
 ---@type boolean if true use the plugin colorscheme if posible(overide `default`)
 my.opts.colorscheme.use_plugin = true
 ---@type "dark"|"light"
@@ -29,11 +29,12 @@ my.opts.colorscheme.background_system_sync = true
 
 ---@return "dark"|"light"
 my.opts.background_resolve = function(self)
-  if self.colorscheme.background_system_sync then
-    local bg_env = vim.env.MY_BACKGROUND
-    if bg_env == "light" or bg_env == "dark" then
-      return bg_env
-    end
+  if not self.colorscheme.background_system_sync then
+    return self.colorscheme.background_default
+  end
+  local bg_env = vim.env.MY_BACKGROUND
+  if bg_env == "light" or bg_env == "dark" then
+    return bg_env
   end
   return self.colorscheme.background_default
 end

@@ -16,6 +16,13 @@ return {
 
       for _, server in ipairs(mason_lspconfig.get_installed_servers()) do
         local opts = {
+          -- capabilities = (function()
+          --   local cmp_nvim_lsp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+          --   if cmp_nvim_lsp_ok then
+          --     return cmp_nvim_lsp.default_capabilities()
+          --   end
+          --   return vim.lsp.protocol.make_client_capabilities()
+          -- end)(),
           flags = { debounce_text_changes = 150 },
         }
 

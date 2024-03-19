@@ -1,6 +1,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    cond = vim.env.TERMUX_VERSION == nil,
     dependencies = {
       { "nvim-treesitter/nvim-treesitter-textobjects" },
       {

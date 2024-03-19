@@ -12,6 +12,7 @@ return {
 
   {
     "nvim-telescope/telescope-fzf-native.nvim",
+    cond = vim.env.TERMUX_VERSION == nil,
     dependencies = "nvim-telescope/telescope.nvim",
     build = "make",
   },
@@ -24,12 +25,12 @@ return {
     end,
     keys = {
       { "<leader>cs", "<Plug>SlimeParagraphSend" },
-      { "<leader>cs", "<Plug>SlimeRegionSend" , mode = "v"},
+      { "<leader>cs", "<Plug>SlimeRegionSend", mode = "v" },
       { "<leader>cR", "<Plug>SlimeConfig" },
       { "<leader>c.", "<Plug>SlimeLineSend" },
       { "<leader>C", "<Plug>SlimeMotionSend" },
       { "<leader>cc", "<Plug>SlimeSendCell" },
-    };
+    },
     config = function()
       vim.g.slime_target = "tmux"
       vim.g.slime_bracketed_paste = 1

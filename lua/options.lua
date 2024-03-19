@@ -63,7 +63,9 @@ opt.spelllang = "en"
 opt.spelloptions:append { "camel" } -- spell check CamelCase
 opt.scrolloff = 8
 opt.sidescrolloff = 8
-opt.smoothscroll = true
+if vim.fn.has "nvim-0.10.0" == 1 then
+  opt.smoothscroll = true
+end
 opt.guicursor = {
   [[n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50]],
   [[a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor]],
