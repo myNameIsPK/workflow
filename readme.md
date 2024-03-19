@@ -1,6 +1,6 @@
 # Create Workflow
 ``` bash
-alias dot="/usr/bin/git --git-dir=$HOME/.dotfile.git/ --work-tree=$HOME"
+alias dot="git --git-dir=$HOME/.dotfile.git/ --work-tree=$HOME"
 echo ".dotfile.git" >> .gitignore
 git clone --bare https://github.com/pk-kampanart/workflow.git $HOME/.dotfile.git
 rm -f .bash* && dot checkout
