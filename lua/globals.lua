@@ -21,9 +21,9 @@ my.opts.colorscheme = {}
 ---@type string name of the Neovim default colorscheme eg. "retrobox", "morning"
 my.opts.colorscheme.default = "default"
 ---@type boolean if true use the plugin colorscheme if posible(overide `default`)
-my.opts.colorscheme.use_plugin = true
+my.opts.colorscheme.use_plugin = false
 ---@type "dark"|"light"
-my.opts.colorscheme.background_default = "dark"
+my.opts.colorscheme.background_default = "light"
 ---@type boolean Sync background with MY_BACKGROUND env vars
 my.opts.colorscheme.background_system_sync = true
 

@@ -37,7 +37,6 @@ return {
     priority = 1000,
     cond = my.opts.colorscheme.use_plugin,
     config = function()
-      vim.opt.background = my.opts:background_resolve()
       vim.g.gruvbox_material_visual = "reverse"
       vim.g.gruvbox_material_background = "soft"
       vim.g.gruvbox_material_disable_italic_comment = 0

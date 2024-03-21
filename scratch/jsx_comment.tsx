@@ -1,4 +1,3 @@
-// FIXME: Comment.nvim in comment not work
 const hello = `
   <h1>1</h1>
   <style>

@@ -1,5 +1,6 @@
 local opt = vim.opt
 
+vim.cmd.colorscheme(my.opts.colorscheme.default)
 opt.background = my.opts:background_resolve()
 opt.exrc = true
 opt.list = true
@@ -19,7 +20,6 @@ opt.iminsert = 0 -- not use keymap by default
 -- opt.shortmess:append "c" -- shorten ins-completion-menu message
 opt.shortmess:append "I" -- no intro message
 opt.backup = false -- creates a backup file
--- FIXME: very slow in wsl
 -- opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
 opt.cmdheight = 1 -- more space in the neovim command line for displaying messages
 opt.colorcolumn = "99999" -- fixes indentline for now
