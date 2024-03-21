@@ -119,6 +119,8 @@ my.map('n', ']d', function() vim.diagnostic.goto_next() end, { desc = "Diagnosti
 
 my.map("n", "<leader>pd", vim.cmd.Ex, { desc = "Projects Directory"})
 
+my.map("n", "<leader>bd", vim.cmd.bdelete, { desc = "Buffer delete" })
+
 my.map("n", "<leader>hI", vim.cmd.Inspect, { desc = "Inspect" })
 
 my.map("n", "<leader>tit", vim.cmd.InspectTree, { desc = "Open InspectTree" })
@@ -135,7 +137,8 @@ my.map("n", "<leader>ra", "<cmd>lua require('my.plugin.reload').reload_all()<CR>
 -- Builtin
 my.map("n", "<leader>ta", "<Cmd>Telescope builtin<Cr>", { desc = "All Builtin" })
 my.map("n", "<leader>tr", "<Cmd>Telescope resume<Cr>", { desc = "Resume Picker" })
-my.map("n", "<leader>ff", "<Cmd>Telescope fd hidden=true<Cr>", { desc = "Files Grep" })
+my.map("n", "<leader>tft", "<Cmd>Telescope filetypes<Cr>", { desc = "Set filetypes" })
+my.map("n", "<leader>ff", "<Cmd>Telescope fd hidden=true<Cr>", { desc = "Find Files" })
 my.map("n", "<leader>fg", "<Cmd>Telescope live_grep<Cr>", { desc = "Files Grep" })
 my.map("n", "<leader>fr", "<Cmd>Telescope oldfiles<Cr>", { desc = "Recent Files" })
 my.map("n", "<leader>fl", "<Cmd>Telescope current_buffer_fuzzy_find<Cr>", { desc = "Find Lines" })
@@ -151,8 +154,9 @@ my.map("n", "<leader>qq", "<Cmd>Telescope quickfix<Cr>", { desc = "Quickfix" })
 my.map("n", "<leader>qh", "<Cmd>Telescope quickfixhistory<Cr>", { desc = "Quickfix History" })
 my.map('n', '<leader>db', '<cmd>Telescope diagnostics bufnr=0<cr>', { desc = "Diagnostics Buffer" })
 my.map('n', '<leader>dw', '<cmd>Telescope diagnostics<cr>', { desc = "Diagnostics Workspace" })
-my.map("n", "<leader>pf", "<Cmd>Telescope git_files<Cr>", { desc = "Projects Files" })
+my.map("n", "<leader>pf", "<Cmd>Telescope git_files<Cr>", { desc = "Projects(Git) Files" })
 my.map("n", "<leader>pg", "<Cmd>Telescope live_grep<Cr>", { desc = "Projects Grep" })
+my.map("n", "<leader>ps", "<Cmd>Telescope git_status<Cr>", { desc = "Projects(Git) Status" })
 -- Loaded Extensions
 my.map("n", "<leader>pp", "<Cmd>Telescope projects<Cr>", { desc = "Projects Picker" })
 -- map("n", "<leader>fl", "<Cmd>Telescope bibtex<Cr>", { desc = "Bib(La)tex" })

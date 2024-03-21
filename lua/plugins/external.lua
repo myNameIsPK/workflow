@@ -1,3 +1,6 @@
+if vim.env.TERMUX_VERSION then
+  return {}
+end
 return {
   {
     "iamcco/markdown-preview.nvim",
@@ -12,7 +15,6 @@ return {
 
   {
     "nvim-telescope/telescope-fzf-native.nvim",
-    cond = vim.env.TERMUX_VERSION == nil,
     dependencies = "nvim-telescope/telescope.nvim",
     build = "make",
   },

@@ -99,6 +99,7 @@ ls.add_snippets("markdown", {
 require("luasnip.loaders.from_vscode").lazy_load()
 require("luasnip.loaders.from_vscode").lazy_load { paths = { "~/.config/nvim/snippets/vscode" } }
 
+-- TODO: check `vim.snippet`
 my.map({ "i", "s" }, "<C-j>", function()
   if ls.expand_or_jumpable() then
     ls.expand_or_jump()

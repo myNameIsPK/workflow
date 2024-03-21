@@ -13,7 +13,7 @@ require "globals"
 require "options"
 
 local is_override, _ = pcall(require, "local_override")
----@type boolean|nil
+---@type boolean|nil Is there are `lua/local_override.lua` in configs.
 my.got_override = is_override
 
 vim.cmd.colorscheme(my.opts.colorscheme.default)

@@ -79,9 +79,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map('n', '<localleader><C-o>', function() require('telescope.builtin').lsp_outgoing_calls() end, "telescope outgoing calls")
 
     map("n", "<localleader>sc", function()
+      local result = {}
       for _, client in ipairs(vim.lsp.get_clients()) do
-        vim.print(client.server_capabilities)
+        table.insert(result, "=== " .. client.name .. " ===")
+        table.insert(result, client.server_capabilities)
       end
+      vim.print(result)
     end,
       "print LSP servercapabilities"
     )

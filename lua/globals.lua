@@ -55,34 +55,6 @@ for _, sign in ipairs(diagnostic_signs) do
   vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
 end
 
-my.kind_icons = {
-  Text = "",
-  Method = "m",
-  Function = "",
-  Constructor = "",
-  Field = "",
-  Variable = "",
-  Class = "",
-  Interface = "",
-  Module = "",
-  Property = "",
-  Unit = "",
-  Value = "",
-  Enum = "",
-  Keyword = "",
-  Snippet = "",
-  Color = "",
-  File = "",
-  Reference = "",
-  Folder = "",
-  EnumMember = "",
-  Constant = "",
-  Struct = "",
-  Event = "",
-  Operator = "",
-  TypeParameter = "",
-}
-
 my.save_and_exec = function()
   vim.cmd "silent! write"
   if vim.bo.filetype == "lua" then
@@ -99,4 +71,16 @@ end
 
 _G.R = require("my.plugin.reload").reload
 
-my.map = require("my.map-helper").map
+my.map = function(mode, lhs, rhs, opt)
+  local options = { noremap = true, silent = false }
+  if opt then
+    options = vim.tbl_extend("force", options, opt)
+  end
+  if type(lhs) == "table" then
+    for _, key in ipairs(lhs) do
+      my.map(mode, key, rhs, opt)
+    end
+  else
+    vim.keymap.set(mode, lhs, rhs, opt)
+  end
+end
