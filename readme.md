@@ -8,3 +8,9 @@ dot config --local status.showUntrackedFiles no
 pacman -S git-crypt
 dot crypt unlock
 ```
+
+## Use Emacs
+
+```bash
+git clone https://github.com/plexus/chemacs.git .emacs.d
+```
