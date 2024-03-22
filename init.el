@@ -306,6 +306,7 @@
     "M-A" 'embark-act-all
     "M-." 'embark-dwim
     "M-B" 'embark-become
+    "C-q" 'embark-collect
     "M-S" 'embark-collect
     "M-E" 'embark-export)
   (my/leader-def
