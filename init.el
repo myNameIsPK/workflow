@@ -168,6 +168,7 @@
     "hh" 'describe-symbol
     "ff" 'find-file
     "gg" 'magit-status
+    "gb" 'magit-blame
     "dd" 'dired
     "bb" 'switch-to-buffer
     "bm" 'bookmark-set
