@@ -220,7 +220,7 @@
   (my/leader-def
     "tr" 'vertico-repeat)
   (general-def
-    "M-T" 'vertico-suspend))
+    "M-T" 'vertico-suspend)) ; push completion into completion stack
 
 (unless (default-value vertico-mode) (fido-vertical-mode 1)) ; fuzzy find
 
@@ -238,12 +238,14 @@
            prescient-sort-full-matches-first t)
   :config (prescient-persist-mode))
 
+;; More completion meta-data
 (use-package marginalia
   :bind (:map minibuffer-local-map
          ("M-C" . marginalia-cycle))
   :init
   (marginalia-mode))
 
+;; More useful command
 (use-package consult
   :init
   (setq xref-show-xrefs-function #'consult-xref
