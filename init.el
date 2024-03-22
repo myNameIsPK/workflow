@@ -1,7 +1,8 @@
 ;;; General Settings
 (menu-bar-mode -1)
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
+(when (not (getenv "TERMUX_VERSION"))
+  (scroll-bar-mode -1)
+  (tool-bar-mode -1))
 (tooltip-mode -1)
 (column-number-mode 1)
 
@@ -429,6 +430,7 @@
 
 ;;; Elisp
 (use-package parinfer-rust-mode
+  :if (not (getenv "TERMUX_VERSION"))
   :hook
   emacs-lisp-mode
   :init
