@@ -12,4 +12,5 @@ dot crypt unlock
 ## Use Emacs
 
 ```bash
-git clone https://github.com/plexus/chemacs2.git ~/.emacs.d```
+git clone https://github.com/plexus/chemacs2.git ~/.emacs.d
+```
