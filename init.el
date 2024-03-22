@@ -275,32 +275,18 @@
   :config
   (setq prefix-help-command #'embark-prefix-help-command) ; `<prefix> ?'
   (add-hook 'eldoc-documentation-functions #'embark-eldoc-first-target)
-  ;; (setq eldoc-documentation-strategy #'eldoc-documentation-compose-eagerly)
-  (setq embark-prompter 'embark-completing-read-prompter) ; show completion available when perform action
+  ;; (setq eldoc-documentation-strategy #'eldoc-documentation-compose-eagerly) ; show multiple-line eldoc item in minibuffer
+  ;; (setq embark-prompter 'embark-completing-read-prompter) ; show completion available when perform action
 
-  ;; (defun with-minibuffer-keymap (keymap)
-  ;;  (lambda (fn &rest args)
-  ;;    (minibuffer-with-setup-hook
-  ;;        (lambda ()
-  ;;          (use-local-map
-  ;;           (make-composed-keymap keymap (current-local-map))))
-  ;;      (apply fn args))))
-  ;; (defvar embark-completing-read-prompter-map
-  ;;   (let ((map (make-sparse-keymap)))
-  ;;     (define-key map (kbd "<tab>") 'abort-recursive-edit)
-  ;;     map))
-  ;; (advice-add 'embark-completing-read-prompter :around
-  ;;             (with-minibuffer-keymap embark-completing-read-prompter-map))
-  ;; (defun embark-act-with-completing-read (&optional arg)
-  ;;   (interactive "P")
-  ;;   (let* ((embark-prompter 'embark-completing-read-prompter)
-  ;;          (act (propertize "Act" 'face 'highlight))
-  ;;          (embark-indicator (lambda (_keymap targets) nil)))
-  ;;     (embark-act arg)))
-  ;; (define-key vertico-map (kbd "<tab>") 'embark-act-with-completing-read)
+  (defun my/embark-act-with-completing-read (&optional arg)
+    (interactive "P")
+    (let ((embark-prompter 'embark-completing-read-prompter))
+      (embark-act arg)))
 
   :general
-  ("C-h B" 'embark-bindings) ; alternative for `describe-bindings'
+  ("C-h B" 'embark-bindings) ; alternative for `describe-bindings'(`C-h b')
+  ;; FIXME: this keymap still also show `embark-keymap-prompter' and leave behind `Act' indicator on vertico completion
+  (vertico-map "M-?" 'my/embark-act-with-completing-read)
   (minibuffer-local-map
     "M-a" 'embark-act
     "M-A" 'embark-act-all
