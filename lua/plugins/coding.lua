@@ -1,3 +1,6 @@
+if vim.env.TERMUX_VERSION then
+  return {}
+end
 return {
 
   {
