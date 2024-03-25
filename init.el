@@ -214,6 +214,11 @@
 (use-package magit
   :ensure t)
 
+;;; Todo comment
+(use-package magit-todos
+  :after magit
+  :config (magit-todos-mode))
+
 ;;; Completion
 ;; Mini-buffer completion
 (use-package vertico
