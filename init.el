@@ -366,8 +366,7 @@
   (setq org-agenda-files '("inbox.org" ; for capture
                            "project.org" ; main project file
                            "someday.org"
-                           "tickler.org"
-                           "archive.org"))
+                           "tickler.org"))
   (setq org-refile-allow-creating-parent-nodes t)
   (setq org-refile-use-outline-path 'file)
   (setq org-outline-path-complete-in-steps nil)
