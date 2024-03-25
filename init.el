@@ -119,6 +119,11 @@
   (define-key evil-normal-state-map (kbd "C-n") 'evil-next-line)
   (define-key evil-normal-state-map (kbd "C-p") 'evil-previous-line)
 
+  (evil-define-operator my/evil-comment (beg end)
+    "Comment text"
+    (comment-or-uncomment-region beg end))
+  (define-key evil-normal-state-map (kbd "gc") 'my/evil-comment)
+
   ;; TODO: reduce hardcode
   (defvar my/win-repeat-map
     (let ((map (make-sparse-keymap)))
