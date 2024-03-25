@@ -371,6 +371,15 @@
   :general
   (my/leader-def "tz" 'olivetti-mode))
 
+;;; Elisp
+(use-package parinfer-rust-mode
+  :if (not (getenv "TERMUX_VERSION"))
+  :hook
+  emacs-lisp-mode
+  :init
+  (setq parinfer-rust-auto-download t)
+  :general (my/leader-def "tp" 'parinfer-rust-mode))
+
 ;;; Org Mode
 (use-package org
   :init
@@ -438,14 +447,6 @@
 ;;   "#+title: Scratch Buffer\n
 ;; #+begin_src elisp\n
 ;; #+end_src")
-
-;;; Elisp
-(use-package parinfer-rust-mode
-  :if (not (getenv "TERMUX_VERSION"))
-  :hook
-  emacs-lisp-mode
-  :init
-  (setq parinfer-rust-auto-download t))
 
 ;; ;;; Exwm
 ;; (add-to-list 'load-path "~/.local/src/xelb/")
