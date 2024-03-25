@@ -265,7 +265,8 @@
   :general
   ;; https://github.com/minad/consult#use-package-example
   (my/leader-def
-    "fg" 'consult-ripgrep
+    "fg" (if (executable-find "rg") 'consult-ripgrep 'consult-grep)
+    "fd" (if (executable-find "fd") 'consult-fd 'consult-find)
     "fr" 'consult-recent-file
     "ol" 'consult-outline)
   (my/local-leader-def
