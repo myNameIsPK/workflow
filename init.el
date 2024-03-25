@@ -137,7 +137,21 @@
       ;; (define-key map (kbd "<up>") #'evil-window-up)        
       map))
   (dolist (cmd '(evil-window-next evil-window-prev evil-window-increase-height evil-window-decrease-height evil-window-down evil-window-left evil-window-right evil-window-up))
-    (put cmd 'repeat-map 'my/win-repeat-map)))
+    (put cmd 'repeat-map 'my/win-repeat-map))
+
+  (defun my/set-terminal-cursor-block-blink () (unless (display-graphic-p) (send-string-to-terminal "\e[1 q")))
+  (defun my/set-terminal-cursor-block () (unless (display-graphic-p) (send-string-to-terminal "\e[2 q")))
+  (defun my/set-terminal-cursor-underline-blink () (unless (display-graphic-p) (send-string-to-terminal "\e[3 q")))
+  (defun my/set-terminal-cursor-underline () (unless (display-graphic-p) (send-string-to-terminal "\e[4 q")))
+  (defun my/set-terminal-cursor-beam-blink () (unless (display-graphic-p) (send-string-to-terminal "\e[5 q")))
+  (defun my/set-terminal-cursor-beam () (unless (display-graphic-p) (send-string-to-terminal "\e[6 q")))
+
+  (add-hook 'evil-normal-state-entry-hook #'my/set-terminal-cursor-block-blink)
+  (add-hook 'evil-visual-state-entry-hook #'my/set-terminal-cursor-block-blink)
+  (add-hook 'evil-insert-state-entry-hook #'my/set-terminal-cursor-beam-blink) ; FIXME: sometime it become block while in insert state
+  (add-hook 'evil-operator-state-entry-hook #'my/set-terminal-cursor-underline-blink)
+  (add-hook 'evil-replace-state-entry-hook #'my/set-terminal-cursor-underline)
+  (add-hook 'evil-emacs-state-entry-hook #'my/set-terminal-cursor-block))
 
 (use-package goto-chg)
 
