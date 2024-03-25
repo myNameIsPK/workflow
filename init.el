@@ -267,6 +267,7 @@
   (my/leader-def
     "fg" (if (executable-find "rg") 'consult-ripgrep 'consult-grep)
     "fd" (if (executable-find "fd") 'consult-fd 'consult-find)
+    "fG" 'consult-git-grep
     "fr" 'consult-recent-file
     "ol" 'consult-outline)
   (my/local-leader-def
