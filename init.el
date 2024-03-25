@@ -161,8 +161,8 @@
   (general-create-definer my/local-leader-def
     :states '(normal visual motion insert emacs)
     :keymaps '(override)
-    :prefix "SPC m"
-    :non-normal-prefix "M-SPC m")
+    :prefix "DEL" ; NOTE: DEL is <backspace> not <delete>
+    :non-normal-prefix "M-DEL")
 
   (my/leader-def
     "" nil
