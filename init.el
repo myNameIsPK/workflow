@@ -188,6 +188,10 @@
     "hh" 'describe-symbol
     "hH" 'describe-face
     "ff" 'find-file
+    "fc" '(lambda ()
+            (interactive)
+            (let ((project-current-directory-override user-emacs-directory))
+              (project-find-file)))
     "gg" 'magit-status
     "gb" 'magit-blame
     "dd" 'dired
