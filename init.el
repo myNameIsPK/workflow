@@ -186,6 +186,7 @@
     "x" (general-key "C-x")
     "c" (general-key "C-c")
     "hh" 'describe-symbol
+    "hH" 'describe-face
     "ff" 'find-file
     "gg" 'magit-status
     "gb" 'magit-blame
