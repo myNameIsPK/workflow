@@ -200,10 +200,7 @@
     "bl" 'list-bookmarks
     "jb" 'bookmark-jump
     "tl" 'display-line-numbers-mode
-    "pp" 'project-switch-project
-    "pf" 'project-find-file
-    "pb" 'project-switch-to-buffer
-    "pd" 'project-dired)
+    "p" (general-key "C-x p"))
 
   (my/local-leader-def
     "" nil
