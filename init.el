@@ -62,7 +62,8 @@
 (setq use-package-always-defer 1
       use-package-always-ensure 1)
 
-;;; Clean Directory
+;;; Clean
+;; Clean Directory
 (use-package no-littering
   :init
   (setq no-littering-etc-directory
@@ -71,6 +72,11 @@
           (expand-file-name ".local/var" user-emacs-directory))
   :config
   (no-littering-theme-backups))
+
+;; Clean mode-line
+(use-package delight
+  :delight
+  (eldoc-mode))
 
 ;;; QOL
 ;; minibuffer history
@@ -100,10 +106,12 @@
   :init (repeat-mode t))
 
 (use-package editorconfig
+  :delight
   :config (editorconfig-mode 1))
 
 ;;; Undo Tree
 (use-package undo-tree
+  :delight
   :config (global-undo-tree-mode 1))
 
 ;;; Evil
@@ -157,6 +165,7 @@
 
 (use-package evil-collection
   :after evil
+  :delight evil-collection-unimpaired-mode
   :config
   (evil-collection-init)
   ;; `repeat-mode' integration
