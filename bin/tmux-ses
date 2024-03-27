@@ -10,6 +10,7 @@ else
     echo "Nvim"; \
     echo "Emacs"; \
     echo "Notes"; \
+    echo "Dotfiles"; \
     # project file
     find \
     ~/Projects \
@@ -34,6 +35,9 @@ if ! tmux has-session -t "$ses_name"; then
     ;;
     Emacs)
       tmux new-session -ds "$ses_name" -c "$XDG_CONFIG_HOME/emacs" \; send-keys C-u "emacsclient -t -a '' init.el" Enter
+    ;;
+    Dotfiles)
+      tmux new-session -ds "$ses_name" -e "GIT_DIR=${DOTFILES}" -e "GIT_WORK_TREE=${HOME}"
     ;;
     *)
       tmux new-session -ds "$ses_name" -c "$directory"

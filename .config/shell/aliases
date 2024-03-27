@@ -51,6 +51,7 @@ alias gP="git push"
 alias gPf="git push --force-with-lease"
 alias gsr="git remote set-url origin"
 alias grv="git remote -v"
+alias gls="git ls-files"
 alias ggraph="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 
 # LazyGit
