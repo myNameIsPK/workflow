@@ -213,7 +213,11 @@
 
   (my/local-leader-def
     "" nil
-    "g" 'vc-dir))
+    "g" 'vc-dir)
+
+  (general-def 'normal
+    "]d" 'next-error
+    "[d" 'previous-error))
 
 (use-package god-mode
   :general (my/leader-def ";" 'god-execute-with-current-bindings)
