@@ -393,6 +393,7 @@
 
 ;;; Zen mode
 (use-package olivetti
+  :delight " zen"
   :general
   (my/leader-def "tz" 'olivetti-mode))
 
