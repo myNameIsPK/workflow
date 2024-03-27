@@ -478,7 +478,7 @@
 
 ;;; Markdown
 (use-package markdown-mode
-  :mode ("README\\.md\\'" . gfm-mode))
+  :mode ("\\(README\\|readme\\)\\.md\\'" . gfm-mode))
   ;; :init (setq markdown-command "multimarkdown"))
 
 ;; ;;; Exwm
