@@ -476,6 +476,11 @@
 ;; #+begin_src elisp\n
 ;; #+end_src")
 
+;;; Markdown
+(use-package markdown-mode
+  :mode ("README\\.md\\'" . gfm-mode))
+  ;; :init (setq markdown-command "multimarkdown"))
+
 ;; ;;; Exwm
 ;; (add-to-list 'load-path "~/.local/src/xelb/")
 ;; (add-to-list 'load-path "~/.local/src/exwm/")
