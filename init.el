@@ -407,6 +407,11 @@
 
 ;;; Org Mode
 (setq org-directory "~/notes/org")
+(my/leader-def
+  "fo" '(lambda ()
+          (interactive)
+          (let ((project-current-directory-override org-directory))
+            (project-find-file))))
 (setq org-agenda-files '("inbox.org" ; for capture
                          "project.org" ; main project file
                          "someday.org"
@@ -450,12 +455,12 @@
     ("A" "Appointment" agenda*)))
 
 (my/leader-def
-  "SPC l" 'org-store-link
-  "SPC c" 'org-capture
-  "SPC a" 'org-agenda
-  "oc" 'org-capture-goto-last-stored
-  "or" 'org-refile-goto-last-stored)
-(my/leader-def
+  "ol" 'org-store-link
+  "oc" 'org-capture
+  "oa" 'org-agenda
+  "joc" 'org-capture-goto-last-stored
+  "jor" 'org-refile-goto-last-stored)
+(my/local-leader-def
   :keymaps 'org-mode-map
   "R" 'org-refile
   "A" 'org-archive-subtree
