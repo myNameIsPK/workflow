@@ -52,6 +52,8 @@ my.map("n", "]l", "<Cmd>lnext<Cr>")
 my.map("n", "[l", "<Cmd>lprev<Cr>")
 my.map("n", "]L", "<Cmd>llast<Cr>")
 my.map("n", "[L", "<Cmd>lfirst<Cr>")
+my.map("n", "]<Space>", "mzo<Esc>`z")
+my.map("n", "[<Space>", "mzO<Esc>`z")
 
 local nohl_delay_timer
 if vim.fn.has "nvim-0.10.0" == 1 then
