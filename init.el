@@ -513,7 +513,9 @@
 
 ;;; Markdown
 (use-package markdown-mode
-  :mode ("\\(README\\|readme\\)\\.md\\'" . gfm-mode))
+  :mode ("\\(README\\|readme\\)\\.md\\'" . gfm-mode)
+  :config
+  (setq markdown-enable-wiki-links t))
   ;; :init (setq markdown-command "multimarkdown"))
 
 ;; ;;; Exwm
