@@ -244,8 +244,11 @@
   :ensure t)
 
 ;;; Todo comment
+(use-package hl-todo
+  :init (global-hl-todo-mode))
+
 (use-package magit-todos
-  :after magit
+  :after magit hl-todo
   :config (magit-todos-mode))
 
 ;;; Completion
