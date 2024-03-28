@@ -227,6 +227,7 @@
   (setq god-exempt-major-modes nil ; list of mode to disable
         god-exempt-predicates nil)
   (define-key god-local-mode-map (kbd ".") #'repeat)
+  ;; FIXME: this seem to not right
   (define-key god-local-mode-map (kbd "<escape>") #'(god-local-mode nil)))
 
 ;;; Help
@@ -243,6 +244,24 @@
 ;;; Git
 (use-package magit
   :ensure t)
+
+(use-package diff-hl
+  :init (global-diff-hl-mode)
+  :config
+  (diff-hl-flydiff-mode)
+  (diff-hl-margin-mode)
+  (diff-hl-dired-mode)
+  (setq diff-hl-show-staged-changes nil)
+  :general
+  (general-def
+    :states 'normal
+    "]c" 'diff-hl-next-hunk
+    "[c" 'diff-hl-previous-hunk)
+  (my/leader-def
+    "gs" 'diff-hl-stage-dwim
+    "gr" 'diff-hl-revert-hunk
+    "gp" 'diff-hl-show-hunk
+    "gU" 'diff-hl-unstage-file))
 
 ;;; Todo comment
 (use-package hl-todo
