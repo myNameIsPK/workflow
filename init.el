@@ -269,7 +269,10 @@
     "M-P" 'vertico-suspend) ; push completion into completion stack
   (general-def vertico-map
     "C-M-n" 'vertico-repeat-next
-    "C-M-p" 'vertico-repeat-previous))
+    "C-M-p" 'vertico-repeat-previous
+    "M-j" 'vertico-quick-jump
+    "M-i" 'vertico-quick-insert
+    "M-q" 'vertico-quick-exit))
 
 (unless (default-value vertico-mode) (fido-vertical-mode 1)) ; fuzzy find
 
@@ -289,8 +292,9 @@
 
 ;; More completion meta-data
 (use-package marginalia
-  :bind (:map minibuffer-local-map
-         ("M-C" . marginalia-cycle))
+  :general
+  (general-def minibuffer-local-map
+   "M-C" 'marginalia-cycle)
   :init
   (marginalia-mode))
 
@@ -299,13 +303,18 @@
   :init
   (setq xref-show-xrefs-function #'consult-xref
         xref-show-definitions-function #'consult-xref)
-
-  :bind (:map minibuffer-mode-map
-          ("M-s" . consult-history)
-          ("M-r" . consult-history))
-
   :general
-  ;; https://github.com/minad/consult#use-package-example
+  ;; See https://github.com/minad/consult#use-package-example
+  (general-def
+    [remap switch-to-buffer] 'consult-buffer
+    [remap imenu] 'consult-imenu
+    [remap goto-line] 'consult-goto-line
+    [remap bookmark-jump] 'consult-bookmark
+    [remap project-list-buffers] 'consult-project-buffer
+    [remap Info-search] 'consult-info)
+  (general-def minibuffer-local-map
+    "M-s" 'consult-history
+    "M-r" 'consult-history)
   (my/leader-def
     "fg" (if (executable-find "rg") 'consult-ripgrep 'consult-grep)
     "fd" (if (executable-find "fd") 'consult-fd 'consult-find)
@@ -313,13 +322,7 @@
     "fr" 'consult-recent-file
     "ol" 'consult-outline)
   (my/local-leader-def
-    "M-x" 'consult-mode-command)
-  :config
-  (global-set-key [remap switch-to-buffer] #'consult-buffer)
-  (global-set-key [remap imenu] #'consult-imenu)
-  (global-set-key [remap goto-line] #'consult-goto-line)
-  (global-set-key [remap bookmark-jump] #'consult-bookmark)
-  (global-set-key [remap project-list-buffers] #'consult-project-buffer))
+    "M-x" 'consult-mode-command))
 
 (use-package embark
   :config
@@ -334,10 +337,10 @@
       (embark-act arg)))
 
   :general
-  ("C-h B" 'embark-bindings) ; alternative for `describe-bindings'(`C-h b')
+  (general-def "C-h B" 'embark-bindings) ; alternative for `describe-bindings'(`C-h b')
   ;; FIXME: this keymap still also show `embark-keymap-prompter' and leave behind `Act' indicator on vertico completion
-  (vertico-map "M-?" 'my/embark-act-with-completing-read)
-  (minibuffer-local-map
+  (general-def vertico-map "M-?" 'my/embark-act-with-completing-read)
+  (general-def minibuffer-local-map
     "M-a" 'embark-act
     "M-A" 'embark-act-all
     "M-." 'embark-dwim
@@ -360,7 +363,7 @@
 (use-package corfu
   :init (global-corfu-mode)
   :general
-  (corfu-map
+  (general-def corfu-map
     :states 'insert
     "C-y" 'corfu-insert
     "C-e" 'corfu-quit
