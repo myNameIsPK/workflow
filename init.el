@@ -120,7 +120,8 @@
   :defer nil
   :init
   (setq evil-want-keybinding nil
-        evil-want-C-u-scroll t) ;; use `\ C-u' instead
+        evil-want-C-u-scroll t ;; use `\ C-u' instead
+        evil-want-Y-yank-to-eol t)
   :config
   (evil-mode 1)
   (evil-set-undo-system 'undo-tree)
