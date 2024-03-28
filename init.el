@@ -261,10 +261,15 @@
   (setq vertico-resize t)
   (setq vertico-cycle t)
   (add-hook 'minibuffer-setup-hook #'vertico-repeat-save)
+  :general
   (my/leader-def
-    "tr" 'vertico-repeat)
+    "tr" 'vertico-repeat
+    "tR" 'vertico-repeat-select)
   (general-def
-    "M-T" 'vertico-suspend)) ; push completion into completion stack
+    "M-P" 'vertico-suspend) ; push completion into completion stack
+  (general-def vertico-map
+    "C-M-n" 'vertico-repeat-next
+    "C-M-p" 'vertico-repeat-previous))
 
 (unless (default-value vertico-mode) (fido-vertical-mode 1)) ; fuzzy find
 
