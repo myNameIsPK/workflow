@@ -10,11 +10,15 @@ end
 vim.loader.enable()
 
 require "globals"
+require "options"
 
+-- TODO: make it place more appropriate
 local is_override, _ = pcall(require, "local_override")
 my.got_override = is_override
 
-require "options"
+vim.cmd.colorscheme(my.opts.colorscheme.default)
+vim.opt.background = my.opts:background_resolve()
+
 require "commands"
 require "keymappings"
 require "autocmds"
