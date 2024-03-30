@@ -1,23 +1,34 @@
-if vim.env.TERMUX_VERSION then
-  return {}
-end
 return {
 
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-      { "williamboman/mason.nvim" },
+      {
+        "williamboman/mason.nvim",
+        cmd = "Mason",
+        config = function()
+          -- `:h mason-setting`
+          require("mason").setup()
+        end,
+      },
       { "williamboman/mason-lspconfig.nvim" },
     },
     config = function()
       local mason_lspconfig = require "mason-lspconfig"
 
       mason_lspconfig.setup {
-        ensure_installed = { "lua_ls" },
+        ensure_installed = vim.env.TERMUX_VERSION and {}
+          or { "lua_ls" },
       }
 
-      for _, server in ipairs(mason_lspconfig.get_installed_servers()) do
+      local server_list = mason_lspconfig.get_installed_servers()
+      if vim.fn.executable "lua-language-server" == 1 then
+        -- vim.tbl_deep_extend("force", server_list, { "lua_ls" })
+        table.insert(server_list, "lua_ls")
+      end
+
+      for _, server in ipairs(server_list) do
         local opts = {
           -- capabilities = (function()
           --   local cmp_nvim_lsp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
@@ -46,16 +57,4 @@ return {
       end
     end,
   },
-
-  {
-    "williamboman/mason.nvim",
-    -- lazy = false,
-    cmd = "Mason",
-    config = function()
-      -- `:h mason-setting`
-      require("mason").setup()
-    end,
-  },
-
-  { "williamboman/mason-lspconfig.nvim" },
 }

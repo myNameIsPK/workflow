@@ -1,5 +1,6 @@
 return {
   {
+    -- TODO: need treesitter
     "numToStr/Comment.nvim",
     keys = { "gc", { "gc", mode = "v" } },
     config = function()

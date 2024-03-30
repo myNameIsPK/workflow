@@ -1,7 +1,5 @@
 local opt = vim.opt
 
-vim.cmd.colorscheme(my.opts.colorscheme.default)
-opt.background = my.opts:background_resolve()
 opt.exrc = true
 opt.list = true
 opt.listchars = {
