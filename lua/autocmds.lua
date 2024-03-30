@@ -80,7 +80,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     map("n", "<localleader>sc", function()
       local result = {}
-      for _, client in ipairs(vim.lsp.get_clients()) do
+      -- TODO: deprecate
+      for _, client in ipairs(vim.lsp.get_active_clients()) do
         table.insert(result, "=== " .. client.name .. " ===")
         table.insert(result, client.server_capabilities)
       end
@@ -90,7 +91,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     )
     -- stylua: ignore end
 
-    for _, client in ipairs(vim.lsp.get_clients { bufnr = bufnr }) do
+    -- TODO: deprecate
+    for _, client in ipairs(vim.lsp.get_active_clients { bufnr = bufnr }) do
       if client.server_capabilities.documentHighlightProvider then
         -- Autocommands in autocommand??
         vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
