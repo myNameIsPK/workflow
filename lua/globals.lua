@@ -7,14 +7,15 @@ my.exec_deps = { "git" }
 ---@type string[] list of optional dependencies of executables
 my.opt_exec_deps = { "rg", "fd", "fzf" }
 
+-- TODO: implement settings
 ---@type table global configure options
 my.opts = {}
 ---@type table Config options of LSP
 my.opts.lsp = {}
 ---@type boolean Enable/Disable LSP document highlight
 my.opts.lsp.document_highlight = false
----@type boolean Enable/Disable LSP samantic tokens
-my.opts.lsp.samantic_tokens = false
+---@type boolean Enable/Disable LSP semantic tokens
+my.opts.lsp.semantic_tokens = false
 
 ---@type table Config options of colorscheme
 my.opts.colorscheme = {}
