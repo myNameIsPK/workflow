@@ -29,6 +29,7 @@ return {
 
       for _, server in ipairs(server_list) do
         local opts = {
+          autostart = false,
           -- capabilities = (function()
           --   local cmp_nvim_lsp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
           --   if cmp_nvim_lsp_ok then
