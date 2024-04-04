@@ -82,8 +82,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map('n', '<localleader>f', function() lsp_formatting() end, "formatting")
     map('v', '<localleader>f', function() lsp_formatting() end, "formatting")
 
+    -- toggle features
     map('n', '<localleader>ti', function()
         vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled())
+    end, "Toggle inlay hint")
+    map('n', '<localleader>ts', function()
+        if my.opts.lsp.semantic_tokens == true then
+          vim.lsp.semantic_tokens.stop(bufnr, client.id)
+          my.opts.lsp.semantic_tokens = false
+        else
+          vim.lsp.semantic_tokens.start(bufnr, client.id)
+          my.opts.lsp.semantic_tokens = true
+        end
     end, "Toggle inlay hint")
 
     -- telescope
@@ -126,6 +136,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
           end,
         })
       end
+    end
+
+    if not my.opts.lsp.semantic_tokens then
+      vim.lsp.semantic_tokens.stop(bufnr, client.id)
     end
 
     if my.opts.lsp.inlay_hints then

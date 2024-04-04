@@ -7,7 +7,6 @@ my.exec_deps = { "git" }
 ---@type string[] list of optional dependencies of executables
 my.opt_exec_deps = { "rg", "fd", "fzf" }
 
--- TODO: implement settings
 ---@type table global configure options
 my.opts = {}
 ---@type table Config options of LSP
