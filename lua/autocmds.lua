@@ -53,12 +53,41 @@ end
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local bufnr = args.buf
+    local client = vim.lsp.get_client_by_id(args.data.client_id) or {}
+
+    if my.opts.lsp.document_highlight then
+      -- TODO: deprecate
+      for _, c in ipairs(vim.lsp.get_active_clients { bufnr = bufnr }) do
+        if c.server_capabilities.documentHighlightProvider then
+          -- Autocommands in autocommand??
+          vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+            buffer = bufnr,
+            callback = function()
+              vim.lsp.buf.document_highlight()
+            end,
+          })
+          vim.api.nvim_create_autocmd({ "CursorMoved" }, {
+            buffer = bufnr,
+            callback = function()
+              vim.lsp.buf.clear_references()
+            end,
+          })
+        end
+      end
+    end
+
+    if not my.opts.lsp.semantic_tokens then
+      vim.lsp.semantic_tokens.stop(bufnr, client.id)
+    end
+
+    if my.opts.lsp.inlay_hints then
+      vim.lsp.inlay_hint.enable(bufnr, true)
+    end
+
     local function map(mode, lhs, rhs, desc)
       vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
     end
-
     -- stylua: ignore start
-    local client = vim.lsp.get_client_by_id(args.data.client_id) or {}
     if client.server_capabilities.declarationProvider then
       map('n', 'gD', function() vim.lsp.buf.declaration() end, "Go to declaration")
     end
@@ -118,35 +147,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
       "print LSP servercapabilities"
     )
     -- stylua: ignore end
-
-    if my.opts.lsp.document_highlight then
-      -- TODO: deprecate
-      for _, c in ipairs(vim.lsp.get_active_clients { bufnr = bufnr }) do
-        if c.server_capabilities.documentHighlightProvider then
-          -- Autocommands in autocommand??
-          vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-            buffer = bufnr,
-            callback = function()
-              vim.lsp.buf.document_highlight()
-            end,
-          })
-          vim.api.nvim_create_autocmd({ "CursorMoved" }, {
-            buffer = bufnr,
-            callback = function()
-              vim.lsp.buf.clear_references()
-            end,
-          })
-        end
-      end
-    end
-
-    if not my.opts.lsp.semantic_tokens then
-      vim.lsp.semantic_tokens.stop(bufnr, client.id)
-    end
-
-    if my.opts.lsp.inlay_hints then
-      vim.lsp.inlay_hint.enable(bufnr, true)
-    end
   end,
 })
 
