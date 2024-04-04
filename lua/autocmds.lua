@@ -58,9 +58,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
 
     -- stylua: ignore start
-    map('n', 'gD', function() vim.lsp.buf.declaration() end, "Go to declaration")
-    map('n', 'gd', function() vim.lsp.buf.definition() end, "Go to definition") -- use <C-]> instead
-    map('n', 'K', function() vim.lsp.buf.hover() end, "Hover")
+    local client = vim.lsp.get_client_by_id(args.data.client_id) or {}
+    if client.server_capabilities.declarationProvider then
+      map('n', 'gD', function() vim.lsp.buf.declaration() end, "Go to declaration")
+    end
+    if client.server_capabilities.definitionProvider then
+      map('n', 'gd', function() vim.lsp.buf.definition() end, "Go to definition") -- use <C-]> instead
+    end
+    if client.server_capabilities.hoverProvider then
+      map('n', 'K', function() vim.lsp.buf.hover() end, "Hover")
+    end
     map('n', '<C-k>', function() vim.lsp.buf.signature_help() end, "Signature help")
     map('n', 'gr', function() vim.lsp.buf.references() end, "List references")
     map('n', '<localleader>i', function() vim.lsp.buf.implementation() end, "Go to implementation")
@@ -88,9 +95,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "<localleader>sc", function()
       local result = {}
       -- TODO: deprecate
-      for _, client in ipairs(vim.lsp.get_active_clients()) do
-        table.insert(result, "=== " .. client.name .. " ===")
-        table.insert(result, client.server_capabilities)
+      for _, c in ipairs(vim.lsp.get_active_clients()) do
+        table.insert(result, "=== " .. c.name .. " ===")
+        table.insert(result, c.server_capabilities)
       end
       vim.print(result)
     end,
@@ -99,8 +106,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- stylua: ignore end
 
     -- TODO: deprecate
-    for _, client in ipairs(vim.lsp.get_active_clients { bufnr = bufnr }) do
-      if client.server_capabilities.documentHighlightProvider then
+    for _, c in ipairs(vim.lsp.get_active_clients { bufnr = bufnr }) do
+      if c.server_capabilities.documentHighlightProvider then
         -- Autocommands in autocommand??
         vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
           buffer = bufnr,
