@@ -119,22 +119,24 @@ vim.api.nvim_create_autocmd("LspAttach", {
     )
     -- stylua: ignore end
 
-    -- TODO: deprecate
-    for _, c in ipairs(vim.lsp.get_active_clients { bufnr = bufnr }) do
-      if c.server_capabilities.documentHighlightProvider then
-        -- Autocommands in autocommand??
-        vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-          buffer = bufnr,
-          callback = function()
-            vim.lsp.buf.document_highlight()
-          end,
-        })
-        vim.api.nvim_create_autocmd({ "CursorMoved" }, {
-          buffer = bufnr,
-          callback = function()
-            vim.lsp.buf.clear_references()
-          end,
-        })
+    if my.opts.lsp.document_highlight then
+      -- TODO: deprecate
+      for _, c in ipairs(vim.lsp.get_active_clients { bufnr = bufnr }) do
+        if c.server_capabilities.documentHighlightProvider then
+          -- Autocommands in autocommand??
+          vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+            buffer = bufnr,
+            callback = function()
+              vim.lsp.buf.document_highlight()
+            end,
+          })
+          vim.api.nvim_create_autocmd({ "CursorMoved" }, {
+            buffer = bufnr,
+            callback = function()
+              vim.lsp.buf.clear_references()
+            end,
+          })
+        end
       end
     end
 
