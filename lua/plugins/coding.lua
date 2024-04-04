@@ -36,7 +36,29 @@ return {
   --   dependencies = "nvim-treesitter/nvim-treesitter",
   -- },
 
-  -- TODO: neotest or vimtest
-
+  {
+    "nvim-neotest/neotest",
+    dependencies = {
+      "nvim-neotest/nvim-nio",
+      "nvim-lua/plenary.nvim",
+      "antoinemadec/FixCursorHold.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-neotest/neotest-plenary",
+      -- "nvim-neotest/neotest-vim-test",
+    },
+    init = function()
+      require("neotest").setup {
+        adapters = {
+          require "neotest-plenary",
+          -- require("neotest-python")({
+          --   dap = { justMyCode = false },
+          -- }),
+          -- require("neotest-vim-test")({
+          --   ignore_file_types = { "python", "vim", "lua" },
+          -- }),
+        },
+      }
+    end,
+  },
   -- { "mfussenegger/nvim-dap" },
 }
