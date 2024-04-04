@@ -82,6 +82,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map('n', '<localleader>f', function() lsp_formatting() end, "formatting")
     map('v', '<localleader>f', function() lsp_formatting() end, "formatting")
 
+    map('n', '<localleader>ti', function()
+        vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled())
+    end, "Toggle inlay hint")
+
     -- telescope
     map('n', '<localleader>D', function() require('telescope.builtin').lsp_definitions() end, "telescope definition")
     map('n', '<localleader>R', function() require('telescope.builtin').lsp_references() end, "telescope references")
@@ -122,6 +126,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
           end,
         })
       end
+    end
+
+    if my.opts.lsp.inlay_hints then
+      vim.lsp.inlay_hint.enable(bufnr, true)
     end
   end,
 })

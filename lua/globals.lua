@@ -16,6 +16,8 @@ my.opts.lsp = {}
 my.opts.lsp.document_highlight = false
 ---@type boolean Enable/Disable LSP semantic tokens
 my.opts.lsp.semantic_tokens = false
+---@type boolean Enable/Disable LSP inlay hints
+my.opts.lsp.inlay_hints = false
 
 ---@type table Config options of colorscheme
 my.opts.colorscheme = {}
