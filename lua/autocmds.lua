@@ -55,25 +55,29 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local bufnr = args.buf
     local client = vim.lsp.get_client_by_id(args.data.client_id) or {}
 
-    if my.opts.lsp.document_highlight then
-      -- TODO: deprecate
-      for _, c in ipairs(vim.lsp.get_active_clients { bufnr = bufnr }) do
-        if c.server_capabilities.documentHighlightProvider then
-          -- Autocommands in autocommand??
-          vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-            buffer = bufnr,
-            callback = function()
-              vim.lsp.buf.document_highlight()
-            end,
-          })
-          vim.api.nvim_create_autocmd({ "CursorMoved" }, {
-            buffer = bufnr,
-            callback = function()
-              vim.lsp.buf.clear_references()
-            end,
-          })
-        end
+    local function document_highlight_autocmds()
+      if client.server_capabilities.documentHighlightProvider then
+        -- Autocommands in autocommand??
+        local dh_group = vim.api.nvim_create_augroup("_document_highlight", { clear = false })
+        vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+          group = dh_group,
+          buffer = bufnr,
+          callback = function()
+            vim.lsp.buf.document_highlight()
+          end,
+        })
+        vim.api.nvim_create_autocmd({ "CursorMoved" }, {
+          group = dh_group,
+          buffer = bufnr,
+          callback = function()
+            vim.lsp.buf.clear_references()
+          end,
+        })
       end
+    end
+
+    if my.opts.lsp.document_highlight then
+      document_highlight_autocmds()
     end
 
     if not my.opts.lsp.semantic_tokens then
@@ -82,6 +86,26 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     if my.opts.lsp.inlay_hints then
       vim.lsp.inlay_hint.enable(bufnr, true)
+    end
+
+    local toggle_document_highlights = function()
+      local has_augroup, _ = pcall(vim.api.nvim_get_autocmds, { group = "_document_highlight" })
+      if has_augroup then
+        vim.api.nvim_del_augroup_by_name "_document_highlight"
+        vim.lsp.buf.clear_references()
+      else
+        document_highlight_autocmds()
+      end
+    end
+
+    local toggle_semantic_tokens = function()
+      if my.opts.lsp.semantic_tokens == true then
+        vim.lsp.semantic_tokens.stop(bufnr, client.id)
+        my.opts.lsp.semantic_tokens = false
+      else
+        vim.lsp.semantic_tokens.start(bufnr, client.id)
+        my.opts.lsp.semantic_tokens = true
+      end
     end
 
     local function map(mode, lhs, rhs, desc)
@@ -112,18 +136,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map('v', '<localleader>f', function() lsp_formatting() end, "formatting")
 
     -- toggle features
-    map('n', '<localleader>ti', function()
-        vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled())
-    end, "Toggle inlay hint")
-    map('n', '<localleader>ts', function()
-        if my.opts.lsp.semantic_tokens == true then
-          vim.lsp.semantic_tokens.stop(bufnr, client.id)
-          my.opts.lsp.semantic_tokens = false
-        else
-          vim.lsp.semantic_tokens.start(bufnr, client.id)
-          my.opts.lsp.semantic_tokens = true
-        end
-    end, "Toggle inlay hint")
+    map('n', '<localleader>ti', function() vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled()) end, "Toggle inlay hint")
+    map('n', '<localleader>td', toggle_document_highlights, "Toggle document highlight")
+    map('n', '<localleader>ts', toggle_semantic_tokens, "Toggle semantic tokens")
 
     -- telescope
     map('n', '<localleader>D', function() require('telescope.builtin').lsp_definitions() end, "telescope definition")
