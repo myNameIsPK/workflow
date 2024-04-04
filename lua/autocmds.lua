@@ -1,5 +1,5 @@
 local function group(group_name)
-  return vim.api.nvim_create_augroup(group_name, { clear = true })
+  return vim.api.nvim_create_augroup(group_name, { clear = false })
 end
 local autocmd = vim.api.nvim_create_autocmd
 
@@ -14,7 +14,7 @@ autocmd("TextYankPost", {
 })
 
 autocmd("TermOpen", {
-  group = group "_terminal_open",
+  group = group "_terminal",
   pattern = "term://*",
   callback = function()
     vim.opt_local.number = false
@@ -25,7 +25,7 @@ autocmd("TermOpen", {
 })
 
 autocmd("TermClose", {
-  group = group "_terminal_close",
+  group = group "_terminal",
   pattern = "term://*",
   callback = function()
     vim.fn.feedkeys "q"
