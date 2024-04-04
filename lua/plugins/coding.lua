@@ -65,6 +65,9 @@ return {
 
   {
     "mfussenegger/nvim-dap",
+    dependencies = {
+      { "theHamsta/nvim-dap-virtual-text", config = true },
+    },
     init = function()
       local dap = require "dap"
       dap.adapters.gdb = {
