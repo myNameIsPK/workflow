@@ -62,5 +62,53 @@ return {
       }
     end,
   },
-  -- { "mfussenegger/nvim-dap" },
+
+  {
+    "mfussenegger/nvim-dap",
+    init = function()
+      local dap = require "dap"
+      dap.adapters.gdb = {
+        type = "executable",
+        command = "gdb",
+        args = { "-i", "dap" },
+      }
+      dap.configurations.c = {
+        {
+          name = "Launch",
+          type = "gdb",
+          request = "launch",
+          program = function()
+            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+          end,
+          cwd = "${workspaceFolder}",
+          stopAtBeginningOfMainSubprogram = false,
+        },
+      }
+      -- stylua: ignore start
+      vim.keymap.set('n', '<F5>', function() require('dap').continue() end)
+      vim.keymap.set('n', '<F10>', function() require('dap').step_over() end)
+      vim.keymap.set('n', '<F11>', function() require('dap').step_into() end)
+      vim.keymap.set('n', '<F12>', function() require('dap').step_out() end)
+      vim.keymap.set('n', '<localleader>b', function() require('dap').toggle_breakpoint() end)
+      vim.keymap.set('n', '<localleader>B', function() require('dap').set_breakpoint() end)
+      vim.keymap.set('n', '<localleader>lp', function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end)
+      vim.keymap.set('n', '<localleader>dr', function() require('dap').repl.open() end)
+      vim.keymap.set('n', '<localleader>dl', function() require('dap').run_last() end)
+      vim.keymap.set({'n', 'v'}, '<localleader>dh', function()
+        require('dap.ui.widgets').hover()
+      end)
+      vim.keymap.set({'n', 'v'}, '<localleader>dp', function()
+        require('dap.ui.widgets').preview()
+      end)
+      vim.keymap.set('n', '<localleader>df', function()
+        local widgets = require('dap.ui.widgets')
+        widgets.centered_float(widgets.frames)
+      end)
+      vim.keymap.set('n', '<localleader>ds', function()
+        local widgets = require('dap.ui.widgets')
+        widgets.centered_float(widgets.scopes)
+      end)
+      -- stylua: ignore end
+    end,
+  },
 }
