@@ -31,10 +31,12 @@ return {
     end,
   },
 
-  -- {
-  --   "danymat/neogen",
-  --   dependencies = "nvim-treesitter/nvim-treesitter",
-  -- },
+  {
+    "danymat/neogen",
+    init = function()
+      require("neogen").setup {}
+    end,
+  },
 
   {
     "nvim-neotest/neotest",
