@@ -33,6 +33,13 @@ autocmd("TermClose", {
   desc = "Close without showing exitcode",
 })
 
+vim.api.nvim_create_autocmd("BufEnter", {
+  group = group "_lsp_auto_start",
+  pattern = vim.fn.stdpath "config" .. "/*.lua",
+  command = "LspStart",
+  desc = "Auto start LSP in Nvim config directory",
+})
+
 local lsp_formatting = function(bufnr)
   bufnr = bufnr or nil
   vim.lsp.buf.format {
