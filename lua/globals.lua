@@ -4,6 +4,8 @@ end
 
 ---@type string[] list of dependencies of executables
 my.exec_deps = { "git" }
+---@type boolean
+my.is_termux = vim.env.TERMUX_VERSION and true or false
 ---@type string[] list of optional dependencies of executables
 my.opt_exec_deps = { "rg", "fd", "fzf" }
 

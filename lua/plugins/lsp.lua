@@ -18,7 +18,7 @@ return {
       local mason_lspconfig = require "mason-lspconfig"
 
       mason_lspconfig.setup {
-        ensure_installed = vim.env.TERMUX_VERSION and {} or { "lua_ls" },
+        ensure_installed = my.is_termux and {} or { "lua_ls" },
       }
 
       local server_list = mason_lspconfig.get_installed_servers()

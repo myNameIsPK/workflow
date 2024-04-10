@@ -18,29 +18,28 @@ return {
     config = function()
       local tsconfig = require "nvim-treesitter.configs"
       tsconfig.setup {
-        ensure_installed = vim.env.TERMUX_VERSION and {}
-          or {
-            "lua",
-            "vim",
-            "bash",
-            "markdown",
-            "yaml",
-            "query",
-            -- "toml",
-            -- "python",
-            -- "make",
-            -- "regex",
-            -- "latex",
-            -- "bibtex",
-            -- "css",
-            -- "html",
-            -- "javascript",
-            -- "jsdoc",
-            -- "json",
-            -- "php",
-            -- "scss",
-            -- "tsx",
-            -- "typescript",
+        ensure_installed = my.is_termux and {} or {
+          "lua",
+          "vim",
+          "bash",
+          "markdown",
+          "yaml",
+          "query",
+          -- "toml",
+          -- "python",
+          -- "make",
+          -- "regex",
+          -- "latex",
+          -- "bibtex",
+          -- "css",
+          -- "html",
+          -- "javascript",
+          -- "jsdoc",
+          -- "json",
+          -- "php",
+          -- "scss",
+          -- "tsx",
+          -- "typescript",
         }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
 
         sync_install = true, -- install languages synchronously (only applied to `ensure_installed`)

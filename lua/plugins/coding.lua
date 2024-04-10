@@ -1,4 +1,4 @@
-if vim.env.TERMUX_VERSION then
+if my.is_termux then
   return {}
 end
 return {
