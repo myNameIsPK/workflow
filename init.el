@@ -170,7 +170,8 @@
 
   (unless (display-graphic-p)
     (add-hook 'pre-command-hook #'my/set-terminal-cursor)
-    (add-hook 'post-command-hook #'my/set-terminal-cursor)))
+    (add-hook 'post-command-hook #'my/set-terminal-cursor)
+    (add-hook 'evil-operator-state-entry-hook #'my/set-terminal-cursor)))
 
 (use-package goto-chg)
 
