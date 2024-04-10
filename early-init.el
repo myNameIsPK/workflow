@@ -11,11 +11,13 @@
 (setq package-enable-at-startup nil)
 (setq inhibit-x-resources t)
 
+(setq my/is-termux (not (null (getenv "TERMUX_VERSION"))))
+
 (defun my/tty-hook ()
   "tty setup hook"
   (interactive)
   (xterm-mouse-mode 1)
-  (setq xterm-box-blink-seq "\e[1 q")
-  (send-string-to-terminal xterm-box-blink-seq))
+  (let ((xterm-box-blink-seq "\e[1 q"))
+    (send-string-to-terminal xterm-box-blink-seq)))
 
 (add-hook 'tty-setup-hook 'my/tty-hook)
