@@ -40,8 +40,8 @@
 ;; keep unwant thing out of `.emacs.d'
 (setq user-emacs-directory (expand-file-name "~/.cache/emacs/"))
 
-;; Set the right directory to store the native comp cache
-(add-to-list 'native-comp-eln-load-path (expand-file-name "eln-cache/" user-emacs-directory))
+;; ;; Set the right directory to store the native comp cache
+;; (add-to-list 'native-comp-eln-load-path (expand-file-name "eln-cache/" user-emacs-directory))
 
 ;; suppress `(comp)' warnings
 (setq native-comp-async-report-warnings-errors nil)
