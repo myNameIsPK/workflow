@@ -37,6 +37,15 @@
 ;;         (?\" . ?\")))
 ;; (electric-pair-mode 1)
 
+;; keep unwant thing out of `.emacs.d'
+(setq user-emacs-directory (expand-file-name "~/.cache/emacs/"))
+
+;; Set the right directory to store the native comp cache
+(add-to-list 'native-comp-eln-load-path (expand-file-name "eln-cache/" user-emacs-directory))
+
+;; suppress `(comp)' warnings
+(setq native-comp-async-report-warnings-errors nil)
+
 ;; prevent emacs customize `init.el' file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
@@ -65,13 +74,22 @@
 ;;; Clean
 ;; Clean Directory
 (use-package no-littering
-  :init
-  (setq no-littering-etc-directory
-          (expand-file-name ".local/etc" user-emacs-directory)
-        no-littering-var-directory
-          (expand-file-name ".local/var" user-emacs-directory))
+  :demand t
   :config
-  (no-littering-theme-backups))
+  (no-littering-theme-backups)
+  (let ((backup-dir (no-littering-expand-var-file-name "backup/")))
+    (make-directory backup-dir t)
+    (setq backup-directory-alist
+          `(("\\`/tmp/" . nil)
+            ("\\`/dev/shm/" . nil)
+            ("." . ,backup-dir))))
+  (let ((auto-save-dir (no-littering-expand-var-file-name "auto-save/")))
+    (make-directory auto-save-dir t)
+    (setq auto-save-file-name-transforms
+          `(("\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'"
+             ,(concat temporary-file-directory "\\2") t)
+            ("\\`\\(/tmp\\|/dev/shm\\)\\([^/]*/\\)*\\(.*\\)\\'" "\\3")
+            ("." ,auto-save-dir t)))))
 
 ;; Clean mode-line
 (use-package delight
