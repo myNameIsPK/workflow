@@ -1,6 +1,6 @@
 ;;; General Settings
 (menu-bar-mode -1)
-(when (not my/is-termux)
+(unless my/is-termux
   (scroll-bar-mode -1)
   (tool-bar-mode -1))
 (tooltip-mode -1)

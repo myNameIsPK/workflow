@@ -11,7 +11,7 @@
 (setq package-enable-at-startup nil)
 (setq inhibit-x-resources t)
 
-(setq my/is-termux (not (null (getenv "TERMUX_VERSION"))))
+(defvar my/is-termux (not (null (getenv "TERMUX_VERSION"))))
 
 (defun my/tty-hook ()
   "tty setup hook"
