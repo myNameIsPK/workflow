@@ -453,74 +453,79 @@
   :general (my/leader-def "tp" 'parinfer-rust-mode))
 
 ;;; Org Mode
-(setq org-directory "~/notes/org")
-(my/leader-def
-  "fo" '(lambda ()
-          (interactive)
-          (let ((project-current-directory-override org-directory))
-            (project-find-file))))
-(setq org-agenda-files '("inbox.org" ; for capture
-                         "project.org" ; main project file
-                         "someday.org"
-                         "tickler.org"))
-(setq org-refile-allow-creating-parent-nodes t)
-(setq org-refile-use-outline-path 'file)
-(setq org-outline-path-complete-in-steps nil)
-(setq org-auto-align-tags nil)
-(setq org-refile-targets
-  '((nil :maxlevel . 9)
-    ("project.org" :maxlevel . 9)
-    ("someday.org" :maxlevel . 9)
-    ("archive.org" :maxlevel . 9)))
-(advice-add 'org-refile :after 'org-save-all-org-buffers)
+(use-package org
+  :ensure nil
+  :defer nil
+  :straight nil
+  :config
+  (setq org-directory "~/notes/org")
+  (my/leader-def
+    "fo" '(lambda ()
+            (interactive)
+            (let ((project-current-directory-override org-directory))
+              (project-find-file))))
+  (setq org-agenda-files '("inbox.org" ; for capture
+                           "project.org" ; main project file
+                           "someday.org"
+                           "tickler.org"))
+  (setq org-refile-allow-creating-parent-nodes t)
+  (setq org-refile-use-outline-path 'file)
+  (setq org-outline-path-complete-in-steps nil)
+  (setq org-auto-align-tags nil)
+  (setq org-refile-targets
+    '((nil :maxlevel . 9)
+      ("project.org" :maxlevel . 9)
+      ("someday.org" :maxlevel . 9)
+      ("archive.org" :maxlevel . 9)))
+  (advice-add 'org-refile :after 'org-save-all-org-buffers)
 
-(require 'org-habit)
-(add-to-list 'org-modules 'org-habit)
+  (require 'org-habit)
+  (add-to-list 'org-modules 'org-habit)
 
-(setq org-hide-leading-stars t)
-(setq org-log-into-drawer t)
-(setq org-todo-keywords
-  '((sequence "TODO(t)" "NEXT(n)" "WAIT(w)" "|" "DONE(d!)" "CANCELED(c@/!)")))
-    ;; (sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANC(k@)")))
+  (setq org-hide-leading-stars t)
+  (setq org-log-into-drawer t)
+  (setq org-todo-keywords
+    '((sequence "TODO(t)" "NEXT(n)" "WAIT(w)" "|" "DONE(d!)" "CANCELED(c@/!)")))
+      ;; (sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANC(k@)")))
 
-(setq org-capture-templates
-  '(("q" "Quick Capture" entry (file+olp "inbox.org" "Inbox")
-      "* TODO %?\n  %U\n  %a\n  %i" :prepend t)
-    ("c" "Clipboard" entry (file+olp "inbox.org" "Inbox")
-      "* TODO %?\n  %U\n  %x\n  %i" :prepend t)))
+  (setq org-capture-templates
+    '(("q" "Quick Capture" entry (file+olp "inbox.org" "Inbox")
+        "* TODO %?\n  %U\n  %a\n  %i" :prepend t)
+      ("c" "Clipboard" entry (file+olp "inbox.org" "Inbox")
+        "* TODO %?\n  %U\n  %x\n  %i" :prepend t)))
 
-(setq org-agenda-custom-commands
-  '(("n" "Next action" todo "NEXT")
-    ("N" "Next action tree" todo-tree "NEXT")
-    ("h" . "Home and Hobbies")
-    ("hh" "Hobby" tags-todo "hobby|@home")
-    ("hn" "Hobby next"
-      ((tags-todo "hobby+@home")
-       (todo "NEXT")))
-    ("p" "Project Agenda" agenda "" ((org-agenda-files '("project.org"))))
-    ("r" "Recurring Agenda" agenda "" ((org-agenda-files '("tickler.org"))))
-    ("A" "Appointment" agenda*)))
+  (setq org-agenda-custom-commands
+    '(("n" "Next action" todo "NEXT")
+      ("N" "Next action tree" todo-tree "NEXT")
+      ("h" . "Home and Hobbies")
+      ("hh" "Hobby" tags-todo "hobby|@home")
+      ("hn" "Hobby next"
+        ((tags-todo "hobby+@home"))
+        (todo "NEXT"))
+      ("p" "Project Agenda" agenda "" ((org-agenda-files '("project.org"))))
+      ("r" "Recurring Agenda" agenda "" ((org-agenda-files '("tickler.org"))))
+      ("A" "Appointment" agenda*)))
 
-(my/leader-def
-  "ol" 'org-store-link
-  "oc" 'org-capture
-  "oa" 'org-agenda
-  "joc" 'org-capture-goto-last-stored
-  "jor" 'org-refile-goto-last-stored)
-(my/local-leader-def
-  :keymaps 'org-mode-map
-  "R" 'org-refile
-  "A" 'org-archive-subtree
-  "tL" 'org-toggle-link-display
-  "il" 'org-insert-last-stored-link
-  "is" 'org-schedule
-  "id" 'org-deadline)
+  (my/leader-def
+    "ol" 'org-store-link
+    "oc" 'org-capture
+    "oa" 'org-agenda
+    "joc" 'org-capture-goto-last-stored
+    "jor" 'org-refile-goto-last-stored)
+  (my/local-leader-def
+    :keymaps 'org-mode-map
+    "R" 'org-refile
+    "A" 'org-archive-subtree
+    "tL" 'org-toggle-link-display
+    "il" 'org-insert-last-stored-link
+    "is" 'org-schedule
+    "id" 'org-deadline))
 
-;; (setq-default initial-major-mode 'org-mode
-;;               initial-scratch-message
-;;   "#+title: Scratch Buffer\n
-;; #+begin_src elisp\n
-;; #+end_src")
+  ;; (setq-default initial-major-mode 'org-mode
+  ;;               initial-scratch-message
+  ;;   "#+title: Scratch Buffer\n
+  ;; #+begin_src elisp\n
+  ;; #+end_src"))
 
 ;;; Markdown
 (use-package markdown-mode
