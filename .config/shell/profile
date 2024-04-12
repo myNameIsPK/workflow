@@ -12,6 +12,23 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 
+if test $TERMUX_VERSION; then
+    export XDG_DOWNLOAD_DIR="$HOME/storage/downloads"
+    export XDG_VIDEOS_DIR="$HOME/storage/movies"
+    export XDG_MUSIC_DIR="$HOME/storage/music"
+    export XDG_PICTURES_DIR="$HOME/storage/pictures"
+    export XDG_PUBLICSHARE_DIR="$HOME/storage/shared"
+else
+    export XDG_DOWNLOAD_DIR="$HOME/Downloads"
+    export XDG_VIDEOS_DIR="$HOME/Videos"
+    export XDG_MUSIC_DIR="$HOME/Music"
+    export XDG_PICTURES_DIR="$HOME/Pictures"
+    export XDG_DOCUMENTS_DIR="$HOME/Documents"
+    export XDG_PUBLICSHARE_DIR="$HOME/Public"
+    export XDG_DESKTOP_DIR="$HOME/Desktop"
+    export XDG_TEMPLATES_DIR="$HOME/Templates"
+fi
+
 ## MY environments vars
 export DOTFILES="$HOME/.dotfile.git"
 export MY_SHELL="$(ps -p $$ -ocomm=)"
