@@ -6,7 +6,7 @@ COLOR_CACHE=${XDG_CACHE_HOME}
 COLOR_TEMPLATES=${XDG_CONFIG_HOME}/colorsync/template/
 
 template_suffix="template"
-err_log="/tmp/color_template.log"
+err_log=${TMPDIR:-/tmp}/color_template.log
 
 if ! test -d ${COLOR_TEMPLATES}; then
   mkdir ${COLOR_TEMPLATES}
