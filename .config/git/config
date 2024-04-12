@@ -26,3 +26,6 @@
 
 [mergetool "nvimmerge"]
 	cmd = "nvim -d \"$LOCAL\" \"$MERGED\" \"$REMOTE\" -c \"wincmd w\""
+
+[pull]
+	rebase = true
