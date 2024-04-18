@@ -1,5 +1,8 @@
 #!/bin/zsh
 
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
 # This fix emacs Tramp hangs
 if [[ "$TERM" == "dumb" ]]; then
   unset zle_bracketed_paste
@@ -25,6 +28,7 @@ PS1+="%b "
 
 # Load aliases
 shortcuts-gen > /dev/null 2>&1
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc"
 # [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/profile" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/profile"
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases"
 
@@ -32,9 +36,6 @@ shortcuts-gen > /dev/null 2>&1
 HISTSIZE=10000000
 SAVEHIST=10000000
 # HISTFILE=$HOME/.local/state/bash/history
-
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
 
 ## SET VI MODE ###
 bindkey -v
