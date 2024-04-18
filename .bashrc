@@ -14,14 +14,6 @@ blu="\[$(tput setaf 4)\]"
 # cya="\[$(tput setaf 6)\]"
 # whi="\[$(tput setaf 7)\]"
 PS1="${red}[${rst}\u${red}@${rst}\h ${blu}\W${red}]${gre}\$${rst} "
-# GIT_PS1_SHOWDIRTYSTATE=1
-# GIT_PS1_SHOWSTASHSTATE=1
-# GIT_PS1_SHOWUNTRACKEDFILES=1
-# GIT_PS1_SHOWUPSTREAM=1
-# GIT_PS1_DESCRIBE_STYLE=1
-# GIT_PS1_SHOWCOLORHINTS=1
-# . /usr/share/git/completion/git-prompt.sh
-# PS1+='$(__git_ps1 "(%s) ")'
 
 # Load aliases
 shortcuts-gen > /dev/null 2>&1
@@ -42,11 +34,3 @@ shopt -s checkwinsize	# Checks term size when bash regains control
 if command -v fzf > /dev/null && [ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash ]; then
     source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash
 fi
-
-# Automatically added by the Guix install script.
-if [ -n "$GUIX_ENVIRONMENT" ]; then
-    if [[ $PS1 =~ (.*)"\\$" ]]; then
-        PS1="${BASH_REMATCH[1]} [env]\\\$ "
-    fi
-fi
-
