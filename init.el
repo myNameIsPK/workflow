@@ -552,6 +552,20 @@
   (setq markdown-enable-wiki-links t))
   ;; :init (setq markdown-command "multimarkdown"))
 
+;;; Feeds
+(use-package elfeed
+  :ensure nil
+  :general
+  (my/leader-def "nf" #'elfeed))
+
+;;; Mails
+(use-package notmuch
+  :ensure nil
+  :init
+  (setq notmuch-search-oldest-first nil)
+  :general
+  (my/leader-def "nm" #'notmuch))
+
 ;; ;;; Exwm
 ;; (add-to-list 'load-path "~/.local/src/xelb/")
 ;; (add-to-list 'load-path "~/.local/src/exwm/")
