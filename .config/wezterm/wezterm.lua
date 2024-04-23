@@ -5,6 +5,7 @@ local config = {}
 -- config.color_scheme = "Gruvbox light, soft (base16)"
 config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
+config.term = "wezterm"
 config.font_size = 11
 -- config.enable_scroll_bar = true
 config.window_padding = {
