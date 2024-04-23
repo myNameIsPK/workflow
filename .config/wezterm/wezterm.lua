@@ -26,4 +26,7 @@ config.keys = {
 	{ key = "Escape", mods = default_mods, action = action.ActivateCopyMode },
 }
 
+package.path = package.path .. ";" .. os.getenv("HOME") .. "/.cache/colorsync/?.lua"
+config.colors = require("colors_wezterm")
+
 return config
