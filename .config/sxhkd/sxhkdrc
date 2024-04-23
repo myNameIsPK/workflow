@@ -6,7 +6,7 @@
 
 # terminal emulator
 super + Return
-	$TERMINAL
+	eval $TERMINAL
 
 # program launcher
 # super + @space
@@ -16,8 +16,8 @@ super + space ; super + space
 	# dmenu_run -l 10 -b
 
 # launch specific program
-super + space ; {b,d,e,w}
-	{$BROWSER,discord,emacsclient -c -a '',wezterm}
+super + space ; {b,d,e,w k}
+	{$BROWSER,discord,emacsclient -c -a '',wezterm,kitty}
 
 super + k
 	onboard

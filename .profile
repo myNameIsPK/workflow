@@ -31,7 +31,7 @@ export EDITOR="nvim"
 export VISUAL="nvim"
 export MANPAGER='nvim +Man!'
 # export MANWIDTH=999
-export TERMINAL="wezterm"
+export TERMINAL="wezterm start"
 export GPG_TTY=$(tty)
 
 if command -v firefox-nightly > /dev/null; then
