@@ -16,8 +16,8 @@ super + space ; super + space
 	# dmenu_run -l 10 -b
 
 # launch specific program
-super + space ; {b,d,e}
-	{$BROWSER,discord,emacsclient -c -a ''}
+super + space ; {b,d,e,w}
+	{$BROWSER,discord,emacsclient -c -a '',wezterm}
 
 super + k
 	onboard
