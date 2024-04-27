@@ -27,8 +27,10 @@ config.keys = {
 	{ key = "c", mods = csa, action = act.CopyTo("Clipboard") },
 	{ key = "v", mods = csa, action = act.PasteFrom("Clipboard") },
 	{ key = "t", mods = csa, action = act.SpawnTab("CurrentPaneDomain") },
-	{ key = "n", mods = csa, action = act.SpawnWindow },
 	{ key = "q", mods = csa, action = act.CloseCurrentTab({ confirm = true }) },
+	{ key = "n", mods = csa, action = act.SpawnWindow },
+	{ key = '"', mods = csa, action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
+	{ key = "%", mods = csa, action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 	{ key = "x", mods = csa, action = act.ActivateCommandPalette },
 	{ key = "l", mods = csa, action = act.ShowDebugOverlay },
 	{ key = "+", mods = csa, action = act.IncreaseFontSize },
@@ -38,6 +40,14 @@ config.keys = {
 	{ key = "Tab", mods = ca, action = act.ActivateTabRelative(-1) },
 	{ key = "Escape", mods = csa, action = act.ActivateCopyMode },
 	{ key = "Space", mods = csa, action = act.QuickSelect },
+	{ key = "LeftArrow", mods = csa, action = act.ActivatePaneDirection("Left") },
+	{ key = "LeftArrow", mods = ca, action = act.AdjustPaneSize({ "Left", 1 }) },
+	{ key = "RightArrow", mods = csa, action = act.ActivatePaneDirection("Right") },
+	{ key = "RightArrow", mods = ca, action = act.AdjustPaneSize({ "Right", 1 }) },
+	{ key = "UpArrow", mods = csa, action = act.ActivatePaneDirection("Up") },
+	{ key = "UpArrow", mods = ca, action = act.AdjustPaneSize({ "Up", 1 }) },
+	{ key = "DownArrow", mods = csa, action = act.ActivatePaneDirection("Down") },
+	{ key = "DownArrow", mods = ca, action = act.AdjustPaneSize({ "Down", 1 }) },
 }
 
 package.path = package.path .. ";" .. os.getenv("HOME") .. "/.cache/colorsync/?.lua"
