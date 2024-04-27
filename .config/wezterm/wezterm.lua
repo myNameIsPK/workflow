@@ -28,7 +28,7 @@ config.keys = {
 	{ key = "l", mods = csa, action = action.ShowDebugOverlay },
 	{ key = "+", mods = csa, action = action.IncreaseFontSize },
 	{ key = "_", mods = csa, action = action.DecreaseFontSize },
-	{ key = "Escape", mods = default_mods, action = action.ActivateCopyMode },
+	{ key = "Escape", mods = csa, action = action.ActivateCopyMode },
 }
 
 package.path = package.path .. ";" .. os.getenv("HOME") .. "/.cache/colorsync/?.lua"
