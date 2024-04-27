@@ -21,11 +21,13 @@ config.cursor_blink_ease_out = "Constant"
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 
 config.disable_default_key_bindings = true
-local default_mods = "CTRL|SHIFT|ALT"
+local csa = "CTRL|SHIFT|ALT"
 config.keys = {
-	{ key = "c", mods = default_mods, action = action.CopyTo("Clipboard") },
-	{ key = "v", mods = default_mods, action = action.ShowDebugOverlay },
-	{ key = "l", mods = default_mods, action = action.ShowDebugOverlay },
+	{ key = "c", mods = csa, action = action.CopyTo("Clipboard") },
+	{ key = "v", mods = csa, action = action.PasteFrom("Clipboard") },
+	{ key = "l", mods = csa, action = action.ShowDebugOverlay },
+	{ key = "+", mods = csa, action = action.IncreaseFontSize },
+	{ key = "_", mods = csa, action = action.DecreaseFontSize },
 	{ key = "Escape", mods = default_mods, action = action.ActivateCopyMode },
 }
 
