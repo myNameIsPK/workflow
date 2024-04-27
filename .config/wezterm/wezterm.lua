@@ -23,6 +23,8 @@ config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 config.disable_default_key_bindings = true
 local default_mods = "CTRL|SHIFT|ALT"
 config.keys = {
+	{ key = "c", mods = default_mods, action = action.CopyTo("Clipboard") },
+	{ key = "v", mods = default_mods, action = action.ShowDebugOverlay },
 	{ key = "l", mods = default_mods, action = action.ShowDebugOverlay },
 	{ key = "Escape", mods = default_mods, action = action.ActivateCopyMode },
 }
