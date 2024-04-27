@@ -1,5 +1,5 @@
 local wezterm = require("wezterm")
-local action = wezterm.action
+local act = wezterm.action
 local config = {}
 
 -- config.color_scheme = "Gruvbox light, soft (base16)"
@@ -22,13 +22,22 @@ config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 
 config.disable_default_key_bindings = true
 local csa = "CTRL|SHIFT|ALT"
+local ca = "CTRL|ALT"
 config.keys = {
-	{ key = "c", mods = csa, action = action.CopyTo("Clipboard") },
-	{ key = "v", mods = csa, action = action.PasteFrom("Clipboard") },
-	{ key = "l", mods = csa, action = action.ShowDebugOverlay },
-	{ key = "+", mods = csa, action = action.IncreaseFontSize },
-	{ key = "_", mods = csa, action = action.DecreaseFontSize },
-	{ key = "Escape", mods = csa, action = action.ActivateCopyMode },
+	{ key = "c", mods = csa, action = act.CopyTo("Clipboard") },
+	{ key = "v", mods = csa, action = act.PasteFrom("Clipboard") },
+	{ key = "t", mods = csa, action = act.SpawnTab("CurrentPaneDomain") },
+	{ key = "n", mods = csa, action = act.SpawnWindow },
+	{ key = "q", mods = csa, action = act.CloseCurrentTab({ confirm = true }) },
+	{ key = "x", mods = csa, action = act.ActivateCommandPalette },
+	{ key = "l", mods = csa, action = act.ShowDebugOverlay },
+	{ key = "+", mods = csa, action = act.IncreaseFontSize },
+	{ key = "_", mods = csa, action = act.DecreaseFontSize },
+	{ key = "f", mods = csa, action = act.Search({ CaseSensitiveString = "" }) },
+	{ key = "Tab", mods = csa, action = act.ActivateTabRelative(1) },
+	{ key = "Tab", mods = ca, action = act.ActivateTabRelative(-1) },
+	{ key = "Escape", mods = csa, action = act.ActivateCopyMode },
+	{ key = "Space", mods = csa, action = act.QuickSelect },
 }
 
 package.path = package.path .. ";" .. os.getenv("HOME") .. "/.cache/colorsync/?.lua"
