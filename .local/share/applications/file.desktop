@@ -1,5 +1,4 @@
 [Desktop Entry]
 Type=Application
 Name=File Manager
-Exec=env lf %u
-Terminal=true
+Exec=wezterm start -e lf %u
