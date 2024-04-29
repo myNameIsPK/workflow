@@ -229,8 +229,8 @@
     "ff" 'find-file
     "fc" '(lambda ()
             (interactive)
-            (let ((project-current-directory-override user-emacs-directory))
-              (project-find-file)))
+            (let ((project-current-directory-override "~/.config/emacs"))
+              (call-interactively #'project-find-file)))
     "gg" 'magit-status
     "gb" 'magit-blame
     "dd" 'dired
