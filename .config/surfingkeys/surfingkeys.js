@@ -34,9 +34,9 @@ mapkey('yO', 'Copy link orgmode format', function() {
   Clipboard.write(''.concat('[[',window.location.href,'][',document.title,']]'));
 });
 
+unmap('<Ctrl-i>');
 map('<Ctrl-s>', '<Alt-s>'); // Toggle surfingkeys
 map('<Ctrl-i>', '<Alt-i>'); // Toggle passthrough
-unmap('<Ctrl-i>');
 
 map('gt', 'T');
 
