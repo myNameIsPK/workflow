@@ -7,6 +7,11 @@ config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
 config.term = "wezterm"
 config.font_size = 11
+config.font = wezterm.font_with_fallback({
+	"JetBrains Mono",
+	"Noto Color Emoji",
+	"WenQuanYi Zen Hei",
+})
 -- config.enable_scroll_bar = true
 config.window_padding = {
 	left = 2,
