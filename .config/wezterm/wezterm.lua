@@ -54,7 +54,6 @@ config.keys = {
 	{ key = "DownArrow", mods = csa, action = act.ActivatePaneDirection("Down") },
 	{ key = "DownArrow", mods = ca, action = act.AdjustPaneSize({ "Down", 1 }) },
 }
-
 package.path = package.path .. ";" .. os.getenv("HOME") .. "/.cache/colorsync/?.lua"
 config.colors = require("colors_wezterm")
 
