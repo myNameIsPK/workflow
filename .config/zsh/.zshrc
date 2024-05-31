@@ -204,3 +204,8 @@ fi
 
 # bun completions
 [ -s "/home/pk/.bun/_bun" ] && source "/home/pk/.bun/_bun"
+
+# pipx completions
+autoload -U bashcompinit
+bashcompinit
+eval "$(register-python-argcomplete pipx)"
