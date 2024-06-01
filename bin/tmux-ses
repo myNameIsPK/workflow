@@ -26,6 +26,7 @@ fi
 [ -z "$ses_name" ] && exit 1
 
 if ! tmux has-session -t "$ses_name"; then
+  ses_name="${ses_name/#\"/}" # remove begining `"` if there any
   case "$ses_name" in
     Notes)
       tmux new-session -ds "$ses_name" -c "$MY_NOTES_DIR" \; send-keys C-u "$EDITOR ." Enter
@@ -38,9 +39,6 @@ if ! tmux has-session -t "$ses_name"; then
     ;;
     Dotfiles)
       tmux new-session -ds "$ses_name" -e "GIT_DIR=${DOTFILES}" -e "GIT_WORK_TREE=${HOME}"
-    ;;
-    \"*)
-      tmux new-session -ds "${ses_name/#\"//}" -c "$directory"
     ;;
     *)
       tmux new-session -ds "$ses_name" -c "$directory"
