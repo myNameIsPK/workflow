@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 # vim: sw=2
 
 directory="~"
@@ -38,6 +38,9 @@ if ! tmux has-session -t "$ses_name"; then
     ;;
     Dotfiles)
       tmux new-session -ds "$ses_name" -e "GIT_DIR=${DOTFILES}" -e "GIT_WORK_TREE=${HOME}"
+    ;;
+    \"*)
+      tmux new-session -ds "${ses_name/#\"//}" -c "$directory"
     ;;
     *)
       tmux new-session -ds "$ses_name" -c "$directory"
