@@ -1,11 +1,4 @@
 #!/bin/sh
-#    ██████╗ ██████╗  ██████╗ ███████╗██╗██╗     ███████╗
-#    ██╔══██╗██╔══██╗██╔═══██╗██╔════╝██║██║     ██╔════╝
-#    ██████╔╝██████╔╝██║   ██║█████╗  ██║██║     █████╗  
-#    ██╔═══╝ ██╔══██╗██║   ██║██╔══╝  ██║██║     ██╔══╝  
-# ██╗██║     ██║  ██║╚██████╔╝██║     ██║███████╗███████╗
-# ╚═╝╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝╚══════╝
-
 ## XDG base directory
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
@@ -111,6 +104,7 @@ test -f "$GUIX_PROFILE/etc/profile" && source "$GUIX_PROFILE/etc/profile"
 
 [ -n "$BASH_VERSION" ] && [ -f ${XDG_CONFIG_HOME:-$HOME/.config}/bash/bashrc ] && source ${XDG_CONFIG_HOME:-$HOME/.config}/bash/bashrc
 
+# When user X11 server
 startx_y_or_n() {
   trap break SIGINT
   # exec startx
