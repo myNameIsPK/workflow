@@ -35,8 +35,11 @@ mapkey('yO', 'Copy link orgmode format', function() {
 });
 
 unmap('<Ctrl-i>');
+map('<Ctrl-i>', 'F'); // Forward Tab history
+map('<Ctrl-o>', 'B'); // Backward Tab history
+
 map('<Ctrl-s>', '<Alt-s>'); // Toggle surfingkeys
-map('<Ctrl-i>', '<Alt-i>'); // Toggle passthrough
+map('<Ctrl-p>', '<Alt-i>'); // Toggle passthrough
 
 map('gt', 'T');
 
