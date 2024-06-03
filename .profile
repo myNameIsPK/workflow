@@ -77,7 +77,7 @@ export ZK_NOTEBOOK_DIR="$MY_NOTES_DIR"
 export LESSHISTFILE="-" # stop less from store history
 # FZF
 export FZF_DEFAULT_OPTS="--reverse --cycle --scroll-off=3"
-export FZF_TMUX=1
+# export FZF_TMUX=1
 # BAT
 export BAT_THEME="gruvbox-${MY_BACKGROUND:-dark}"
 # Vagrant
