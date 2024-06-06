@@ -55,8 +55,8 @@ bspc_size scratchpad 85 75
 bspc_size Notes      85 100
 bspc_size Term-menu  40 30
 
-bspc rule -a firefox-nightly state=fullscreen
-bspc rule -a firefox state=fullscreen
+# bspc rule -a firefox-nightly state=fullscreen
+# bspc rule -a firefox state=fullscreen
 
 bspc_desktop 2 \
     Brave-browser \
