@@ -93,7 +93,7 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 # Rust#cargo
 if [ -f "$XDG_DATA_HOME/cargo/env" ]; then
-    source "$XDG_DATA_HOME/cargo/env"
+    . "$XDG_DATA_HOME/cargo/env"
 fi
 
 test -f $HOME/.profile.local && . $HOME/.profile.local
