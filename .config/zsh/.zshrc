@@ -1,16 +1,19 @@
-# vi:fdm=marker ft=zsh:
+# vi:fdm=marker ft=bash:
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
 ## Test function {{{
-function is_zsh(){ [[ $(readlink /proc/$$/exe) == */zsh ]] }
-function is_bash(){ [[ $(readlink /proc/$$/exe) == */bash ]] }
-function source_if_exist(){ if [ -f $1 ]; then source $1 fi }
+# function is_zsh(){ [[ $(readlink /proc/$$/exe) == */zsh ]] }
+# function is_bash(){ [[ $(readlink /proc/$$/exe) == */bash ]] }
+function is_zsh(){ if [ -n "${ZSH_VERSION}" ]; then return 0; fi; return 1; }
+function is_zsh(){ if [ -n "${ZSH_VERSION}" ]; then return 0; fi; return 1; }
+function source_if_exist(){ if [ -f $1 ]; then source $1; fi }
 # }}}
 
 ## Prompt {{{
 if [ is_zsh ]; then
+    ## Zsh: prompt{{{
     # default PS1='[%n@%M %c]\$ '
     rst="%{$(tput sgr0)%}"
     # blk="%{$(tput setaf 0)%}"
@@ -25,7 +28,9 @@ if [ is_zsh ]; then
     PS1="${red}[${rst}%n${red}@${rst}%M ${blu}%c${red}]\$(exitcolor)\$${rst}"
     [ -f "$ZDOTDIR/zsh-git-prompt" ] && source "$ZDOTDIR/zsh-git-prompt"
     PS1+="%b "
+    # }}}
 elif [ is_bash ]; then
+    ## Bash: prompt{{{
     # default PS1='[\u@\h \W]\$ '
     rst="\[$(tput sgr0)\]"
     # blk="\[$(tput setaf 0)\]"
@@ -37,6 +42,7 @@ elif [ is_bash ]; then
     # cya="\[$(tput setaf 6)\]"
     # whi="\[$(tput setaf 7)\]"
     PS1="${red}[${rst}\u${red}@${rst}\h ${blu}\W${red}]${gre}\$${rst} "
+    # }}}
 fi
 # }}}
 
@@ -47,13 +53,15 @@ shortcuts-gen > /dev/null 2>&1
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases"
 # }}}
 
+## Zsh: history{{{
 # Move history in xdg-cache
 HISTSIZE=10000000
 SAVEHIST=10000000
 # HISTFILE=$HOME/.local/state/bash/history
-
-## Bash
+# }}}
+## Bash: history{{{
 HISTCONTROL=ignoreboth	# Ignore duplicate in history 
+# }}}
 
 ## Zsh: SET VI MODE{{{
 if [ is_zsh ]; then
@@ -90,7 +98,7 @@ if [ is_bash ]; then
 fi
 # }}}
 
-## Zsh: Basic auto/tab complete
+## Zsh: autoload and bindkeys {{{
 autoload -U compinit
 zstyle ':completion:*' menu select
 # Ignore case when auto complete
@@ -192,8 +200,8 @@ cursor_mode() {
   zle -N zle-line-init
 }
 cursor_mode
-
-# Zsh: Plugins{{{
+# }}}
+## Zsh: Plugins{{{
 function zsh_add_file() {
     [ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"
 }
@@ -218,6 +226,7 @@ fpath=("$ZDOTDIR/plugins/zsh-completions" $fpath)
 compinit
 # }}}
 
+# fzf shortcuts 
 if command -v fzf > /dev/null ; then
     [ is_zsh ] && source_if_exist "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
     [ is_bash ] && source_if_exist "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash
@@ -234,6 +243,8 @@ fi
 [ -s "/home/pk/.bun/_bun" ] && source "/home/pk/.bun/_bun"
 
 # pipx completions
-autoload -U bashcompinit
-bashcompinit
-eval "$(register-python-argcomplete pipx)"
+if [ is_zsh ]; then
+    autoload -U bashcompinit
+    bashcompinit
+    eval "$(register-python-argcomplete pipx)"
+fi
