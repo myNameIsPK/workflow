@@ -366,6 +366,12 @@ if command -v fzf > /dev/null ; then
     is_bash && source_if_exist "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash
 fi
 
+# starship prompt
+if command -v starship > /dev/null ; then
+    is_bash && eval "$(starship init bash)"
+    is_zsh && eval "$(starship init zsh)"
+fi
+
 # Modified from Guix auto bash config
 if [ -n "$GUIX_ENVIRONMENT" ]; then
     if [[ $PS1 =~ (.*)"\\$" ]]; then
