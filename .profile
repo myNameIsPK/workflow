@@ -27,15 +27,15 @@ export MANPAGER='nvim +Man!'
 export TERMINAL="wezterm start"
 export GPG_TTY=$(tty)
 
-if command -v firefox-nightly > /dev/null; then
-  export BROWSER="firefox-nightly"
-elif command -v firefox > /dev/null; then
-  export BROWSER="firefox"
-elif command -v brave > /dev/null; then
-  export BROWSER="brave"
-else
-  export BROWSER="chromium"
-fi
+browser_list="firefox-nightly firefox brave chromium"
+OLDIFS=$IFS
+IFS=" "
+for i in ${browser_list}; do
+    if command -v "$i" > /dev/null; then
+        export BROWSER="$i"
+    fi
+done
+IFS=$OLDIFS
 
 ## XDG clean up
 # Tools
