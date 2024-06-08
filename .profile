@@ -41,7 +41,7 @@ fi
 # Tools
 export XINITRC=${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc
 export HISTFILE=${XDG_STATE_HOME:-$HOME/.local/state}/history
-export ZDOTDIR=${XDG_CONFIG_HOME:-$HOME/.config}/zsh
+# export ZDOTDIR=${XDG_CONFIG_HOME:-$HOME/.config}/zsh
 export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
 # export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
 export STARSHIP_CONFIG=${XDG_CONFIG_HOME:-$HOME/.config}/starship/config.toml
