@@ -1,28 +1,38 @@
-#!/bin/zsh
+# vi:fdm=marker ft=zsh:
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# default PS1='[%n@%M %c]\$ '
-rst="%{$(tput sgr0)%}"
-# blk="%{$(tput setaf 0)%}"
-red="%{$(tput setaf 1)%}"
-gre="%{$(tput setaf 2)%}"
-# yel="%{$(tput setaf 3)%}"
-blu="%{$(tput setaf 4)%}"
-# mgt="%{$(tput setaf 5)%}"
-# cya="%{$(tput setaf 6)%}"
-# whi="%{$(tput setaf 7)%}"
-exitcolor() { if [[ $? == 0 ]]; then echo "${gre}"; else echo "${red}"; fi }
-PS1="${red}[${rst}%n${red}@${rst}%M ${blu}%c${red}]\$(exitcolor)\$${rst}"
-[ -f "$ZDOTDIR/zsh-git-prompt" ] && source "$ZDOTDIR/zsh-git-prompt"
-PS1+="%b "
+## Test function {{{
+function is_zsh(){ [[ $(readlink /proc/$$/exe) == */zsh ]] }
+function is_bash(){ [[ $(readlink /proc/$$/exe) == */bash ]] }
+# }}}
 
-# Load aliases
+## Prompt {{{
+if [[ is_zsh ]]; then
+    # default PS1='[%n@%M %c]\$ '
+    rst="%{$(tput sgr0)%}"
+    # blk="%{$(tput setaf 0)%}"
+    red="%{$(tput setaf 1)%}"
+    gre="%{$(tput setaf 2)%}"
+    # yel="%{$(tput setaf 3)%}"
+    blu="%{$(tput setaf 4)%}"
+    # mgt="%{$(tput setaf 5)%}"
+    # cya="%{$(tput setaf 6)%}"
+    # whi="%{$(tput setaf 7)%}"
+    exitcolor() { if [[ $? == 0 ]]; then echo "${gre}"; else echo "${red}"; fi }
+    PS1="${red}[${rst}%n${red}@${rst}%M ${blu}%c${red}]\$(exitcolor)\$${rst}"
+    [ -f "$ZDOTDIR/zsh-git-prompt" ] && source "$ZDOTDIR/zsh-git-prompt"
+    PS1+="%b "
+fi
+# }}}
+
+## Load aliases{{{
 shortcuts-gen > /dev/null 2>&1
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc"
 # [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/profile" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/profile"
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases"
+# }}}
 
 # Move history in xdg-cache
 HISTSIZE=10000000
