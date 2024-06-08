@@ -6,10 +6,11 @@
 ## Test function {{{
 function is_zsh(){ [[ $(readlink /proc/$$/exe) == */zsh ]] }
 function is_bash(){ [[ $(readlink /proc/$$/exe) == */bash ]] }
+function source_if_exist(){ if [ -f $1 ]; then source $1 fi }
 # }}}
 
 ## Prompt {{{
-if [[ is_zsh ]]; then
+if [ is_zsh ]; then
     # default PS1='[%n@%M %c]\$ '
     rst="%{$(tput sgr0)%}"
     # blk="%{$(tput setaf 0)%}"
@@ -24,6 +25,18 @@ if [[ is_zsh ]]; then
     PS1="${red}[${rst}%n${red}@${rst}%M ${blu}%c${red}]\$(exitcolor)\$${rst}"
     [ -f "$ZDOTDIR/zsh-git-prompt" ] && source "$ZDOTDIR/zsh-git-prompt"
     PS1+="%b "
+elif [ is_bash ]; then
+    # default PS1='[\u@\h \W]\$ '
+    rst="\[$(tput sgr0)\]"
+    # blk="\[$(tput setaf 0)\]"
+    red="\[$(tput setaf 1)\]"
+    gre="\[$(tput setaf 2)\]"
+    # yel="\[$(tput setaf 3)\]"
+    blu="\[$(tput setaf 4)\]"
+    # mgt="\[$(tput setaf 5)\]"
+    # cya="\[$(tput setaf 6)\]"
+    # whi="\[$(tput setaf 7)\]"
+    PS1="${red}[${rst}\u${red}@${rst}\h ${blu}\W${red}]${gre}\$${rst} "
 fi
 # }}}
 
@@ -39,29 +52,47 @@ HISTSIZE=10000000
 SAVEHIST=10000000
 # HISTFILE=$HOME/.local/state/bash/history
 
-## SET VI MODE ###
-bindkey -v
-export KEYTIMEOUT=0
+## Bash
+HISTCONTROL=ignoreboth	# Ignore duplicate in history 
+
+## Zsh: SET VI MODE{{{
+if [ is_zsh ]; then
+    bindkey -v
+    export KEYTIMEOUT=0
+fi
+# }}}
 
 stty stop undef # Disable ctrl-s to freeze terminal.
 
-## SETOPT
-unsetopt beep # disable bell-noise
-setopt autocd # Automatically cd into typed directory.
-setopt interactive_comments
-setopt histignoredups # Ignore duplicate in history
-setopt incappendhistory # append entered command to history, don't wait for shell exit
-setopt histignorespace # ignore command start with whitespace
-setopt correctall
-setopt combining_chars # fix unicode
-setopt auto_pushd # Push the current directory visited on the stack.
-setopt pushd_ignore_dups # Do not store duplicates in the stack.
-# setopt pushd_silent # Do not print the directory stack after pushd or popd.
+## Zsh: set options{{{
+if [ is_zsh ]; then
+    unsetopt beep # disable bell-noise
+    setopt autocd # Automatically cd into typed directory.
+    setopt interactive_comments
+    setopt histignoredups # Ignore duplicate in history
+    setopt incappendhistory # append entered command to history, don't wait for shell exit
+    setopt histignorespace # ignore command start with whitespace
+    setopt correctall
+    setopt combining_chars # fix unicode
+    setopt auto_pushd # Push the current directory visited on the stack.
+    setopt pushd_ignore_dups # Do not store duplicates in the stack.
+    # setopt pushd_silent # Do not print the directory stack after pushd or popd.
+fi
+# }}}
+## Bash: set options{{{
+if [ is_bash ]; then
+    shopt -s autocd		# Auto cd to directory
+    shopt -s cdspell	# Auto correct dirctory name
+    shopt -s cmdhist	# Save multi-line commands in history as single
+    shopt -s dotglob	# Includ dot file in globbling
+    shopt -s histappend	# Append history not overwrite when exit
+    shopt -s checkwinsize	# Checks term size when bash regains control
+fi
+# }}}
 
-## Basic auto/tab complete:
+## Zsh: Basic auto/tab complete
 autoload -U compinit
 zstyle ':completion:*' menu select
-
 # Ignore case when auto complete
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z}'
 # Groups
@@ -119,23 +150,18 @@ bindkey -M viins '^D' delete-char-or-list
 bindkey -M viins '^K' kill-line
 bindkey -M viins '^N' down-line-or-history
 bindkey -M viins '^P' up-line-or-history
-
 # Home/End
 bindkey -M viins '^[[1~' beginning-of-line
 bindkey -M viins '^[[4~' end-of-line
-
 # Delete
 bindkey -M viins '^[[3~' delete-char-or-list
- 
 # ctrl+<- | ctrl+->
 bindkey "^[[1;5D" backward-word
 bindkey "^[[1;5C" forward-word
-
 # Bash like Emacs mode
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^X^E' edit-command-line
 bindkey -M emacs '^X^E' edit-command-line
-
 # TODO :edit hard code shortcut
 # Shortcut
 bindkey -s '^X^X' "^Ustartx^M"
@@ -165,14 +191,12 @@ cursor_mode() {
   zle -N zle-keymap-select
   zle -N zle-line-init
 }
-
 cursor_mode
 
-# Plugin
+# Zsh: Plugins{{{
 function zsh_add_file() {
     [ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"
 }
-
 function zsh_add_plugin() {
     PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
     PLUGIN_PATH="$ZDOTDIR/plugins/$PLUGIN_NAME"
@@ -192,9 +216,11 @@ zsh_add_plugin "hlissner/zsh-autopair"
 # zsh_add_plugin "MenkeTechnologies/zsh-expand"
 fpath=("$ZDOTDIR/plugins/zsh-completions" $fpath)
 compinit
+# }}}
 
-if command -v fzf > /dev/null && [ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ]; then
-    source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
+if command -v fzf > /dev/null ; then
+    [ is_zsh ] && source_if_exist "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
+    [ is_bash ] && source_if_exist "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash
 fi
 
 # Modified from Guix auto bash config
