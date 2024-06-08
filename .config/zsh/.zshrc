@@ -3,14 +3,6 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# This fix emacs Tramp hangs
-if [[ "$TERM" == "dumb" ]]; then
-  unset zle_bracketed_paste
-  unset zle
-  PS1='$ '
-  return
-fi
-
 # default PS1='[%n@%M %c]\$ '
 rst="%{$(tput sgr0)%}"
 # blk="%{$(tput setaf 0)%}"

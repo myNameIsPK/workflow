@@ -34,7 +34,7 @@ elif command -v firefox > /dev/null; then
 elif command -v brave > /dev/null; then
   export BROWSER="brave"
 else
-  export BROWSER="google-chrome-stable"
+  export BROWSER="chromium"
 fi
 
 ## XDG clean up
@@ -101,8 +101,6 @@ test -f $HOME/.profile.local && . $HOME/.profile.local
 ## Guix <https://guix.gnu.org/manual/en/html_node/Invoking-guix-package.html>
 GUIX_PROFILE="$HOME/.guix-profile" ; \
 test -f "$GUIX_PROFILE/etc/profile" && source "$GUIX_PROFILE/etc/profile"
-
-[ -n "$BASH_VERSION" ] && [ -f ${XDG_CONFIG_HOME:-$HOME/.config}/bash/bashrc ] && source ${XDG_CONFIG_HOME:-$HOME/.config}/bash/bashrc
 
 # When user X11 server
 startx_y_or_n() {
