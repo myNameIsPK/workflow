@@ -119,6 +119,8 @@ my.map('n', '[d', function() vim.diagnostic.goto_prev() end, { desc = "Diagnosti
 my.map('n', '<leader>dc', function() vim.diagnostic.setloclist() end, { desc = "Diagnostic Loclist" })
 my.map('n', ']d', function() vim.diagnostic.goto_next() end, { desc = "Diagnostic Next" })
 
+my.map('n', '<leader>ss', "<Cmd>mks! ~/.local/share/nvim/tmp.session<Cr>", { desc = "Save Session"})
+
 my.map("n", "<leader>pd", vim.cmd.Ex, { desc = "Projects Directory"})
 
 my.map("n", "<leader>bd", vim.cmd.bdelete, { desc = "Buffer delete" })
@@ -140,7 +142,7 @@ my.map("n", "<leader>ra", "<cmd>lua require('my.plugin.reload').reload_all()<CR>
 my.map("n", "<leader>ta", "<Cmd>Telescope builtin<Cr>", { desc = "All Builtin" })
 my.map("n", "<leader>tr", "<Cmd>Telescope resume<Cr>", { desc = "Resume Picker" })
 my.map("n", "<leader>tft", "<Cmd>Telescope filetypes<Cr>", { desc = "Set filetypes" })
-my.map("n", "<leader>ff", "<Cmd>Telescope fd hidden=true<Cr>", { desc = "Find Files" })
+my.map("n", "<leader>ff", "<Cmd>Telescope fd hidden=false<Cr>", { desc = "Find Files" })
 my.map("n", "<leader>fg", "<Cmd>Telescope live_grep<Cr>", { desc = "Files Grep" })
 my.map("n", "<leader>fr", "<Cmd>Telescope oldfiles<Cr>", { desc = "Recent Files" })
 my.map("n", "<leader>fl", "<Cmd>Telescope current_buffer_fuzzy_find<Cr>", { desc = "Find Lines" })

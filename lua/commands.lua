@@ -19,7 +19,7 @@ vim.api.nvim_create_user_command("QfToggle", function()
   end
 
   if qf_exist() then
-    vim.notify "close"
+    vim.notify "cclose"
     vim.cmd.cclose()
   else
     vim.notify "copen"

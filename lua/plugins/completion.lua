@@ -83,7 +83,7 @@ return {
         config = function()
           require "plugins.config.luasnip"
         end,
-        dependencies = { "rafamadriz/friendly-snippets" }
+        dependencies = { "rafamadriz/friendly-snippets" },
       },
       { "saadparwaiz1/cmp_luasnip" },
       -- { "hrsh7th/cmp-nvim-lua" }, -- neodev is better
