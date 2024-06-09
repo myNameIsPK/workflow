@@ -30,9 +30,13 @@ export GPG_TTY=$(tty)
 browser_list="firefox-nightly firefox brave chromium"
 OLDIFS=$IFS
 IFS=" "
+if [ -n "$ZSH_VERSION" ]; then
+    setopt sh_word_split
+fi
 for i in ${browser_list}; do
     if command -v "$i" > /dev/null; then
         export BROWSER="$i"
+        break
     fi
 done
 IFS=$OLDIFS
