@@ -1,4 +1,5 @@
-# vi:fdm=marker ft=bash:
+# vi:fdm=marker ft=sh:
+# shellcheck disable=2148,2139
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -112,6 +113,7 @@ if is_zsh; then
 fi #}}}
 
 ## Zsh: bindkeys and cursor{{{
+# shellcheck disable=2296
 if is_zsh; then
     # Vim text-object
     autoload -Uz select-bracketed select-quoted
