@@ -172,6 +172,19 @@ autocmd("BufWritePre", {
   end,
 })
 
+autocmd("BufEnter", {
+  desc = "Detect Ansible YAML file",
+  pattern = { "*.yml", "*.yaml" },
+  group = group "_ansible",
+  callback = function()
+    for _, file in ipairs { "ansible.cfg", ".ansible-lint" } do
+      if vim.fn.findfile(file, vim.fn.getcwd()) ~= "" then
+        vim.opt_local.filetype = "yaml.ansible"
+      end
+    end
+  end,
+})
+
 vim.cmd [[
 
     " augroup _smart_relativenumber
@@ -201,11 +214,6 @@ vim.cmd [[
 
     augroup _compile
       autocmd BufWritePost *.tex :silent !latexmk -pdf -interaction=nonstopmode %
-    augroup END
-
-    augroup _ansible
-      autocmd!
-      autocmd BufRead *.yaml,*.yml if search('hosts:\|tasks:', 'nw') | set ft=yaml.ansible | endif
     augroup END
 
   ]]

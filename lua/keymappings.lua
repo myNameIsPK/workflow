@@ -134,6 +134,8 @@ my.map("n", "<leader>tsp", function() vim.opt.spell = not(vim.opt.spell:get()) e
 my.map("n", "<leader>tq", function() vim.cmd.QfToggle() end, { desc = "Toggle Quickfix window" })
 my.map("n", "<leader>twk", function() require("which-key") end, { desc = "Enable Which Key" })
 
+my.map("n", "<leader>ll", "<cmd>LspStart<Cr>", { desc = "Lsp Restart" })
+
 my.map("n", "<leader>rf", "<cmd>lua my.save_and_exec()<CR>", { desc = "save and eval file" })
 my.map("n", "<leader>ra", "<cmd>lua require('my.plugin.reload').reload_all()<CR>", { desc = "BREAK!! reload all plugins"})
 

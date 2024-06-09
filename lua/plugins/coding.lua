@@ -23,7 +23,7 @@ return {
           diagnostics.shellcheck,
           -- diagnostics.yamllint,
           -- diagnostics.ansiblelint,
-          -- code_actions.shellcheck,
+          code_actions.shellcheck,
           -- code_actions.gitsigns, -- gitsigns plugins integration
           flags = { debounce_text_changes = 150 }, -- this make lsp not reload immediately everytime while you typing the words
         },
