@@ -205,7 +205,7 @@ if is_zsh; then
 fi # }}}
 ## Zsh: Plugins{{{
 if is_zsh; then
-    PLUGIN_DIR="${ZDOTDIR:-$XDG_CONFIG_HOME/zsh}"
+    PLUGIN_DIR="${ZDOTDIR:-$HOME/zsh}"
     [ ! -d $PLUGIN_DIR/plugins ] && mkdir -p "$PLUGIN_DIR/plugins"
     function zsh_add_file() {
         [ -f "$PLUGIN_DIR/$1" ] && source "$PLUGIN_DIR/$1"
