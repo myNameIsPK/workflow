@@ -390,3 +390,5 @@ if is_zsh; then
     bashcompinit
     eval "$(register-python-argcomplete pipx)"
 fi
+
+if [ -e /home/pk/.nix-profile/etc/profile.d/nix.sh ]; then . /home/pk/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

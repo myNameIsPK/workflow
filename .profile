@@ -125,3 +125,5 @@ startx_y_or_n() {
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then startx_y_or_n; fi
 
 ## End of file
+
+if [ -e /home/pk/.nix-profile/etc/profile.d/nix.sh ]; then . /home/pk/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
