@@ -384,6 +384,7 @@ if is_zsh; then
     eval "$(register-python-argcomplete pipx)"
 fi
 
+# direnv
 if command -v direnv > /dev/null ; then
     is_bash && eval "$(direnv hook bash)"
     is_zsh && eval "$(direnv hook zsh)"

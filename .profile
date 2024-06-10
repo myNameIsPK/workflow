@@ -109,6 +109,8 @@ test -f "$GUIX_PROFILE/etc/profile" && source "$GUIX_PROFILE/etc/profile"
 
 ## Nix: edit from nix installer
 if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi
+## Nix: Home Manager
+if [ -e $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh ]; then . $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh; fi
 
 # When user X11 server
 startx_y_or_n() {
