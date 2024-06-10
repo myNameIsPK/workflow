@@ -383,3 +383,8 @@ if is_zsh; then
     bashcompinit
     eval "$(register-python-argcomplete pipx)"
 fi
+
+if command -v direnv > /dev/null ; then
+    is_bash && eval "$(direnv hook bash)"
+    is_zsh && eval "$(direnv hook zsh)"
+fi
