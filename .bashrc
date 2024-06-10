@@ -374,13 +374,6 @@ if command -v starship > /dev/null ; then
     is_zsh && eval "$(starship init zsh)"
 fi
 
-# Modified from Guix auto bash config
-if [ -n "$GUIX_ENVIRONMENT" ]; then
-    if [[ $PS1 =~ (.*)"\\$" ]]; then
-        PS1="${match[1]} [guix env]\\\$ "
-    fi
-fi
-
 # bun completions
 is_zsh && source_if_exist "/home/pk/.bun/_bun"
 
@@ -390,5 +383,3 @@ if is_zsh; then
     bashcompinit
     eval "$(register-python-argcomplete pipx)"
 fi
-
-if [ -e /home/pk/.nix-profile/etc/profile.d/nix.sh ]; then . /home/pk/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

@@ -1,4 +1,5 @@
 #!/bin/sh
+# shellcheck disable=2086
 ## XDG base directory
 export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
 export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
@@ -16,7 +17,7 @@ export MY_COLOR_CACHE_DIR="$XDG_CACHE_HOME/colorsync"
 export MY_NOTES_DIR="$HOME/notes"
 
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$(echo $(find $MY_BIN -type d -printf %p:))$PATH"
+export PATH="$(find $MY_BIN -type d -printf %p:)$PATH"
 
 ## Default program
 export TERM="${TERM:-xterm-256color}"
@@ -106,6 +107,9 @@ test -f $HOME/.profile.local && . $HOME/.profile.local
 GUIX_PROFILE="$HOME/.guix-profile" ; \
 test -f "$GUIX_PROFILE/etc/profile" && source "$GUIX_PROFILE/etc/profile"
 
+## Nix: edit from nix installer
+if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi
+
 # When user X11 server
 startx_y_or_n() {
   trap break SIGINT
@@ -125,5 +129,3 @@ startx_y_or_n() {
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then startx_y_or_n; fi
 
 ## End of file
-
-if [ -e /home/pk/.nix-profile/etc/profile.d/nix.sh ]; then . /home/pk/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
