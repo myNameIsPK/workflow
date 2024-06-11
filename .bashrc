@@ -146,10 +146,16 @@ if is_zsh; then
     bindkey -M menuselect 'j' vi-down-line-or-history
 
     # Emacs keys in vi-insert mode
-    # FIXME: swap to emacs not work
-    select-emacs() { set -o emacs; }
-    zle -N select-emacs
-    bindkey -M viins '[e' select-emacs
+    switch-emacs() { set -o emacs; }
+    switch-vi() { set -o vi; }
+    zle -N switch-emacs
+    zle -N switch-vi
+    bindkey -M viins '^X^Z' switch-emacs
+    bindkey -M viins '\ee' switch-emacs
+    bindkey -M vicmd '^X^Z' switch-emacs
+    bindkey -M vicmd '\ee' switch-emacs
+    bindkey -M emacs '^X^Z' switch-vi
+    bindkey -M emacs '\ev' switch-vi
     bindkey -M viins '^A' beginning-of-line
     bindkey -M viins '^E' end-of-line
     bindkey -M viins '^R' history-incremental-search-backward
