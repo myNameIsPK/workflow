@@ -166,6 +166,7 @@ if is_zsh; then
     bindkey -M viins '^K' kill-line
     bindkey -M viins '^N' down-line-or-history
     bindkey -M viins '^P' up-line-or-history
+    bindkey -M viins '\e.' insert-last-word
     # Home/End
     bindkey -M viins '^[[1~' beginning-of-line
     bindkey -M viins '^[[4~' end-of-line
