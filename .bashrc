@@ -147,9 +147,9 @@ if is_zsh; then
 
     # Emacs keys in vi-insert mode
     # FIXME: swap to emacs not work
-    # select-emacs() { set -o emacs }
-    # zle -N select-emacs
-    # bindkey -M viins '[e' select-emacs
+    select-emacs() { set -o emacs; }
+    zle -N select-emacs
+    bindkey -M viins '[e' select-emacs
     bindkey -M viins '^A' beginning-of-line
     bindkey -M viins '^E' end-of-line
     bindkey -M viins '^R' history-incremental-search-backward
@@ -183,23 +183,23 @@ if is_zsh; then
         cursor_beam='\e[6 q'
 
         function zle-keymap-select {
-        if [[ ${KEYMAP} == vicmd ]] ||
-            [[ $1 = 'block' ]]; then
+            if [[ ${KEYMAP} == vicmd ]] ||
+                [[ $1 = 'block' ]]; then
                 echo -ne $cursor_block
             elif [[ ${KEYMAP} == main ]] ||
                 [[ ${KEYMAP} == viins ]] ||
                 [[ ${KEYMAP} = '' ]] ||
                 [[ $1 = 'beam' ]]; then
-                        echo -ne $cursor_beam
-        fi
-    }
+                echo -ne $cursor_beam
+            fi
+        }
 
-    zle-line-init() {
-    echo -ne $cursor_beam
-    }
+        zle-line-init() {
+            echo -ne $cursor_beam
+        }
 
-    zle -N zle-keymap-select
-    zle -N zle-line-init
+        zle -N zle-keymap-select
+        zle -N zle-line-init
     }
     cursor_mode
 fi # }}}
