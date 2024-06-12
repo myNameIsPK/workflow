@@ -181,8 +181,9 @@ if is_zsh; then
     bindkey -M emacs '^X^E' edit-command-line
     # TODO :edit hard code shortcut
     # Shortcut
-    bindkey -s '^X^X' "^Ustartx^M"
+    bindkey -s '^XX' "^Ustartx^M"
     bindkey -s '^X^S' "^Utmux-ses^M"
+    bindkey -s '^X^H' "^@^E --help^X^X"
 
     # Change cursor shape for different vi modes.
     cursor_mode() {
