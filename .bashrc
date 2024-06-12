@@ -156,6 +156,7 @@ if is_zsh; then
     bindkey -M vicmd '\ee' switch-emacs
     bindkey -M emacs '^X^Z' switch-vi
     bindkey -M emacs '\ev' switch-vi
+    bindkey -M viins '\ex' execute-named-cmd
     bindkey -M viins '^A' beginning-of-line
     bindkey -M viins '^E' end-of-line
     bindkey -M viins '^R' history-incremental-search-backward
@@ -183,7 +184,9 @@ if is_zsh; then
     # Shortcut
     bindkey -s '^XX' "^Ustartx^M"
     bindkey -s '^X^S' "^Utmux-ses^M"
-    bindkey -s '^X^H' "^@^E --help^X^X"
+    bindkey -s '\eas' "^@^Asudo ^X^X"
+    bindkey -s '\eah' "^@^E --help^X^X"
+    bindkey -s '\ead' "^@^E --dry-run^X^X"
 
     # Change cursor shape for different vi modes.
     cursor_mode() {
