@@ -239,7 +239,7 @@ if is_zsh; then
     zsh_add_plugin "hlissner/zsh-autopair"
     # zsh_add_plugin "MenkeTechnologies/zsh-expand"
     fpath=("$PLUGIN_DIR/plugins/zsh-completions" $fpath)
-    compinit
+    # compinit # move to the last line
 fi
 # }}}
 
@@ -312,10 +312,20 @@ pklist () {
 pkcantremove () {
     pacman -Qei \
         | awk '\
-            /^Name/{name=$3}\
-            /^Required By/{if ($4 != "None")\
-                {name=name" "NF-3;\
-                for (i=4;i<=NF;i++){name=name" "$i}print name}}'
+            /^Name/{name=$3} \
+            /^Required By/{if ($4 != "None") \
+                {name=name" "NF-3; \
+                for (i=4;i<=NF;i++){name=name" "$i}print name}}' \
+        | column --table --table-columns-limit 3
+}
+
+pkcanremove () {
+    pacman -Qei \
+        | awk '\
+            /^Name/{name=$3} \
+            /^Depends On/{if ($4 != "None"){for (i=4;i<=NF;i++){name=name" "$i} } } \
+            /^Required By/{if ($4 == "None"){print name}}' \
+        | column --table --table-columns-limit 2
 }
 
 # Colorize output
@@ -373,6 +383,7 @@ alias .....="cd ../../../.."
 alias :q=exit
 # End: Alias and Function}}}
 
+## Programs Config{{{
 # fzf shortcuts 
 if command -v fzf > /dev/null ; then
     is_zsh && source_if_exist "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
@@ -385,8 +396,12 @@ if command -v starship > /dev/null ; then
     is_zsh && eval "$(starship init zsh)"
 fi
 
+
 # bun completions
-is_zsh && source_if_exist "/home/pk/.bun/_bun"
+if is_zsh; then
+    compinit # TODO: why we must compinit first??
+    source_if_exist "/home/pk/.bun/_bun"
+fi
 
 # pipx completions
 if is_zsh; then
@@ -395,8 +410,17 @@ if is_zsh; then
     eval "$(register-python-argcomplete pipx)"
 fi
 
+# nix and it's packages completions
+if is_zsh; then
+    fpath=("$HOME"/.nix-profile/share/zsh/site-functions $fpath)
+    compinit
+fi
+
 # direnv
 if command -v direnv > /dev/null ; then
     is_bash && eval "$(direnv hook bash)"
     is_zsh && eval "$(direnv hook zsh)"
 fi
+
+is_zsh && compinit
+# }}}
