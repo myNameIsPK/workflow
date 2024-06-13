@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# vim: sw=2
+
+repls=(
+  python
+  ipython
+  node
+  bun
+  zsh
+  fish
+  bash
+  sh
+)
+
+for repl in "${repls[@]}"
+do
+  if replpath=$(command -v "$repl"); then
+    echo "$repl" "$replpath"
+  fi
+done | fzf | cut -d " " -f 2 | xargs -I{} tmux popup -w 75% -h 75% {}
