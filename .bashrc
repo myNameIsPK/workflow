@@ -62,7 +62,7 @@ HISTCONTROL=ignoreboth	# Ignore duplicate in history
 
 ## Zsh: SET VI MODE{{{
 if is_zsh; then
-    bindkey -v
+    set -o emacs
     export KEYTIMEOUT=0
 fi
 # }}}
@@ -151,30 +151,24 @@ if is_zsh; then
     zle -N switch-emacs
     zle -N switch-vi
     bindkey -M viins '^X^Z' switch-emacs
-    bindkey -M viins '\ee' switch-emacs
     bindkey -M vicmd '^X^Z' switch-emacs
+    bindkey -M viins '\ee' switch-emacs
     bindkey -M vicmd '\ee' switch-emacs
     bindkey -M emacs '^X^Z' switch-vi
     bindkey -M emacs '\ev' switch-vi
-    bindkey -M viins '\ex' execute-named-cmd
-    bindkey -M viins '^A' beginning-of-line
-    bindkey -M viins '^E' end-of-line
-    bindkey -M viins '^R' history-incremental-search-backward
-    bindkey -M viins '^S' history-incremental-search-forward
-    bindkey -M viins '^F' forward-char
-    bindkey -M viins '^B' backward-char
-    bindkey -M viins '^D' delete-char-or-list
-    bindkey -M viins '^K' kill-line
-    bindkey -M viins '^N' down-line-or-history
-    bindkey -M viins '^P' up-line-or-history
-    bindkey -M viins '\e.' insert-last-word
+    bindkey -M emacs '\E' vi-cmd-mode
     # Home/End
-    bindkey -M viins '^[[1~' beginning-of-line
-    bindkey -M viins '^[[4~' end-of-line
+    bindkey -M vicmd '^[[1~' beginning-of-line
+    bindkey '^[[1~' beginning-of-line
+    bindkey -M vicmd '^[[4~' end-of-line
+    bindkey '^[[4~' end-of-line
     # Delete
-    bindkey -M viins '^[[3~' delete-char-or-list
+    bindkey -M vicmd '^[[3~' delete-char-or-list
+    bindkey '^[[3~' delete-char-or-list
     # ctrl+<- | ctrl+->
+    bindkey -M vicmd "^[[1;5D" backward-word
     bindkey "^[[1;5D" backward-word
+    bindkey -M vicmd "^[[1;5C" forward-word
     bindkey "^[[1;5C" forward-word
     # Bash like Emacs mode
     autoload edit-command-line; zle -N edit-command-line
