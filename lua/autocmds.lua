@@ -177,9 +177,10 @@ autocmd("BufEnter", {
   pattern = { "*.yml", "*.yaml" },
   group = group "_ansible",
   callback = function()
-    for _, file in ipairs { "ansible.cfg", ".ansible-lint" } do
+    for _, file in ipairs { "ansible.cfg", ".ansible", ".ansible-lint" } do
       if vim.fn.findfile(file, vim.fn.getcwd()) ~= "" then
         vim.opt_local.filetype = "yaml.ansible"
+        break
       end
     end
   end,
