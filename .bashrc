@@ -416,5 +416,5 @@ if command -v direnv > /dev/null ; then
     is_zsh && eval "$(direnv hook zsh)"
 fi
 
-is_zsh && compinit
+# is_zsh && compinit
 # }}}
