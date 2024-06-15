@@ -2,6 +2,11 @@
 return {
 	foreground = "#32302f",
 	background = "#f2e5bc",
+	cursor_bg = "#cc241d",
+	cursor_fg = "black",
+	cursor_border = "#cc241d",
+	-- selection_bg = "#076678",
+	selection_fg = "black",
 
 	ansi = {
 		"#32302f",
@@ -23,5 +28,4 @@ return {
 		"#427b58",
 		"#f2e5bc",
 	},
-	cursor_bg = "#cc241d",
 }

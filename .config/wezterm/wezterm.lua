@@ -57,5 +57,6 @@ config.keys = {
 }
 package.path = package.path .. ";" .. os.getenv("HOME") .. "/.cache/colorsync/?.lua"
 config.colors = require("colors_wezterm")
+config.colors.background = "rgba(80%,80%,80%,100%)"
 
 return config
