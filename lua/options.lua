@@ -25,7 +25,8 @@ opt.completeopt = "menuone,noselect"
 opt.conceallevel = 0 -- so that `` is visible in markdown files
 opt.fileencoding = "utf-8" -- the encoding written to a file
 opt.foldmethod = "manual" -- folding, set to "expr" for treesitter based folding
-opt.foldexpr = "" -- set to "nvim_treesitter#foldexpr()" for treesitter based folding
+opt.foldexpr = "" -- set to `v:lua.vim.treesitter.foldexpr()` for treesitter based folding
+opt.foldtext = "" -- use virtual_text folded text
 -- opt.guifont = "monospace:h17" -- the font used in graphical neovim applications
 opt.hidden = true -- required to keep multiple buffers and open multiple buffers
 opt.hlsearch = true -- highlight all matches on previous search pattern
@@ -40,7 +41,6 @@ opt.smartindent = true -- make indenting smarter again
 opt.splitbelow = true -- force all horizontal splits to go below current window
 opt.splitright = true -- force all vertical splits to go to the right of current window
 opt.swapfile = false -- creates a swapfile
-opt.termguicolors = true -- set term gui colors (most terminals support this)
 opt.timeoutlen = 800 -- time to wait for a mapped sequence to complete (in milliseconds)
 opt.title = true -- set the title of window to the value of the titlestring
 -- opt.titlestring = "%<%F%=%l/%L - nvim" -- what the title of the window will be set to
@@ -56,14 +56,13 @@ opt.relativenumber = true -- set relative numbered lines
 opt.numberwidth = 2 -- set number column width to 2 {default 4}
 opt.signcolumn = "auto"
 opt.wrap = false
+opt.breakindent = true
 opt.spell = false
 opt.spelllang = "en"
 opt.spelloptions:append { "camel" } -- spell check CamelCase
 opt.scrolloff = 8
 opt.sidescrolloff = 8
-if vim.fn.has "nvim-0.10.0" == 1 then
-  opt.smoothscroll = true
-end
+opt.smoothscroll = true
 opt.guicursor = {
   [[n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50]],
   [[a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor]],
