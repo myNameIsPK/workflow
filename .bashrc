@@ -156,7 +156,7 @@ if is_zsh; then
     bindkey -M vicmd '\ee' switch-emacs
     bindkey -M emacs '^X^Z' switch-vi
     bindkey -M emacs '\ev' switch-vi
-    bindkey -M emacs '\E' vi-cmd-mode
+    bindkey -M emacs '\E' vi-cmd-mode # emacs doble ESC to vi-normal-mode
     # Home/End
     bindkey -M vicmd '^[[1~' beginning-of-line
     bindkey '^[[1~' beginning-of-line
@@ -178,6 +178,7 @@ if is_zsh; then
     # Shortcut
     bindkey -s '^XX' "^Ustartx^M"
     bindkey -s '^X^S' "^Utmux-ses^M"
+    bindkey -s '^O' "^Upopd^M"
     bindkey -s '\eas' "^@^Asudo ^X^X"
     bindkey -s '\eah' "^@^E --help^X^X"
     bindkey -s '\ead' "^@^E --dry-run^X^X"
