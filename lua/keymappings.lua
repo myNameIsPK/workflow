@@ -109,10 +109,7 @@ my.map("n", "<leader>n", "<Nop>", {desc = "Note Prefix"})
 my.map("n", "<leader>d", "<Nop>", {desc = "Diagnostic Prefix"})
 
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-my.map('n', '<leader>de', function() vim.diagnostic.open_float() end, { desc = "Diagnostic Float" })
-my.map('n', '[d', function() vim.diagnostic.goto_prev() end, { desc = "Diagnostic Prev" })
 my.map('n', '<leader>dc', function() vim.diagnostic.setloclist() end, { desc = "Diagnostic Loclist" })
-my.map('n', ']d', function() vim.diagnostic.goto_next() end, { desc = "Diagnostic Next" })
 
 my.map('n', '<leader>ss', "<Cmd>mks! ~/.local/share/nvim/tmp.session<Cr>", { desc = "Save Session"})
 

@@ -61,11 +61,7 @@ end
 
 my.save_and_exec = function()
   vim.cmd "silent! write"
-  if vim.bo.filetype == "lua" then
-    vim.cmd "luafile %"
-  elseif vim.bo.filetype == "vim" then
-    vim.cmd "source %"
-  end
+  vim.cmd "source %"
   vim.notify("Save and Exec " .. vim.fn.getreg "%", vim.log.levels.INFO)
 end
 

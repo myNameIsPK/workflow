@@ -9,8 +9,7 @@ require "globals"
 require "options"
 
 -- TODO: make it place more appropriate
-local is_override, _ = pcall(require, "local_override")
-my.got_override = is_override
+my.got_override, _ = pcall(require, "local_override")
 
 vim.cmd.colorscheme(my.opts.colorscheme.default)
 vim.opt.background = my.opts:background_resolve()

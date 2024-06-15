@@ -24,15 +24,6 @@ autocmd("TermOpen", {
   desc = "Fix terminal behavior",
 })
 
-autocmd("TermClose", {
-  group = group "_terminal",
-  pattern = "term://*",
-  callback = function()
-    vim.fn.feedkeys "q"
-  end,
-  desc = "Close without showing exitcode",
-})
-
 vim.api.nvim_create_autocmd("BufEnter", {
   group = group "_lsp_auto_start",
   pattern = vim.fn.stdpath "config" .. "/*.lua",
@@ -117,9 +108,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
     if client.server_capabilities.definitionProvider then
       map('n', 'gd', function() vim.lsp.buf.definition() end, "Go to definition") -- use <C-]> instead
-    end
-    if client.server_capabilities.hoverProvider then
-      map('n', 'K', function() vim.lsp.buf.hover() end, "Hover")
     end
     map('n', '<C-k>', function() vim.lsp.buf.signature_help() end, "Signature help")
     map('n', 'gr', function() vim.lsp.buf.references() end, "List references")

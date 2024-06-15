@@ -41,7 +41,7 @@ local on_attach = function(_, bufnr)
   local opts = { buffer = bufnr, noremap = true, silent = true }
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-  vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+  -- vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
   vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
   vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
   vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
@@ -60,7 +60,7 @@ end
 
 -- Add the server that troubles you here
 local name = "lua_ls"
-local cmd = { vim.fn.stdpath "data" .. "/mason/bin/lua-language-server" } -- needed for elixirls, lua_ls, omnisharp
+local cmd = { "lua-language-server" } -- needed for elixirls, lua_ls, omnisharp
 if not name then
   print "You have not defined a server name, please edit minimal_init.lua"
 end
