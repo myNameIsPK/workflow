@@ -336,7 +336,7 @@ alias rm="rm -vi"
 
 # Utilities
 alias vi="nvim"
-alias viss="nvim -S $XDG_CONFIG_HOME/nvim/tmp.session"
+alias viss="nvim -S $XDG_DATA_HOME/nvim/tmp.session"
 alias vig="nvim +Neogit"
 alias dot="git --git-dir=$DOTFILES --work-tree=$HOME"
 alias dotcd="GIT_DIR=$DOTFILES GIT_WORK_TREE=$HOME $SHELL"
