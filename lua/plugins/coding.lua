@@ -13,17 +13,14 @@ return {
       local code_actions = null_ls.builtins.code_actions
 
       null_ls.setup {
+        -- see: sources find in none-ls project `fd ".*\.lua" lua/null-ls/builtins/*/`
+        -- see: deprecated sources <https://github.com/nvimtools/none-ls.nvim/issues/58#issue-2077335231>
         sources = {
           -- formatting.prettier.with { extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } },
           -- formatting.black.with { extra_args = { "--fast" } },
           formatting.stylua,
-          formatting.jq,
-          -- diagnostics.flake8
-          -- formatting.latexindent,
-          diagnostics.shellcheck,
           -- diagnostics.yamllint,
           -- diagnostics.ansiblelint,
-          code_actions.shellcheck,
           -- code_actions.gitsigns, -- gitsigns plugins integration
           flags = { debounce_text_changes = 150 }, -- this make lsp not reload immediately everytime while you typing the words
         },

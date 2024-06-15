@@ -76,7 +76,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
 
     if my.opts.lsp.inlay_hints then
-      vim.lsp.inlay_hint.enable(bufnr, true)
+      vim.lsp.inlay_hint.enable(true)
     end
 
     local toggle_document_highlights = function()
@@ -124,7 +124,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map('v', '<localleader>f', function() lsp_formatting() end, "formatting")
 
     -- toggle features
-    map('n', '<localleader>ti', function() vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled()) end, "Toggle inlay hint")
+    map('n', '<localleader>ti', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({bufnr=nil})) end, "Toggle inlay hint")
     map('n', '<localleader>td', toggle_document_highlights, "Toggle document highlight")
     map('n', '<localleader>ts', toggle_semantic_tokens, "Toggle semantic tokens")
 
@@ -141,7 +141,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "<localleader>sc", function()
       local result = {}
       -- TODO: deprecate
-      for _, c in ipairs(vim.lsp.get_active_clients()) do
+      for _, c in ipairs(vim.lsp.get_clients()) do
         table.insert(result, "=== " .. c.name .. " ===")
         table.insert(result, c.server_capabilities)
       end

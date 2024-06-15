@@ -53,7 +53,7 @@ return {
           delete       = { text = '-' },
           topdelete    = { text = '>' },
           changedelete = { text = '~' },
-          untracked    = { text = '~' },
+          untracked    = { text = '|' },
         },
       }
       -- stylua: ignore end

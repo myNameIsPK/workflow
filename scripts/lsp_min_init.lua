@@ -31,8 +31,8 @@ vim.lsp.set_log_level "trace"
 require("vim.lsp.log").set_format_func(vim.inspect)
 local nvim_lsp = require "lspconfig"
 local on_attach = function(_, bufnr)
-  local function buf_set_option(...)
-    vim.api.nvim_buf_set_option(bufnr, ...)
+  local function buf_set_option(opt, val)
+    vim.api.nvim_set_option_value(opt, val, { buf = bufnr })
   end
 
   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
