@@ -160,6 +160,7 @@ autocmd("BufWritePre", {
   end,
 })
 
+-- TODO: should we use vim.filetype instead
 autocmd("BufEnter", {
   desc = "Detect Ansible YAML file",
   pattern = { "*.yml", "*.yaml" },
