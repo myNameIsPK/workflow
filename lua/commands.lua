@@ -26,3 +26,20 @@ vim.api.nvim_create_user_command("QfToggle", function()
     vim.cmd.copen()
   end
 end, { desc = "Quixfix window toggle" })
+
+vim.api.nvim_create_user_command("TSFold", function()
+  local tsfold_expr = "v:lua.vim.treesitter.foldexpr()"
+  if vim.opt_local.foldmethod:get() ~= "expr" then
+    vim.opt_local.foldmethod = "expr"
+    vim.opt_local.foldexpr = tsfold_expr
+  else
+    vim.opt_local.foldmethod = vim.opt_global.foldmethod:get()
+    vim.opt_local.foldexpr = ""
+    local fold_can_delete = vim.iter({ "manual", "marker" }):any(function(k, _)
+      return vim.opt_local.foldmethod:get() == k
+    end)
+    if fold_can_delete then
+      vim.fn.feedkeys "zE" -- delete fold on entire file
+    end
+  end
+end, { desc = "Toggle Treesitter Fold" })
