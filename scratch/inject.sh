@@ -14,8 +14,8 @@ EOF
 
 # TODO: Test treesitter injection by specify filetype (overwrite filename)
 cat <<EOF > /tmp/test.yaml # ft=json
-[
+{
     "key": "val",
     "array": [1, 2, 3]
-]
+}
 EOF

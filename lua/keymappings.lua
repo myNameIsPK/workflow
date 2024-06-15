@@ -111,7 +111,7 @@ my.map("n", "<leader>d", "<Nop>", {desc = "Diagnostic Prefix"})
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 my.map('n', '<leader>dc', function() vim.diagnostic.setloclist() end, { desc = "Diagnostic Loclist" })
 
-my.map('n', '<leader>ss', "<Cmd>mks! ~/.local/share/nvim/tmp.session<Cr>", { desc = "Save Session"})
+my.map('n', '<leader>ss', "<Cmd>mks! " .. vim.fn.stdpath("data") .. "/tmp.session<Cr>", { desc = "Save Session"})
 
 my.map("n", "<leader>pd", vim.cmd.Ex, { desc = "Projects Directory"})
 
