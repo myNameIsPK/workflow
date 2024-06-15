@@ -55,12 +55,7 @@ my.map("n", "[L", "<Cmd>lfirst<Cr>")
 my.map("n", "]<Space>", "mzo<Esc>`z")
 my.map("n", "[<Space>", "mzO<Esc>`z")
 
-local nohl_delay_timer
-if vim.fn.has "nvim-0.10.0" == 1 then
-  nohl_delay_timer = vim.uv.new_timer()
-else
-  nohl_delay_timer = vim.loop.new_timer()
-end
+local nohl_delay_timer = vim.uv.new_timer()
 --- @param key string Keymap use to send delayed `:nohlsearch`
 local function delay_nohl(key)
   vim.api.nvim_feedkeys(key, 'n', false)

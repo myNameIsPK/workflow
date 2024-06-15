@@ -1,20 +1,9 @@
 local M = {}
 
-local start
-local ok
-local warn
-local error
-if vim.fn.has "nvim-0.10.0" == 1 then
-  start = vim.health.start
-  ok = vim.health.ok
-  warn = vim.health.warn
-  error = vim.health.error
-else
-  start = vim.health.report_start
-  ok = vim.health.report_ok
-  warn = vim.health.report_warn
-  error = vim.health.report_error
-end
+local start = vim.health.start
+local ok = vim.health.ok
+local warn = vim.health.warn
+local error = vim.health.error
 
 function M.check()
   start "My Personal Health Check"
