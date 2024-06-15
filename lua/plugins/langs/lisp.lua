@@ -5,6 +5,7 @@ return {
       vim.g.parinfer_filetypes = {
         "clojure",
         "scheme",
+        "query", -- from :EditQuery
         "lisp",
         "racket",
         "hy",
