@@ -1,0 +1,31 @@
+# XDG version of ~/.gitconfig
+[user]
+	email = 43566401+kampanart@users.noreply.github.com
+	name = kampanart
+
+[init]
+
+[alias]
+  ss = status -s
+
+[difftool]
+  ; prompt = true
+
+[diff]
+  tool = nvimdiff
+
+[difftool "nvimdiff"]
+  cmd = "nvim -d \"$REMOTE\" \"$LOCAL\"" 
+
+[merge]
+	tool = nvimmerge
+
+[mergetool]
+	keepBackup = false
+  ; prompt = true
+
+[mergetool "nvimmerge"]
+	cmd = "nvim -d \"$LOCAL\" \"$MERGED\" \"$REMOTE\" -c \"wincmd w\""
+
+[pull]
+	rebase = true

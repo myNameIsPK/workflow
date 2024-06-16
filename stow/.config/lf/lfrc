@@ -1,0 +1,25 @@
+# `lf -doc` for document
+set hiddenfiles ".git*"
+set icons
+set scrolloff 8
+set anchorfind off        # find cmd 'f' can cycle match character in folder
+set globsearch on
+set smartcase on
+set incsearch on
+
+cmd open &$OPENER "$f"
+map e $$EDITOR "$f"
+map i $$PAGER "$f"
+map w $$SHELL
+
+cmd q quit
+map <c-n> down
+map <c-p> up
+map H set hidden!
+map D delete
+
+map W $setsid -f $TERMINAL >/dev/null 2>&1
+map V push :!nvim<space>
+
+set previewer ~/.config/lf/preview
+set cleaner ~/.config/lf/cleaner

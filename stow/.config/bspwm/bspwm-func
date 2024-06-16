@@ -1,0 +1,23 @@
+#!/bin/sh
+
+bspc_desktop()
+{
+  desktop_num=${1}
+  shift 1
+  for class in ${@}
+  do
+    bspc rule -a "${class}" desktop="^${desktop_num}"
+  done
+}
+
+bspc_size()
+{
+  class=$1
+  dx=$2
+  dy=$3
+  # x=$(xdpyinfo | grep "dimensions" | awk -F"[ x]+" '{ print $3 }')
+  # y=$(xdpyinfo | grep "dimensions" | awk -F"[ x]+" '{ print $4 }')
+  x=$(bspc wm -d | jq ".monitors[0].rectangle.width")
+  y=$(bspc wm -d | jq ".monitors[0].rectangle.height")
+  bspc rule -a ${class} rectangle="$(expr ${x} \* ${dx} / 100)x$(expr ${y} \* ${dy} / 100)+0+0"
+}

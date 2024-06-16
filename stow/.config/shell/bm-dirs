@@ -1,0 +1,29 @@
+# bookmark of directories
+
+cf  ${XDG_CONFIG_HOME:-$HOME/.config}
+cfn ${XDG_CONFIG_HOME:-$HOME/.config}/nvim
+cfe ${XDG_CONFIG_HOME:-$HOME/.config}/emacs
+cfx ${XDG_CONFIG_HOME:-$HOME/.config}/x11
+cfs ${XDG_CONFIG_HOME:-$HOME/.config}/shell
+lcs ${XDG_DATA_HOME:-$HOME/.local/share}
+lcb $HOME/.local/bin
+src $MY_SRC
+bin $MY_BIN
+lib $MY_LIB
+# ${XDG_DESKTOP_DIR:-$HOME/Desktop}
+# ${XDG_PUBLICSHARE_DIR:-$HOME/Public}
+# ${XDG_TEMPLATES_DIR:-$HOME/Templates}
+D   ${XDG_DOWNLOAD_DIR:-$HOME/Downloads}
+d   ${XDG_DOCUMENTS_DIR:-$HOME/Documents}
+B   ${XDG_DOCUMENTS_DIR:-$HOME/Documents}/books
+i   ${XDG_PICTURES_DIR:-$HOME/Pictures}
+m   ${XDG_MUSIC_DIR:-$HOME/Music}
+v   ${XDG_VIDEOS_DIR:-$HOME/Videos}
+GG  $HOME/Games
+Gn  $HOME/Games/native
+Gw  $HOME/Games/windows
+scs ${XDG_PICTURES_DIR:-$HOME/Pictures}/screenshots
+p   $HOME/Projects
+n   $HOME/notes
+z   $HOME/notes/zettels
+G   $HOME/notes/gtd

@@ -1,0 +1,17 @@
+#!/bin/sh
+
+class=$1
+shift
+cmd=$*
+
+if [ -z "$class" ] || [ -z "$cmd" ]; then
+	echo "Usage: $0 <window classname> <command>"
+	exit 1
+fi
+
+pid=$(xdotool search --class "$class")
+if [ -z "$pid" ]; then
+  $TERMINAL --class "$class" $cmd
+else
+  xdotool windowkill "$pid"
+fi

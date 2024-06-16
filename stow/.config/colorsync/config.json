@@ -1,0 +1,5 @@
+{
+  "color_path": "$XDG_CONFIG_HOME/colorsync/colors/color.json",
+  "cache_path": "$XDG_CACHE_HOME/colorsync",
+  "light": true
+}

@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+# vim: sw=2
+
+directory="~"
+if [ $# -eq 1 ]; then
+  ses_name=$1
+else
+  directory=$({ \
+    # TODO bookmark directory
+    echo "Nvim"; \
+    echo "Emacs"; \
+    echo "Notes"; \
+    echo "Dotfiles"; \
+    # project file
+    find \
+    ~/Projects \
+    ~/.local/src \
+    ~/.local/src/nvim-plugins \
+    ~/.local/share/nvim/lazy \
+    ~/.cache/emacs/straight/repos \
+    -maxdepth 1 -type d; \
+  } | fzf --bind=ctrl-j:jump,enter:replace-query+print-query) # https://github.com/junegunn/fzf/issues/1693#issuecomment-699642792
+  ses_name=$(basename "$directory" | tr "." "_")
+fi
+
+[ -z "$ses_name" ] && exit 1
+
+if ! tmux has-session -t "$ses_name"; then
+  ses_name="${ses_name/#\"/}" # remove begining `"` if there any
+  case "$ses_name" in
+    Notes)
+      tmux new-session -ds "$ses_name" -c "$MY_NOTES_DIR" \; send-keys C-u "$EDITOR ." Enter
+    ;;
+    Nvim)
+      tmux new-session -ds "$ses_name" -c "$XDG_CONFIG_HOME/nvim" \; send-keys C-u "$EDITOR init.lua" Enter
+    ;;
+    Emacs)
+      tmux new-session -ds "$ses_name" -c "$XDG_CONFIG_HOME/emacs" \; send-keys C-u "emacsclient -t -a '' init.el" Enter
+    ;;
+    Dotfiles)
+      tmux new-session -ds "$ses_name" -e "GIT_DIR=${DOTFILES}" -e "GIT_WORK_TREE=${HOME}"
+    ;;
+    *)
+      tmux new-session -ds "$ses_name" -c "$directory"
+    ;;
+  esac
+fi
+
+if [ "$TMUX" ]; then
+  tmux switch-client -t "$ses_name"
+else
+  tmux attach -t "$ses_name"
+fi

@@ -1,0 +1,33 @@
+[global]
+    monitor = 0
+    follow = keyboard
+    origin = bottom-right
+    width = 370
+    height = 350
+    offset = 10x50
+    padding = 2
+    horizontal_padding = 2
+    notification_limit = 10
+    gap_size = 2
+    transparency = 30
+    font = Monospace 12
+    format = "<b>%s</b>\n%b"
+    history_length = 100
+    corner_radius = 10
+    idle_threshold = 5s
+    dmenu = "/usr/bin/dmenu -p dunst"
+
+[urgency_low]
+    foreground = "#ebdbb2"
+    background = "#1d2021"
+    frame_color = "#928374"
+
+[urgency_normal]
+    foreground = "#ebdbb2"
+    background = "#1d2021"
+    frame_color = "#458588"
+
+[urgency_critical]
+    foreground = "#ebdbb2"
+    background = "#1d2021"
+    frame_color = "#fabd2f"

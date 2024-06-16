@@ -1,0 +1,14 @@
+# modmap:
+#   - name: Except Chrome
+#     application:
+#       not: Google-chrome
+#     remap:
+#       CapsLock: Esc
+keymap:
+  - name: Emacs binding
+    application:
+      only: ["/firefox/"]
+    remap:
+      C-p: up
+      C-n: down
+      # C-w: C-backspace

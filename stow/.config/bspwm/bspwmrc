@@ -1,0 +1,75 @@
+#!/usr/bin/env sh
+
+. "$MY_COLOR_CACHE_DIR"/colors.sh
+# pgrep -x sxhkd > /dev/null || sxhkd &
+sxhkd -c "$XDG_CONFIG_HOME/bspwm/sxhkdrc" &
+
+if [ "$(uname -n)" = "desktop-home" ]; then
+    bspc monitor HDMI-A-0 -d 1 2 3 4 5
+    bspc monitor HDMI-A-1 -d 6 7 8 9 10
+else
+    bspc monitor -d 1 2 3 4 5 6 7 8 9 10
+fi
+
+bspc config border_width         2
+bspc config window_gap           2
+
+# bspc config automatic_scheme alternate
+# bspc config initial_polarity first_child
+# bspc config removal_adjustment true
+
+bspc config split_ratio        0.55 # this make left size kitty terminal 75~80 column wide
+bspc config single_monocle     true
+bspc config borderless_monocle true
+bspc config gapless_monocle    true
+
+bspc config focused_border_color "${color3}"
+bspc config normal_border_color  "${color4}"
+
+bspc config focus_follows_pointer true
+bspc config pointer_modifier      mod1
+bspc config pointer_action1       move
+bspc config pointer_action2       resize_corner
+
+
+bspc rule -a Zathura state=tiled
+bspc rule -a Emacs state=tiled
+# bspc rule -a Gimp desktop='^8' state=floating follow=on
+# bspc rule -a mplayer2 state=floating
+# bspc rule -a Kupfer.py focus=on
+# bspc rule -a Screenkey manage=off
+
+. "${XDG_CONFIG_HOME:-$HOME/.config}/bspwm/bspwm-func"
+
+bspc rule -a Volume     sticky=on state=floating focus=on  center=on
+bspc rule -a Monitoring sticky=on state=floating focus=on  center=on
+bspc rule -a Network    sticky=on state=floating focus=on  center=on
+bspc rule -a scratchpad sticky=on state=floating center=on focus=on
+bspc rule -a Notes      sticky=on state=floating center=on focus=on
+bspc rule -a Term-menu  sticky=on state=floating center=on
+
+bspc_size Volume     50 50
+bspc_size Monitoring 90 90
+bspc_size Network    50 50
+bspc_size scratchpad 85 75
+bspc_size Notes      85 100
+bspc_size Term-menu  40 30
+
+# bspc rule -a firefox-nightly state=fullscreen
+# bspc rule -a firefox state=fullscreen
+
+bspc_desktop 2 \
+    Brave-browser \
+    firefox \
+    firefox-nightly \
+    qutebrowser
+
+bspc_desktop 3 \
+    Thunderbird \
+    discord \
+    Steam \
+    yuzu
+
+bspc_desktop 4 \
+    easyeffects \
+    obs

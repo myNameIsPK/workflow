@@ -1,0 +1,11 @@
+# bookmarks of files
+
+bf    ${XDG_CONFIG_HOME:-$HOME/.config}/shell/bm-files
+bd    ${XDG_CONFIG_HOME:-$HOME/.config}/shell/bm-dirs
+cfp   ${HOME}/.profile
+cfz   ${HOME}/.zshrc
+cfb   ${HOME}/.bashrc
+cft   ${XDG_CONFIG_HOME:-$HOME/.config}/tmux/tmux.conf
+cfk   ${XDG_CONFIG_HOME:-$HOME/.config}/sxhkd/sxhkdrc
+bsp   ${XDG_CONFIG_HOME:-$HOME/.config}/bspwm/bspwmrc
+bsk   ${XDG_CONFIG_HOME:-$HOME/.config}/bspwm/sxhkdrc

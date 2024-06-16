@@ -1,0 +1,80 @@
+#
+# wm independent hotkeys
+#
+# The valid modifier names are: super, hyper, meta, alt, control, ctrl, shift, mode_switch, lock, mod1, mod2, mod3, mod4, mod5 and any.
+# The keysym names are given by the output of xev -event keyboard.
+
+# terminal emulator
+super + Return
+	eval $TERMINAL
+
+# program launcher
+# super + @space
+# 	dmenu_run
+super + space ; super + space
+	_fzf_run
+	# dmenu_run -l 10 -b
+
+# launch specific program
+super + space ; {b,d,e,w k}
+	{$BROWSER,discord,emacsclient -c -a '',wezterm,kitty}
+
+super + k
+	onboard
+
+# toggle scratchpad
+super + {s,n}
+	scratchpad-term {'',Notes}
+
+# screecshot region to clipboard 
+ctrl + Print
+	screenshot -sc && notify-send "screenshot region to clipboard"
+
+# screecshot current window to clipboard 
+ctrl + alt + Print
+	screenshot -cc && notify-send "screenshot this window to clipboard"
+
+# Volume settings
+super + w
+	win-toggle-term Network nmtui
+
+# Volume settings
+super + v
+	win-toggle-term Volume pulsemixer
+
+# Monitoring
+ctrl + shift + Escape
+	win-toggle-term Monitoring btop
+
+# Increase volume
+XF86AudioRaiseVolume
+	pactl set-sink-volume @DEFAULT_SINK@ +1000
+
+# Decrease volume
+XF86AudioLowerVolume
+	pactl set-sink-volume @DEFAULT_SINK@ -1000
+
+# Mute volume
+XF86AudioMute
+	pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+# Mute microphone
+XF86AudioMicMute
+	pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# Increase brightness
+XF86MonBrightnessUp
+	xbacklight + 10
+
+# Decrease brightness
+XF86MonBrightnessDown
+	xbacklight - 10
+
+# TODO:add audio key
+# XF86AudioNext
+# XF86AudioPrev
+# XF86AudioPlay
+
+# make sxhkd reload its configuration files:
+super + shift + ctrl + alt + Escape
+	pkill -USR1 -x sxhkd && xset r rate 300 50 && setxkbmap us,th -option grp:alt_caps_toggle && notify-send sxhkd reloaded!!

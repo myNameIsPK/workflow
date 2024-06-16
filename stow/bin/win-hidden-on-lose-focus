@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Send HIDDEN to window one time when lose focus and kill itself.
+# FIXME: Seem not to work perfectly
+
+class=$1
+set -e
+
+xdotool search --onlyvisible --class "$class" \
+    behave %1 blur \
+    exec sh -c "\
+        xdotool search --onlyvisible --class ${class} windowstate --add HIDDEN \
+        && pkill xdotool"

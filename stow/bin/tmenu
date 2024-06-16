@@ -1,0 +1,34 @@
+#!/usr/bin/env sh
+options=$*
+
+main () {
+    if [ -n "$TMUX" ]; then
+        usetmux
+    elif [ -n "$DISPLAY" ]; then
+        usex11
+    else
+        fzf-tmux < /proc/$$/fd/0 > /proc/$$/fd/1
+    fi
+}
+
+usetmux () {
+    cmd=fzf
+    if [ -n "$FZF_TMUX" ]; then cmd=fzf-tmux; fi
+    $cmd $options < /proc/$$/fd/0 > /proc/$$/fd/1
+}
+
+usex11 () {
+    class_name="Term-menu"
+    window_id="$(xdotool search --class $class_name)"
+
+    if [ -z "$window_id" ]; then
+        # st -c "Term-menu" -g 40x8+297+1 -e bash -c "fzf $options < /proc/$$/fd/0 > /proc/$$/fd/1"
+        $TERMINAL --class "$class_name" -e bash -c "fzf $options < /proc/$$/fd/0 > /proc/$$/fd/1"
+    elif [ "$(xdotool getwindowfocus)" = "$window_id" ]; then
+        xdotool windowkill "$window_id"
+    else
+        xdotool windowactivate "$window_id"
+    fi
+}
+
+main

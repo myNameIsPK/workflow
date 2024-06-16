@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+class=${1:-scratchpad}
+
+win-toggle-hidden $class || win-toggle-term $class tmux-ses $class
+win-hidden-on-lose-focus $class

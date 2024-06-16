@@ -1,0 +1,32 @@
+#!/bin/sh
+
+url="cheat.sh/"
+options="?style=default"
+
+printhelp() {
+cat << EOF
+Query /:help for help
+  [/TOPIC]/:learn (learn about topic)
+  [/TOPIC]/:list (for list sheets)
+  /TOPIC
+  /TOPIC/SUB
+  /~KEYWORD
+  /~KEYWORD/r (recursive in all sheets)
+  /~MULTIPLE~KEYWORD
+Example:
+  /~for~loop/bi (case insensitive (i), word boundaries (b))
+  /scala/~closure
+  /scala/:list
+EOF
+}
+
+if [ -z $1 ]; then
+  printhelp
+  printf "%s" "$url"
+  read -r query
+else
+  query=$1
+fi
+
+tr_query=$(echo "$query" | tr "[:blank:]" "+")
+curl "$url$tr_query$options" | bat -n
