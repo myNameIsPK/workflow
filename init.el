@@ -455,6 +455,11 @@
 ;;   :config
 ;;   (setq vterm-shell "/usr/bin/zsh"))
 
+;;; Treesitter
+(defvar my/nvim-treesit-parser-path (concat (getenv "XDG_DATA_HOME") "/nvim/lazy/nvim-treesitter/parser"))
+;; TODO: make sure to symlink `*.so' parser files to `libtree-sitter-NAME.so'
+(add-to-list 'treesit-extra-load-path my/nvim-treesit-parser-path)
+
 ;;; Zen mode
 (use-package olivetti
   :delight " zen"
