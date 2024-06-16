@@ -1,0 +1,11 @@
+straight
+elpa
+.local/*
+*.bak
+parinfer*/**
+custom.el
+recentf
+history
+eln-cache/
+transient/
+parinfer-rust-debug.txt
