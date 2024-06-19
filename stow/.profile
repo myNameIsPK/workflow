@@ -7,7 +7,7 @@ export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
 
 ## MY environments vars
-export DOTFILES="$HOME/.dotfile.git"
+export DOTFILES="$HOME/.dotfiles"
 export MY_SHELL="$(ps -p $$ -ocomm=)"
 export MY_BIN="$HOME/bin"
 export MY_LIB="$HOME/lib"

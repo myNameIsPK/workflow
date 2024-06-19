@@ -20,12 +20,10 @@ M.find_vim_data = function()
 end
 
 M.find_dotfiles = function()
-  local dotfile_dir = vim.env.DOTFILES
-  local home_dir = vim.env.HOME
   require("telescope.builtin").find_files {
-    prompt_title = "Dot files",
-    cwd = "$HOME",
-    find_command = { "git", "--git-dir=" .. dotfile_dir, "--work-tree=" .. home_dir, "ls-files" },
+    prompt_title = "Dotfiles",
+    cwd = vim.env.DOTFILES,
+    hidden = true,
   }
 end
 

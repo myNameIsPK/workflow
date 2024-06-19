@@ -1,6 +1,5 @@
 # vi:fdm=marker ft=sh:
 # shellcheck disable=2148,2139
-
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -13,41 +12,38 @@ function source_if_exist(){ if [ -f $1 ]; then source $1; fi }
 # }}}
 
 ## Prompt {{{
-if is_zsh; then
-    ## Zsh: prompt{{{
-    # default PS1='[%n@%M %c]\$ '
-    rst="%{$(tput sgr0)%}"
-    # blk="%{$(tput setaf 0)%}"
-    red="%{$(tput setaf 1)%}"
-    gre="%{$(tput setaf 2)%}"
-    # yel="%{$(tput setaf 3)%}"
-    blu="%{$(tput setaf 4)%}"
-    # mgt="%{$(tput setaf 5)%}"
-    # cya="%{$(tput setaf 6)%}"
-    # whi="%{$(tput setaf 7)%}"
-    PS1="${red}[${rst}%n${red}@${rst}%M ${blu}%c${red}]${gre}\$${rst}"
-    PS1+="%b "
-    #}}}
-elif is_bash; then
-    ## Bash: prompt{{{
-    # default PS1='[\u@\h \W]\$ '
-    rst="\[$(tput sgr0)\]"
-    # blk="\[$(tput setaf 0)\]"
-    red="\[$(tput setaf 1)\]"
-    gre="\[$(tput setaf 2)\]"
-    # yel="\[$(tput setaf 3)\]"
-    blu="\[$(tput setaf 4)\]"
-    # mgt="\[$(tput setaf 5)\]"
-    # cya="\[$(tput setaf 6)\]"
-    # whi="\[$(tput setaf 7)\]"
-    PS1="${red}[${rst}\u${red}@${rst}\h ${blu}\W${red}]${gre}\$${rst} "
-    # }}}
+if ! command -v starship > /dev/null; then
+    if is_zsh; then
+        ## Zsh: prompt{{{
+        # default PS1='[%n@%M %c]\$ '
+        rst="%{$(tput sgr0)%}"
+        # blk="%{$(tput setaf 0)%}"
+        red="%{$(tput setaf 1)%}"
+        gre="%{$(tput setaf 2)%}"
+        # yel="%{$(tput setaf 3)%}"
+        blu="%{$(tput setaf 4)%}"
+        # mgt="%{$(tput setaf 5)%}"
+        # cya="%{$(tput setaf 6)%}"
+        # whi="%{$(tput setaf 7)%}"
+        PS1="${red}[${rst}%n${red}@${rst}%M ${blu}%c${red}]${gre}\$${rst}"
+        PS1+="%b "
+        #}}}
+    elif is_bash; then
+        ## Bash: prompt{{{
+        # default PS1='[\u@\h \W]\$ '
+        rst="\[$(tput sgr0)\]"
+        # blk="\[$(tput setaf 0)\]"
+        red="\[$(tput setaf 1)\]"
+        gre="\[$(tput setaf 2)\]"
+        # yel="\[$(tput setaf 3)\]"
+        blu="\[$(tput setaf 4)\]"
+        # mgt="\[$(tput setaf 5)\]"
+        # cya="\[$(tput setaf 6)\]"
+        # whi="\[$(tput setaf 7)\]"
+        PS1="${red}[${rst}\u${red}@${rst}\h ${blu}\W${red}]${gre}\$${rst} "
+        # }}}
+    fi
 fi
-# }}}
-
-## Load shortcuts{{{
-shortcuts-gen > /dev/null 2>&1
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc"
 # }}}
 
 ## Zsh: history{{{
@@ -212,17 +208,17 @@ fi # }}}
 ## Zsh: Plugins{{{
 if is_zsh; then
     PLUGIN_DIR="${ZDOTDIR:-$HOME/.zsh}"
-    [ ! -d $PLUGIN_DIR/plugins ] && mkdir -p "$PLUGIN_DIR/plugins"
-    function zsh_add_file() {
-        [ -f "$PLUGIN_DIR/$1" ] && source "$PLUGIN_DIR/$1"
-    }
     function zsh_add_plugin() {
-        PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
+        PLUGIN_NAME=$(cut -d "/" -f 2 <<< "$1")
         PLUGIN_PATH="$PLUGIN_DIR/plugins/$PLUGIN_NAME"
+        [ ! -d $PLUGIN_DIR/plugins ] && mkdir -p "$PLUGIN_DIR/plugins"
         if [ ! -d "$PLUGIN_PATH" ]; then
-            git clone "https://github.com/$1.git" "$PLUGIN_DIR/plugins/$PLUGIN_NAME"
+            git clone "https://github.com/$1.git" "$PLUGIN_PATH"
         fi
         if [ -d "$PLUGIN_PATH" ]; then 
+            function zsh_add_file() {
+                [ -f "$PLUGIN_DIR/$1" ] && source "$PLUGIN_DIR/$1"
+            }
             zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" || \
                 zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.zsh"
         fi
@@ -238,15 +234,74 @@ if is_zsh; then
 fi
 # }}}
 
+## Bookmarks {{{
+# Bookmark Files {{{
+bmfs=(
+    "bf  ${XDG_CONFIG_HOME:-$HOME/.config}/shell/bm-files"
+    "bd  ${XDG_CONFIG_HOME:-$HOME/.config}/shell/bm-dirs"
+    "cfp ${HOME}/.profile"
+    "cfz ${HOME}/.zshrc"
+    "cfb ${HOME}/.bashrc"
+    "cft ${XDG_CONFIG_HOME:-$HOME/.config}/tmux/tmux.conf"
+    "cfk ${XDG_CONFIG_HOME:-$HOME/.config}/sxhkd/sxhkdrc"
+    "bsp ${XDG_CONFIG_HOME:-$HOME/.config}/bspwm/bspwmrc"
+    "bsk ${XDG_CONFIG_HOME:-$HOME/.config}/bspwm/sxhkdrc"
+)
+#}}}
+# Bookmark Directories {{{
+bmds=(
+    "dt  $DOTFILES"
+    "cf  ${XDG_CONFIG_HOME:-$HOME/.config}"
+    "cfn ${XDG_CONFIG_HOME:-$HOME/.config}/nvim"
+    "cfe ${XDG_CONFIG_HOME:-$HOME/.config}/emacs"
+    "cfx ${XDG_CONFIG_HOME:-$HOME/.config}/x11"
+    "lc  $HOME/.local"
+    "lcs ${XDG_DATA_HOME:-$HOME/.local/share}"
+    "lcb $HOME/.local/bin"
+    "src $MY_SRC"
+    "bin $MY_BIN"
+    "lib $MY_LIB"
+    "D   ${XDG_DOWNLOAD_DIR:-$HOME/Downloads}"
+    "d   ${XDG_DOCUMENTS_DIR:-$HOME/Documents}"
+    "B   ${XDG_DOCUMENTS_DIR:-$HOME/Documents}/books"
+    "i   ${XDG_PICTURES_DIR:-$HOME/Pictures}"
+    "m   ${XDG_MUSIC_DIR:-$HOME/Music}"
+    "v   ${XDG_VIDEOS_DIR:-$HOME/Videos}"
+    "GG  $HOME/Games"
+    "Gn  $HOME/Games/native"
+    "Gw  $HOME/Games/windows"
+    "scs ${XDG_PICTURES_DIR:-$HOME/Pictures}/screenshots"
+    "p   $HOME/Projects"
+    "n   $HOME/notes"
+    "z   $HOME/notes/zettels"
+    "G   $HOME/notes/gtd"
+)
+# ${XDG_DESKTOP_DIR:-$HOME/Desktop}
+# ${XDG_PUBLICSHARE_DIR:-$HOME/Public}
+# ${XDG_TEMPLATES_DIR:-$HOME/Templates}
+#}}}
+
+for bmf in "${bmfs[@]}"; do
+    key=$(cut -d " " -f 1 <<< "${bmf}")
+    val=$(cut -d " " -f 2- <<< "${bmf}")
+    alias "$key"="$EDITOR $val"
+done
+for bmd in "${bmds[@]}"; do
+    key=$(cut -d " " -f 1 <<< "${bmd}")
+    val=$(cut -d " " -f 2- <<< "${bmd}")
+    if is_zsh; then
+        alias -g "$key"="$val"
+    else
+        alias "$key"="$val"
+    fi
+done
+
+#}}}
+
 ## Alias and Function{{{
 alias a=alias
 
 [ -f "$XINITRC" ] && alias startx="startx $XINITRC"
-
-# Shortcut: Reload config file
-alias rebash="source $HOME/.config/bash/bashrc"
-alias rezsh="source $HOME/.config/zsh/.zshrc"
-alias cfq="$MY_SRC/my_qmk"
 
 # Tmux
 alias ta="tmux a"
@@ -292,6 +347,57 @@ alias grv="git remote -v"
 alias gls="git ls-files"
 alias ggraph="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 
+# Colorize output
+alias ls="ls --color=auto"
+alias grep="grep --color=auto"
+alias egrep="egrep --color=auto"
+alias fgrep="fgrep --color=auto"
+
+# Confirm file operation
+alias cp="cp -i"
+alias mv="mv -i"
+alias rm="rm -vi"
+
+# Utilities
+command -v nvim > /dev/null && alias vi="nvim"
+alias viss="nvim -S $XDG_DATA_HOME/nvim/tmp.session"
+alias vig="nvim +Neogit"
+
+alias em="emacsclient -t -a ''" # this autostart emacs daemon
+alias emd="emacs --daemon"
+alias emk="pkill emacs"
+alias emls="emacsclient -t -a '' --eval \"(dired \\\"\$(pwd)\\\")\""
+alias emg="emacsclient -t -a '' --eval \"(magit \\\"\$(pwd)\\\")\""
+alias doom="emacs -nw --with-profile doom"
+
+alias psg="ps aux | rg "
+
+# ls Flags
+alias l="ls -CF --sort=extension"
+alias ll="ls -lAFhrt"
+alias la="ls -lAFh --group-directories-first --sort=extension"
+alias lh="ls -lAFhSr"
+
+# Human readable
+alias df="df -h"
+alias free="free -m"
+alias duh="du -h --max-depth=1 | sort -h -r"
+
+# Hack
+alias cd-="cd -"
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias :q=exit
+
+manfzf () {
+    man -k . | fzf | cut -d' ' -f1 | xargs -I{} man {}
+}
+
+infofzf () {
+    info "$(info -k . | fzf | sed "s#\"\(.*\)\"\s*--.*#\1#")"
+}
+
 # Packages
 pksize () {
     pacman -Qi \
@@ -322,60 +428,6 @@ pkcanremove () {
             /^Required By/{if ($4 == "None"){print name}}' \
         | column --table --table-columns-limit 2
 }
-
-# Colorize output
-alias ls="ls --color=auto"
-alias grep="grep --color=auto"
-alias egrep="egrep --color=auto"
-alias fgrep="fgrep --color=auto"
-
-# Confirm file operation
-alias cp="cp -i"
-alias mv="mv -i"
-alias rm="rm -vi"
-
-# Utilities
-alias vi="nvim"
-alias viss="nvim -S $XDG_DATA_HOME/nvim/tmp.session"
-alias vig="nvim +Neogit"
-alias dot="git --git-dir=$DOTFILES --work-tree=$HOME"
-alias dotcd="GIT_DIR=$DOTFILES GIT_WORK_TREE=$HOME $SHELL"
-alias dotenv="GIT_DIR=$DOTFILES GIT_WORK_TREE=$HOME"
-
-alias em="emacsclient -t -a ''" # this autostart emacs daemon
-alias emd="emacs --daemon"
-alias emk="pkill emacs"
-alias emls="emacsclient -t -a '' --eval \"(dired \\\"\$(pwd)\\\")\""
-alias emg="emacsclient -t -a '' --eval \"(magit \\\"\$(pwd)\\\")\""
-alias doom="emacs -nw --with-profile doom"
-
-alias psg="ps aux | rg "
-
-manfzf () {
-    man -k . | fzf | cut -d' ' -f1 | xargs -I{} man {}
-}
-
-infofzf () {
-    info "$(info -k . | fzf | sed "s#\"\(.*\)\"\s*--.*#\1#")"
-}
-
-# ls Flags
-alias l="ls -CF"
-alias ll="ls -lAFrt"
-alias la="ls -lAF --group-directories-first"
-alias lh="ls -lAFhS"
-
-# Human readable
-alias df="df -h"
-alias free="free -m"
-alias duh="du -h --max-depth=1 | sort -h -r"
-
-# Hack
-alias cd-="cd -"
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-alias :q=exit
 # End: Alias and Function}}}
 
 ## Programs Config{{{
