@@ -19,6 +19,10 @@ export MY_NOTES_DIR="$HOME/notes"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$(find $MY_BIN -type d -printf %p:)$PATH"
 
+if [ -z $TERMUX ]; then
+    export PATH="$HOME/bin:$PATH"
+fi
+
 ## Default program
 export TERM="${TERM:-xterm-256color}"
 export EDITOR="nvim"
