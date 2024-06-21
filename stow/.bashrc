@@ -451,7 +451,7 @@ if is_zsh; then
 fi
 
 # pipx completions
-if is_zsh; then
+if is_zsh && command -v pipx > /dev/null ]; then
     autoload -U bashcompinit
     bashcompinit
     eval "$(register-python-argcomplete pipx)"
