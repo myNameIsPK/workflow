@@ -29,3 +29,6 @@
 
 [pull]
 	rebase = true
+
+[include]
+    path = ~/.cache/gitalias
