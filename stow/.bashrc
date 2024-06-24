@@ -264,7 +264,7 @@ bmds=(
     "L   ${XDG_DOWNLOAD_DIR:-$HOME/Downloads}"
     "D   ${XDG_DOCUMENTS_DIR:-$HOME/Documents}"
     "B   ${XDG_DOCUMENTS_DIR:-$HOME/Documents}/books"
-    "P   ${XDG_PICTURES_DIR:-$HOME/Pictures}"
+    "I   ${XDG_PICTURES_DIR:-$HOME/Pictures}"
     "M   ${XDG_MUSIC_DIR:-$HOME/Music}"
     "V   ${XDG_VIDEOS_DIR:-$HOME/Videos}"
     "GG  $HOME/Games"
