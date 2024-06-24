@@ -6,7 +6,7 @@ KEYBOARD="${KEYBOARD:-xiudi/xd75}"
 KEYMAP="${KEYMAP:-my_maps}"
 
 firmware_path="${MY_SRC:-$HOME/.local/src}/qmk_firmware"
-config_path="${HOME}/Projects/my_qmk"
+config_path="${HOME}/Projects/qmk-keymaps"
 
 keymap_path="${config_path}/${KEYBOARD}/${KEYMAP}"
 dest_path="${firmware_path}/keyboards/${KEYBOARD}/keymaps/${KEYMAP}"
