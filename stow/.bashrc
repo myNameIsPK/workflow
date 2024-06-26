@@ -206,7 +206,7 @@ if is_zsh; then
     cursor_mode
 fi # }}}
 ## Zsh: Plugins{{{
-if is_zsh; then
+if is_zsh && [ "$USER" != "root" ]; then
     PLUGIN_DIR="${ZDOTDIR:-$HOME/.zsh}"
     function zsh_add_plugin() {
         PLUGIN_NAME=$(cut -d "/" -f 2 <<< "$1")
