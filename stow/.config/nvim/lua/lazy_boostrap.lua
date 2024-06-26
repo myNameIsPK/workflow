@@ -20,7 +20,7 @@ require("lazy").setup {
     lazy = true,
   },
   dev = {
-    path = vim.env.MY_SRC .. "/nvim-plugins",
+    path = vim.env.MY_SRC,
     fallback = true,
   },
 }
