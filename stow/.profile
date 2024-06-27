@@ -132,6 +132,7 @@ startx_y_or_n() {
   trap - SIGINT
 }
 
-if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then startx_y_or_n; fi
+if [ -z "${DISPLAY}" ] && [ -n "${XDG_VTNR}" ] && [ "${XDG_VTNR}" -eq 1 ]; then startx_y_or_n; fi
 
+[ -n "$BASH" ] && [ -e ~/.bashrc ] && . ~/.bashrc
 ## End of file
