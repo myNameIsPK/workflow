@@ -5,7 +5,7 @@ local config = {}
 -- config.color_scheme = "Gruvbox light, soft (base16)"
 config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
-config.term = "wezterm"
+-- config.term = "wezterm"
 config.font_size = 11
 config.font = wezterm.font_with_fallback({
 	"JetBrains Mono",
