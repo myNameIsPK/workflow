@@ -1,7 +1,7 @@
 # XDG version of ~/.gitconfig
 [user]
-	email = 43566401+kampanart@users.noreply.github.com
-	name = kampanart
+	; email = 43566401+kampanart@users.noreply.github.com
+	; name = kampanart
 
 [init]
 
