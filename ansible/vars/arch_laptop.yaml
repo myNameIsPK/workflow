@@ -1,0 +1,78 @@
+hostname: laptop
+# Packages Profiles
+profiles:
+  pre_install:
+    pacman:
+    - etckeeper
+
+  base:
+    pacman:
+    - linux-firmware
+    - linux-zen
+    - linux-zen-headers # need for dkms
+    - intel-ucode
+    # initramfs
+    - mkinitcpio-utils
+    - mkinitcpio-dropbear
+    - mkinitcpio-netconf
+    # boot
+    - grub
+    - efibootmgr
+    # filesystem
+    - btrfs-progs
+    - lvm2
+
+  core:
+    pacman:
+    - networkmanager
+    - openssh
+    - git
+    - rsync
+    - base-devel
+    - sudo # or doas
+    systemd:
+    - NetworkManager
+    - sshd
+
+  base-util:
+    pacman:
+    - stow
+    - man-db
+    - neovim
+    - tmux
+
+  gpu:
+    pacman:
+    - mesa
+    - xf86-video-intel
+    - nvidia-dkms # for non-zen use nvidia
+    - nvidia-utils
+
+  gpu-util:
+    import: [ gpu ]
+    pacman:
+    - nvtop
+    aur:
+    - optimus-manager
+    systemd:
+    - optimus-manager
+
+  xorg:
+    import: [ gpu, gpu-util ]
+    pacman:
+    - bspwm
+    - xorg-server
+    - xorg-xinit
+    - xdotool
+    - sxhkd
+    - feh
+    - dunst
+    - picom
+    - polybar
+    - wezterm
+
+  intensive:
+    flatpak:
+    - steam
+
+  virtualisation:

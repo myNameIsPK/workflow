@@ -1,0 +1,22 @@
+- name: Pacman operations
+  when: ansible_os_family == "Archlinux"
+  tags:
+    - pacman
+  vars:
+    package_list: []
+  block:
+    - name: List profiles
+      when: debug_enabled
+      ansible.builtin.debug:
+        var: enable_profiles
+
+    - name: Get packages
+      ansible.builtin.set_fact:
+        package_list: "{{ package_list + profiles[item].pacman }}"
+      when: profiles[item].pacman is defined
+      loop: "{{ enable_profiles }}"
+
+    - name: List packages
+      when: debug_enabled
+      ansible.builtin.debug:
+        var: package_list
