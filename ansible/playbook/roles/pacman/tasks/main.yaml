@@ -26,3 +26,26 @@
       when: debug_enabled
       ansible.builtin.debug:
         var: package_list
+
+    - name: Get explicit installed packages output
+      ansible.builtin.shell: pacman -Qne
+      changed_when: false
+      register: list_output
+
+    - name: Get explicit installed packages
+      ansible.builtin.set_fact:
+        explicit_installed_list: "{{ list_output.stdout_lines | map('regex_replace', '^(\\S+)\\s+\\S+', '\\1') }}"
+
+    - name: List explicit installed packages
+      when: debug_enabled
+      ansible.builtin.debug:
+        var: explicit_installed_list
+
+    - name: Get installed packages you might want to uninstall
+      ansible.builtin.set_fact:
+        might_uninstalls: "{{ explicit_installed_list | difference(package_list) }}"
+
+    - name: List packages you might want to uninstall
+      when: debug_enabled
+      ansible.builtin.debug:
+        var: might_uninstalls

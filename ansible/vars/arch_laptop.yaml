@@ -1,12 +1,23 @@
 hostname: laptop
+
+# packages or services that must exists before any operations no matter what
+# order of list indicate the order of package to install
+pre_install:
+  pacman:
+  - pacman
+  - git
+  - etckeeper # use to track etc and all install package operations
+  aur:
+  - git
+  - base-devel # need for commpile aur
+  - paru-bin
+
 # Packages Profiles
 profiles:
-  pre_install:
+  core: # NOTE: I don't think it will work
     pacman:
-    - etckeeper
-
-  base:
-    pacman:
+    # firmware
+    - base
     - linux-firmware
     - linux-zen
     - linux-zen-headers # need for dkms
@@ -15,21 +26,19 @@ profiles:
     - mkinitcpio-utils
     - mkinitcpio-dropbear
     - mkinitcpio-netconf
-    # boot
+    # boot tools
     - grub
     - efibootmgr
     # filesystem
     - btrfs-progs
     - lvm2
-
-  core:
-    pacman:
+    # networking
     - networkmanager
     - openssh
-    - git
     - rsync
-    - base-devel
-    - sudo # or doas
+    - git
+    # - opendoas
+    - sudo
     systemd:
     - NetworkManager
     - sshd
@@ -42,6 +51,7 @@ profiles:
     - tmux
 
   gpu:
+    import: [ core ]
     pacman:
     - mesa
     - xf86-video-intel
