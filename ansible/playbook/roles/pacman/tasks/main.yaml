@@ -5,6 +5,12 @@
   vars:
     package_list: []
   block:
+    - name: Get import(dependencies) profiles
+      loop: "{{ enable_profiles }}"
+      when: profiles[item].import is defined
+      ansible.builtin.set_fact:
+        enable_profiles: "{{ (enable_profiles + profiles[item].import) | unique }}"
+
     - name: List profiles
       when: debug_enabled
       ansible.builtin.debug:
